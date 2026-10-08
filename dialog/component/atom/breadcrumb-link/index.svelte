@@ -13,7 +13,14 @@
 		};
 
 	let linkProps: BreadcrumbLinkProps = $props();
-	const state = createBreadcrumbLinkState(linkProps);
+	const state = createBreadcrumbLinkState({
+		get current() {
+			return linkProps.current;
+		},
+		get class() {
+			return linkProps.class;
+		}
+	});
 </script>
 
 {#if linkProps.current}
