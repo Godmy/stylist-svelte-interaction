@@ -120,7 +120,8 @@
 								>
 									<BaseIcon
 										name="rotate-ccw"
-										size={16} style="color: var(--color-text-secondary)"
+										size={16}
+										style="color: var(--color-text-secondary)"
 									/>
 								</Button>
 							{/if}
@@ -132,10 +133,7 @@
 									onclick={() => state.handleCancel(file)}
 									title="Cancel upload"
 								>
-									<BaseIcon
-										name="x"
-										size={16} style="color: var(--color-text-secondary)"
-									/>
+									<BaseIcon name="x" size={16} style="color: var(--color-text-secondary)" />
 								</Button>
 							{/if}
 
@@ -145,10 +143,7 @@
 								onclick={() => state.handleRemove(file)}
 								title="Remove"
 							>
-								<BaseIcon
-									name="x"
-									size={16} style="color: var(--color-text-secondary)"
-								/>
+								<BaseIcon name="x" size={16} style="color: var(--color-text-secondary)" />
 							</Button>
 						</div>
 					{/if}

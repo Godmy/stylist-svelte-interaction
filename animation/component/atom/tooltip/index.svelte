@@ -154,7 +154,8 @@
 		pointer-events: none;
 		background: var(--color-tooltip-bg, var(--color-text-primary, #111827));
 		color: var(--color-tooltip-fg, var(--color-background-primary, #fff));
-		border: 1px solid color-mix(in srgb, var(--color-tooltip-fg, var(--color-background-primary)) 12%, transparent);
+		border: 1px solid
+			color-mix(in srgb, var(--color-tooltip-fg, var(--color-background-primary)) 12%, transparent);
 	}
 
 	.c-tooltip__popup[data-variant='invisible'] {

@@ -2,7 +2,9 @@ import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { RecipeSkeleton } from '$stylist/animation/interface/recipe/skeleton';
 
-export function createSkeletonState(getProps: () => RecipeSkeleton & HTMLAttributes<HTMLDivElement>) {
+export function createSkeletonState(
+	getProps: () => RecipeSkeleton & HTMLAttributes<HTMLDivElement>
+) {
 	const props = $derived(getProps());
 	const variant = $derived(props.variant ?? 'rectangle');
 	const animated = $derived(props.animated ?? true);

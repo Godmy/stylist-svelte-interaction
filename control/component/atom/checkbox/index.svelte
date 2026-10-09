@@ -43,14 +43,14 @@
 
 	const state = createCheckboxState(
 		untrack(() => ({
-		id,
-		label,
-		description,
-		checked,
-		errors,
-		required,
-		disabled,
-		class: className
+			id,
+			label,
+			description,
+			checked,
+			errors,
+			required,
+			disabled,
+			class: className
 		}))
 	);
 </script>

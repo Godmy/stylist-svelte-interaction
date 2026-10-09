@@ -48,7 +48,11 @@
 		border-radius: 8px;
 		background: rgba(10, 16, 14, 0.82);
 		color: #baf2e6;
-		font: 11px/1.4 ui-monospace, 'SFMono-Regular', Menlo, monospace;
+		font:
+			11px/1.4 ui-monospace,
+			'SFMono-Regular',
+			Menlo,
+			monospace;
 		pointer-events: none;
 		white-space: nowrap;
 	}

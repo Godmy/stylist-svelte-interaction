@@ -37,11 +37,7 @@
 					onclick={() => state.onResultClick?.(result)}
 				>
 					<div class="c-search-results__item-inner">
-						<BaseIcon
-							name={state.icon(result.type)}
-							size={20}
-							class="c-search-results__icon"
-						/>
+						<BaseIcon name={state.icon(result.type)} size={20} class="c-search-results__icon" />
 						<div class="c-search-results__content">
 							<div class="c-search-results__title">{result.title}</div>
 							{#if result.description}

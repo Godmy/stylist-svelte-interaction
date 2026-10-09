@@ -29,10 +29,7 @@
 				{#if state.searchable}
 					<div class="fe-search-wrap">
 						<div class="fe-search-icon">
-							<BaseIcon
-								name="search"
-								size={20} style="color: var(--color-text-tertiary)"
-							/>
+							<BaseIcon name="search" size={20} style="color: var(--color-text-tertiary)" />
 						</div>
 						<input
 							type="text"

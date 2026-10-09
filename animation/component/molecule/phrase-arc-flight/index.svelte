@@ -42,7 +42,9 @@
 	const characters = $derived(Array.from(phrase || '').filter((character) => character.length > 0));
 	const clampedProgress = $derived(Math.min(1, Math.max(0, progress)));
 	const displayProgress = $derived(still ? clampedProgress : animatedProgress);
-	const headProgress = $derived(displayProgress * (1 + Math.max(0, characters.length - 1) * stagger));
+	const headProgress = $derived(
+		displayProgress * (1 + Math.max(0, characters.length - 1) * stagger)
+	);
 	const pathProgress = $derived(clamp(headProgress, 0, 1));
 	const letterStates = $derived(
 		characters.map((character, index) => {
@@ -184,9 +186,7 @@
 		overflow: hidden;
 		border: 1px solid rgb(17 58 52 / 0.14);
 		border-radius: 0.5rem;
-		background:
-			linear-gradient(135deg, rgb(232 247 242 / 0.96), rgb(255 251 238 / 0.94)),
-			#f4fbf8;
+		background: linear-gradient(135deg, rgb(232 247 242 / 0.96), rgb(255 251 238 / 0.94)), #f4fbf8;
 		font-size: clamp(1.8rem, 5vw, 3.8rem);
 	}
 </style>

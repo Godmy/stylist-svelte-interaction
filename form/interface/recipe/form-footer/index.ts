@@ -3,7 +3,6 @@ import type { SlotFormFooter } from '$stylist/form/interface/slot/form-footer';
 import type { BehaviorClickable } from '$stylist/layout/interface/behavior/clickable';
 import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focusable';
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
-export interface RecipeFormFooter
-	extends ComputeIntersectAll<
-		[SlotFormFooter, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
-	> {}
+export interface RecipeFormFooter extends ComputeIntersectAll<
+	[SlotFormFooter, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
+> {}

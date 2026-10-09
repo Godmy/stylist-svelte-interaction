@@ -25,7 +25,8 @@
 	>
 		<BaseIcon
 			name="upload"
-			size={48} style="display: block; margin: 0 auto 1rem; color: var(--color-text-tertiary)"
+			size={48}
+			style="display: block; margin: 0 auto 1rem; color: var(--color-text-tertiary)"
 		/>
 		<p class="ddf-title">Drag and drop files here</p>
 		<p class="ddf-subtitle">or click to browse</p>
@@ -59,7 +60,8 @@
 						<div class="ddf-item-info">
 							<BaseIcon
 								name="file-text"
-								size={20} style="margin-right: 0.5rem; color: var(--color-text-secondary); flex-shrink: 0"
+								size={20}
+								style="margin-right: 0.5rem; color: var(--color-text-secondary); flex-shrink: 0"
 							/>
 							<div>
 								<p class="ddf-item-name">{file.name}</p>

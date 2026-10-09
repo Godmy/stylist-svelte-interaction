@@ -15,7 +15,8 @@
 		<div class="zv-header-row">
 			<BaseIcon
 				name="archive"
-				size={24} style="margin-right: 0.75rem; color: var(--color-primary-500)"
+				size={24}
+				style="margin-right: 0.75rem; color: var(--color-primary-500)"
 			/>
 			<div>
 				<h3 class="zv-archive-name">{state.archiveName}</h3>
@@ -26,10 +27,7 @@
 		{#if state.searchable}
 			<div class="zv-search-wrap">
 				<div class="zv-search-icon">
-					<BaseIcon
-						name="search"
-						size={20} style="color: var(--color-text-tertiary)"
-					/>
+					<BaseIcon name="search" size={20} style="color: var(--color-text-tertiary)" />
 				</div>
 				<input
 					type="text"
@@ -72,12 +70,14 @@
 								{#if state.expandedFolders.has(entry.path)}
 									<BaseIcon
 										name="chevron-down"
-										size={16} style="color: var(--color-text-secondary)"
+										size={16}
+										style="color: var(--color-text-secondary)"
 									/>
 								{:else}
 									<BaseIcon
 										name="chevron-right"
-										size={16} style="color: var(--color-text-secondary)"
+										size={16}
+										style="color: var(--color-text-secondary)"
 									/>
 								{/if}
 							{/if}
@@ -117,10 +117,7 @@
 									disabled={state.disabled}
 									title="Preview"
 								>
-									<BaseIcon
-										name="eye"
-										size={16} style="color: var(--color-text-secondary)"
-									/>
+									<BaseIcon name="eye" size={16} style="color: var(--color-text-secondary)" />
 								</Button>
 							{/if}
 							<Button
@@ -130,10 +127,7 @@
 								disabled={state.disabled}
 								title="Download"
 							>
-								<BaseIcon
-									name="download"
-									size={16} style="color: var(--color-text-secondary)"
-								/>
+								<BaseIcon name="download" size={16} style="color: var(--color-text-secondary)" />
 							</Button>
 							<Button
 								variant="ghost"
@@ -144,7 +138,8 @@
 							>
 								<BaseIcon
 									name="external-link"
-									size={16} style="color: var(--color-text-secondary)"
+									size={16}
+									style="color: var(--color-text-secondary)"
 								/>
 							</Button>
 						</div>

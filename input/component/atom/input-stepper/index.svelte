@@ -29,7 +29,7 @@
 	class={`input-stepper ${className}`.trim()}
 	data-size={size}
 	aria-label={label}
-	style:background={background}
+	style:background
 >
 	<button
 		type="button"

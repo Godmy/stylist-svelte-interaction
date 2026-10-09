@@ -42,7 +42,7 @@
 				label={values.label}
 				active={values.active}
 				disabled={values.disabled}
-				open={open}
+				{open}
 				controls="mega-trigger-demo-panel"
 				onclick={() => (open = !open)}
 			/>

@@ -1,4 +1,3 @@
-import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLInputAttributes } from 'svelte/elements';
 import type { TokenSize } from '$stylist/theme/type/alias/size';
 import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';

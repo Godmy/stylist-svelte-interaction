@@ -29,12 +29,7 @@
 		<Tag
 			text={values.text as string}
 			variant={values.variant as
-				| 'default'
-				| 'primary'
-				| 'secondary'
-				| 'success'
-				| 'warning'
-				| 'error'}
+				'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error'}
 			size={values.size as 'sm' | 'md' | 'lg'}
 			closable={values.closable as boolean}
 			disabled={values.disabled as boolean}

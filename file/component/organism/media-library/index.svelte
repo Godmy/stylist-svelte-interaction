@@ -14,10 +14,7 @@
 			<div class="ml-search-wrap">
 				<div class="ml-search-field">
 					<div class="ml-search-icon-wrap">
-						<BaseIcon
-							name="search"
-							size={20} style="color: var(--color-text-tertiary)"
-						/>
+						<BaseIcon name="search" size={20} style="color: var(--color-text-tertiary)" />
 					</div>
 					<input
 						type="text"
@@ -138,7 +135,8 @@
 						{:else}
 							<BaseIcon
 								name={state.getFileIcon(item.type)}
-								size={40} style="color: var(--color-text-tertiary)"
+								size={40}
+								style="color: var(--color-text-tertiary)"
 							/>
 						{/if}
 					</div>
@@ -170,7 +168,8 @@
 					<div class="ml-list-thumb">
 						<BaseIcon
 							name={state.getFileIcon(item.type)}
-							size={32} style="color: var(--color-text-tertiary)"
+							size={32}
+							style="color: var(--color-text-tertiary)"
 						/>
 					</div>
 					<div class="ml-list-info">
@@ -228,7 +227,8 @@
 		<div class="ml-empty">
 			<BaseIcon
 				name="folder"
-				size={48} style="color: var(--color-text-tertiary); display: block; margin: 0 auto 0.5rem"
+				size={48}
+				style="color: var(--color-text-tertiary); display: block; margin: 0 auto 0.5rem"
 			/>
 			<h3 class="ml-empty-title">No media files</h3>
 			<p class="ml-empty-desc">

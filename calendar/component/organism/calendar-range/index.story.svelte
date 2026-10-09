@@ -16,7 +16,8 @@
 	const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 
 	function formatRange(value: { start: Date | null; end: Date | null }): string {
-		const fmt = (date: Date) => date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
+		const fmt = (date: Date) =>
+			date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
 		if (!value.start) return 'Не выбрано';
 		if (!value.end) return `${fmt(value.start)} → выберите конец периода`;
 		return `${fmt(value.start)} → ${fmt(value.end)}`;

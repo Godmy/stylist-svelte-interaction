@@ -9,17 +9,16 @@ import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotButtonAttributesBase } from '$stylist/button/interface/slot/button-attributes-base';
 import type { SplitButtonItem } from '$stylist/button/type/object/split-button-item';
-export interface RecipeSplitButton
-	extends ComputeIntersectAll<
-		[
-			SlotButtonAttributesBase,
-			SlotText,
-			SlotIcon,
-			BehaviorClickable,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {
+export interface RecipeSplitButton extends ComputeIntersectAll<
+	[
+		SlotButtonAttributesBase,
+		SlotText,
+		SlotIcon,
+		BehaviorClickable,
+		BehaviorFocusable,
+		BehaviorSizable
+	]
+> {
 	children?: Snippet;
 	items: SplitButtonItem[];
 	primaryAction: () => void;

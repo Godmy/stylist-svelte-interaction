@@ -11,27 +11,26 @@ import type { RecipeBackground } from '$stylist/layout/interface/recipe/backgrou
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotBadge } from '$stylist/layout/interface/slot/badge';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
-export interface RecipeButtonComposed
-	extends ComputeIntersectAll<
-		[
-			ComputeIntersectAll<
-				[
-					SlotText,
-					SlotIcon,
-					SlotBadge,
-					BehaviorClickable,
-					BehaviorFocusable,
-					BehaviorSized,
-					BehaviorShapeable,
-					RecipeContainer,
-					RecipeBackground,
-					RecipeBorder,
-					HTMLButtonAttributes
-				]
-			>,
-			SlotChildren
-		]
-	> {
+export interface RecipeButtonComposed extends ComputeIntersectAll<
+	[
+		ComputeIntersectAll<
+			[
+				SlotText,
+				SlotIcon,
+				SlotBadge,
+				BehaviorClickable,
+				BehaviorFocusable,
+				BehaviorSized,
+				BehaviorShapeable,
+				RecipeContainer,
+				RecipeBackground,
+				RecipeBorder,
+				HTMLButtonAttributes
+			]
+		>,
+		SlotChildren
+	]
+> {
 	loadingLabel?: string;
 	block?: boolean;
 }

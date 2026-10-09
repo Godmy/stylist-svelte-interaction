@@ -9,7 +9,8 @@
 			name: 'pathText',
 			label: 'polyline',
 			type: 'text',
-			defaultValue: '820,48 740,40 660,64 580,108 500,146 420,136 340,154 260,194 180,212 90,192 0,180 -150,190'
+			defaultValue:
+				'820,48 740,40 660,64 580,108 500,146 420,136 340,154 260,194 180,212 90,192 0,180 -150,190'
 		},
 		{ name: 'progress', type: 'range', min: 0, max: 1, step: 0.01, defaultValue: 0.5 },
 		{ name: 'amplitude', type: 'range', min: 0, max: 24, step: 1, defaultValue: 7 },

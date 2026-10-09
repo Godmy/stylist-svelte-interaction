@@ -32,7 +32,9 @@
 	{#snippet children(values: any)}
 		<div class="_grid">
 			<div class="_panel">
-				<p class="_label">mode=&quot;ambient&quot;<br /><span>бесконечный медленный дрейф, ничего не нажимать</span></p>
+				<p class="_label">
+					mode=&quot;ambient&quot;<br /><span>бесконечный медленный дрейф, ничего не нажимать</span>
+				</p>
 				<div class="_frame">
 					<VectorScene mode="ambient" viewBox="0 0 100 100" {layers} class="_scene" />
 				</div>
@@ -41,7 +43,10 @@
 			<div class="_panel">
 				<p class="_label">
 					mode=&quot;progress&quot;<br />
-					<span>ведётся пропом progress = {Number(values.progress).toFixed(2)} — потяните ползунок «progress» слева</span>
+					<span
+						>ведётся пропом progress = {Number(values.progress).toFixed(2)} — потяните ползунок «progress»
+						слева</span
+					>
 				</p>
 				<div class="_frame">
 					<VectorScene
@@ -55,7 +60,9 @@
 			</div>
 
 			<div class="_panel">
-				<p class="_label">mode=&quot;interaction&quot;<br /><span>наведите курсор или нажмите на сцену</span></p>
+				<p class="_label">
+					mode=&quot;interaction&quot;<br /><span>наведите курсор или нажмите на сцену</span>
+				</p>
 				<div class="_frame">
 					<VectorScene
 						mode="interaction"

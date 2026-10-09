@@ -1,8 +1,9 @@
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLAttributes } from 'svelte/elements';
 
-export interface RecipeToggleButtonGroup
-	extends ComputeIntersectAll<[HTMLAttributes<HTMLDivElement>]> {
+export interface RecipeToggleButtonGroup extends ComputeIntersectAll<
+	[HTMLAttributes<HTMLDivElement>]
+> {
 	options: {
 		value: string;
 		label: string;

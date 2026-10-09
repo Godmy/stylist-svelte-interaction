@@ -76,11 +76,7 @@
 		>
 			<BaseIcon name={state.X} size={16} />
 		</button>
-		<BaseIcon
-			name={state.ChevronDown}
-			class={state.chevronClasses}
-			size={16}
-		/>
+		<BaseIcon name={state.ChevronDown} class={state.chevronClasses} size={16} />
 	</div>
 
 	{#if state.isOpen}

@@ -5,7 +5,12 @@
 
 	const controls: SlotStory[] = [
 		{ name: 'progress', type: 'range', defaultValue: 0.42, min: 0, max: 1, step: 0.01 },
-		{ name: 'phase', type: 'select', options: ['intro', 'focus', 'morph', 'logo', 'complete'], defaultValue: 'morph' },
+		{
+			name: 'phase',
+			type: 'select',
+			options: ['intro', 'focus', 'morph', 'logo', 'complete'],
+			defaultValue: 'morph'
+		},
 		{ name: 'webgl', type: 'boolean', defaultValue: true },
 		{ name: 'reducedMotion', type: 'boolean', defaultValue: false }
 	];

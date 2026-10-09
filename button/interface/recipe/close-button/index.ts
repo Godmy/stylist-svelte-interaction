@@ -4,7 +4,6 @@ import type { BehaviorClickable } from '$stylist/layout/interface/behavior/click
 import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focusable';
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
-export interface RecipeCloseButton
-	extends ComputeIntersectAll<
-		[RecipeButtonElement, SlotIcon, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
-	> {}
+export interface RecipeCloseButton extends ComputeIntersectAll<
+	[RecipeButtonElement, SlotIcon, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
+> {}

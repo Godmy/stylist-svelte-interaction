@@ -8,31 +8,30 @@ import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 
-export interface RecipeMultiSelect
-	extends ComputeIntersectAll<
-		[
-			HTMLAttributes<HTMLDivElement> & {
-				options: SlotMultiSelectOption[];
-				value?: string[];
-				placeholder?: string;
-				disabled?: boolean;
-				searchable?: boolean;
-				maxSelections?: number;
-				class?: string;
-				dropdownClass?: string;
-				selectedClass?: string;
-				optionClass?: string;
-				placeholderClass?: string;
-				searchInputClass?: string;
-				onInput?: (value: string[]) => void;
-				onChange?: (value: string[]) => void;
-			},
-			SlotText,
-			SlotText,
-			SlotIcon,
-			BehaviorSelectable<string[]>,
-			BehaviorFocusable,
-			BehaviorSizable,
-			BehaviorScrollable
-		]
-	> {}
+export interface RecipeMultiSelect extends ComputeIntersectAll<
+	[
+		HTMLAttributes<HTMLDivElement> & {
+			options: SlotMultiSelectOption[];
+			value?: string[];
+			placeholder?: string;
+			disabled?: boolean;
+			searchable?: boolean;
+			maxSelections?: number;
+			class?: string;
+			dropdownClass?: string;
+			selectedClass?: string;
+			optionClass?: string;
+			placeholderClass?: string;
+			searchInputClass?: string;
+			onInput?: (value: string[]) => void;
+			onChange?: (value: string[]) => void;
+		},
+		SlotText,
+		SlotText,
+		SlotIcon,
+		BehaviorSelectable<string[]>,
+		BehaviorFocusable,
+		BehaviorSizable,
+		BehaviorScrollable
+	]
+> {}

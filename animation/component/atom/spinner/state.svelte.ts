@@ -2,7 +2,9 @@ import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { RecipeSpinner } from '$stylist/animation/interface/recipe/spinner';
 
-export function createSpinnerState(getProps: () => RecipeSpinner & HTMLAttributes<HTMLSpanElement>) {
+export function createSpinnerState(
+	getProps: () => RecipeSpinner & HTMLAttributes<HTMLSpanElement>
+) {
 	const props = $derived(getProps());
 	const size = $derived(props.size ?? 'md');
 	const label = $derived(props.label ?? 'Loading');

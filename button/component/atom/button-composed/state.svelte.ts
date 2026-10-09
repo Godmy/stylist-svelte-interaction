@@ -19,7 +19,9 @@ export function createButtonComposedState(getProps: () => RecipeButtonComposed) 
 	const background = createBackgroundState(
 		() => props as ReturnType<Parameters<typeof createBackgroundState>[0]>
 	);
-	const border = createBorderState(() => props as ReturnType<Parameters<typeof createBorderState>[0]>);
+	const border = createBorderState(
+		() => props as ReturnType<Parameters<typeof createBorderState>[0]>
+	);
 
 	const isLoading = $derived(props.loading ?? false);
 	const isDisabled = $derived(Boolean(props.disabled || clickable.disabled || isLoading));

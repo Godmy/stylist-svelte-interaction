@@ -63,12 +63,20 @@
 	/* isToday — залитый круг, отдельный от «выбрано» акцент. */
 	.c-calendar-day[data-today] {
 		border-radius: 999px;
-		background: color-mix(in srgb, var(--calendar-day-accent, var(--color-primary-500)) 18%, transparent);
+		background: color-mix(
+			in srgb,
+			var(--calendar-day-accent, var(--color-primary-500)) 18%,
+			transparent
+		);
 	}
 
 	.c-calendar-day[data-in-range] {
 		border-radius: 0;
-		background: color-mix(in srgb, var(--calendar-day-accent, var(--color-primary-500)) 12%, transparent);
+		background: color-mix(
+			in srgb,
+			var(--calendar-day-accent, var(--color-primary-500)) 12%,
+			transparent
+		);
 	}
 
 	.c-calendar-day[data-range-start],

@@ -77,10 +77,7 @@
 		{/if}
 
 		<button type="button" class={state.buttonClass} aria-label="Accessibility settings">
-			<BaseIcon
-				name={PresetAccessibilityToolbar.Accessibility}
-				size={20}
-			/>
+			<BaseIcon name={PresetAccessibilityToolbar.Accessibility} size={20} />
 		</button>
 	</div>
 </div>

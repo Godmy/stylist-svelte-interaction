@@ -10,36 +10,35 @@ import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 
-export interface RecipeSelector
-	extends ComputeIntersectAll<
-		[
-			(HTMLSelectAttributes & {
-				id: string;
+export interface RecipeSelector extends ComputeIntersectAll<
+	[
+		(HTMLSelectAttributes & {
+			id: string;
+			label: string;
+			value?: string;
+			options: {
+				value: string;
 				label: string;
-				value?: string;
-				options: {
-					value: string;
-					label: string;
-				}[];
-				errors?: string[];
-				required?: boolean;
-				disabled?: boolean;
-				placeholder?: string;
-				class?: string;
-			}) & {
-				open?: boolean;
-				onToggle?: () => void;
-			},
-			SlotText,
-			SlotText,
-			SlotIcon,
-			BehaviorSelectable<string | string[]>,
-			BehaviorFocusable,
-			BehaviorSized,
-			BehaviorShapeable,
-			BehaviorSpaced,
-			BehaviorScrollable,
-			SlotTheme,
-			HTMLAttributes<HTMLSelectElement>
-		]
-	> {}
+			}[];
+			errors?: string[];
+			required?: boolean;
+			disabled?: boolean;
+			placeholder?: string;
+			class?: string;
+		}) & {
+			open?: boolean;
+			onToggle?: () => void;
+		},
+		SlotText,
+		SlotText,
+		SlotIcon,
+		BehaviorSelectable<string | string[]>,
+		BehaviorFocusable,
+		BehaviorSized,
+		BehaviorShapeable,
+		BehaviorSpaced,
+		BehaviorScrollable,
+		SlotTheme,
+		HTMLAttributes<HTMLSelectElement>
+	]
+> {}

@@ -7,19 +7,18 @@ import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotComboboxItem } from '$stylist/control/interface/slot/combobox-item';
-export interface RecipeCombobox
-	extends ComputeIntersectAll<
-		[
-			SlotChildren,
-			SlotText,
-			SlotText,
-			SlotIcon,
-			BehaviorSelectable<string | null>,
-			BehaviorFocusable,
-			BehaviorSizable,
-			BehaviorScrollable
-		]
-	> {
+export interface RecipeCombobox extends ComputeIntersectAll<
+	[
+		SlotChildren,
+		SlotText,
+		SlotText,
+		SlotIcon,
+		BehaviorSelectable<string | null>,
+		BehaviorFocusable,
+		BehaviorSizable,
+		BehaviorScrollable
+	]
+> {
 	id: string;
 	items: SlotComboboxItem[];
 	value?: string | null;

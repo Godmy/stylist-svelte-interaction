@@ -28,7 +28,11 @@
 		background: linear-gradient(
 			to bottom right,
 			var(--floating-icon-accent, var(--color-primary-500)),
-			color-mix(in srgb, var(--floating-icon-accent, var(--color-primary-500)) 55%, var(--color-primary-400))
+			color-mix(
+				in srgb,
+				var(--floating-icon-accent, var(--color-primary-500)) 55%,
+				var(--color-primary-400)
+			)
 		);
 		box-shadow: var(--floating-icon-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1));
 		animation: floating-icon-float var(--floating-icon-duration, var(--duration-s6, 6s))

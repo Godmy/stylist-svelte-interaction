@@ -5,17 +5,16 @@ import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focus
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { SlotBadge } from '$stylist/layout/interface/slot/badge';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
-export interface RecipeFollowButton
-	extends ComputeIntersectAll<
-		[
-			SlotButtonAttributesBase,
-			SlotText,
-			SlotBadge,
-			BehaviorClickable,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {
+export interface RecipeFollowButton extends ComputeIntersectAll<
+	[
+		SlotButtonAttributesBase,
+		SlotText,
+		SlotBadge,
+		BehaviorClickable,
+		BehaviorFocusable,
+		BehaviorSizable
+	]
+> {
 	isFollowing?: boolean;
 	showText?: boolean;
 	variant?: 'primary' | 'secondary' | 'outline' | 'ghost';

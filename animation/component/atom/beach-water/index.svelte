@@ -44,18 +44,9 @@
 	aria-hidden="true"
 	focusable="false"
 >
-	<path
-		class="c-beach-water__band c-beach-water__band--1"
-		d={backPath}
-	/>
-	<path
-		class="c-beach-water__band c-beach-water__band--2"
-		d={middlePath}
-	/>
-	<path
-		class="c-beach-water__band c-beach-water__band--3"
-		d={frontPath}
-	/>
+	<path class="c-beach-water__band c-beach-water__band--1" d={backPath} />
+	<path class="c-beach-water__band c-beach-water__band--2" d={middlePath} />
+	<path class="c-beach-water__band c-beach-water__band--3" d={frontPath} />
 </svg>
 
 <style>

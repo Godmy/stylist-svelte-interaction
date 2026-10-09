@@ -6,15 +6,14 @@ import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotAutocompleteDropdown } from '$stylist/control/interface/slot/autocomplete-dropdown';
 
-export interface RecipeAutocompleteDropdown
-	extends ComputeIntersectAll<
-		[
-			SlotAutocompleteDropdown,
-			SlotText,
-			SlotText,
-			SlotIcon,
-			BehaviorFocusable,
-			BehaviorSizable,
-			BehaviorScrollable
-		]
-	> {}
+export interface RecipeAutocompleteDropdown extends ComputeIntersectAll<
+	[
+		SlotAutocompleteDropdown,
+		SlotText,
+		SlotText,
+		SlotIcon,
+		BehaviorFocusable,
+		BehaviorSizable,
+		BehaviorScrollable
+	]
+> {}

@@ -25,8 +25,7 @@
 				bind:value={draft}
 				maxlength={values.max}
 				disabled={values.disabled}
-				rows="4"
-			></textarea>
+				rows="4"></textarea>
 			<CharacterCount
 				current={draft.length}
 				max={values.max}

@@ -10,7 +10,14 @@
 		actions?: Snippet;
 	};
 
-	let { open = false, title = 'Sheet', closable = true, onClose, children, actions }: Props = $props();
+	let {
+		open = false,
+		title = 'Sheet',
+		closable = true,
+		onClose,
+		children,
+		actions
+	}: Props = $props();
 
 	function close() {
 		if (!closable) return;

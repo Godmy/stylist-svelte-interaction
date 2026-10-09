@@ -27,11 +27,7 @@
 		>
 			{props.label}
 			<span class={state.chevronClass} aria-hidden="true">
-				<BaseIcon
-					name={PresetDropdownMenu.ChevronDown}
-					size={16}
-					aria-hidden="true"
-				/>
+				<BaseIcon name={PresetDropdownMenu.ChevronDown} size={16} aria-hidden="true" />
 			</span>
 		</Button>
 	</div>

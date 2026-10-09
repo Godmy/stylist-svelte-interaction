@@ -10,7 +10,14 @@
 		{ name: 'spiralOpacity', type: 'range', defaultValue: 1, min: 0, max: 1, step: 0.05 },
 		{ name: 'headOpacity', type: 'range', defaultValue: 1, min: 0, max: 1, step: 0.05 },
 		{ name: 'frontLeftFlipperOpacity', type: 'range', defaultValue: 1, min: 0, max: 1, step: 0.05 },
-		{ name: 'frontRightFlipperOpacity', type: 'range', defaultValue: 1, min: 0, max: 1, step: 0.05 },
+		{
+			name: 'frontRightFlipperOpacity',
+			type: 'range',
+			defaultValue: 1,
+			min: 0,
+			max: 1,
+			step: 0.05
+		},
 		{ name: 'rearFlippersOpacity', type: 'range', defaultValue: 1, min: 0, max: 1, step: 0.05 }
 	];
 </script>

@@ -5,10 +5,9 @@ import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focus
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
-export interface RecipePageButton
-	extends ComputeIntersectAll<
-		[SlotButtonDom, SlotChildren, SlotText, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
-	> {
+export interface RecipePageButton extends ComputeIntersectAll<
+	[SlotButtonDom, SlotChildren, SlotText, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
+> {
 	class?: string;
 	page?: number;
 	isActive?: boolean;

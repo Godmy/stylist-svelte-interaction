@@ -4,17 +4,9 @@ import type { BehaviorSelectable } from '$stylist/control/interface/behavior/sel
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
-export interface RecipeExportPanel
-	extends ComputeIntersectAll<
-		[
-			SlotChildren,
-			SlotText,
-			SlotText,
-			BehaviorSelectable<string>,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {
+export interface RecipeExportPanel extends ComputeIntersectAll<
+	[SlotChildren, SlotText, SlotText, BehaviorSelectable<string>, BehaviorFocusable, BehaviorSizable]
+> {
 	class?: string;
 	onexport?: (
 		event: CustomEvent<{

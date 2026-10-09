@@ -191,9 +191,7 @@
 	}
 
 	.c-switch[data-checked] .c-switch__knob {
-		transform: translateX(
-			calc(var(--sw-track-width) - var(--sw-knob-size) - var(--sw-inset))
-		);
+		transform: translateX(calc(var(--sw-track-width) - var(--sw-knob-size) - var(--sw-inset)));
 	}
 
 	.c-switch__label-group {

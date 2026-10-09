@@ -2,13 +2,12 @@ import type { HTMLAttributes } from 'svelte/elements';
 import type { SlotChildren } from '$stylist/theme/interface/slot/children';
 import type { TokenOrientation } from '$stylist/layout/type/alias/orientation';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
-export interface RecipeRadioButtonGroup
-	extends ComputeIntersectAll<
-		[
-			Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'size' | 'class' | 'onchange' | 'oninput'>,
-			SlotChildren
-		]
-	> {
+export interface RecipeRadioButtonGroup extends ComputeIntersectAll<
+	[
+		Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'size' | 'class' | 'onchange' | 'oninput'>,
+		SlotChildren
+	]
+> {
 	value?: string;
 	disabled?: boolean;
 	orientation?: TokenOrientation;

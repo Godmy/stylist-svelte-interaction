@@ -58,11 +58,7 @@
 				{/if}
 			</span>
 			<span class={state.chevronClass} aria-hidden="true">
-				<BaseIcon
-					name={PresetSelector.ChevronDown}
-					size={16}
-					aria-hidden="true"
-				/>
+				<BaseIcon name={PresetSelector.ChevronDown} size={16} aria-hidden="true" />
 			</span>
 		</button>
 

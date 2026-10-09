@@ -16,7 +16,11 @@
 
 	const controls: SlotStory[] = [
 		{ name: 'label', type: 'text', defaultValue: 'Integration' },
-		{ name: 'description', type: 'text', defaultValue: 'Search services by name, domain, or use case.' },
+		{
+			name: 'description',
+			type: 'text',
+			defaultValue: 'Search services by name, domain, or use case.'
+		},
 		{ name: 'placeholder', type: 'text', defaultValue: 'Search integrations...' },
 		{
 			name: 'value',

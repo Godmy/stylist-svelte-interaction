@@ -2,7 +2,8 @@ import type { HTMLAttributes } from 'svelte/elements';
 import type { SlotMegaMenuColumn } from '$stylist/menu/interface/slot/mega-menu-column';
 
 export interface RecipeMegaMenuColumn
-	extends Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'children'>,
+	extends
+		Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'children'>,
 		Omit<SlotMegaMenuColumn, 'id'> {
 	/** Hide link descriptions */
 	compact?: boolean;

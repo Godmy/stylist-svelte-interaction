@@ -38,10 +38,7 @@
 		/>
 
 		<div class="fdp__icon-wrap">
-			<BaseIcon
-				name={Calendar}
-				size={20} style="color: var(--color-text-tertiary)"
-			/>
+			<BaseIcon name={Calendar} size={20} style="color: var(--color-text-tertiary)" />
 		</div>
 	</div>
 

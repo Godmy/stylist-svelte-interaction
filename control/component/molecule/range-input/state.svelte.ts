@@ -15,8 +15,12 @@ export const createRangeInputState = (getProps: () => RecipeRangeInput) => {
 		props.onChange?.({ min: minVal, max: maxVal });
 	}
 
-	const minPercentage = $derived(((minVal - (props.min ?? 0)) / ((props.max ?? 100) - (props.min ?? 0))) * 100);
-	const maxPercentage = $derived(((maxVal - (props.min ?? 0)) / ((props.max ?? 100) - (props.min ?? 0))) * 100);
+	const minPercentage = $derived(
+		((minVal - (props.min ?? 0)) / ((props.max ?? 100) - (props.min ?? 0))) * 100
+	);
+	const maxPercentage = $derived(
+		((maxVal - (props.min ?? 0)) / ((props.max ?? 100) - (props.min ?? 0))) * 100
+	);
 	const fillStyle = $derived(`left: ${minPercentage}%; width: ${maxPercentage - minPercentage}%;`);
 
 	return {

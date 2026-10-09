@@ -33,7 +33,8 @@
 		<div class="dz-inner">
 			<BaseIcon
 				name="upload"
-				size={40} style="margin-bottom: 0.5rem; color: var(--color-text-tertiary)"
+				size={40}
+				style="margin-bottom: 0.5rem; color: var(--color-text-tertiary)"
 			/>
 			<h3 class="dz-label">{state.label}</h3>
 			<p class="dz-desc">{state.description}</p>

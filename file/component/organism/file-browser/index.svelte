@@ -64,15 +64,9 @@
 					disabled={state.disabled}
 				>
 					{#if state.isExpanded(item.id)}
-						<BaseIcon
-							name="chevron-down"
-							size={16} style="color: var(--color-text-secondary)"
-						/>
+						<BaseIcon name="chevron-down" size={16} style="color: var(--color-text-secondary)" />
 					{:else}
-						<BaseIcon
-							name="chevron-right"
-							size={16} style="color: var(--color-text-secondary)"
-						/>
+						<BaseIcon name="chevron-right" size={16} style="color: var(--color-text-secondary)" />
 					{/if}
 				</button>
 			{:else}
@@ -84,18 +78,21 @@
 					{#if state.isExpanded(item.id)}
 						<BaseIcon
 							name="folder-open"
-							size={20} style="margin-right: 0.5rem; flex-shrink: 0; color: var(--color-primary-600)"
+							size={20}
+							style="margin-right: 0.5rem; flex-shrink: 0; color: var(--color-primary-600)"
 						/>
 					{:else}
 						<BaseIcon
 							name="folder"
-							size={20} style="margin-right: 0.5rem; flex-shrink: 0; color: var(--color-primary-600)"
+							size={20}
+							style="margin-right: 0.5rem; flex-shrink: 0; color: var(--color-primary-600)"
 						/>
 					{/if}
 				{:else}
 					<BaseIcon
 						name="file"
-						size={20} style="margin-right: 0.5rem; flex-shrink: 0; color: var(--color-text-secondary)"
+						size={20}
+						style="margin-right: 0.5rem; flex-shrink: 0; color: var(--color-text-secondary)"
 					/>
 				{/if}
 

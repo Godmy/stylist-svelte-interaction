@@ -27,15 +27,30 @@
 		d="M18 116 Q38 76 98 74 Q132 74 146 90 Q118 86 88 90 Q48 96 18 116 Z"
 	/>
 	<circle class="c-whale-spout__eye" cx="32" cy="98" r="2.4" />
-	<path
-		class="c-whale-spout__tail"
-		d="M142 94 L166 70 L186 58 L172 76 L190 88 L166 78 Z"
-	/>
+	<path class="c-whale-spout__tail" d="M142 94 L166 70 L186 58 L172 76 L190 88 L166 78 Z" />
 
 	<g class="c-whale-spout__plume">
-		<ellipse class="c-whale-spout__droplet c-whale-spout__droplet--1" cx="94" cy="68" rx="4.5" ry="8" />
-		<ellipse class="c-whale-spout__droplet c-whale-spout__droplet--2" cx="87" cy="69" rx="3.2" ry="6.5" />
-		<ellipse class="c-whale-spout__droplet c-whale-spout__droplet--3" cx="102" cy="69" rx="3.2" ry="6.5" />
+		<ellipse
+			class="c-whale-spout__droplet c-whale-spout__droplet--1"
+			cx="94"
+			cy="68"
+			rx="4.5"
+			ry="8"
+		/>
+		<ellipse
+			class="c-whale-spout__droplet c-whale-spout__droplet--2"
+			cx="87"
+			cy="69"
+			rx="3.2"
+			ry="6.5"
+		/>
+		<ellipse
+			class="c-whale-spout__droplet c-whale-spout__droplet--3"
+			cx="102"
+			cy="69"
+			rx="3.2"
+			ry="6.5"
+		/>
 	</g>
 </svg>
 

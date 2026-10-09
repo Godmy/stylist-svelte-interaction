@@ -33,7 +33,9 @@
 	const duration = $derived((speedSeconds ?? Math.max(10, text.length * 0.22)) * PACE);
 	const startProgress = $derived(Math.min(100, Math.max(0, startPosition)));
 	const animated = $derived(!still && !motionPreference.prefersReducedMotion && text.length > 0);
-	const transitionDuration = $derived(motionPreference.prefersReducedMotion ? 0 : letterTransitionMs);
+	const transitionDuration = $derived(
+		motionPreference.prefersReducedMotion ? 0 : letterTransitionMs
+	);
 
 	function lettersFromBackground(_node: Element, params: { duration?: number } = {}) {
 		const durationMs = params.duration ?? 620;
@@ -205,18 +207,13 @@
 	@keyframes c-marquee-ticker-scroll {
 		from {
 			transform: translateX(
-				calc(
-					var(--marquee-ticker-edge-start, 100vw) + var(--marquee-ticker-loop-start, 0%)
-				)
+				calc(var(--marquee-ticker-edge-start, 100vw) + var(--marquee-ticker-loop-start, 0%))
 			);
 		}
 
 		to {
 			transform: translateX(
-				calc(
-					var(--marquee-ticker-edge-start, 100vw) + var(--marquee-ticker-loop-start, 0%) -
-						50%
-				)
+				calc(var(--marquee-ticker-edge-start, 100vw) + var(--marquee-ticker-loop-start, 0%) - 50%)
 			);
 		}
 	}

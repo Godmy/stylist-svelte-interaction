@@ -7,18 +7,17 @@ import type { HTMLAttributes } from 'svelte/elements';
 import type { SlotChildren } from '$stylist/theme/interface/slot/children';
 import type { SlotButtonDom } from '$stylist/button/interface/slot/button-dom';
 import type { Snippet } from 'svelte';
-export interface RecipeIconButton
-	extends ComputeIntersectAll<
-		[
-			SlotButtonDom,
-			SlotChildren,
-			HTMLAttributes<HTMLButtonElement>,
-			Omit<SlotIcon, 'icon'>,
-			BehaviorClickable,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {
+export interface RecipeIconButton extends ComputeIntersectAll<
+	[
+		SlotButtonDom,
+		SlotChildren,
+		HTMLAttributes<HTMLButtonElement>,
+		Omit<SlotIcon, 'icon'>,
+		BehaviorClickable,
+		BehaviorFocusable,
+		BehaviorSizable
+	]
+> {
 	class?: string;
 	icon?: string | Snippet;
 

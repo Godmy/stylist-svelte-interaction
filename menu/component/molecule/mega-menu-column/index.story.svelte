@@ -89,9 +89,7 @@
 				title={values.title}
 				links={links.slice(0, Number(values.count))}
 				compact={values.compact}
-				moreLink={values.showMore
-					? { id: 'all', label: 'Все экскурсии', href: '#all' }
-					: undefined}
+				moreLink={values.showMore ? { id: 'all', label: 'Все экскурсии', href: '#all' } : undefined}
 				onNavigate={(event) => event.preventDefault()}
 			/>
 		</div>

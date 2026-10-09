@@ -5,7 +5,6 @@ import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotLink } from '$stylist/typography/interface/slot/link';
-export interface RecipeBreadcrumbLink
-	extends ComputeIntersectAll<
-		[SlotLink, SlotText, SlotIcon, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
-	> {}
+export interface RecipeBreadcrumbLink extends ComputeIntersectAll<
+	[SlotLink, SlotText, SlotIcon, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
+> {}

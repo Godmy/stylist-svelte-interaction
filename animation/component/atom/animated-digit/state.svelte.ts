@@ -15,7 +15,10 @@ function parseDurationMs(value: unknown): number {
 }
 
 function prefersReducedMotion(): boolean {
-	return typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+	return (
+		typeof window !== 'undefined' &&
+		!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+	);
 }
 
 export const createAnimatedDigitState = (getProps: () => RecipeAnimatedDigit) => {

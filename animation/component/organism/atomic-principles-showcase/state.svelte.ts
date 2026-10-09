@@ -2,7 +2,9 @@ import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import { ATOMIC_PRINCIPLES_TIER } from '$stylist/animation/const/record/atomic-principles-tier';
 import type { RecipeAtomicPrinciplesShowcase } from '$stylist/animation/interface/recipe/atomic-principles-showcase';
 
-export function createAtomicPrinciplesShowcaseState(getProps: () => RecipeAtomicPrinciplesShowcase) {
+export function createAtomicPrinciplesShowcaseState(
+	getProps: () => RecipeAtomicPrinciplesShowcase
+) {
 	const props = $derived(getProps());
 	const className = $derived(
 		ClassNamesManager.merge(

@@ -11,10 +11,7 @@
 <div class={`c-auto-complete ${state.className}`.trim()}>
 	<div class="c-auto-complete__input-wrap">
 		<div class="c-auto-complete__icon">
-			<BaseIcon
-				name={Search}
-				size={20} style="color: var(--color-text-tertiary)"
-			/>
+			<BaseIcon name={Search} size={20} style="color: var(--color-text-tertiary)" />
 		</div>
 		<input
 			type="text"

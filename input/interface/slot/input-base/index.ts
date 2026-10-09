@@ -6,7 +6,8 @@ import type { SlotInputWithLabel } from '$stylist/input/interface/slot/input-wit
 import type { SlotInputWithValidation } from '$stylist/input/interface/slot/input-with-validation';
 import type { SlotInputWithHelper } from '$stylist/input/interface/slot/input-with-helper';
 export interface SlotInputBase<V extends string = TokenColorTone, S extends string = TokenSize>
-	extends SlotInputCore<V, S>,
+	extends
+		SlotInputCore<V, S>,
 		SlotInputWithLabel,
 		SlotInputWithValidation,
 		SlotInputWithHelper,

@@ -9,21 +9,20 @@ import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 
-export interface RecipeTabs
-	extends ComputeIntersectAll<
-		[
-			Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
-				SlotChildren & {
-					selectedId?: string;
-					onValueChange?: (id: string) => void;
-					variant?: TokenColorTone;
-					size?: TokenSize;
-					disabled?: boolean;
-				},
-			SlotText,
-			SlotIcon,
-			BehaviorSelectable<string>,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {}
+export interface RecipeTabs extends ComputeIntersectAll<
+	[
+		Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
+			SlotChildren & {
+				selectedId?: string;
+				onValueChange?: (id: string) => void;
+				variant?: TokenColorTone;
+				size?: TokenSize;
+				disabled?: boolean;
+			},
+		SlotText,
+		SlotIcon,
+		BehaviorSelectable<string>,
+		BehaviorFocusable,
+		BehaviorSizable
+	]
+> {}

@@ -64,7 +64,9 @@
 	const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 	const available = $derived(availableDates ? new Set(availableDates) : null);
 	const toDate = (iso: string) => (iso ? new Date(`${iso}T00:00:00`) : null);
-	const firstAvailable = $derived(availableDates?.[0] ? new Date(`${availableDates[0]}T00:00:00`) : undefined);
+	const firstAvailable = $derived(
+		availableDates?.[0] ? new Date(`${availableDates[0]}T00:00:00`) : undefined
+	);
 
 	function isStartDisabled(date: Date): boolean {
 		if (date < today) return true;
@@ -133,7 +135,9 @@
 		<span class="c-date-pair__text">
 			<span class="c-date-pair__label">{endLabel}</span>
 			<span class="c-date-pair__value" data-empty={!endValue || undefined}>
-				{endValue ? [formatDay(endValue), endTime].filter(Boolean).join(', ') : [endTime, endPlaceholder].filter(Boolean).join(' — ')}
+				{endValue
+					? [formatDay(endValue), endTime].filter(Boolean).join(', ')
+					: [endTime, endPlaceholder].filter(Boolean).join(' — ')}
 			</span>
 		</span>
 	</svelte:element>

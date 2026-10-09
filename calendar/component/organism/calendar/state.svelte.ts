@@ -31,7 +31,8 @@ export function createCalendarState(getProps: () => RecipeCalendar) {
 		!props.minDate || new Date(viewMonth.getFullYear(), viewMonth.getMonth(), 0) >= props.minDate
 	);
 	const canGoNext = $derived(
-		!props.maxDate || new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1) <= props.maxDate
+		!props.maxDate ||
+			new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1) <= props.maxDate
 	);
 
 	function navigateMonth(offset: number): void {

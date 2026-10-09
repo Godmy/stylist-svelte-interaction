@@ -15,41 +15,40 @@ import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 
-export interface RecipeSidebar
-	extends ComputeIntersectAll<
-		[
-			LayoutHTMLAttributes<HTMLElement>,
-			HTMLAttributes<HTMLDivElement>,
-			{
-				items: NavItem[];
-				title?: string;
-				logo?: Snippet;
-				footer?: Snippet;
-				collapsed?: boolean;
-				collapsible?: boolean;
-				mobileBreakpoint?: number;
-				width?: number;
-				mobileWidth?: string;
-				position?: TokenAlignment;
-				disabled?: boolean;
-				navClass?: string;
-				itemClass?: string;
-				activeItemClass?: string;
-				disabledItemClass?: string;
-				titleClass?: string;
-				logoClass?: string;
-				footerClass?: string;
-				class?: string;
-			},
-			SlotChildren,
-			SlotTheme,
-			SlotText,
-			SlotIcon,
-			BehaviorClickable,
-			BehaviorDraggable,
-			BehaviorTransformable,
-			BehaviorFocusable,
-			BehaviorSizable,
-			BehaviorScrollable
-		]
-	> {}
+export interface RecipeSidebar extends ComputeIntersectAll<
+	[
+		LayoutHTMLAttributes<HTMLElement>,
+		HTMLAttributes<HTMLDivElement>,
+		{
+			items: NavItem[];
+			title?: string;
+			logo?: Snippet;
+			footer?: Snippet;
+			collapsed?: boolean;
+			collapsible?: boolean;
+			mobileBreakpoint?: number;
+			width?: number;
+			mobileWidth?: string;
+			position?: TokenAlignment;
+			disabled?: boolean;
+			navClass?: string;
+			itemClass?: string;
+			activeItemClass?: string;
+			disabledItemClass?: string;
+			titleClass?: string;
+			logoClass?: string;
+			footerClass?: string;
+			class?: string;
+		},
+		SlotChildren,
+		SlotTheme,
+		SlotText,
+		SlotIcon,
+		BehaviorClickable,
+		BehaviorDraggable,
+		BehaviorTransformable,
+		BehaviorFocusable,
+		BehaviorSizable,
+		BehaviorScrollable
+	]
+> {}

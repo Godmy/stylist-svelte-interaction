@@ -46,10 +46,7 @@
 
 		{#if !state.disabled}
 			<button type="button" class="date-time-picker__icon-btn" onclick={state.toggleDropdown}>
-				<BaseIcon
-					name={Calendar}
-					size={16} style="color: var(--color-text-secondary)"
-				/>
+				<BaseIcon name={Calendar} size={16} style="color: var(--color-text-secondary)" />
 			</button>
 		{/if}
 	</div>

@@ -7,10 +7,9 @@ import type { Snippet } from 'svelte';
 import type { TokenAnimation } from '$stylist/theme/type/alias/animation';
 import type { TokenDuration } from '$stylist/theme/type/alias/duration';
 import type { TokenEasing } from '$stylist/theme/type/alias/easing';
-export interface RecipeTransformable
-	extends ComputeIntersectAll<
-		[SlotTheme, BehaviorMotion, BehaviorTransform, HTMLAttributes<HTMLDivElement>]
-	> {
+export interface RecipeTransformable extends ComputeIntersectAll<
+	[SlotTheme, BehaviorMotion, BehaviorTransform, HTMLAttributes<HTMLDivElement>]
+> {
 	animation?: TokenAnimation;
 	duration?: TokenDuration;
 	easing?: TokenEasing;

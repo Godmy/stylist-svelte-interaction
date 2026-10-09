@@ -14,31 +14,30 @@ import type { RecipeContainer } from '$stylist/layout/interface/recipe/container
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
-export interface RecipeButton
-	extends ComputeIntersectAll<
-		[
-			SlotButtonAttributesBase,
-			SlotButtonAttributesBase & {
-				variant?: TokenColorTone;
-				size?: TokenSize;
-				disabled?: boolean;
-				loading?: boolean;
-				block?: boolean;
-				onClick?: () => void;
-			},
-			SlotChildren,
-			SlotText,
-			SlotIcon,
-			SlotBadge,
-			BehaviorClickable,
-			BehaviorFocusable,
-			BehaviorSized,
-			BehaviorShapeable,
-			RecipeContainer,
-			RecipeBackground,
-			RecipeBorder,
-			SlotTheme
-		]
-	> {
+export interface RecipeButton extends ComputeIntersectAll<
+	[
+		SlotButtonAttributesBase,
+		SlotButtonAttributesBase & {
+			variant?: TokenColorTone;
+			size?: TokenSize;
+			disabled?: boolean;
+			loading?: boolean;
+			block?: boolean;
+			onClick?: () => void;
+		},
+		SlotChildren,
+		SlotText,
+		SlotIcon,
+		SlotBadge,
+		BehaviorClickable,
+		BehaviorFocusable,
+		BehaviorSized,
+		BehaviorShapeable,
+		RecipeContainer,
+		RecipeBackground,
+		RecipeBorder,
+		SlotTheme
+	]
+> {
 	loadingLabel?: string;
 }

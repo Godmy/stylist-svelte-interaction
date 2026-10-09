@@ -5,15 +5,14 @@ import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { HTMLAttributes } from 'svelte/elements';
-export interface RecipeNumberInput
-	extends ComputeIntersectAll<
-		[
-			SlotNumberInput,
-			HTMLAttributes<HTMLInputElement>,
-			SlotText,
-			SlotText,
-			SlotIcon,
-			BehaviorFocusable,
-			Omit<BehaviorSizable, 'size'>
-		]
-	> {}
+export interface RecipeNumberInput extends ComputeIntersectAll<
+	[
+		SlotNumberInput,
+		HTMLAttributes<HTMLInputElement>,
+		SlotText,
+		SlotText,
+		SlotIcon,
+		BehaviorFocusable,
+		Omit<BehaviorSizable, 'size'>
+	]
+> {}

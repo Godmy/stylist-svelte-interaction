@@ -33,9 +33,11 @@
 			const style = getComputedStyle(node);
 			const durations = style.transitionDuration.split(',');
 			const delays = style.transitionDelay.split(',');
-			const duration = Math.max(...durations.map((value, index) =>
-				(parseFloat(value) + parseFloat(delays[index % delays.length])) * 1000
-			));
+			const duration = Math.max(
+				...durations.map(
+					(value, index) => (parseFloat(value) + parseFloat(delays[index % delays.length])) * 1000
+				)
+			);
 			timer = setTimeout(finishWhenOpaque, duration);
 		}
 		apply(active);
@@ -72,149 +74,153 @@
 		: 'var(--c-media-slider-height, 100svh)'}
 	use:scroll.track
 >
-<section
-	class={state.containerClass}
-	aria-label={props.ariaLabel ?? 'Media slider'}
-	aria-roledescription="carousel"
->
-	{#each state.slides as slide, index (slide.id)}
-		<div
-			class="c-media-slider__slide"
-			class:c-media-slider__slide--media={slide.type === 'image' || slide.type === 'video'}
-			class:c-media-slider__slide--active={index === state.currentIndex}
-			aria-hidden={index !== state.currentIndex}
-			use:syncSlideTransition={index === state.currentIndex}
-		>
-			{#if slide.type === 'video'}
-				<video
-					class="c-media-slider__media"
-					src={slide.src}
-					poster={slide.poster}
-					muted
-					playsinline
-					disablepictureinpicture
-					disableremoteplayback
-					controlsList="nofullscreen noremoteplayback nodownload"
-					loop={state.slides.length === 1}
-					use:syncVideoPlayback={index === state.currentIndex}
-					onended={() => state.handleVideoEnded(index)}
-					onloadeddata={() => state.markLoaded(index)}
-					onerror={() => state.markLoaded(index)}
-					aria-label={slide.alt}
-				></video>
-			{:else if slide.type === 'image'}
-				<img
-					class="c-media-slider__media"
-					src={slide.src}
-					alt={slide.alt ?? ''}
-					loading="eager"
-					onload={() => state.markLoaded(index)}
-					onerror={() => state.markLoaded(index)}
-				/>
-			{:else if slide.type === 'form'}
-				<div class="c-media-slider__form">
-					{@render props.formContent?.()}
-				</div>
-			{:else}
-				<div class="c-media-slider__hero">
-					{@render props.heroContent?.({
-						next: state.next,
-						markLoaded: () => state.markLoaded(index),
-						setAtRest: state.setHeroAtRest
-					})}
-				</div>
-			{/if}
-			{#if slide.type !== 'form' && !state.isLoaded(index)}
-				<div class="c-media-slider__skeleton" aria-hidden="true">
-					{#if slide.type === 'hero'}
-						<span class="c-media-slider__skeleton-label">Открываем остров Шри-Ланка для вас</span>
-					{/if}
-				</div>
-			{/if}
-			{#if slide.type !== 'form' && slide.type !== 'hero'}
-				<div class="c-media-slider__shade" aria-hidden="true"></div>
-			{/if}
-		</div>
-	{/each}
+	<section
+		class={state.containerClass}
+		aria-label={props.ariaLabel ?? 'Media slider'}
+		aria-roledescription="carousel"
+	>
+		{#each state.slides as slide, index (slide.id)}
+			<div
+				class="c-media-slider__slide"
+				class:c-media-slider__slide--media={slide.type === 'image' || slide.type === 'video'}
+				class:c-media-slider__slide--active={index === state.currentIndex}
+				aria-hidden={index !== state.currentIndex}
+				use:syncSlideTransition={index === state.currentIndex}
+			>
+				{#if slide.type === 'video'}
+					<video
+						class="c-media-slider__media"
+						src={slide.src}
+						poster={slide.poster}
+						muted
+						playsinline
+						disablepictureinpicture
+						disableremoteplayback
+						controlsList="nofullscreen noremoteplayback nodownload"
+						loop={state.slides.length === 1}
+						use:syncVideoPlayback={index === state.currentIndex}
+						onended={() => state.handleVideoEnded(index)}
+						onloadeddata={() => state.markLoaded(index)}
+						onerror={() => state.markLoaded(index)}
+						aria-label={slide.alt}
+					></video>
+				{:else if slide.type === 'image'}
+					<img
+						class="c-media-slider__media"
+						src={slide.src}
+						alt={slide.alt ?? ''}
+						loading="eager"
+						onload={() => state.markLoaded(index)}
+						onerror={() => state.markLoaded(index)}
+					/>
+				{:else if slide.type === 'form'}
+					<div class="c-media-slider__form">
+						{@render props.formContent?.()}
+					</div>
+				{:else}
+					<div class="c-media-slider__hero">
+						{@render props.heroContent?.({
+							next: state.next,
+							markLoaded: () => state.markLoaded(index),
+							setAtRest: state.setHeroAtRest
+						})}
+					</div>
+				{/if}
+				{#if slide.type !== 'form' && !state.isLoaded(index)}
+					<div class="c-media-slider__skeleton" aria-hidden="true">
+						{#if slide.type === 'hero'}
+							<span class="c-media-slider__skeleton-label">Открываем остров Шри-Ланка для вас</span>
+						{/if}
+					</div>
+				{/if}
+				{#if slide.type !== 'form' && slide.type !== 'hero'}
+					<div class="c-media-slider__shade" aria-hidden="true"></div>
+				{/if}
+			</div>
+		{/each}
 
-	{#if props.overlayContent}
-		<!-- Host content laid over every slide (e.g. a landing's catalogue entry
+		{#if props.overlayContent}
+			<!-- Host content laid over every slide (e.g. a landing's catalogue entry
 		     points). The layer itself never takes clicks — only its children do
 		     — so the media and nav controls around it stay usable. Fades out
 		     with the ticker as the wave rises. -->
-		<div class="c-media-slider__overlay" style:opacity={1 - scroll.progress}>
-			{@render props.overlayContent()}
-		</div>
-	{/if}
+			<div class="c-media-slider__overlay" style:opacity={1 - scroll.progress}>
+				{@render props.overlayContent()}
+			</div>
+		{/if}
 
-	{#if state.showControls && state.slides.length > 1}
-		<button
-			type="button"
-			class="c-media-slider__nav c-media-slider__nav--prev"
-			onclick={state.prev}
-			disabled={state.activeSlide?.type === 'hero' && !state.heroAtRest}
-			aria-label="Предыдущий слайд"
-		>
-			<span class="c-media-slider__nav-icon c-media-slider__nav-icon--flip">
-				<BaseIcon name="chevron-right" size={28} />
-			</span>
-		</button>
-		<button
-			type="button"
-			class="c-media-slider__nav c-media-slider__nav--next"
-			onclick={state.next}
-			disabled={state.activeSlide?.type === 'hero' && !state.heroAtRest}
-			aria-label="Следующий слайд"
-		>
-			<span class="c-media-slider__nav-icon">
-				<BaseIcon name="chevron-right" size={28} />
-			</span>
-		</button>
-	{/if}
+		{#if state.showControls && state.slides.length > 1}
+			<button
+				type="button"
+				class="c-media-slider__nav c-media-slider__nav--prev"
+				onclick={state.prev}
+				disabled={state.activeSlide?.type === 'hero' && !state.heroAtRest}
+				aria-label="Предыдущий слайд"
+			>
+				<span class="c-media-slider__nav-icon c-media-slider__nav-icon--flip">
+					<BaseIcon name="chevron-right" size={28} />
+				</span>
+			</button>
+			<button
+				type="button"
+				class="c-media-slider__nav c-media-slider__nav--next"
+				onclick={state.next}
+				disabled={state.activeSlide?.type === 'hero' && !state.heroAtRest}
+				aria-label="Следующий слайд"
+			>
+				<span class="c-media-slider__nav-icon">
+					<BaseIcon name="chevron-right" size={28} />
+				</span>
+			</button>
+		{/if}
 
-	{#if state.showIndicators && state.slides.length > 1}
-		<div class="c-media-slider__indicators" role="tablist" aria-label="Слайды">
-			{#each state.slides as slide, index (slide.id)}
-				<button
-					type="button"
-					class="c-media-slider__indicator"
-					class:c-media-slider__indicator--active={index === state.currentIndex}
-					onclick={() => state.goTo(index)}
-					disabled={state.activeSlide?.type === 'hero' && !state.heroAtRest}
-					role="tab"
-					aria-selected={index === state.currentIndex}
-					aria-label={`Слайд ${index + 1}`}
-				></button>
-			{/each}
-		</div>
-	{/if}
+		{#if state.showIndicators && state.slides.length > 1}
+			<div class="c-media-slider__indicators" role="tablist" aria-label="Слайды">
+				{#each state.slides as slide, index (slide.id)}
+					<button
+						type="button"
+						class="c-media-slider__indicator"
+						class:c-media-slider__indicator--active={index === state.currentIndex}
+						onclick={() => state.goTo(index)}
+						disabled={state.activeSlide?.type === 'hero' && !state.heroAtRest}
+						role="tab"
+						aria-selected={index === state.currentIndex}
+						aria-label={`Слайд ${index + 1}`}
+					></button>
+				{/each}
+			</div>
+		{/if}
 
-	{#if showTicker && state.activeSlide && state.activeSlide.type !== 'form' && state.activeSlide.caption && state.isLoaded(state.currentIndex) && (state.activeSlide.type !== 'hero' || state.heroAtRest)}
-		<div class="c-media-slider__ticker" style:opacity={1 - scroll.progress}>
-			<MarqueeTicker
-				items={[state.activeSlide.caption]}
-				speedSeconds={Math.max(28, state.activeSlide.caption.length * 0.55)}
-				startPosition={100}
-				height="100%"
-				fontSize="inherit"
-				textColor="currentColor"
-				letterTransitionColor="rgba(14, 23, 20, 0.58)"
-				letterTransitionMs={760}
-			/>
-		</div>
-	{/if}
+		{#if showTicker && state.activeSlide && state.activeSlide.type !== 'form' && state.activeSlide.caption && state.isLoaded(state.currentIndex) && (state.activeSlide.type !== 'hero' || state.heroAtRest)}
+			<div class="c-media-slider__ticker" style:opacity={1 - scroll.progress}>
+				<MarqueeTicker
+					items={[state.activeSlide.caption]}
+					speedSeconds={Math.max(28, state.activeSlide.caption.length * 0.55)}
+					startPosition={100}
+					height="100%"
+					fontSize="inherit"
+					textColor="currentColor"
+					letterTransitionColor="rgba(14, 23, 20, 0.58)"
+					letterTransitionMs={760}
+				/>
+			</div>
+		{/if}
 
-	<!-- Rises from the bottom (where the ticker sits) as the visitor scrolls
+		<!-- Rises from the bottom (where the ticker sits) as the visitor scrolls
 	     past the slider (any slide, not just the active one's own internal
 	     state), washing the screen white before handing off to whatever comes
 	     after the slider. The ticker above fades out in lockstep so the two
 	     never fight for the same strip. -->
-	{#if scrollReveal}
-		<div class="c-media-slider__wave" style:height={`${scroll.progress * 100}%`} aria-hidden="true">
-			<BeachWater tone="#ffffff" waveStart={0.14} amplitude={26} layerOffset={12} />
-		</div>
-	{/if}
-</section>
+		{#if scrollReveal}
+			<div
+				class="c-media-slider__wave"
+				style:height={`${scroll.progress * 100}%`}
+				aria-hidden="true"
+			>
+				<BeachWater tone="#ffffff" waveStart={0.14} amplitude={26} layerOffset={12} />
+			</div>
+		{/if}
+	</section>
 </div>
 
 <style>
@@ -306,12 +312,7 @@
 		inset: 0;
 		display: grid;
 		place-items: center;
-		background: linear-gradient(
-			100deg,
-			#0e1714 40%,
-			#1c2b26 50%,
-			#0e1714 60%
-		);
+		background: linear-gradient(100deg, #0e1714 40%, #1c2b26 50%, #0e1714 60%);
 		background-size: 200% 100%;
 		animation: c-media-slider-shimmer 1.6s ease-in-out infinite;
 		/* Sibling of .c-media-slider__hero, rendered after it in the markup —

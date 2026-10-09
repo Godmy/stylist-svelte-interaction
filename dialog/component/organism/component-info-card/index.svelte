@@ -79,7 +79,8 @@
 					<div class="pic-section-header">
 						<BaseIcon
 							name={Info}
-							size={16} style="color: var(--playground-accent,var(--color-primary-600))"
+							size={16}
+							style="color: var(--playground-accent,var(--color-primary-600))"
 						/>
 						<h3 class="pic-section-title">Description</h3>
 					</div>
@@ -127,7 +128,8 @@
 						<div class="pic-section-header">
 							<BaseIcon
 								name={Package}
-								size={16} style="color: var(--playground-accent,var(--color-primary-600))"
+								size={16}
+								style="color: var(--playground-accent,var(--color-primary-600))"
 							/>
 							<h3 class="pic-section-title">Installation</h3>
 						</div>
@@ -151,7 +153,8 @@
 						<div class="pic-section-header">
 							<BaseIcon
 								name={FileCode}
-								size={16} style="color: var(--playground-accent,var(--color-primary-600))"
+								size={16}
+								style="color: var(--playground-accent,var(--color-primary-600))"
 							/>
 							<h3 class="pic-section-title">Usage Examples</h3>
 						</div>

@@ -1,8 +1,9 @@
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLAttributes } from 'svelte/elements';
 
-export interface RecipeCheckboxGroup
-	extends ComputeIntersectAll<[Omit<HTMLAttributes<HTMLFieldSetElement>, 'class'>]> {
+export interface RecipeCheckboxGroup extends ComputeIntersectAll<
+	[Omit<HTMLAttributes<HTMLFieldSetElement>, 'class'>]
+> {
 	options: {
 		id: string;
 		label: string;

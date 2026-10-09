@@ -18,7 +18,13 @@
 
 <article class={`atomic-tier-card atomic-tier-card--${accent} ${className}`}>
 	<FloatingIcon {icon} {accent} {delay} class="atomic-tier-card__icon" />
-	<Heading level={3} text={name} fontSize="8" fontWeight="extrabold" class="atomic-tier-card__name" />
+	<Heading
+		level={3}
+		text={name}
+		fontSize="8"
+		fontWeight="extrabold"
+		class="atomic-tier-card__name"
+	/>
 	{#if description}
 		<Text text={description} block class="atomic-tier-card__description" />
 	{/if}
@@ -45,7 +51,8 @@
 		display: grid;
 		gap: 0.5rem;
 		align-content: start;
-		border: 2px solid color-mix(in srgb, var(--atomic-tier-card-accent, var(--color-primary-500)) 38%, transparent);
+		border: 2px solid
+			color-mix(in srgb, var(--atomic-tier-card-accent, var(--color-primary-500)) 38%, transparent);
 		border-radius: var(--atomic-tier-card-radius, 1.5rem);
 		background: var(--atomic-tier-card-surface, var(--color-background-primary));
 		padding: var(--atomic-tier-card-padding, 2.5rem);

@@ -37,10 +37,7 @@
 				<div class="category-section">
 					<div class="sp-cat-header">
 						<div class="sp-cat-icon {state.getCategoryColor(category)} _c1">
-							<BaseIcon
-								name={state.getCategoryIcon(category)}
-								size={16} style="color: #374151"
-							/>
+							<BaseIcon name={state.getCategoryIcon(category)} size={16} style="color: #374151" />
 						</div>
 						<h4 class="sp-cat-label">{category}</h4>
 						<span class="sp-cat-count">{categoryShortcuts.length}</span>
@@ -54,7 +51,8 @@
 										{#if shortcut.icon}
 											<BaseIcon
 												name={shortcut.icon}
-												size={16} style="flex-shrink: 0; color: #6b7280"
+												size={16}
+												style="flex-shrink: 0; color: #6b7280"
 											/>
 										{/if}
 										<span class="sp-item-desc">{shortcut.description}</span>

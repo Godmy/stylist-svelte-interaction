@@ -51,8 +51,9 @@ export function createMediaSliderState(getProps: () => RecipeMediaSlider) {
 		pendingIndex = null;
 		if (index === currentIndex) return;
 		const outgoing = slides[currentIndex];
-		transitioning = (outgoing?.type === 'image' || outgoing?.type === 'video')
-			&& (slide.type === 'image' || slide.type === 'video');
+		transitioning =
+			(outgoing?.type === 'image' || outgoing?.type === 'video') &&
+			(slide.type === 'image' || slide.type === 'video');
 		currentIndex = index;
 	}
 

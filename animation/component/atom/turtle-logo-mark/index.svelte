@@ -56,11 +56,7 @@
 		<path class="c-turtle-logo-mark__body-base" d="M90 100 Q145 128 205 100 Q150 118 90 100 Z" />
 		<ellipse class="c-turtle-logo-mark__shell" cx="145" cy="72" rx="68" ry="50" />
 	</g>
-	<g
-		class="c-turtle-logo-mark__spiral"
-		style:opacity={spiralOpacity}
-		transform="translate(145 72)"
-	>
+	<g class="c-turtle-logo-mark__spiral" style:opacity={spiralOpacity} transform="translate(145 72)">
 		<path
 			d="M40 0 L37.9 10.5 L33.2 19.9 L26.3 27.5 L17.7 33 L8.2 35.9 L-1.6 36.1 L-11 33.8 L-19.2 29.1 L-25.8 22.5 L-30.2 14.6 L-32.4 5.9 L-32.2 -2.9 L-29.6 -11.1 L-25.1 -18.2 L-18.9 -23.7 L-11.7 -27.3 L-3.9 -28.8 L3.8 -28.2 L10.9 -25.5 L16.9 -21.2 L21.4 -15.6 L24.2 -9.1 L25.1 -2.3 L24.2 4.4 L21.6 10.4 L17.5 15.3 L12.5 18.9 L6.8 20.9 L1 21.3 L-4.6 20.2 L-9.5 17.7 L-13.4 14 L-16.1 9.6 L-17.5 4.8 L-17.5 0 L-16.2 -4.5 L-13.9 -8.3 L-10.8 -11.3 L-7.1 -13.1 L-3.2 -13.9 L0.6 -13.6 L4 -12.4 L6.8 -10.3 L8.8 -7.7 L10 -4.8 L10.3 -1.9 L9.7 0.9 L8.6 3.2 L6.9 5 L4.9 6.1 L2.8 6.6 L0.9 6.5 L-0.8 5.9 L-2.1 4.9 L-2.9 3.6 L-3.2 2.4"
 			fill="none"

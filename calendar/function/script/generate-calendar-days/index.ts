@@ -41,7 +41,8 @@ export function generateCalendarDays(input: {
 		const isInRange =
 			rangeStart !== null && rangeEnd !== null && day > rangeStart && day < rangeEnd;
 
-		const isOutOfBounds = (minDate !== null && day < minDate) || (maxDate !== null && day > maxDate);
+		const isOutOfBounds =
+			(minDate !== null && day < minDate) || (maxDate !== null && day > maxDate);
 
 		return {
 			date,

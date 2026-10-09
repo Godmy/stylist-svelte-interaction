@@ -71,9 +71,7 @@ export function createMegaMenuState(getProps: () => RecipeMegaMenu) {
 	}
 
 	function handleTriggerKeydown(event: KeyboardEvent, sectionId: string) {
-		const triggers = Array.from(
-			root?.querySelectorAll<HTMLElement>('[data-mega-trigger]') ?? []
-		);
+		const triggers = Array.from(root?.querySelectorAll<HTMLElement>('[data-mega-trigger]') ?? []);
 		const index = triggers.indexOf(event.currentTarget as HTMLElement);
 
 		if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
@@ -88,9 +86,7 @@ export function createMegaMenuState(getProps: () => RecipeMegaMenu) {
 			event.preventDefault();
 			setOpen(sectionId);
 			queueMicrotask(() => {
-				root
-					?.querySelector<HTMLElement>(`[data-mega-panel="${sectionId}"] a`)
-					?.focus();
+				root?.querySelector<HTMLElement>(`[data-mega-panel="${sectionId}"] a`)?.focus();
 			});
 		}
 	}

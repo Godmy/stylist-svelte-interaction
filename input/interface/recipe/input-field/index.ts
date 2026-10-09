@@ -6,27 +6,26 @@ import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { SlotInputBase } from '$stylist/input/interface/slot/input-base';
 
-export interface RecipeInputField
-	extends ComputeIntersectAll<
-		[
-			SlotInputBase,
-			HTMLAttributes<HTMLInputElement>,
-			{
-				required?: boolean;
-				requiredLabel?: string;
-			},
-			{
-				label?: string;
-				helperText?: string;
-				error?: boolean;
-				errorMessage?: string;
-			},
-			{
-				helperText?: string;
-			},
-			SlotText,
-			SlotIcon,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {}
+export interface RecipeInputField extends ComputeIntersectAll<
+	[
+		SlotInputBase,
+		HTMLAttributes<HTMLInputElement>,
+		{
+			required?: boolean;
+			requiredLabel?: string;
+		},
+		{
+			label?: string;
+			helperText?: string;
+			error?: boolean;
+			errorMessage?: string;
+		},
+		{
+			helperText?: string;
+		},
+		SlotText,
+		SlotIcon,
+		BehaviorFocusable,
+		BehaviorSizable
+	]
+> {}

@@ -58,8 +58,7 @@
 				? undefined
 				: undefined}
 		aria-invalid={state.hasError ? 'true' : 'false'}
-		aria-required={props.required ? 'true' : 'false'}
-	></textarea>
+		aria-required={props.required ? 'true' : 'false'}></textarea>
 
 	{#if state.hasError && (props.showErrors ?? true) && (props.errors?.length ?? 0) > 0}
 		<p id={state.errorId} class={state.errorTextClasses} role="alert">

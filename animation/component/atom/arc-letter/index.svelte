@@ -17,7 +17,7 @@
 	class={`c-arc-letter ${className}`}
 	style:left={`${x}px`}
 	style:top={`${y}px`}
-	style:opacity={opacity}
+	style:opacity
 	style:transform={`translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`}
 	style:--arc-letter-highlight={highlight}
 >

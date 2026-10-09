@@ -176,8 +176,7 @@
 											bind:value={formData[field.name]}
 											disabled={field.primaryKey && mode === 'edit'}
 											rows={3}
-											class="c-schema-form-dialog__input"
-										></textarea>
+											class="c-schema-form-dialog__input"></textarea>
 									{:else}
 										<input
 											id={field.name}

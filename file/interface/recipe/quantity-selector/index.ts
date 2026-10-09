@@ -7,30 +7,29 @@ import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focus
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 
-export interface RecipeQuantitySelector
-	extends ComputeIntersectAll<
-		[
-			HTMLAttributes<HTMLDivElement> & {
-				value?: number;
-				min?: number;
-				max?: number;
-				step?: number;
-				disabled?: boolean;
-				variant?: TokenSelectorKind;
-				size?: TokenSize;
-				class?: string;
-				inputClass?: string;
-				buttonClass?: string;
-				onValueChange?: (value: number) => void;
-				onIncrement?: (value: number) => void;
-				onDecrement?: (value: number) => void;
-				showInput?: boolean;
-				showButtons?: boolean;
-				label?: string;
-			},
-			SlotText,
-			BehaviorClickable,
-			BehaviorFocusable,
-			BehaviorSizable
-		]
-	> {}
+export interface RecipeQuantitySelector extends ComputeIntersectAll<
+	[
+		HTMLAttributes<HTMLDivElement> & {
+			value?: number;
+			min?: number;
+			max?: number;
+			step?: number;
+			disabled?: boolean;
+			variant?: TokenSelectorKind;
+			size?: TokenSize;
+			class?: string;
+			inputClass?: string;
+			buttonClass?: string;
+			onValueChange?: (value: number) => void;
+			onIncrement?: (value: number) => void;
+			onDecrement?: (value: number) => void;
+			showInput?: boolean;
+			showButtons?: boolean;
+			label?: string;
+		},
+		SlotText,
+		BehaviorClickable,
+		BehaviorFocusable,
+		BehaviorSizable
+	]
+> {}

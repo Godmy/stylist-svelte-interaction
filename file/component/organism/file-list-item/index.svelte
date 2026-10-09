@@ -27,10 +27,7 @@
 	{/if}
 
 	<div class="fli-icon">
-		<BaseIcon
-			name={state.iconName}
-			size={20} style="color: var(--color-text-secondary)"
-		/>
+		<BaseIcon name={state.iconName} size={20} style="color: var(--color-text-secondary)" />
 	</div>
 
 	{#if state.showThumbnail && state.item.thumbnail}
@@ -96,10 +93,7 @@
 			}}
 			disabled={state.disabled}
 		>
-			<BaseIcon
-				name="more-horizontal"
-				size={16} style="color: var(--color-text-secondary)"
-			/>
+			<BaseIcon name="more-horizontal" size={16} style="color: var(--color-text-secondary)" />
 		</Button>
 	</div>
 </div>

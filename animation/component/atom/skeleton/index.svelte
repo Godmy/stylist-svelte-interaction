@@ -65,12 +65,7 @@
 
 	.information-skeleton--animated span {
 		background:
-			linear-gradient(
-				90deg,
-				transparent,
-				var(--information-skeleton-highlight),
-				transparent
-			),
+			linear-gradient(90deg, transparent, var(--information-skeleton-highlight), transparent),
 			var(--information-skeleton-base);
 		background-size: 220% 100%;
 		animation: information-skeleton-shimmer 1.35s ease-in-out infinite;

@@ -1,8 +1,6 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeSearchForm } from '$stylist/search/interface/recipe/search-form';
-export function createSearchFormState(
-	getProps: () => RecipeSearchForm
-): {
+export function createSearchFormState(getProps: () => RecipeSearchForm): {
 	rootClass: string;
 	iconClass: string;
 	inputClass: string;
