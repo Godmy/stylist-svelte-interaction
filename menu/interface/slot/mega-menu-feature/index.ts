@@ -1,3 +1,5 @@
+import type { Snippet } from 'svelte';
+
 export interface SlotMegaMenuFeature {
 	/** Small caption above the title */
 	eyebrow?: string;
@@ -15,4 +17,6 @@ export interface SlotMegaMenuFeature {
 	imageAlt?: string;
 	/** Optional icon shown when there is no image */
 	icon?: string;
+	/** Replaces the eyebrow/title/text/CTA body; `title` still names the link for screen readers */
+	content?: Snippet;
 }

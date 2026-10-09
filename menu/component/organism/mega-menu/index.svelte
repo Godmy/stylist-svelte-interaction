@@ -13,6 +13,8 @@
 			sections: _sections,
 			ariaLabel: _ariaLabel,
 			openOnHover: _openOnHover,
+			closeDelayMs: _closeDelayMs,
+			switchDelayMs: _switchDelayMs,
 			compact: _compact,
 			defaultOpenId: _defaultOpenId,
 			class: _class,

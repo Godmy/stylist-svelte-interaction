@@ -15,6 +15,7 @@
 			image: _image,
 			imageAlt: _imageAlt,
 			icon: _icon,
+			content: _content,
 			class: _class,
 			onNavigate: _onNavigate,
 			...rest
@@ -29,6 +30,7 @@
 	class={['c-mega-feature', props.image && 'c-mega-feature--image', props.class]
 		.filter(Boolean)
 		.join(' ')}
+	aria-label={props.content ? props.title : undefined}
 	onclick={(event) => props.onNavigate?.(event)}
 >
 	{#if props.image}
@@ -44,18 +46,22 @@
 		</span>
 	{/if}
 	<span class="c-mega-feature__body">
-		{#if props.eyebrow}
-			<span class="c-mega-feature__eyebrow">{props.eyebrow}</span>
-		{/if}
-		<span class="c-mega-feature__title">{props.title}</span>
-		{#if props.text}
-			<span class="c-mega-feature__text">{props.text}</span>
-		{/if}
-		{#if props.ctaLabel}
-			<span class="c-mega-feature__cta">
-				{props.ctaLabel}
-				<BaseIcon name={PresetMegaMenu.ArrowRight} size={14} aria-hidden="true" />
-			</span>
+		{#if props.content}
+			{@render props.content()}
+		{:else}
+			{#if props.eyebrow}
+				<span class="c-mega-feature__eyebrow">{props.eyebrow}</span>
+			{/if}
+			<span class="c-mega-feature__title">{props.title}</span>
+			{#if props.text}
+				<span class="c-mega-feature__text">{props.text}</span>
+			{/if}
+			{#if props.ctaLabel}
+				<span class="c-mega-feature__cta">
+					{props.ctaLabel}
+					<BaseIcon name={PresetMegaMenu.ArrowRight} size={14} aria-hidden="true" />
+				</span>
+			{/if}
 		{/if}
 	</span>
 </a>

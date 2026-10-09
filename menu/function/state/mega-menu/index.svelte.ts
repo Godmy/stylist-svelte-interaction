@@ -44,9 +44,17 @@ export function createMegaMenuState(getProps: () => RecipeMegaMenu) {
 	function handlePointerEnter(event: PointerEvent, sectionId: string) {
 		if (!openOnHover || event.pointerType !== 'mouse' || !hasPanel(sectionId)) return;
 		clearTimer();
-		// An already open menu switches sections instantly; a closed one waits for hover intent.
+		// An already open menu switches sections after `switchDelayMs` (instant
+		// by default), so a pointer only passing over a neighbour trigger on
+		// its way to the open panel doesn't switch it; a closed one waits for
+		// hover intent.
 		if (openId) {
-			setOpen(sectionId);
+			const switchDelay = openId === sectionId ? 0 : (props.switchDelayMs ?? 0);
+			if (switchDelay > 0) {
+				timer = setTimeout(() => setOpen(sectionId), switchDelay);
+			} else {
+				setOpen(sectionId);
+			}
 			return;
 		}
 		timer = setTimeout(() => setOpen(sectionId), PresetMegaMenu.OpenDelayMs);
@@ -55,7 +63,7 @@ export function createMegaMenuState(getProps: () => RecipeMegaMenu) {
 	function handlePointerLeave(event: PointerEvent) {
 		if (!openOnHover || event.pointerType !== 'mouse') return;
 		clearTimer();
-		timer = setTimeout(() => setOpen(null), PresetMegaMenu.CloseDelayMs);
+		timer = setTimeout(() => setOpen(null), props.closeDelayMs ?? PresetMegaMenu.CloseDelayMs);
 	}
 
 	function focusTrigger(sectionId: string) {
