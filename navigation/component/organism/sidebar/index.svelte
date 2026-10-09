@@ -230,8 +230,8 @@
 		background-color: var(--color-background-tertiary);
 		padding-left: var(--spacing-2);
 		padding-right: var(--spacing-2);
-		padding-top: var(--spacing-0.5);
-		padding-bottom: var(--spacing-0.5);
+		padding-top: calc(var(--spacing-1, 0.25rem) / 2);
+		padding-bottom: calc(var(--spacing-1, 0.25rem) / 2);
 		color: var(--color-text-primary);
 	}
 
