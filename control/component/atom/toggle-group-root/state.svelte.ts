@@ -4,11 +4,7 @@ export const createToggleGroupRootState = (getProps: () => RecipeToggleGroupRoot
 	const props = $derived(getProps());
 	const type = $derived(props.type ?? 'single');
 	const disabled = $derived(props.disabled ?? false);
-	let internalValue = $state<string | string[] | null>(props.value ?? null);
-
-	$effect(() => {
-		internalValue = props.value ?? null;
-	});
+	let internalValue = $derived<string | string[] | null>(props.value ?? null);
 
 	return {
 		get type() {

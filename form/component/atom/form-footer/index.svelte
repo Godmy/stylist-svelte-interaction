@@ -17,7 +17,7 @@
 		...restProps
 	}: RecipeFormFooter = $props();
 
-	const state = createFormFooterState({
+	const state = createFormFooterState(() => ({
 		primaryButtonLabel,
 		secondaryButtonLabel,
 		primaryButtonDisabled,
@@ -29,7 +29,7 @@
 		primaryButtonClass,
 		secondaryButtonClass,
 		actionsClass
-	});
+	}));
 </script>
 
 <div class={state.rootClass} {...restProps}>

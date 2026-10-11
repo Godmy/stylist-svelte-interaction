@@ -4,8 +4,8 @@ import type { RecipeContainer } from '$stylist/layout/interface/recipe/container
 import type { RecipeBackground } from '$stylist/layout/interface/recipe/background';
 import type { RecipeBorder } from '$stylist/layout/interface/recipe/border';
 import type { BehaviorClickable } from '$stylist/layout/interface/behavior/clickable';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 
 export type ButtonPropsRecord = HTMLButtonAttributes &
 	RecipeContainer &

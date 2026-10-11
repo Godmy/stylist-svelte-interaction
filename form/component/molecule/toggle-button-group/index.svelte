@@ -18,7 +18,7 @@
 		onChange,
 		...restProps
 	}: RecipeToggleButtonGroup = $props();
-	const state = createToggleButtonGroupState({
+	const state = createToggleButtonGroupState(() => ({
 		options,
 		value,
 		multiple,
@@ -33,7 +33,7 @@
 		onInput,
 		onChange,
 		...restProps
-	});
+	}));
 </script>
 
 <div

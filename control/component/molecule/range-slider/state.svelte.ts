@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import type { RecipeRangeSlider } from '$stylist/control/interface/recipe/range-slider';
 
 export function createRangeSliderState(getProps: () => RecipeRangeSlider) {
@@ -6,7 +7,7 @@ export function createRangeSliderState(getProps: () => RecipeRangeSlider) {
 	const min = $derived(props.min ?? 0);
 	const max = $derived(props.max ?? 100);
 	const disabled = $derived(props.disabled ?? false);
-	let value = $state<number | [number, number]>(props.value ?? 0);
+	let value = $state<number | [number, number]>(untrack(() => props.value ?? 0));
 
 	$effect(() => {
 		if (isRange && !Array.isArray(value)) {

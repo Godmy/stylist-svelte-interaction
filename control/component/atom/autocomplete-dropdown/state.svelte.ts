@@ -1,13 +1,10 @@
 import type { SlotAutocompleteDropdownOption as AutocompleteDropdownOption } from '$stylist/control/interface/slot/autocomplete-dropdown-option';
 import type { RecipeAutocompleteDropdown } from '$stylist/control/interface/recipe/autocomplete-dropdown';
 
-export function createAutocompleteDropdownState(props: RecipeAutocompleteDropdown) {
+export function createAutocompleteDropdownState(getProps: () => RecipeAutocompleteDropdown) {
+	const props = $derived(getProps());
 	let isOpen = $state(false);
-	let localValue = $state(props.value ?? '');
-
-	$effect(() => {
-		localValue = props.value ?? '';
-	});
+	let localValue = $derived(props.value ?? '');
 
 	const selectedOption = $derived(
 		props.options.find((option) => option.value === localValue) ?? null

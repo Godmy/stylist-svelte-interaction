@@ -4,11 +4,7 @@ export function createActionSegmentedControlState(getProps: () => RecipeActionSe
 	const props = $derived(getProps());
 	const items = $derived(props.items);
 	const selectedIndex = $derived(props.selectedIndex ?? 0);
-	let localSelectedIndex = $state(props.selectedIndex ?? 0);
-
-	$effect(() => {
-		localSelectedIndex = props.selectedIndex ?? 0;
-	});
+	let localSelectedIndex = $derived(props.selectedIndex ?? 0);
 
 	return {
 		get items() {

@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeEventCalendar } from '$stylist/calendar/interface/recipe/event-calendar';
 import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
@@ -12,10 +13,10 @@ import {
 
 export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	const props = $derived(getProps());
-	let currentDate = $state(new Date(props.initialDate ?? new Date()));
+	let currentDate = $state(untrack(() => new Date(props.initialDate ?? new Date())));
 	let selectedEvent: SlotCalendarEvent | null = $state(null);
 	let showEventActions = $state(false);
-	let currentViewMode = $state<TokenTimeMeasure>(props.viewMode ?? 'month');
+	let currentViewMode = $derived<TokenTimeMeasure>(props.viewMode ?? 'month');
 
 	const events = $derived(props.events ?? []);
 	const className = $derived(props.class ?? '');

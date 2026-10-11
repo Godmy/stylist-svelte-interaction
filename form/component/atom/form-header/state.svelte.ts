@@ -1,7 +1,8 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { SlotFormHeader as RecipeFormHeader } from '$stylist/form/interface/slot/form-header';
 
-export function createFormHeaderState(props: RecipeFormHeader) {
+export function createFormHeaderState(getProps: () => RecipeFormHeader) {
+	const props = $derived(getProps());
 	const rootClass = $derived(ClassNamesManager.merge('c-form-header', props.class ?? ''));
 	const backButtonClass = $derived(
 		ClassNamesManager.merge('c-form-header__back-btn', props.backButtonClass ?? '')

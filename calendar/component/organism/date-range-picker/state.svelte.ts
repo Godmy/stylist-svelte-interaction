@@ -21,13 +21,9 @@ export const createDateRangePickerState = (getProps: () => RecipeDateRangePicker
 		end: isRangeValue(value) && value.end ? new Date(value.end) : null
 	});
 
-	let selectedRange = $state(parseRange(props.value));
+	let selectedRange = $derived(parseRange(props.value));
 	let isOpen = $state(false);
 	let currentDateView = $state(new Date());
-
-	$effect(() => {
-		selectedRange = parseRange(props.value);
-	});
 
 	function fmt(date: Date | null) {
 		return date ? formatDisplayDate(date) : '';

@@ -1,4 +1,4 @@
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 
 export interface RecipeFloatingIcon {
 	/** Icon name from the svg registry. */

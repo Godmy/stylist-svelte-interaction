@@ -29,8 +29,8 @@ type DayColumn = {
 
 export function createTimeGridState(getProps: () => TimeGridContract) {
 	const props = $derived(getProps());
-	let viewStartDate = $state(new Date(props.startDate ?? new Date()));
-	let viewEndDate = $state(
+	let viewStartDate = $derived(new Date(props.startDate ?? new Date()));
+	let viewEndDate = $derived(
 		new Date(
 			props.endDate ??
 				new Date(new Date(new Date().setHours(0, 0, 0, 0)).setDate(new Date().getDate() + 6))

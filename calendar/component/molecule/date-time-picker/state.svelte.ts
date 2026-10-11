@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import type { RecipeDateTimePicker as IDateTimePickerProps } from '$stylist/calendar/interface/recipe/date-time-picker';
 import type { DatePickerValue } from '$stylist/calendar/interface/slot/date-picker';
 
@@ -10,7 +11,9 @@ export const createDateTimePickerState = (getProps: () => IDateTimePickerProps) 
 	};
 
 	let isOpen = $state(false);
-	let selectedDate = $state<Date>(props.value instanceof Date ? props.value : new Date());
+	let selectedDate = $state<Date>(
+		untrack(() => (props.value instanceof Date ? props.value : new Date()))
+	);
 	let selectedTime = $state('12:00');
 	let dateInputRef = $state<HTMLInputElement | undefined>(undefined);
 	let datePickerRef = $state<HTMLDivElement | undefined>(undefined);

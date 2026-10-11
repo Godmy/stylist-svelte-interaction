@@ -2,12 +2,8 @@ import type { RecipeQuantitySelector } from '$stylist/file/interface/recipe/quan
 
 export function createQuantitySelectorState(getProps: () => RecipeQuantitySelector) {
 	const props = $derived(getProps());
-	let quantity = $state(props.value ?? 1);
+	let quantity = $derived(props.value ?? 1);
 	const inputId = $derived(`quantity-${Math.random().toString(36).slice(2, 9)}`);
-
-	$effect(() => {
-		quantity = props.value ?? 1;
-	});
 
 	const rootClasses = $derived(['c-qty-selector', props.class].filter(Boolean).join(' '));
 	const labelClasses = 'c-qty-selector__label';

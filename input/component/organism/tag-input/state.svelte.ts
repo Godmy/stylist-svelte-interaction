@@ -2,7 +2,7 @@ import type { SlotTagInput as RecipeTagInput } from '$stylist/input/interface/sl
 
 export const createTagInputState = (getProps: () => RecipeTagInput) => {
 	const props = $derived(getProps());
-	let currentTags = $state<string[]>([...(props.tags ?? [])]);
+	let currentTags = $derived<string[]>([...(props.tags ?? [])]);
 	let inputText = $state('');
 
 	function emit() {

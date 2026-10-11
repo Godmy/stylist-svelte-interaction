@@ -57,11 +57,7 @@ export const createRadioButtonGroupState = (getProps: () => RecipeRadioButtonGro
 	const name = $derived(props.name ?? '');
 	const disabled = $derived(props.disabled ?? false);
 	const required = $derived(props.required ?? false);
-	let selectedValue = $state(props.value ?? '');
-
-	$effect(() => {
-		selectedValue = props.value ?? '';
-	});
+	let selectedValue = $derived(props.value ?? '');
 
 	const getOptionClass = (_isDisabled: boolean) => {
 		return 'c-radio-group__option';

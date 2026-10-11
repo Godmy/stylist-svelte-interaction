@@ -6,16 +6,14 @@ export const createInputGroupState = (getProps: () => IInputGroupProps) => {
 	const hasError = $derived(!!props.error || (props.errors?.length ?? 0) > 0);
 	const errorId = $derived(props.id ? `${props.id}-error` : undefined);
 	const labelId = $derived(props.id ? `${props.id}-label` : undefined);
-	const inputState = $derived(
-		createInputTextState({
-			variant: props.variant,
-			size: props.size,
-			disabled: props.disabled,
-			error: hasError,
-			block: false,
-			class: props.class
-		})
-	);
+	const inputState = createInputTextState(() => ({
+		variant: props.variant,
+		size: props.size,
+		disabled: props.disabled,
+		error: hasError,
+		block: false,
+		class: props.class
+	}));
 	const showHelper = $derived(!!props.helperText && (props.showHelperWhenError || !hasError));
 
 	function handleInput(event: Event) {

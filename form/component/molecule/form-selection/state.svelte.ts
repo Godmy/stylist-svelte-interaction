@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeFormSelection } from '$stylist/form/interface/recipe/form-selection';
 import type { SlotFormSelectionState } from '$stylist/form/interface/slot/form-selection-state';
@@ -6,7 +7,7 @@ export function createFormSelectionState(
 	getProps: () => RecipeFormSelection
 ): SlotFormSelectionState {
 	const props = $derived(getProps());
-	let isCollapsed = $state(props.initiallyCollapsed ?? false);
+	let isCollapsed = $state(untrack(() => props.initiallyCollapsed ?? false));
 
 	const sectionClasses = $derived(
 		ClassNamesManager.merge(

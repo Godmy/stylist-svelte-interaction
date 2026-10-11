@@ -1,7 +1,7 @@
 import { createFieldPresetState } from '$stylist/input/function/script/create-field-preset-state';
 import { resolveCharacterCountState } from '$stylist/input/function/script/resolve-character-count-state';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 import type { SlotInputStateOptions } from '$stylist/input/interface/slot/input-state-options';
 
 const COLOR_CLASS_BY_VARIANT: Record<'default' | 'warning' | 'danger', string> = {

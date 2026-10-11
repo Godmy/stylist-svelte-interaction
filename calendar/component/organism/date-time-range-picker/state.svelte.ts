@@ -19,7 +19,7 @@ export const createDateTimeRangePickerState = (getProps: () => RecipeDateTimeRan
 		end: isRangeValue(value) && value.end ? new Date(value.end) : null
 	});
 
-	let selectedRange = $state(parseRange(props.value));
+	let selectedRange = $derived(parseRange(props.value));
 	let isOpen = $state(false);
 	let validationError = $state('');
 

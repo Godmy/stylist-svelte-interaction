@@ -9,7 +9,7 @@ export function createDataExporterState(getProps: () => RecipeDataExporter) {
 	const format = $derived(props.format ?? 'csv');
 	const fileName = $derived(props.fileName ?? 'export');
 	const data = $derived(props.data ?? []);
-	let selectedFormat = $state<DataExporterFormat>(props.format ?? 'csv');
+	let selectedFormat = $derived<DataExporterFormat>(props.format ?? 'csv');
 	const dispatch = createEventDispatcher<{
 		export: { format: DataExporterFormat; fileName: string };
 	}>();

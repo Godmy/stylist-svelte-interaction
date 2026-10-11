@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';
 import type { RecipeRadioGroup } from '$stylist/input/interface/recipe/radio-group';
@@ -17,7 +18,7 @@ export function createRadioGroupState(getProps: () => RecipeRadioGroup): {
 	errorClass: string;
 } {
 	const props = $derived(getProps());
-	let internalValue = $state(props.value ?? '');
+	let internalValue = $state(untrack(() => props.value ?? ''));
 
 	$effect(() => {
 		if (props.value !== undefined) internalValue = props.value;

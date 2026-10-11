@@ -1,6 +1,7 @@
 import type { ToggleGroupItemStateProps } from '$stylist/control/type/alias/toggle-group-item-state-props';
 
-export function createToggleGroupItemState(props: ToggleGroupItemStateProps) {
+export function createToggleGroupItemState(getProps: () => ToggleGroupItemStateProps) {
+	const props = $derived(getProps());
 	const disabled = $derived(props.disabled ?? props.groupDisabled ?? false);
 	const groupValue = $derived(props.groupValue ?? null);
 

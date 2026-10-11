@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeCalendarView as CalendarViewContract } from '$stylist/calendar/interface/recipe/calendar-view';
 import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
@@ -12,8 +13,8 @@ import { formatMonthYear } from '$stylist/calendar/function/script/date-format';
 
 export function createCalendarViewState(getProps: () => CalendarViewContract) {
 	const props = $derived(getProps());
-	let currentDate = $state(new Date(props.initialDate ?? new Date()));
-	let currentViewMode = $state(props.viewMode ?? 'month');
+	let currentDate = $state(untrack(() => new Date(props.initialDate ?? new Date())));
+	let currentViewMode = $derived(props.viewMode ?? 'month');
 
 	const events = $derived(props.events ?? []);
 	const viewMode = $derived(currentViewMode);

@@ -1,8 +1,9 @@
+import { untrack } from 'svelte';
 import type { RecipeSliderWithInput } from '$stylist/control/interface/recipe/slider-with-input';
 
 export const createSliderWithInputState = (getProps: () => RecipeSliderWithInput) => {
 	const props = $derived(getProps());
-	let currentValue = $state(props.value ?? 0);
+	let currentValue = $state(untrack(() => props.value ?? 0));
 
 	$effect(() => {
 		if (currentValue !== (props.value ?? 0)) {

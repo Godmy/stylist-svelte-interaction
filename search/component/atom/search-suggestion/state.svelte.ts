@@ -1,6 +1,7 @@
 import type { SlotSearchSuggestion as SearchSuggestionProps } from '$stylist/search/interface/slot/search-suggestion';
 
-export function createSearchSuggestionState(props: SearchSuggestionProps) {
+export function createSearchSuggestionState(getProps: () => SearchSuggestionProps) {
+	const props = $derived(getProps());
 	const displayedSuggestions = $derived(
 		(props.suggestions ?? []).slice(0, props.maxSuggestions ?? 5)
 	);

@@ -1,11 +1,8 @@
 import type { RecipeCheckboxGroup } from '$stylist/input/interface/recipe/checkbox-group';
 
-export function createCheckboxGroupState(props: RecipeCheckboxGroup) {
-	let selectedValues = $state<string[]>([...(props.value ?? [])]);
-
-	$effect(() => {
-		selectedValues = [...(props.value ?? [])];
-	});
+export function createCheckboxGroupState(getProps: () => RecipeCheckboxGroup) {
+	const props = $derived(getProps());
+	let selectedValues = $derived<string[]>([...(props.value ?? [])]);
 
 	function handleChange(optionValue: string, checked: boolean) {
 		const nextValues = checked

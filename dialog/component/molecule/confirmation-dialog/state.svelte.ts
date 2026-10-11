@@ -1,6 +1,7 @@
 import type { SlotConfirmationDialog as RecipeConfirmationDialog } from '$stylist/dialog/interface/slot/confirmation-dialog';
 
-export function createConfirmationDialogState(props: RecipeConfirmationDialog) {
+export function createConfirmationDialogState(getProps: () => RecipeConfirmationDialog) {
+	const props = $derived(getProps());
 	const handleConfirm = () => {
 		props.onConfirm?.();
 		props.onClose?.();

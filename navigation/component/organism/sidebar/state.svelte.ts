@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import type { NavItem } from '$stylist/navigation/interface/slot/nav-item';
 import type { RecipeSidebar } from '$stylist/navigation/interface/recipe/sidebar';
 
@@ -5,7 +6,7 @@ export function createSidebarState(getProps: () => RecipeSidebar) {
 	const props = $derived(getProps());
 	// SlotState
 	let isMobile = $state(false);
-	let isSidebarOpen = $state(!props.collapsed);
+	let isSidebarOpen = $state(untrack(() => !props.collapsed));
 
 	// Props with defaults
 	const items = $derived(props.items ?? []);

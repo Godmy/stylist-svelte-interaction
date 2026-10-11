@@ -36,7 +36,7 @@
 		...restProps
 	}: IInputBaseProps = $props();
 
-	const state = createInputTextState({
+	const state = createInputTextState(() => ({
 		variant,
 		size,
 		disabled,
@@ -46,7 +46,7 @@
 		id,
 		helperText,
 		showHelperWhenError
-	});
+	}));
 
 	let inputElement: HTMLInputElement | null = null;
 	onMount(() => {

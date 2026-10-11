@@ -22,7 +22,7 @@
 		...restProps
 	}: RecipeConfirmationDialog = $props();
 
-	const state = createConfirmationDialogState({
+	const state = createConfirmationDialogState(() => ({
 		open,
 		title,
 		message,
@@ -38,7 +38,7 @@
 		bodyClass,
 		footerClass,
 		size
-	});
+	}));
 </script>
 
 {#if open}

@@ -15,7 +15,7 @@
 		...restProps
 	}: RecipeSearchSuggestion = $props();
 
-	const state = createSearchSuggestionState({
+	const state = createSearchSuggestionState(() => ({
 		suggestions,
 		query,
 		loading,
@@ -25,7 +25,7 @@
 		onValueInput,
 		onValueChange,
 		maxSuggestions
-	});
+	}));
 </script>
 
 <div class={state.rootClass} {...restProps}>

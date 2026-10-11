@@ -1,5 +1,5 @@
-import type { TokenEasing } from '$stylist/theme/type/alias/easing';
-import type { TokenDuration } from '$stylist/theme/type/alias/duration';
+import type { TokenEasing } from '$stylist/design-token/type/alias/easing';
+import type { TokenDuration } from '$stylist/design-token/type/alias/duration';
 import { getEasingFunction } from '$stylist/animation/function/script/get-easing-function';
 export function animateValue({
 	from,

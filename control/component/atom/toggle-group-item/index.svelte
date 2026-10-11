@@ -11,12 +11,12 @@
 		value: null,
 		disabled: false
 	};
-	const state = createToggleGroupItemState({
+	const state = createToggleGroupItemState(() => ({
 		...props,
 		groupValue: context.value,
 		groupDisabled: context.disabled,
 		updateValue: context.updateValue
-	});
+	}));
 
 	const restProps = $derived(
 		(() => {

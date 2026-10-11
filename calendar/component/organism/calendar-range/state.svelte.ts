@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import type { RecipeCalendarRange } from '$stylist/calendar/interface/recipe/calendar-range';
 import { generateCalendarDays } from '$stylist/calendar/function/script/generate-calendar-days';
 
@@ -7,7 +8,9 @@ export function createCalendarRangeState(getProps: () => RecipeCalendarRange) {
 		return new Date(date.getFullYear(), date.getMonth(), 1);
 	}
 
-	let viewMonth = $state(firstOfMonth(props.initialMonth ?? props.startDate ?? new Date()));
+	let viewMonth = $state(
+		untrack(() => firstOfMonth(props.initialMonth ?? props.startDate ?? new Date()))
+	);
 	let hoveredDate = $state<Date | null>(null);
 
 	$effect(() => {

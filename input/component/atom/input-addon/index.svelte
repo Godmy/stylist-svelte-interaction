@@ -3,13 +3,15 @@
 	import { createFieldClassState } from '$stylist/input/function/script/create-field-class-state';
 
 	let props: IInputAddonProps = $props();
-	const state = createFieldClassState(
-		{
-			variant: props.variant,
-			size: 'md',
-			class: props.class
-		},
-		'input-addon'
+	const state = $derived(
+		createFieldClassState(
+			{
+				variant: props.variant,
+				size: 'md',
+				class: props.class
+			},
+			'input-addon'
+		)
 	);
 	const classes = $derived(
 		[

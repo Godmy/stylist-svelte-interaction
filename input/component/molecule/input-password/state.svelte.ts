@@ -7,16 +7,14 @@ export const createInputPasswordState = (getProps: () => IInputPasswordProps) =>
 	const errorId = $derived(props.id ? `${String(props.id)}-error` : undefined);
 	const labelId = $derived(props.id ? `${String(props.id)}-label` : undefined);
 	const currentType = $derived(props.showPassword ? 'text' : 'password');
-	const inputState = $derived(
-		createInputTextState({
-			variant: props.variant,
-			size: props.size,
-			disabled: props.disabled,
-			error: hasError,
-			block: props.block,
-			class: props.class
-		})
-	);
+	const inputState = createInputTextState(() => ({
+		variant: props.variant,
+		size: props.size,
+		disabled: props.disabled,
+		error: hasError,
+		block: props.block,
+		class: props.class
+	}));
 	const showHelper = $derived(!!props.helperText && (!!props.showHelperWhenError || !hasError));
 	const passwordStrength = $derived.by(() => {
 		const value = String(props.value ?? '');

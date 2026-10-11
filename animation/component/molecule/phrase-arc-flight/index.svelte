@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import ArcLetter from '$stylist/animation/component/atom/arc-letter/index.svelte';
 	import LetterArcPath from '$stylist/animation/component/atom/letter-arc-path/index.svelte';
 	import type { RecipePhraseArcFlight } from '$stylist/animation/interface/recipe/phrase-arc-flight';
@@ -34,7 +35,7 @@
 		class: className = ''
 	}: RecipePhraseArcFlight = $props();
 
-	let animatedProgress = $state(progress);
+	let animatedProgress = $state(untrack(() => progress));
 	let frame = 0;
 	let startedAt = 0;
 

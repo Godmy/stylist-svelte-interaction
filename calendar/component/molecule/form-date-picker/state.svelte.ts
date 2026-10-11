@@ -13,12 +13,8 @@ export const createFormDatePickerState = (getProps: () => RecipeFormDatePicker) 
 		return '';
 	};
 
-	let selectedDate = $state(toInputDate(props.value));
+	let selectedDate = $derived(toInputDate(props.value));
 	let showCalendar = $state(false);
-
-	$effect(() => {
-		selectedDate = toInputDate(props.value);
-	});
 
 	function handleChange(event: Event) {
 		const target = event.target as HTMLInputElement;

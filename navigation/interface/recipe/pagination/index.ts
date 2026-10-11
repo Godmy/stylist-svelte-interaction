@@ -4,7 +4,7 @@ import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focus
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 
 export interface RecipePagination extends ComputeIntersectAll<

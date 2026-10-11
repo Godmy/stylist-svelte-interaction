@@ -1,6 +1,6 @@
 import { getEasingFunction } from '$stylist/animation/function/script/get-easing-function';
-import { TOKEN_EASING } from '$stylist/theme/const/object/easing';
-import type { TokenEasing } from '$stylist/theme/type/alias/easing';
+import { TOKEN_EASING } from '$stylist/design-token/const/object/easing';
+import type { TokenEasing } from '$stylist/design-token/type/alias/easing';
 
 export function mapProgress(
 	progress: number,

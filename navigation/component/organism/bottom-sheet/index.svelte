@@ -30,7 +30,7 @@
 
 {#if open}
 	<div class="c-bottom-sheet__backdrop" role="presentation" onclick={close}></div>
-	<section class="c-bottom-sheet" role="dialog" aria-modal="true" aria-label={title}>
+	<div class="c-bottom-sheet" role="dialog" aria-modal="true" aria-label={title}>
 		<div class="c-bottom-sheet__handle" aria-hidden="true"></div>
 		<header class="c-bottom-sheet__header">
 			<h2>{title}</h2>
@@ -48,7 +48,7 @@
 				{@render actions()}
 			</footer>
 		{/if}
-	</section>
+	</div>
 {/if}
 
 <style>

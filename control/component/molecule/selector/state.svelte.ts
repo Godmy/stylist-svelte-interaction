@@ -12,7 +12,7 @@ export function createSelectorState(getProps: () => RecipeSelector) {
 	const placeholder = $derived(props.placeholder);
 	const className = $derived(props.class ?? '');
 
-	let open = $state(props.open ?? false);
+	let open = $derived(props.open ?? false);
 	let highlightedIndex = $state(-1);
 
 	const labelId = $derived(`${id}-label`);

@@ -12,7 +12,9 @@
 		get value() {
 			return state.value;
 		},
-		disabled: state.disabled
+		get disabled() {
+			return state.disabled;
+		}
 	});
 
 	const restProps = $derived.by(() => {

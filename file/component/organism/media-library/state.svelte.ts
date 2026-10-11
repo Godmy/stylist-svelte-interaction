@@ -6,7 +6,7 @@ import type { SlotMediaItem } from '$stylist/file/interface/slot/media-item';
 export function createMediaLibraryState(getProps: () => RecipeMediaLibrary) {
 	const props = $derived(getProps());
 	let searchQuery = $state('');
-	let selectedViewMode = $state(props.viewMode ?? 'grid');
+	let selectedViewMode = $derived(props.viewMode ?? 'grid');
 	let selectedItems = $state<string[]>([]);
 	let fileInputRef = $state<HTMLInputElement | null>(null);
 

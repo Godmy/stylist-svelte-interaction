@@ -6,7 +6,7 @@ import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { HTMLAttributes } from 'svelte/elements';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 export interface RecipeMenuItem extends ComputeIntersectAll<
 	[
 		HTMLAttributes<HTMLElement>,

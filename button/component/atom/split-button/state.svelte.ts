@@ -3,7 +3,9 @@ import type { RecipeSplitButton } from '$stylist/button/interface/recipe/split-b
 
 export function createSplitButtonState(getProps: () => RecipeSplitButton) {
 	const props = $derived(getProps());
-	const buttonState = createButtonStateImpl(props as Parameters<typeof createButtonStateImpl>[0]);
+	const buttonState = $derived(
+		createButtonStateImpl(props as Parameters<typeof createButtonStateImpl>[0])
+	);
 	let isOpen = $state(false);
 	const buttonId = `split-button-${Math.random().toString(36).slice(2, 11)}`;
 

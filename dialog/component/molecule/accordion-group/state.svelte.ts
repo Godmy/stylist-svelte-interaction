@@ -1,8 +1,9 @@
+import { untrack } from 'svelte';
 import type { RecipeAccordionGroup } from '$stylist/dialog/interface/recipe/accordion-group';
 
 export function createAccordionGroupState(getProps: () => RecipeAccordionGroup) {
 	const props = $derived(getProps());
-	let openValues = $state<Set<string>>(new Set(props.defaultValues ?? []));
+	let openValues = $state<Set<string>>(untrack(() => new Set(props.defaultValues ?? [])));
 
 	$effect(() => {
 		if (props.value !== undefined) {

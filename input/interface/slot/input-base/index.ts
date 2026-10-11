@@ -1,6 +1,6 @@
 import type { HTMLInputAttributes } from 'svelte/elements';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 import type { SlotInputCore } from '$stylist/input/interface/slot/input-core';
 import type { SlotInputWithLabel } from '$stylist/input/interface/slot/input-with-label';
 import type { SlotInputWithValidation } from '$stylist/input/interface/slot/input-with-validation';

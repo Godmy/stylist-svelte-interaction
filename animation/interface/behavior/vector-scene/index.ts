@@ -1,5 +1,5 @@
-import type { TokenDuration } from '$stylist/theme/type/alias/duration';
-import type { TokenEasing } from '$stylist/theme/type/alias/easing';
+import type { TokenDuration } from '$stylist/design-token/type/alias/duration';
+import type { TokenEasing } from '$stylist/design-token/type/alias/easing';
 export interface BehaviorVectorScene {
 	mode?: 'ambient' | 'progress' | 'interaction';
 	progress?: number;

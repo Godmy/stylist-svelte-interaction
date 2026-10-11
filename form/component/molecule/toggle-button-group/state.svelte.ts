@@ -1,16 +1,10 @@
 import type { RecipeToggleButtonGroup } from '$stylist/form/interface/recipe/toggle-button-group';
 
-export function createToggleButtonGroupState(props: RecipeToggleButtonGroup) {
-	let selectedValues = $state<string[]>(
+export function createToggleButtonGroupState(getProps: () => RecipeToggleButtonGroup) {
+	const props = $derived(getProps());
+	let selectedValues = $derived<string[]>(
 		Array.isArray(props.value) ? props.value : props.value ? [props.value] : []
 	);
-
-	$effect(() => {
-		const nextValue = Array.isArray(props.value) ? props.value : props.value ? [props.value] : [];
-		if (JSON.stringify(selectedValues) !== JSON.stringify(nextValue)) {
-			selectedValues = nextValue;
-		}
-	});
 
 	const size = $derived(props.size ?? 'md');
 

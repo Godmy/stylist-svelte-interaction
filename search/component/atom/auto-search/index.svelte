@@ -12,14 +12,14 @@
 		class: className = ''
 	}: RecipeAutoSearch = $props();
 
-	const state = createAutoSearchState({
+	const state = createAutoSearchState(() => ({
 		value,
 		placeholder,
 		onValueInput,
 		onValueChange,
 		onInput,
 		class: className
-	});
+	}));
 </script>
 
 <div class={state.rootClass}>

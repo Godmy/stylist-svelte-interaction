@@ -1,5 +1,5 @@
 import type { RecipeTag } from '$stylist/control/interface/recipe/tag';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 
 export const createTagState = (getProps: () => RecipeTag) => {
 	const props = $derived(getProps());

@@ -17,8 +17,12 @@ export function createAttachmentPreviewState(getProps: () => RecipeAttachmentPre
 		variant: 'default',
 		size: 'md',
 		disabled: false,
-		showActions: props.showActions ?? true,
-		classes: [props.class || ''].filter(Boolean).join(' '),
+		get showActions() {
+			return props.showActions ?? true;
+		},
+		get classes() {
+			return [props.class || ''].filter(Boolean).join(' ');
+		},
 		download,
 		remove
 	};

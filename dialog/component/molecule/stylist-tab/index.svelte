@@ -12,12 +12,12 @@
 		...restProps
 	}: RecipeStylistTab = $props();
 
-	const state = createStylistTabState({
+	const state = createStylistTabState(() => ({
 		class: className,
 		items,
 		selectedId,
 		onSelect
-	});
+	}));
 </script>
 
 <div

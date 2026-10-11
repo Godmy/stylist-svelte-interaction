@@ -20,7 +20,7 @@
 		...restProps
 	}: RecipeCheckboxGroup = $props();
 
-	const state = createCheckboxGroupState({
+	const state = createCheckboxGroupState(() => ({
 		options,
 		value,
 		label,
@@ -35,7 +35,7 @@
 		onInput,
 		onChange,
 		...restProps
-	});
+	}));
 </script>
 
 <fieldset class={['c-checkbox-group', hostClass].filter(Boolean).join(' ')} {...restProps}>

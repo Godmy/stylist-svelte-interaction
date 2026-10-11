@@ -1,9 +1,9 @@
-﻿import type { RecipeButton } from '$stylist/button/interface/recipe/button';
+import type { RecipeButton } from '$stylist/button/interface/recipe/button';
 import type { RecipeButtonFactoryInput } from '$stylist/button/interface/recipe/button-factory-input';
 import { createButtonPreset } from '$stylist/button/function/script/create-button-preset';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 import { resolveAriaLabel } from '$stylist/theme/function/resolve/aria-label';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 
 export function createButtonState(input: RecipeButtonFactoryInput | RecipeButton) {
 	const preset = createButtonPreset<TokenColorTone, TokenSize>({

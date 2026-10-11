@@ -18,7 +18,7 @@
 		...restProps
 	}: RecipeFormHeader = $props();
 
-	const state = createFormHeaderState({
+	const state = createFormHeaderState(() => ({
 		title,
 		subtitle,
 		description,
@@ -31,7 +31,7 @@
 		descriptionClass,
 		actionsClass,
 		backButtonClass
-	});
+	}));
 </script>
 
 <div class={state.rootClass} {...restProps}>

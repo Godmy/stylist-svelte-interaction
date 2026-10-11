@@ -3,14 +3,16 @@
 	import { createFieldClassState } from '$stylist/input/function/script/create-field-class-state';
 
 	let props: IPinInputDigitProps = $props();
-	const state = createFieldClassState(
-		{
-			variant: props.variant ?? 'default',
-			size: props.size ?? 'md',
-			error: props.invalid,
-			class: props.class
-		},
-		'input-pin-digit'
+	const state = $derived(
+		createFieldClassState(
+			{
+				variant: props.variant ?? 'default',
+				size: props.size ?? 'md',
+				error: props.invalid,
+				class: props.class
+			},
+			'input-pin-digit'
+		)
 	);
 	const classes = $derived(
 		[state.classes, props.focused ? 'input-pin-digit--focused' : ''].filter(Boolean).join(' ')

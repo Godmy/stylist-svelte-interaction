@@ -6,7 +6,7 @@ export const createAutoCompleteState = (getProps: () => RecipeAutoComplete) => {
 	let filteredOptions = $state<AutoCompleteOption[]>([]);
 	let isOpen = $state(false);
 	let highlightedIndex = $state(-1);
-	let inputValue = $state(props.value ?? '');
+	let inputValue = $derived(props.value ?? '');
 
 	$effect(() => {
 		if (inputValue) {

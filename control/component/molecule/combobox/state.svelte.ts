@@ -168,8 +168,14 @@ export function createComboboxState(getProps: () => RecipeCombobox) {
 		handleKeydown,
 		selectItem,
 		clearSelection,
-		id: props.id,
-		label: props.label,
-		description: props.description
+		get id() {
+			return props.id;
+		},
+		get label() {
+			return props.label;
+		},
+		get description() {
+			return props.description;
+		}
 	};
 }

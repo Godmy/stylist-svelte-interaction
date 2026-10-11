@@ -1,5 +1,5 @@
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 export interface SlotInputStateOptions<
 	V extends string = TokenColorTone,
 	S extends string = TokenSize

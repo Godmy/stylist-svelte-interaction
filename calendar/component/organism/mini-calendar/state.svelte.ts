@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeMiniCalendar as MiniCalendarContract } from '$stylist/calendar/interface/recipe/mini-calendar';
 import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
@@ -11,7 +12,7 @@ import { formatShortMonthYear } from '$stylist/calendar/function/script/date-for
 
 export function createMiniCalendarState(getProps: () => MiniCalendarContract) {
 	const props = $derived(getProps());
-	let currentDate = $state(new Date(props.initialDate ?? new Date()));
+	let currentDate = $state(untrack(() => new Date(props.initialDate ?? new Date())));
 	let selectedDate = $state<Date | null>(null);
 
 	const events = $derived(props.events ?? []);

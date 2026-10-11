@@ -2,11 +2,7 @@ import type { SlotNumberInput as INumberInputProps } from '$stylist/input/interf
 
 export const createNumberInputState = (getProps: () => INumberInputProps) => {
 	const props = $derived(getProps());
-	let currentValue = $state(props.value ?? 0);
-
-	$effect(() => {
-		currentValue = props.value ?? 0;
-	});
+	let currentValue = $derived(props.value ?? 0);
 
 	const disabled = $derived(props.disabled ?? false);
 	const readonly = $derived(props.readonly ?? false);

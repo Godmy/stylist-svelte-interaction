@@ -1,6 +1,7 @@
 import type { RecipeSwitch } from '$stylist/control/interface/recipe/switch';
 
-export function createSwitchState(props: RecipeSwitch, checked: boolean) {
+export function createSwitchState(getProps: () => RecipeSwitch) {
+	const props = $derived(getProps());
 	const id = $derived(props.id);
 	const label = $derived(props.label ?? '');
 	const description = $derived(props.description ?? '');
@@ -48,7 +49,7 @@ export function createSwitchState(props: RecipeSwitch, checked: boolean) {
 			return disabled;
 		},
 		get checked() {
-			return checked;
+			return props.checked ?? false;
 		},
 		get required() {
 			return required;

@@ -13,7 +13,7 @@
 		class: className = ''
 	}: RecipeAutocompleteDropdown = $props();
 
-	const state = createAutocompleteDropdownState({
+	const state = createAutocompleteDropdownState(() => ({
 		options,
 		value,
 		placeholder,
@@ -21,7 +21,7 @@
 		onValueChange,
 		onChange,
 		class: className
-	});
+	}));
 </script>
 
 <div class={state.rootClass}>

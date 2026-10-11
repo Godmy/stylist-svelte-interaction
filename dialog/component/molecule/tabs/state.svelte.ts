@@ -7,12 +7,8 @@ export function createTabsState(getProps: () => RecipeTabs) {
 	const disabled = $derived(props.disabled ?? false);
 	const classes = $derived(['c-tabs', props.class].filter(Boolean).join(' '));
 	const tabsId = $derived(Math.random().toString(36).substring(2, 9));
-	let selectedTabId = $state(props.selectedId || '');
+	let selectedTabId = $derived(props.selectedId || '');
 	let tabs = $state<string[]>([]);
-
-	$effect(() => {
-		selectedTabId = props.selectedId || '';
-	});
 
 	return {
 		get classes() {

@@ -1,6 +1,6 @@
 import type { HTMLInputAttributes } from 'svelte/elements';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
-import type { TOKEN_SIZE } from '$stylist/theme/const/array/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
+import type { TOKEN_SIZE } from '$stylist/design-token/const/array/size';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 
 export interface RecipeFileInput extends ComputeIntersectAll<

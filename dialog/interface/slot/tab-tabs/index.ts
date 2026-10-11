@@ -1,6 +1,6 @@
 import type { HTMLButtonAttributes } from 'svelte/elements';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 import type { Snippet } from 'svelte';
 export interface SlotTab extends Omit<HTMLButtonAttributes, 'disabled' | 'onclick'> {
 	id: string;

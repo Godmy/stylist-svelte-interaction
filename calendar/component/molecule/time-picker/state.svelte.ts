@@ -1,8 +1,9 @@
+import { untrack } from 'svelte';
 import type { RecipeTimePicker } from '$stylist/calendar/interface/recipe/time-picker';
 
 export const createTimePickerState = (getProps: () => RecipeTimePicker) => {
 	const props = $derived(getProps());
-	let selectedTime = $state(props.value ?? '');
+	let selectedTime = $state(untrack(() => props.value ?? ''));
 
 	$effect(() => {
 		if (props.value !== undefined) selectedTime = props.value;

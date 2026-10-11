@@ -1,8 +1,8 @@
 import { resolveAllowedOption } from '$stylist/input/function/script/resolve-allowed-option';
-import { TOKEN_COLOR_TONE } from '$stylist/theme/const/array/color-tone';
-import { TOKEN_SIZE } from '$stylist/theme/const/array/size';
-import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';
+import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';
+import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 import type { SlotInputStateOptions } from '$stylist/input/interface/slot/input-state-options';
 
 export const createTextareaState = (

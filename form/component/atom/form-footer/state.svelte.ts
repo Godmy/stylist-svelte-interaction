@@ -1,7 +1,8 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { SlotFormFooter as RecipeFormFooter } from '$stylist/form/interface/slot/form-footer';
 
-export function createFormFooterState(props: RecipeFormFooter) {
+export function createFormFooterState(getProps: () => RecipeFormFooter) {
+	const props = $derived(getProps());
 	const rootClass = $derived(ClassNamesManager.merge('c-form-footer', props.class ?? ''));
 	const secondaryButtonClass = $derived(
 		ClassNamesManager.merge(

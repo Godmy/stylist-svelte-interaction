@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ControlManager } from '$stylist/control/class/manager/control';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 type SearchBarStateProps = { [key: string]: any };
@@ -5,7 +6,7 @@ type SearchBarStateProps = { [key: string]: any };
 export const createSearchBarState = (getProps: () => SearchBarStateProps) => {
 	const props = $derived(getProps());
 	// SlotState
-	let searchTerm = $state(props.value ?? '');
+	let searchTerm = $state(untrack(() => props.value ?? ''));
 
 	// Update local state when value prop changes
 	$effect(() => {
@@ -15,9 +16,12 @@ export const createSearchBarState = (getProps: () => SearchBarStateProps) => {
 	});
 
 	// Debounced search
-	const debouncedSearch = ControlManager.debounce((query: string) => {
-		props.onSearch?.(query);
-	}, props.debounceMs ?? 300);
+	const debouncedSearch = ControlManager.debounce(
+		(query: string) => {
+			props.onSearch?.(query);
+		},
+		untrack(() => props.debounceMs) ?? 300
+	);
 
 	function handleInput(event: Event) {
 		const target = event.target as HTMLInputElement;

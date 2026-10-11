@@ -1,3 +1,4 @@
+import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeRichTextEditor } from '$stylist/input/interface/recipe/rich-text-editor';
 
@@ -8,7 +9,7 @@ export const createRichTextEditorState = (getProps: () => RecipeRichTextEditor) 
 	let isFocused = $state(false);
 	let showLinkInput = $state(false);
 	let linkUrl = $state('');
-	let content = $state(props.value ?? '');
+	let content = $state(untrack(() => props.value ?? ''));
 
 	// Update local state when value prop changes
 	$effect(() => {

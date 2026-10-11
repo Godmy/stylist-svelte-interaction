@@ -16,22 +16,19 @@
 		...props
 	}: RecipeSwitch = $props();
 
-	const state = createSwitchState(
-		{
-			...props,
-			id: _id,
-			label: _label,
-			description: _description,
-			size: _size,
-			disabled: _disabled,
-			checked,
-			required: _required,
-			class: _className,
-			ariaLabel: _ariaLabel,
-			name: _name
-		},
-		checked
-	);
+	const state = createSwitchState(() => ({
+		...props,
+		id: _id,
+		label: _label,
+		description: _description,
+		size: _size,
+		disabled: _disabled,
+		checked,
+		required: _required,
+		class: _className,
+		ariaLabel: _ariaLabel,
+		name: _name
+	}));
 </script>
 
 <label

@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'svelte/elements';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 export interface RecipeBurgerMenu extends ComputeIntersectAll<[HTMLAttributes<HTMLButtonElement>]> {
 	open?: boolean;
 	size?: TokenSize;

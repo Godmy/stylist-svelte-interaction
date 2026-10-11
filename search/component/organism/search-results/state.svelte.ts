@@ -49,7 +49,9 @@ export function createSearchResultsState(getProps: () => RecipeSearchResults) {
 			return rootClass;
 		},
 		icon,
-		onResultClick: props.onResultClick
+		get onResultClick() {
+			return props.onResultClick;
+		}
 	};
 }
 
