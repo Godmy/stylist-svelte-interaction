@@ -1,9 +1,9 @@
 import { untrack } from 'svelte';
 import { ControlManager } from '$stylist/control/class/manager/control';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-type SearchBarStateProps = { [key: string]: any };
+import type { RecipeSearchBar } from '$stylist/search/interface/recipe/search-bar';
 
-export const createSearchBarState = (getProps: () => SearchBarStateProps) => {
+export const createSearchBarState = (getProps: () => RecipeSearchBar) => {
 	const props = $derived(getProps());
 	// SlotState
 	let searchTerm = $state(untrack(() => props.value ?? ''));

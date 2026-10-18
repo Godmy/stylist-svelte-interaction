@@ -1,6 +1,6 @@
-import type { SlotAutoSearch as AutoSearchProps } from '$stylist/search/interface/slot/auto-search';
+import type { RecipeAutoSearch } from '$stylist/search/interface/recipe/auto-search';
 
-export function createAutoSearchState(getProps: () => AutoSearchProps) {
+export function createAutoSearchState(getProps: () => RecipeAutoSearch) {
 	const props = $derived(getProps());
 	let localValue = $derived(props.value ?? '');
 	const rootClass = $derived(('auto-search' + (props.class ? ` ${props.class}` : '')).trim());
