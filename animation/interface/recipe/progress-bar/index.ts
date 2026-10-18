@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'svelte/elements';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 export interface RecipeProgressBar extends ComputeIntersectAll<
 	[
@@ -8,7 +9,8 @@ export interface RecipeProgressBar extends ComputeIntersectAll<
 			trackColor?: string;
 			class?: string;
 			style?: string;
-		}
+		},
+		HTMLAttributes<HTMLDivElement>
 	]
 > {
 	value?: number;

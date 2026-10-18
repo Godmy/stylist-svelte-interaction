@@ -1,4 +1,5 @@
 import type { Snippet } from 'svelte';
+import type { HTMLAttributes } from 'svelte/elements';
 import type { SlotChildren } from '$stylist/theme/interface/slot/children';
 import type { BehaviorMotionPreset } from '$stylist/animation/interface/behavior/motion-preset';
 import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focusable';
@@ -18,7 +19,8 @@ export interface RecipeTooltip extends ComputeIntersectAll<
 		BehaviorSized,
 		BehaviorShapeable,
 		BehaviorMotionPreset,
-		SlotTheme
+		SlotTheme,
+		Omit<HTMLAttributes<HTMLElement>, 'content'>
 	]
 > {
 	content: string | Snippet;

@@ -1,12 +1,12 @@
 <script lang="ts">
-	type Props = {
-		progress?: number;
-		phase?: string;
-		webgl?: boolean;
-		reducedMotion?: boolean;
-	};
+	import type { RecipeScrollPhaseDebug } from '$stylist/animation/interface/recipe/scroll-phase-debug';
 
-	let { progress = 0, phase = '', webgl = false, reducedMotion = false }: Props = $props();
+	let {
+		progress = 0,
+		phase = '',
+		webgl = false,
+		reducedMotion = false
+	}: RecipeScrollPhaseDebug = $props();
 
 	let viewportWidth = $state(0);
 	let viewportHeight = $state(0);
