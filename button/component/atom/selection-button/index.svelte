@@ -1,11 +1,7 @@
 <script lang="ts">
-	import type { ComponentProps } from 'svelte';
 	import AnimatedButton from '../animated-button/index.svelte';
-	let {
-		selected = $bindable(false),
-		onclick,
-		...rest
-	}: Omit<ComponentProps<typeof AnimatedButton>, 'effect' | 'href' | 'target' | 'rel'> = $props();
+	import type { RecipeSelectionButton } from '$stylist/button/interface/recipe/selection-button';
+	let { selected = $bindable(false), onclick, ...rest }: RecipeSelectionButton = $props();
 </script>
 
 <AnimatedButton

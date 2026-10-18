@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ComponentProps } from 'svelte';
 	import AnimatedButton from '../animated-button/index.svelte';
+	import type { RecipeMorphButton } from '$stylist/button/interface/recipe/morph-button';
 	let {
 		state = 'idle',
 		children,
@@ -8,16 +8,7 @@
 		successLabel = 'Заявка отправлена',
 		errorLabel = 'Повторить отправку',
 		...rest
-	}: Omit<
-		ComponentProps<typeof AnimatedButton>,
-		'effect' | 'loading' | 'href' | 'target' | 'rel'
-	> & {
-		/** The host sets success only after the action has actually succeeded. */
-		state?: 'idle' | 'loading' | 'success' | 'error';
-		loadingLabel?: string;
-		successLabel?: string;
-		errorLabel?: string;
-	} = $props();
+	}: RecipeMorphButton = $props();
 </script>
 
 <span class="morph-button" data-state={state} data-block={rest.block || undefined}>
