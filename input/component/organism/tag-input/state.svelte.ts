@@ -1,4 +1,4 @@
-import type { SlotTagInput as RecipeTagInput } from '$stylist/input/interface/slot/tag-input';
+import type { RecipeTagInput } from '$stylist/input/interface/recipe/tag-input';
 
 export const createTagInputState = (getProps: () => RecipeTagInput) => {
 	const props = $derived(getProps());

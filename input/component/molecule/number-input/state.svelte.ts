@@ -1,6 +1,6 @@
-import type { SlotNumberInput as INumberInputProps } from '$stylist/input/interface/slot/number-input';
+import type { RecipeNumberInput } from '$stylist/input/interface/recipe/number-input';
 
-export const createNumberInputState = (getProps: () => INumberInputProps) => {
+export const createNumberInputState = (getProps: () => RecipeNumberInput) => {
 	const props = $derived(getProps());
 	let currentValue = $derived(props.value ?? 0);
 
