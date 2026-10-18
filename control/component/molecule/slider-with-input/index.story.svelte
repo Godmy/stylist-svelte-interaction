@@ -1,68 +1,21 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
+	// Render of index.story.ts: the component resets to its value prop, so the value is controlled here.
 	import SliderWithInput from './index.svelte';
-	import type { TokenControllerType } from '$stylist/domain/type/alias/controller-type';
+	import type { RecipeSliderWithInput } from '$stylist/control/interface/recipe/slider-with-input';
 
-	const controls = [
-		{
-			name: 'min',
-			type: 'number' as TokenControllerType,
-			defaultValue: 0,
-			description: 'Minimum value'
-		},
-		{
-			name: 'max',
-			type: 'number' as TokenControllerType,
-			defaultValue: 100,
-			description: 'Maximum value'
-		},
-		{
-			name: 'step',
-			type: 'number' as TokenControllerType,
-			defaultValue: 1,
-			description: 'Step increment'
-		},
-		{
-			name: 'value',
-			type: 'number' as TokenControllerType,
-			defaultValue: 50,
-			description: 'Current value'
-		},
-		{
-			name: 'disabled',
-			type: 'boolean' as TokenControllerType,
-			defaultValue: false,
-			description: 'Whether the component is disabled'
-		}
-	];
+	let args: RecipeSliderWithInput = $props();
+	// Follows the value control and is overwritten by the component callbacks.
+	let currentValue = $derived(args.value ?? 0);
 
-	let currentValue = $state(50);
+	function update(next: number) {
+		currentValue = next;
+	}
 </script>
 
-<Story
-	{controls}
-	title="SliderWithInput Component"
-	description="Slider with input component for value selection"
->
-	{#snippet children(controlValues: any)}
-		<div class="_c1">
-			<p class="_c2">Current value: {currentValue}</p>
-			<SliderWithInput
-				min={controlValues.min}
-				max={controlValues.max}
-				step={controlValues.step}
-				value={currentValue}
-				disabled={controlValues.disabled}
-				onValueInput={(value) => {
-					currentValue = value;
-				}}
-				onValueChange={(value) => {
-					currentValue = value;
-				}}
-			/>
-		</div>
-	{/snippet}
-</Story>
+<div class="_c1">
+	<p class="_c2">Current value: {currentValue}</p>
+	<SliderWithInput {...args} value={currentValue} onValueInput={update} onValueChange={update} />
+</div>
 
 <style>
 	._c1 {
