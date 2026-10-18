@@ -1,9 +1,10 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
+	import type { RecipeSearchForm } from '$stylist/form/interface/recipe/search-form';
 	import createSearchFormState from './state.svelte';
 	import { SEARCH_ICON_NAME } from '$stylist/form/const/value/search-icon-name';
 
-	const props = $props();
+	const props: RecipeSearchForm = $props();
 	const state = createSearchFormState(() => props);
 </script>
 

@@ -1,21 +1,6 @@
-import type { HTMLAttributes } from 'svelte/elements';
-import type { Snippet } from 'svelte';
-import type { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';
+import type { RecipeValidation } from '$stylist/form/interface/recipe/validation';
 
-export function createValidationState(
-	getProps: () => HTMLAttributes<HTMLDivElement> & {
-		label?: string;
-		description?: string;
-		required?: boolean;
-		error?: string;
-		hint?: string;
-		disabled?: boolean;
-		orientation?: (typeof TOKEN_ORIENTATION)[number];
-		class?: string;
-		id?: string;
-		children: Snippet;
-	}
-): {
+export function createValidationState(getProps: () => RecipeValidation): {
 	containerClasses: string;
 	hasError: boolean;
 	rootClass: string;
