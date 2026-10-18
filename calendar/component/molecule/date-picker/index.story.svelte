@@ -1,27 +1,14 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
 	import DatePicker from './index.svelte';
-	import type { TokenControllerType } from '$stylist/domain/type/alias/controller-type';
+	import type { RecipeDatePicker } from '$stylist/calendar/interface/recipe/date-picker';
 	import type { DatePickerValue } from '$stylist/calendar/interface/slot/date-picker';
 
-	const controls = [
-		{
-			name: 'placeholder',
-			type: 'text' as TokenControllerType,
-			defaultValue: 'Select a date',
-			description: 'Placeholder text for the date picker'
-		},
-		{
-			name: 'disabled',
-			type: 'boolean' as TokenControllerType,
-			defaultValue: false,
-			description: 'Whether the date picker is disabled'
-		}
-	];
+	// Render of index.story.ts: the picker is bound to a local Date with a Date min/max range.
+	let args: RecipeDatePicker = $props();
 
-	let minDate: Date | undefined = new Date();
-	let maxDate: Date | undefined = new Date();
-	let selectedDate: Date | undefined = new Date();
+	const minDate = new Date();
+	const maxDate = new Date();
+	let selectedDate = $state<Date | undefined>(new Date());
 
 	minDate.setDate(minDate.getDate() - 14);
 	maxDate.setDate(maxDate.getDate() + 45);
@@ -53,67 +40,49 @@
 	}
 </script>
 
-<Story
-	{controls}
-	title="DatePicker Component"
-	description="Interactive date picker with customizable options"
->
-	{#snippet children(controlValues: any)}
-		<div class="_c1">
-			<div class="_c2">
-				<div class="_c3">
-					<label for="manual-date" class="_c4">Set selected date</label>
-					<input
-						id="manual-date"
-						type="date"
-						class="_c5"
-						value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
-						onchange={(event) => handleManualSelection((event.target as HTMLInputElement).value)}
-					/>
-				</div>
+<div class="_c2">
+	<div class="_c3">
+		<label for="manual-date" class="_c4">Set selected date</label>
+		<input
+			id="manual-date"
+			type="date"
+			class="_c5"
+			value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
+			onchange={(event) => handleManualSelection((event.target as HTMLInputElement).value)}
+		/>
+	</div>
 
-				<div class="_c6">
-					<div class="_c7">
-						<DatePicker
-							value={selectedDate}
-							placeholder={controlValues.placeholder}
-							disabled={controlValues.disabled}
-							{minDate}
-							{maxDate}
-							onValueChange={handleDatePickerChange}
-						/>
-						<p class="_c8">
-							Selected: {selectedDate
-								? selectedDate.toLocaleDateString('en-US', {
-										month: 'short',
-										day: 'numeric',
-										year: 'numeric'
-									})
-								: 'None'}
-						</p>
-						<div class="_c9">
-							{#each milestones as milestone}
-								<button
-									type="button"
-									class="_c10"
-									onclick={() => handleManualSelection(milestone.date)}
-								>
-									<span>{milestone.label}</span>
-									<time datetime={milestone.date}>{milestone.date}</time>
-								</button>
-							{/each}
-						</div>
-					</div>
-				</div>
+	<div class="_c6">
+		<div class="_c7">
+			<DatePicker
+				{...args}
+				value={selectedDate}
+				{minDate}
+				{maxDate}
+				onChange={handleDatePickerChange}
+			/>
+			<p class="_c8">
+				Selected: {selectedDate
+					? selectedDate.toLocaleDateString('en-US', {
+							month: 'short',
+							day: 'numeric',
+							year: 'numeric'
+						})
+					: 'None'}
+			</p>
+			<div class="_c9">
+				{#each milestones as milestone (milestone.id)}
+					<button type="button" class="_c10" onclick={() => handleManualSelection(milestone.date)}>
+						<span>{milestone.label}</span>
+						<time datetime={milestone.date}>{milestone.date}</time>
+					</button>
+				{/each}
 			</div>
 		</div>
-	{/snippet}
-</Story>
+	</div>
+</div>
 
 <style>
-	._c1 {
-		padding: 1rem;
-	}
 	._c2 {
 		display: grid;
 		gap: 1.5rem;

@@ -1,13 +1,13 @@
 <script lang="ts">
 	import createMiniCalendarState from './state.svelte';
-	import type { RecipeMiniCalendar as MiniCalendarStateProps } from '$stylist/calendar/interface/recipe/mini-calendar';
+	import type { RecipeMiniCalendar } from '$stylist/calendar/interface/recipe/mini-calendar';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 
 	const ChevronLeft = 'chevron-left';
 	const ChevronRight = 'chevron-right';
 
-	let props: MiniCalendarStateProps = $props();
+	let props: RecipeMiniCalendar = $props();
 	const state = createMiniCalendarState(() => props);
 </script>
 

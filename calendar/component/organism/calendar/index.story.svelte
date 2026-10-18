@@ -1,36 +1,24 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import Calendar from './index.svelte';
+	import type { RecipeCalendar } from '$stylist/calendar/interface/recipe/calendar';
 
-	const controls: SlotStory[] = [
-		{ name: 'value', type: 'text', defaultValue: '2026-10-18' },
-		{ name: 'disablePast', type: 'boolean', defaultValue: true },
-		{ name: 'accentColor', type: 'color', defaultValue: '#3454d1' }
-	];
+	// Render of index.story.ts: value and minDate are Dates built from the text/boolean knobs.
+	let {
+		date = '',
+		disablePast = false,
+		...args
+	}: RecipeCalendar & { date?: string; disablePast?: boolean } = $props();
 
 	const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+	const value = $derived.by(() => {
+		const parsed = date ? new Date(`${date}T00:00:00`) : null;
+		return parsed && !Number.isNaN(parsed.getTime()) ? parsed : null;
+	});
 </script>
 
-<Story
-	id="calendar-organisms-calendar"
-	title="Calendar / Calendar"
-	component={Calendar}
-	category="Calendar/Organisms"
-	description="Полноценный однодневный выбор даты: навигация по месяцам, неделя с понедельника (ru-RU). `disablePast` включает minDate=сегодня — прошлые даты перечёркнуты и недоступны, а кнопка «предыдущий месяц» гаснет, как только уходить назад больше некуда. accentColor — цвет заливки today/selected."
-	{controls}
->
-	{#snippet children(values: any)}
-		{@const parsed = values.value ? new Date(`${values.value}T00:00:00`) : null}
-		<div class="_surface">
-			<Calendar
-				value={parsed && !Number.isNaN(parsed.getTime()) ? parsed : null}
-				minDate={values.disablePast ? today : undefined}
-				accentColor={values.accentColor}
-			/>
-		</div>
-	{/snippet}
-</Story>
+<div class="_surface">
+	<Calendar {...args} {value} minDate={disablePast ? today : undefined} />
+</div>
 
 <style>
 	._surface {
