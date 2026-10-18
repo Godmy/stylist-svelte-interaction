@@ -1,83 +1,54 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import Tabs from '$stylist/dialog/component/molecule/tabs/index.svelte';
 	import TabPanels from './index.svelte';
 	import TabList from '../tab-list/index.svelte';
 	import Tab from '../tab/index.svelte';
 	import TabPanel from '../tab-panel/index.svelte';
+	import type { RecipeTabPanels } from '$stylist/dialog/interface/recipe/tab-panels';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'selectedId',
-			type: 'select',
-			defaultValue: 'summary',
-			options: ['summary', 'files', 'logs']
-		},
-		{ name: 'disabled', type: 'boolean', defaultValue: false }
-	];
+	// Render of index.story.ts: TabPanels needs a Tabs context with a tab list and TabPanel children.
+	let { selectedId, ...args }: RecipeTabPanels & { selectedId?: string } = $props();
 </script>
 
-<Story
-	component={TabPanels}
-	title="TabPanels"
-	description="Content region that groups TabPanel items and applies shared disabled state."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_surface">
-			<Tabs selectedId={values.selectedId}>
-				<TabList class="_list">
-					<Tab id="summary">Summary</Tab>
-					<Tab id="files">Files</Tab>
-					<Tab id="logs">Logs</Tab>
-				</TabList>
-				<TabPanels class="_region" disabled={values.disabled}>
-					<TabPanel id="summary">
-						<div class="_summary">
-							<div>
-								<span>Health</span>
-								<strong>Stable</strong>
-							</div>
-							<div>
-								<span>Version</span>
-								<strong>2.8.1</strong>
-							</div>
-						</div>
-					</TabPanel>
-					<TabPanel id="files">
-						<ul class="_files">
-							<li>release-notes.md</li>
-							<li>component-map.json</li>
-							<li>tabs-preview.png</li>
-						</ul>
-					</TabPanel>
-					<TabPanel id="logs">
-						<pre class="_logs">00:10 stories updated
+<div class="_surface">
+	<Tabs {selectedId}>
+		<TabList>
+			<Tab id="summary">Summary</Tab>
+			<Tab id="files">Files</Tab>
+			<Tab id="logs">Logs</Tab>
+		</TabList>
+		<TabPanels {...args}>
+			<TabPanel id="summary">
+				<div class="_summary">
+					<div>
+						<span>Health</span>
+						<strong>Stable</strong>
+					</div>
+					<div>
+						<span>Version</span>
+						<strong>2.8.1</strong>
+					</div>
+				</div>
+			</TabPanel>
+			<TabPanel id="files">
+				<ul class="_files">
+					<li>release-notes.md</li>
+					<li>component-map.json</li>
+					<li>tabs-preview.png</li>
+				</ul>
+			</TabPanel>
+			<TabPanel id="logs">
+				<pre class="_logs">00:10 stories updated
 00:11 indexes generated
 00:15 checks completed</pre>
-					</TabPanel>
-				</TabPanels>
-			</Tabs>
-		</div>
-	{/snippet}
-</Story>
+			</TabPanel>
+		</TabPanels>
+	</Tabs>
+</div>
 
 <style>
 	._surface {
 		max-width: 38rem;
-	}
-
-	._list {
-		margin-bottom: 0.75rem;
-	}
-
-	._region {
-		border: 1px solid var(--color-border-primary);
-		border-radius: 0.5rem;
-		background: var(--color-background-primary);
-		padding: 1rem;
-		min-height: 8rem;
 	}
 
 	._summary {

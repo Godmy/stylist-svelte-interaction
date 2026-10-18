@@ -1,8 +1,5 @@
-import type { HTMLAttributes } from 'svelte/elements';
 import type { RecipeComponentInfoCard } from '$stylist/dialog/interface/recipe/component-info-card';
-export function createComponentInfoCardState(
-	getProps: () => RecipeComponentInfoCard & HTMLAttributes<HTMLDivElement>
-) {
+export function createComponentInfoCardState(getProps: () => RecipeComponentInfoCard) {
 	const props = $derived(getProps());
 	const componentName = $derived(props.componentName ?? '');
 	const category = $derived(props.category ?? '');

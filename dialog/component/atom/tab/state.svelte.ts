@@ -1,6 +1,7 @@
 import type { RecipeTab } from '$stylist/dialog/interface/recipe/tab';
 
-export function createTabState(props: RecipeTab) {
+export function createTabState(getProps: () => RecipeTab) {
+	const props = $derived(getProps());
 	const variant = $derived(props.variant ?? 'primary');
 	const size = $derived(props.size ?? 'md');
 	const disabled = $derived(props.disabled ?? false);

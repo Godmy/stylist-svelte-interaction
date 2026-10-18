@@ -1,101 +1,67 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import Tabs from './index.svelte';
 	import TabList from '$stylist/dialog/component/atom/tab-list/index.svelte';
 	import Tab from '$stylist/dialog/component/atom/tab/index.svelte';
 	import TabPanel from '$stylist/dialog/component/atom/tab-panel/index.svelte';
 	import TabPanels from '$stylist/dialog/component/atom/tab-panels/index.svelte';
+	import type { RecipeTabs } from '$stylist/dialog/interface/recipe/tabs';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'selectedId',
-			type: 'select',
-			defaultValue: 'overview',
-			options: ['overview', 'activity', 'settings']
-		},
-		{ name: 'size', type: 'select', defaultValue: 'md', options: ['sm', 'md', 'lg'] },
-		{
-			name: 'variant',
-			type: 'select',
-			defaultValue: 'primary',
-			options: ['primary', 'secondary', 'ghost', 'outline']
-		},
-		{ name: 'disabled', type: 'boolean', defaultValue: false }
-	];
-
-	function handleTabChange(id: string) {
-		console.log('Tabs selected id:', id);
-	}
+	// Render of index.story.ts: Tabs is a compound component that needs TabList, Tab and TabPanel children.
+	let args: RecipeTabs = $props();
 </script>
 
-<Story
-	{controls}
-	title="Tabs"
-	description="Complete compound tabs composition with navigation, active state, and content panels."
->
-	{#snippet children(values: any)}
-		<div class="_showcase">
-			<div class="_toolbar">
-				<div>
-					<p class="_eyebrow">Workspace</p>
-					<h3 class="_title">Release Control</h3>
-				</div>
-				<span class="_status">Live</span>
-			</div>
-
-			<Tabs
-				selectedId={values.selectedId}
-				size={values.size}
-				variant={values.variant}
-				disabled={values.disabled}
-				onValueChange={handleTabChange}
-				class="_tabs"
-			>
-				<TabList class="_tabList">
-					<Tab id="overview">Overview</Tab>
-					<Tab id="activity">Activity</Tab>
-					<Tab id="settings">Settings</Tab>
-				</TabList>
-				<TabPanels class="_panels">
-					<TabPanel id="overview">
-						<div class="_panelGrid">
-							<div class="_metric">
-								<span>Readiness</span>
-								<strong>92%</strong>
-							</div>
-							<div class="_metric">
-								<span>Open Tasks</span>
-								<strong>14</strong>
-							</div>
-							<div class="_metric">
-								<span>Owners</span>
-								<strong>6</strong>
-							</div>
-						</div>
-					</TabPanel>
-					<TabPanel id="activity">
-						<ol class="_timeline">
-							<li>Design tokens reviewed by platform team</li>
-							<li>Playground stories refreshed for tab components</li>
-							<li>Accessibility pass scheduled for keyboard navigation</li>
-						</ol>
-					</TabPanel>
-					<TabPanel id="settings">
-						<div class="_settings">
-							<span>Auto publish</span>
-							<strong>Off</strong>
-							<span>Review gate</span>
-							<strong>Required</strong>
-							<span>Preview channel</span>
-							<strong>Internal</strong>
-						</div>
-					</TabPanel>
-				</TabPanels>
-			</Tabs>
+<div class="_showcase">
+	<div class="_toolbar">
+		<div>
+			<p class="_eyebrow">Workspace</p>
+			<h3 class="_title">Release Control</h3>
 		</div>
-	{/snippet}
-</Story>
+		<span class="_status">Live</span>
+	</div>
+
+	<Tabs {...args} class="_tabs">
+		<TabList>
+			<Tab id="overview">Overview</Tab>
+			<Tab id="activity">Activity</Tab>
+			<Tab id="settings">Settings</Tab>
+		</TabList>
+		<TabPanels>
+			<TabPanel id="overview">
+				<div class="_panelGrid">
+					<div class="_metric">
+						<span>Readiness</span>
+						<strong>92%</strong>
+					</div>
+					<div class="_metric">
+						<span>Open Tasks</span>
+						<strong>14</strong>
+					</div>
+					<div class="_metric">
+						<span>Owners</span>
+						<strong>6</strong>
+					</div>
+				</div>
+			</TabPanel>
+			<TabPanel id="activity">
+				<ol class="_timeline">
+					<li>Design tokens reviewed by platform team</li>
+					<li>Playground stories refreshed for tab components</li>
+					<li>Accessibility pass scheduled for keyboard navigation</li>
+				</ol>
+			</TabPanel>
+			<TabPanel id="settings">
+				<div class="_settings">
+					<span>Auto publish</span>
+					<strong>Off</strong>
+					<span>Review gate</span>
+					<strong>Required</strong>
+					<span>Preview channel</span>
+					<strong>Internal</strong>
+				</div>
+			</TabPanel>
+		</TabPanels>
+	</Tabs>
+</div>
 
 <style>
 	._showcase {
@@ -142,18 +108,8 @@
 		font-weight: 700;
 	}
 
-	._tabs {
+	._showcase :global(._tabs) {
 		width: 100%;
-	}
-
-	._tabList {
-		border-bottom: 1px solid var(--color-border-primary);
-		padding-bottom: 0.35rem;
-	}
-
-	._panels {
-		margin-top: 0;
-		padding-top: 1rem;
 	}
 
 	._panelGrid {
