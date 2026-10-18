@@ -1,56 +1,27 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
-
+	// Render of index.story.ts: the header and actions are named snippets, which story content cannot provide.
 	import Drawer from './index.svelte';
+	import type { RecipeDrawer } from '$stylist/menu/interface/recipe/drawer';
 
-	const controls: SlotStory[] = [
-		{ name: 'open', type: 'boolean', defaultValue: true },
-		{
-			name: 'position',
-			type: 'select',
-			defaultValue: 'right',
-			options: ['left', 'right', 'top', 'bottom']
-		},
-		{ name: 'size', type: 'text', defaultValue: '320px' },
-		{ name: 'closable', type: 'boolean', defaultValue: true },
-		{ name: 'showBackdrop', type: 'boolean', defaultValue: true }
-	];
+	let args: RecipeDrawer = $props();
 </script>
 
-<Story
-	component={Drawer}
-	title="Drawer"
-	description="Slide-in panel for secondary navigation and settings."
-	{controls}
->
-	{#snippet children(values: any)}
-		<Drawer
-			open={values.open as boolean}
-			position={values.position as 'left' | 'right' | 'top' | 'bottom'}
-			size={values.size as string}
-			closable={values.closable as boolean}
-			showBackdrop={values.showBackdrop as boolean}
-		>
-			{#snippet header()}
-				<h2 class="_c1">Quick settings</h2>
-			{/snippet}
-			{#snippet children()}
-				<div class="_c2">
-					<p>Notifications</p>
-					<p>Theme</p>
-					<p>Privacy</p>
-				</div>
-			{/snippet}
-			{#snippet actions()}
-				<div class="_c3">
-					<button class="_c4">Cancel</button>
-					<button class="_c5">Save</button>
-				</div>
-			{/snippet}
-		</Drawer>
+<Drawer {...args}>
+	{#snippet header()}
+		<h2 class="_c1">Quick settings</h2>
 	{/snippet}
-</Story>
+	<div class="_c2">
+		<p>Notifications</p>
+		<p>Theme</p>
+		<p>Privacy</p>
+	</div>
+	{#snippet actions()}
+		<div class="_c3">
+			<button class="_c4">Cancel</button>
+			<button class="_c5">Save</button>
+		</div>
+	{/snippet}
+</Drawer>
 
 <style>
 	._c1 {
