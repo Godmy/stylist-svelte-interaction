@@ -11,8 +11,12 @@ export function createDrawerState(getProps: () => RecipeDrawer) {
 	const closable = $derived(props.closable ?? true);
 	const showBackdrop = $derived(props.showBackdrop ?? true);
 
+	const closeLabel = $derived(props.closeLabel ?? 'Close drawer');
+
 	function closeFn() {
-		DrawerManager.close(props, closable);
+		if (!closable) return;
+		if (props.onClose) props.onClose();
+		else DrawerManager.close(props, closable);
 	}
 
 	function handleBackdropClickFn(e: MouseEvent) {
@@ -54,6 +58,9 @@ export function createDrawerState(getProps: () => RecipeDrawer) {
 		},
 		get showBackdrop() {
 			return showBackdrop;
+		},
+		get closeLabel() {
+			return closeLabel;
 		},
 		closeFn,
 		handleBackdropClickFn,

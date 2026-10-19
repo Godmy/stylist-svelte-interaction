@@ -11,6 +11,10 @@ export interface RecipeDrawer extends ComputeIntersectAll<
 			size?: string;
 			closable?: boolean;
 			showBackdrop?: boolean;
+			/** Called on Escape, backdrop click or the close button; without it `open` is reset (bind:open). */
+			onClose?: () => void;
+			/** Accessible label of the close button; defaults to «Close drawer». */
+			closeLabel?: string;
 			class?: string;
 			header?: Snippet;
 			actions?: Snippet;

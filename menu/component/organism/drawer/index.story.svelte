@@ -14,7 +14,8 @@
 		},
 		{ name: 'size', type: 'text', defaultValue: '320px' },
 		{ name: 'closable', type: 'boolean', defaultValue: true },
-		{ name: 'showBackdrop', type: 'boolean', defaultValue: true }
+		{ name: 'showBackdrop', type: 'boolean', defaultValue: true },
+		{ name: 'closeLabel', type: 'text', defaultValue: 'Close drawer' }
 	];
 </script>
 
@@ -31,6 +32,8 @@
 			size={values.size as string}
 			closable={values.closable as boolean}
 			showBackdrop={values.showBackdrop as boolean}
+			closeLabel={values.closeLabel as string}
+			onClose={() => (values.open = false)}
 		>
 			{#snippet header()}
 				<h2 class="_c1">Quick settings</h2>
