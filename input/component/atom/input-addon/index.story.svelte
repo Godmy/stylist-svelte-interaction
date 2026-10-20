@@ -1,45 +1,29 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
+	// Render of index.story.ts: the addon is attached to a demo input and may hold an icon component.
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import InputAddon from './index.svelte';
+	import type { RecipeInputAddon } from '$stylist/input/interface/recipe/input-addon';
 
-	const controls: SlotStory[] = [
-		{ name: 'position', type: 'select', defaultValue: 'left', options: ['left', 'right'] },
-		{
-			name: 'variant',
-			type: 'select',
-			defaultValue: 'solid',
-			options: ['solid', 'ghost', 'outline']
-		},
-		{ name: 'withIcon', type: 'boolean', defaultValue: true },
-		{ name: 'addonText', type: 'text', defaultValue: '$' },
-		{ name: 'placeholder', type: 'text', defaultValue: 'Search projects...' }
-	];
+	let {
+		withIcon = true,
+		addonText = '$',
+		placeholder = 'Search projects...',
+		...args
+	}: RecipeInputAddon & { withIcon?: boolean; addonText?: string; placeholder?: string } = $props();
+	const position = $derived(args.position ?? 'left');
 </script>
 
-<Story
-	component={InputAddon}
-	title="InputAddon"
-	description="Prefix/suffix element attached to input controls."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			{#if values.position === 'left'}
-				<InputAddon position="left" variant={values.variant}>
-					{#if values.withIcon}<BaseIcon name="search" class="_c2" />{:else}{values.addonText}{/if}
-				</InputAddon>
-			{/if}
-			<input type="text" placeholder={values.placeholder} class="_c3" />
-			{#if values.position === 'right'}
-				<InputAddon position="right" variant={values.variant}>
-					{#if values.withIcon}<BaseIcon name="search" class="_c2" />{:else}{values.addonText}{/if}
-				</InputAddon>
-			{/if}
-		</div>
-	{/snippet}
-</Story>
+{#snippet addon()}
+	<InputAddon {...args} {position}>
+		{#if withIcon}<BaseIcon name="search" />{:else}{addonText}{/if}
+	</InputAddon>
+{/snippet}
+
+<div class="_c1">
+	{#if position === 'left'}{@render addon()}{/if}
+	<input type="text" {placeholder} class="_c3" />
+	{#if position === 'right'}{@render addon()}{/if}
+</div>
 
 <style>
 	._c1 {
@@ -50,10 +34,6 @@
 		border-width: 1px;
 		border-style: solid;
 		border-color: var(--color-border-primary);
-	}
-	._c2 {
-		height: 1rem;
-		width: 1rem;
 	}
 	._c3 {
 		flex: 1 1 0%;

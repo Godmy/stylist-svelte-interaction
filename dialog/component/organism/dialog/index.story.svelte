@@ -1,64 +1,16 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import Dialog from './index.svelte';
+	import type { RecipeDialog } from '$stylist/dialog/interface/recipe/dialog';
 
-	type Props = {
-		open: boolean;
-		title: string;
-		description: string;
-	};
-
-	const controls: SlotStory[] = [
-		{
-			name: 'open',
-			type: 'boolean',
-			defaultValue: false
-		},
-		{
-			name: 'title',
-			type: 'text',
-			defaultValue: 'Confirm action'
-		},
-		{
-			name: 'description',
-			type: 'text',
-			defaultValue: 'Are you sure you want to continue?'
-		}
-	];
-
-	let isOpen = $state(false);
-
-	function handleClose() {
-		isOpen = false;
-	}
-
-	function handleOpen() {
-		isOpen = true;
-	}
+	// Render of index.story.ts: the overlay only closes through onClose; the story owns the open state and an open button.
+	let args: RecipeDialog = $props();
+	let open = $derived(args.open ?? false);
 </script>
 
-<Story
-	id="organisms-dialog"
-	title="Organisms / Interaction / Dialogs / Dialog"
-	component={Dialog}
-	category="Organisms/Interaction/Dialogs"
-	description="A dialog component for user confirmations."
-	tags={['dialog', 'confirmation', 'action']}
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="sb-organisms-dialog _c1">
-			<button class="_c2" onclick={handleOpen}> Open Dialog </button>
-			<Dialog
-				open={isOpen}
-				title={values.title}
-				description={values.description}
-				onClose={handleClose}
-			/>
-		</div>
-	{/snippet}
-</Story>
+<div class="_c1">
+	<button class="_c2" onclick={() => (open = true)}>Open Dialog</button>
+	<Dialog {...args} {open} onClose={() => (open = false)} />
+</div>
 
 <style>
 	._c1 {

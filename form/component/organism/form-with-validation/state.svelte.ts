@@ -1,12 +1,6 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { HTMLAttributes } from 'svelte/elements';
-export function createFormWithValidationState(
-	getProps: () => HTMLAttributes<HTMLFormElement> & {
-		email?: string;
-		password?: string;
-		class?: string;
-	}
-): {
+import type { RecipeFormWithValidation } from '$stylist/form/interface/recipe/form-with-validation';
+export function createFormWithValidationState(getProps: () => RecipeFormWithValidation): {
 	rootClass: string;
 	inputClass: string;
 	emailValidText: string;

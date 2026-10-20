@@ -1,18 +1,5 @@
 <script lang="ts">
-	interface TextInputDialogProps {
-		open?: boolean;
-		title?: string;
-		path?: string;
-		value?: string;
-		loading?: boolean;
-		saving?: boolean;
-		error?: string;
-		placeholder?: string;
-		rows?: number;
-		onClose?: () => void;
-		onSave?: () => void;
-		class?: string;
-	}
+	import type { RecipeTextInputDialog } from '$stylist/dialog/interface/recipe/text-input-dialog';
 
 	let {
 		open = false,
@@ -27,7 +14,7 @@
 		onClose,
 		onSave,
 		class: className = ''
-	}: TextInputDialogProps = $props();
+	}: RecipeTextInputDialog = $props();
 </script>
 
 {#if open}

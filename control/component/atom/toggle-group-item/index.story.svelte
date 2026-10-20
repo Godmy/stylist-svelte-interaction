@@ -1,42 +1,33 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
+	// Render of index.story.ts: the item needs a ToggleGroupRoot parent that provides its context.
 	import ToggleGroupItem from './index.svelte';
 	import ToggleGroupRoot from '../toggle-group-root/index.svelte';
+	import type { RecipeToggleGroupItem } from '$stylist/control/interface/recipe/toggle-group-item';
+	import type { TokenSelectionType } from '$stylist/control/type/alias/selection-type';
 
+	let { groupType, ...item }: RecipeToggleGroupItem & { groupType?: TokenSelectionType } = $props();
 	let selected = $state<string | null>(null);
-
-	const controls: SlotStory[] = [
-		{ name: 'disabled', type: 'boolean', defaultValue: false },
-		{ name: 'type', type: 'select', defaultValue: 'single', options: ['single', 'multiple'] }
-	];
 </script>
 
-<Story
-	component={ToggleGroupItem}
-	title="ToggleGroupItem"
-	description="Selectable item managed by ToggleGroupRoot context."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<ToggleGroupRoot
-				type={values.type}
-				onValueChange={(e) =>
-					(selected = Array.isArray(e.detail.value) ? e.detail.value.join(', ') : e.detail.value)}
-			>
-				<ToggleGroupItem value="bold" disabled={values.disabled}>Bold</ToggleGroupItem>
-				<ToggleGroupItem value="italic" disabled={values.disabled}>Italic</ToggleGroupItem>
-				<ToggleGroupItem value="underline" disabled={values.disabled}>Underline</ToggleGroupItem>
-			</ToggleGroupRoot>
-			<p class="_c2">Selected: {selected || 'none'}</p>
-		</div>
-	{/snippet}
-</Story>
+<div class="_c1">
+	<ToggleGroupRoot
+		type={groupType}
+		onValueChange={(e) =>
+			(selected = Array.isArray(e.detail.value) ? e.detail.value.join(', ') : e.detail.value)}
+	>
+		<ToggleGroupItem {...item}>Bold</ToggleGroupItem>
+		<ToggleGroupItem value="italic" disabled={item.disabled}>Italic</ToggleGroupItem>
+		<ToggleGroupItem value="underline" disabled={item.disabled}>Underline</ToggleGroupItem>
+	</ToggleGroupRoot>
+	<p class="_c2">Selected: {selected || 'none'}</p>
+</div>
 
 <style>
-	._c1 > * + * {
-		margin-top: 0.75rem;
+	._c1 {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.75rem;
 	}
 	._c2 {
 		font-size: 0.875rem;

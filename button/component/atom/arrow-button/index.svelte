@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { ComponentProps } from 'svelte';
 	import AnimatedButton from '../animated-button/index.svelte';
-	let props: Omit<ComponentProps<typeof AnimatedButton>, 'effect'> = $props();
+	import type { RecipeArrowButton } from '$stylist/button/interface/recipe/arrow-button';
+	let props: RecipeArrowButton = $props();
 </script>
 
 <AnimatedButton {...props} effect="arrow" />

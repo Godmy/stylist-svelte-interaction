@@ -1,12 +1,9 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import CalendarRange from './index.svelte';
+	import type { RecipeCalendarRange } from '$stylist/calendar/interface/recipe/calendar-range';
 
-	const controls: SlotStory[] = [
-		{ name: 'disablePast', type: 'boolean', defaultValue: true },
-		{ name: 'accentColor', type: 'color', defaultValue: '#3454d1' }
-	];
+	// Render of index.story.ts: the selected Date range lives in local state shown above the calendar.
+	let { disablePast = false, ...args }: RecipeCalendarRange & { disablePast?: boolean } = $props();
 
 	let range = $state<{ start: Date | null; end: Date | null }>({
 		start: new Date(2026, 9, 18),
@@ -24,27 +21,16 @@
 	}
 </script>
 
-<Story
-	id="calendar-organisms-calendar-range"
-	title="Calendar / CalendarRange"
-	component={CalendarRange}
-	category="Calendar/Organisms"
-	description="Выбор периода: первый клик — начало, второй — конец (клик раньше начала перезапускает выбор с новой даты). Наведение курсора между кликами показывает предпросмотр периода. `disablePast` включает minDate=сегодня, accentColor — цвет заливки today/периода."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_surface">
-			<p class="_range-label">{formatRange(range)}</p>
-			<CalendarRange
-				startDate={range.start}
-				endDate={range.end}
-				onChange={(next) => (range = next)}
-				minDate={values.disablePast ? today : undefined}
-				accentColor={values.accentColor}
-			/>
-		</div>
-	{/snippet}
-</Story>
+<div class="_surface">
+	<p class="_range-label">{formatRange(range)}</p>
+	<CalendarRange
+		{...args}
+		startDate={range.start}
+		endDate={range.end}
+		onChange={(next) => (range = next)}
+		minDate={disablePast ? today : undefined}
+	/>
+</div>
 
 <style>
 	._surface {

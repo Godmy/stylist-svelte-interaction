@@ -1,12 +1,6 @@
-type ToolButtonStateProps = {
-	active?: boolean;
-	tool?: string;
-	icon?: string;
-	label?: string;
-	onClick?: (tool: string) => void;
-};
+import type { RecipeToolButton } from '$stylist/button/interface/recipe/tool-button';
 
-export function createToolButtonState(getProps: () => ToolButtonStateProps) {
+export function createToolButtonState(getProps: () => RecipeToolButton) {
 	const props = $derived(getProps());
 	const active = $derived(props.active ?? false);
 	const tool = $derived(props.tool ?? 'select');

@@ -1,8 +1,7 @@
 import type { RecipeTooltip } from '$stylist/animation/interface/recipe/tooltip';
-import type { HTMLAttributes } from 'svelte/elements';
 import type { TokenAlignment } from '$stylist/layout/type/alias/alignment';
 
-export function createTooltipState(getProps: () => RecipeTooltip & HTMLAttributes<HTMLElement>) {
+export function createTooltipState(getProps: () => RecipeTooltip) {
 	const props = $derived(getProps());
 	function normalizePlacement(
 		placement: TokenAlignment

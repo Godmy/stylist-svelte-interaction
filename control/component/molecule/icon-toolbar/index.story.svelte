@@ -1,59 +1,16 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
-	import type { TokenOrientation } from '$stylist/layout/type/alias/orientation';
+	// Render of index.story.ts: the active item is controlled through onSelect and local state.
 	import IconToolbar from './index.svelte';
+	import type { RecipeIconToolbar } from '$stylist/control/interface/recipe/icon-toolbar';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'orientation',
-			type: 'select',
-			defaultValue: TOKEN_ORIENTATION[0],
-			options: TOKEN_ORIENTATION
-		},
-		{ name: 'showLabel', type: 'boolean', defaultValue: true }
-	];
-
-	const items = [
-		{
-			name: 'select',
-			svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 4 10 8-6 1 1 6-2 .5-1.2-6.1L3 14z"/></svg>'
-		},
-		{
-			name: 'text',
-			svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16"/><path d="M12 6v12"/><path d="M8 18h8"/></svg>'
-		},
-		{
-			name: 'comment',
-			svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 17.5 3 20V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z"/></svg>'
-		}
-	] as const;
-
-	let active = $state('select');
+	let args: RecipeIconToolbar = $props();
+	// Follows the args and is overwritten by the toolbar selection.
+	let active = $derived(args.active);
 </script>
 
-<Story
-	{controls}
-	component={IconToolbar}
-	title="IconToolbar"
-	description="Compact icon toolbar for domain and cluster pickers."
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<IconToolbar
-				{items}
-				{active}
-				label="tool"
-				orientation={values.orientation as TokenOrientation}
-				showLabel={Boolean(values.showLabel)}
-				onSelect={(name) => {
-					active = name;
-				}}
-			/>
-		</div>
-	{/snippet}
-</Story>
+<div class="_c1">
+	<IconToolbar {...args} {active} onSelect={(name) => (active = name)} />
+</div>
 
 <style>
 	._c1 {

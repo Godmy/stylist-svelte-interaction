@@ -1,7 +1,8 @@
 <script lang="ts">
+	import type { RecipeAddressForm } from '$stylist/form/interface/recipe/address-form';
 	import createAddressFormState from './state.svelte';
 
-	const props = $props();
+	const props: RecipeAddressForm = $props();
 	const state = createAddressFormState(() => props);
 </script>
 

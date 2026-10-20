@@ -20,24 +20,14 @@
 	let tabId = $derived(`tab-${context.tabsId}-${props.id}`);
 	let panelId = $derived(`panel-${context.tabsId}-${props.id}`);
 
-	// Getters keep the state reactive to later prop and context changes.
-	const state = createTabState({
-		get id() {
-			return props.id;
-		},
-		get selected() {
-			return props.selected;
-		},
-		get variant() {
-			return props.variant ?? context.variant;
-		},
-		get size() {
-			return props.size ?? context.size;
-		},
-		get disabled() {
-			return props.disabled ?? context.disabled;
-		}
-	});
+	// The getter keeps the state reactive to later prop and context changes.
+	const state = createTabState(() => ({
+		id: props.id,
+		selected: props.selected,
+		variant: props.variant ?? context.variant,
+		size: props.size ?? context.size,
+		disabled: props.disabled ?? context.disabled
+	}));
 
 	function handleClick() {
 		if (!state.disabled) {

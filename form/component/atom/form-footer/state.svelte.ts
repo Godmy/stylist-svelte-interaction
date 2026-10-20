@@ -1,5 +1,5 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { SlotFormFooter as RecipeFormFooter } from '$stylist/form/interface/slot/form-footer';
+import type { RecipeFormFooter } from '$stylist/form/interface/recipe/form-footer';
 
 export function createFormFooterState(getProps: () => RecipeFormFooter) {
 	const props = $derived(getProps());

@@ -1,15 +1,6 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { HTMLAttributes } from 'svelte/elements';
-export function createAddressFormState(
-	getProps: () => HTMLAttributes<HTMLFormElement> & {
-		street?: string;
-		city?: string;
-		region?: string;
-		postalCode?: string;
-		country?: string;
-		class?: string;
-	}
-): {
+import type { RecipeAddressForm } from '$stylist/form/interface/recipe/address-form';
+export function createAddressFormState(getProps: () => RecipeAddressForm): {
 	rootClass: string;
 	inputClass: string;
 	gridClass: string;

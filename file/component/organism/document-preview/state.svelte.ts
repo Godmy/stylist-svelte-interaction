@@ -1,4 +1,6 @@
-export function createDocumentPreviewState(props: { class?: string }) {
+import type { RecipeDocumentPreview } from '$stylist/file/interface/recipe/document-preview';
+
+export function createDocumentPreviewState(props: RecipeDocumentPreview) {
 	return {
 		variant: 'default',
 		size: 'md',

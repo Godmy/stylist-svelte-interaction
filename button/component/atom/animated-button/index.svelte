@@ -1,37 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
-
-	type Props = Omit<HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>, 'children' | 'onclick'> &
-		Pick<
-			HTMLButtonAttributes,
-			| 'type'
-			| 'disabled'
-			| 'name'
-			| 'value'
-			| 'form'
-			| 'formaction'
-			| 'formenctype'
-			| 'formmethod'
-			| 'formnovalidate'
-			| 'formtarget'
-		> & {
-			onclick?: (
-				event: MouseEvent & { currentTarget: EventTarget & (HTMLButtonElement | HTMLAnchorElement) }
-			) => void;
-			children?: Snippet;
-			href?: string;
-			target?: '_blank' | '_self' | '_parent' | '_top';
-			rel?: string;
-			effect?: 'shine' | 'glow' | 'fill' | 'arrow' | 'selection' | 'morph';
-			loading?: boolean;
-			/** Run the shine effect automatically, with a pause between passes. */
-			attention?: boolean;
-			/** Continuously move two highlights around the rounded border. */
-			animatedBorder?: boolean;
-			selected?: boolean;
-			block?: boolean;
-		};
+	import type { RecipeAnimatedButton } from '$stylist/button/interface/recipe/animated-button';
 	let {
 		children,
 		href,
@@ -48,7 +16,7 @@
 		class: className = '',
 		onclick,
 		...rest
-	}: Props = $props();
+	}: RecipeAnimatedButton = $props();
 	let blocked = $derived(disabled || loading);
 </script>
 

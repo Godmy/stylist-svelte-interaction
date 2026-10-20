@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'svelte/elements';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 export interface RecipeLoading extends ComputeIntersectAll<
 	[
@@ -7,7 +8,8 @@ export interface RecipeLoading extends ComputeIntersectAll<
 			centered?: boolean;
 			class?: string;
 			style?: string;
-		}
+		},
+		HTMLAttributes<HTMLDivElement>
 	]
 > {
 	loading?: boolean;

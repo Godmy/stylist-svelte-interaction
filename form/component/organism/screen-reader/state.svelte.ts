@@ -1,12 +1,6 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { HTMLAttributes } from 'svelte/elements';
-export function createScreenReaderState(
-	getProps: () => HTMLAttributes<HTMLDivElement> & {
-		title?: string;
-		content?: string;
-		class?: string;
-	}
-): {
+import type { RecipeScreenReader } from '$stylist/form/interface/recipe/screen-reader';
+export function createScreenReaderState(getProps: () => RecipeScreenReader): {
 	rootClass: string;
 	titleClass: string;
 	contentClass: string;

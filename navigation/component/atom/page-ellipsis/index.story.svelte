@@ -1,29 +1,21 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import PageEllipsis from './index.svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import type { RecipePageEllipsis } from '$stylist/navigation/interface/recipe/page-ellipsis';
 
-	const controls: SlotStory[] = [{ name: 'class', type: 'text', defaultValue: '' }];
+	// Render of index.story.ts: the marker only makes sense between page buttons of a pagination bar.
+	let args: RecipePageEllipsis & HTMLAttributes<HTMLDivElement> = $props();
 </script>
 
-<Story
-	component={PageEllipsis}
-	title="PageEllipsis"
-	description="Pagination overflow marker between distant page buttons."
-	{controls}
->
-	{#snippet children(values: any)}
-		<nav class="_c1">
-			<button class="_c2">1</button>
-			<PageEllipsis class={values.class} />
-			<button class="_c2">8</button>
-			<button class="_c3">9</button>
-			<button class="_c2">10</button>
-			<PageEllipsis class={values.class} />
-			<button class="_c2">24</button>
-		</nav>
-	{/snippet}
-</Story>
+<nav class="_c1">
+	<button class="_c2">1</button>
+	<PageEllipsis {...args} />
+	<button class="_c2">8</button>
+	<button class="_c3">9</button>
+	<button class="_c2">10</button>
+	<PageEllipsis {...args} />
+	<button class="_c2">24</button>
+</nav>
 
 <style>
 	._c1 {

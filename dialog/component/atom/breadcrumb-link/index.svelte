@@ -1,26 +1,9 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
 	import type { RecipeBreadcrumbLink } from '$stylist/dialog/interface/recipe/breadcrumb-link';
 	import createBreadcrumbLinkState from './state.svelte';
 
-	type BreadcrumbLinkProps = RecipeBreadcrumbLink &
-		HTMLAttributes<HTMLAnchorElement> & {
-			current?: boolean;
-			href?: string;
-			children?: Snippet;
-			class?: string;
-		};
-
-	let linkProps: BreadcrumbLinkProps = $props();
-	const state = createBreadcrumbLinkState({
-		get current() {
-			return linkProps.current;
-		},
-		get class() {
-			return linkProps.class;
-		}
-	});
+	let linkProps: RecipeBreadcrumbLink = $props();
+	const state = createBreadcrumbLinkState(() => linkProps);
 </script>
 
 {#if linkProps.current}

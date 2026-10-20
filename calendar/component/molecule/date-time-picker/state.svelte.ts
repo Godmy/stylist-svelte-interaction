@@ -1,8 +1,8 @@
 import { untrack } from 'svelte';
-import type { RecipeDateTimePicker as IDateTimePickerProps } from '$stylist/calendar/interface/recipe/date-time-picker';
+import type { RecipeDateTimePicker } from '$stylist/calendar/interface/recipe/date-time-picker';
 import type { DatePickerValue } from '$stylist/calendar/interface/slot/date-picker';
 
-export const createDateTimePickerState = (getProps: () => IDateTimePickerProps) => {
+export const createDateTimePickerState = (getProps: () => RecipeDateTimePicker) => {
 	const props = $derived(getProps());
 	const toDate = (value: Date | string | { start: Date | null; end: Date | null } | undefined) => {
 		if (value instanceof Date) return value;

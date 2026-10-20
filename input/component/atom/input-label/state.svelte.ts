@@ -1,6 +1,6 @@
-import type { SlotInputLabel } from '$stylist/input/interface/slot/input-label';
+import type { RecipeInputLabel } from '$stylist/input/interface/recipe/input-label';
 
-export const createInputLabelState = (getProps: () => SlotInputLabel) => {
+export const createInputLabelState = (getProps: () => RecipeInputLabel) => {
 	const props = $derived(getProps());
 	return {
 		get labelClasses() {

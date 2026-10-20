@@ -3,18 +3,9 @@ import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';
 import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 import type { TokenSize } from '$stylist/design-token/type/alias/size';
-import type { SlotInputStateOptions } from '$stylist/input/interface/slot/input-state-options';
+import type { RecipeInputText } from '$stylist/input/interface/recipe/input-text';
 
-export function createInputTextState(
-	getProps: () => SlotInputStateOptions & {
-		id?: string;
-		helperText?: string;
-		showHelperWhenError?: boolean;
-		value?: string;
-		maxlength?: number;
-		autoResize?: boolean;
-	}
-) {
+export function createInputTextState(getProps: () => RecipeInputText) {
 	const props = $derived(getProps());
 	const variant = $derived(
 		resolveAllowedOption(props.variant as TokenColorTone | undefined, TOKEN_COLOR_TONE, 'default')

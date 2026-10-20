@@ -1,39 +1,45 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import AnimatedBackground from './index.svelte';
+	import type { RecipeAnimatedBackground } from '$stylist/animation/interface/recipe/animated-background';
 
-	const controls: SlotStory[] = [
-		{ name: 'shapeSeconds', type: 'range', defaultValue: 16, min: 4, max: 32, step: 1 },
-		{ name: 'orbSeconds', type: 'range', defaultValue: 14, min: 4, max: 30, step: 1 },
-		{ name: 'particleSeconds', type: 'range', defaultValue: 22, min: 6, max: 44, step: 1 },
-		{ name: 'shapeOpacity', type: 'range', defaultValue: 45, min: 0, max: 100, step: 5 },
-		{ name: 'orbOpacity', type: 'range', defaultValue: 50, min: 0, max: 100, step: 5 },
-		{ name: 'particleOpacity', type: 'range', defaultValue: 32, min: 0, max: 100, step: 4 },
-		{ name: 'class', type: 'text', defaultValue: '' }
-	];
+	// Render of index.story.ts: the duration/opacity knobs become the component's CSS custom properties and the background needs content to show behind.
+	let {
+		shapeSeconds = 16,
+		orbSeconds = 14,
+		particleSeconds = 22,
+		shapeOpacity = 45,
+		orbOpacity = 50,
+		particleOpacity = 32,
+		...args
+	}: RecipeAnimatedBackground & {
+		shapeSeconds?: number;
+		orbSeconds?: number;
+		particleSeconds?: number;
+		shapeOpacity?: number;
+		orbOpacity?: number;
+		particleOpacity?: number;
+	} = $props();
+
+	const style = $derived(
+		[
+			`--animated-background-shape-duration:${shapeSeconds}s`,
+			`--animated-background-orb-duration:${orbSeconds}s`,
+			`--animated-background-particle-duration:${particleSeconds}s`,
+			`--animated-background-shape-opacity:${shapeOpacity / 100}`,
+			`--animated-background-orb-opacity:${orbOpacity / 100}`,
+			`--animated-background-particle-opacity:${particleOpacity / 100}`
+		].join('; ')
+	);
 </script>
 
-<Story
-	{controls}
-	component={AnimatedBackground}
-	title="AnimatedBackground"
-	description="Ambient animated background with tunable shape, orb, and particle motion."
->
-	{#snippet children(values: any)}
-		<AnimatedBackground
-			class={values.class || undefined}
-			style={`--animated-background-shape-duration:${Number(values.shapeSeconds) || 16}s; --animated-background-orb-duration:${Number(values.orbSeconds) || 14}s; --animated-background-particle-duration:${Number(values.particleSeconds) || 22}s; --animated-background-shape-opacity:${(Number(values.shapeOpacity) || 0) / 100}; --animated-background-orb-opacity:${(Number(values.orbOpacity) || 0) / 100}; --animated-background-particle-opacity:${(Number(values.particleOpacity) || 0) / 100};`}
-		>
-			<div class="_c1">
-				<div class="_c2">
-					<p class="_c3">Animated Background</p>
-					<p class="_c4">Ambient motion tuned by duration and opacity controls.</p>
-				</div>
-			</div>
-		</AnimatedBackground>
-	{/snippet}
-</Story>
+<AnimatedBackground {...args} class={args.class || undefined} {style}>
+	<div class="_c1">
+		<div class="_c2">
+			<p class="_c3">Animated Background</p>
+			<p class="_c4">Ambient motion tuned by duration and opacity controls.</p>
+		</div>
+	</div>
+</AnimatedBackground>
 
 <style>
 	._c1 {

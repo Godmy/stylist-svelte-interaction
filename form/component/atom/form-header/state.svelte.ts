@@ -1,5 +1,5 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { SlotFormHeader as RecipeFormHeader } from '$stylist/form/interface/slot/form-header';
+import type { RecipeFormHeader } from '$stylist/form/interface/recipe/form-header';
 
 export function createFormHeaderState(getProps: () => RecipeFormHeader) {
 	const props = $derived(getProps());

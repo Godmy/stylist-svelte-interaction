@@ -1,5 +1,5 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { RecipeTimeGrid as TimeGridContract } from '$stylist/calendar/interface/recipe/time-grid';
+import type { RecipeTimeGrid } from '$stylist/calendar/interface/recipe/time-grid';
 import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
 import { isToday, isWeekend } from '$stylist/calendar/function/script/calendar-utils';
 
@@ -27,7 +27,7 @@ type DayColumn = {
 	slots: TimeGridSlot[];
 };
 
-export function createTimeGridState(getProps: () => TimeGridContract) {
+export function createTimeGridState(getProps: () => RecipeTimeGrid) {
 	const props = $derived(getProps());
 	let viewStartDate = $derived(new Date(props.startDate ?? new Date()));
 	let viewEndDate = $derived(

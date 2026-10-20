@@ -1,44 +1,16 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
+	// Render of index.story.ts: the trailing actions are a named snippet, which story content cannot provide.
 	import AppHeader from './index.svelte';
-	import { TOKEN_CONTROLLER_TYPE } from '$stylist/domain/const/object/controller-type';
+	import type { RecipeAppHeader } from '$stylist/menu/interface/recipe/app-header';
 
-	const navLinks = [
-		{ href: '#overview', label: 'Overview', active: true },
-		{ href: '#projects', label: 'Projects' },
-		{ href: '#reports', label: 'Reports' },
-		{ href: '#settings', label: 'Settings' }
-	];
-
-	const controls = [
-		{
-			name: 'brand',
-			type: TOKEN_CONTROLLER_TYPE.TEXT,
-			defaultValue: 'Vibe Manager'
-		},
-		{
-			name: 'brandHref',
-			type: TOKEN_CONTROLLER_TYPE.TEXT,
-			defaultValue: '#home'
-		}
-	];
+	let args: RecipeAppHeader = $props();
 </script>
 
-<Story
-	{controls}
-	title="AppHeader"
-	category="Organisms/Interaction/Navigation"
-	description="Top-level application header combining brand, primary navigation links, and trailing actions."
-	tags={['app-header', 'navigation', 'header', 'layout']}
->
-	{#snippet children(values: any)}
-		<AppHeader brand={values.brand} brandHref={values.brandHref} {navLinks}>
-			{#snippet trailing()}
-				<div class="_c1">Account</div>
-			{/snippet}
-		</AppHeader>
+<AppHeader {...args}>
+	{#snippet trailing()}
+		<div class="_c1">Account</div>
 	{/snippet}
-</Story>
+</AppHeader>
 
 <style>
 	._c1 {

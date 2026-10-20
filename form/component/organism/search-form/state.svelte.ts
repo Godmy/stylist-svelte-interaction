@@ -1,12 +1,6 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { HTMLAttributes } from 'svelte/elements';
-export function createSearchFormState(
-	getProps: () => HTMLAttributes<HTMLFormElement> & {
-		query?: string;
-		placeholder?: string;
-		class?: string;
-	}
-): {
+import type { RecipeSearchForm } from '$stylist/form/interface/recipe/search-form';
+export function createSearchFormState(getProps: () => RecipeSearchForm): {
 	rootClass: string;
 	iconClass: string;
 	inputClass: string;

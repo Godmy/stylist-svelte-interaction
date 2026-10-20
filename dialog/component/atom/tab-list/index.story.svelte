@@ -1,45 +1,29 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import Tabs from '$stylist/dialog/component/molecule/tabs/index.svelte';
 	import TabList from './index.svelte';
 	import Tab from '../tab/index.svelte';
+	import type { RecipeTabList } from '$stylist/dialog/interface/recipe/tab-list';
+	import type { TokenSize } from '$stylist/design-token/type/alias/size';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'selectedId',
-			type: 'select',
-			defaultValue: 'profile',
-			options: ['profile', 'billing', 'security']
-		},
-		{ name: 'size', type: 'select', defaultValue: 'md', options: ['sm', 'md', 'lg'] },
-		{ name: 'disabled', type: 'boolean', defaultValue: false }
-	];
+	// Render of index.story.ts: TabList needs a Tabs context and Tab children.
+	let { selectedId, size, ...args }: RecipeTabList & { selectedId?: string; size?: TokenSize } =
+		$props();
 </script>
 
-<Story
-	component={TabList}
-	title="TabList"
-	description="Horizontal navigation container for related Tab items."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_surface">
-			<div class="_header">
-				<span>Account sections</span>
-				<strong>{values.selectedId}</strong>
-			</div>
-			<Tabs selectedId={values.selectedId} size={values.size}>
-				<TabList class="_list" disabled={values.disabled}>
-					<Tab id="profile">Profile</Tab>
-					<Tab id="billing">Billing</Tab>
-					<Tab id="security">Security</Tab>
-					<Tab id="sessions">Sessions</Tab>
-				</TabList>
-			</Tabs>
-		</div>
-	{/snippet}
-</Story>
+<div class="_surface">
+	<div class="_header">
+		<span>Account sections</span>
+		<strong>{selectedId}</strong>
+	</div>
+	<Tabs {selectedId} {size}>
+		<TabList {...args}>
+			<Tab id="profile">Profile</Tab>
+			<Tab id="billing">Billing</Tab>
+			<Tab id="security">Security</Tab>
+			<Tab id="sessions">Sessions</Tab>
+		</TabList>
+	</Tabs>
+</div>
 
 <style>
 	._surface {
@@ -62,14 +46,5 @@
 		background: var(--color-background-secondary);
 		color: var(--color-text-primary);
 		font-size: 0.8rem;
-	}
-
-	._list {
-		flex-wrap: wrap;
-		width: 100%;
-		padding: 0.5rem;
-		border: 1px solid var(--color-border-primary);
-		border-radius: 0.5rem;
-		background: var(--color-background-secondary);
 	}
 </style>

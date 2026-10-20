@@ -2,12 +2,7 @@ import type { HTMLButtonAttributes } from 'svelte/elements';
 import type { RecipePageButton } from '$stylist/navigation/interface/recipe/page-button';
 import { createButtonPreset } from '$stylist/button/function/script/create-button-preset';
 
-export function createPageButtonState(
-	getProps: () => RecipePageButton &
-		HTMLButtonAttributes & {
-			isActive?: boolean;
-		}
-) {
+export function createPageButtonState(getProps: () => RecipePageButton & HTMLButtonAttributes) {
 	const props = $derived(getProps());
 	const preset = createButtonPreset({
 		variant: 'outline',
