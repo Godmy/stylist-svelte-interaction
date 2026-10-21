@@ -1,7 +1,10 @@
+import type { HTMLAttributes } from 'svelte/elements';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { Snippet } from 'svelte';
 import type { SlotDimensionable } from '$stylist/layout/interface/slot/dimensionable';
-export interface RecipeSkeleton extends ComputeIntersectAll<[SlotDimensionable]> {
+export interface RecipeSkeleton extends ComputeIntersectAll<
+	[SlotDimensionable, HTMLAttributes<HTMLDivElement>]
+> {
 	variant?: 'text' | 'circle' | 'rectangle';
 	lines?: number;
 	animated?: boolean;

@@ -1,43 +1,17 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
-	import PinInputDigit from './index.svelte';
+	// Render of index.story.ts: a PIN row of four digits, the first one driven by the args.
+	import InputPinDigit from './index.svelte';
+	import type { RecipeInputPinDigit } from '$stylist/input/interface/recipe/input-pin-digit';
 
-	const controls: SlotStory[] = [
-		{ name: 'value', type: 'text', defaultValue: '4' },
-		{ name: 'focused', type: 'boolean', defaultValue: false },
-		{ name: 'invalid', type: 'boolean', defaultValue: false },
-		{ name: 'size', type: 'select', defaultValue: 'md', options: ['sm', 'md', 'lg'] },
-		{
-			name: 'variant',
-			type: 'select',
-			defaultValue: 'default',
-			options: ['default', 'outline', 'ghost']
-		}
-	];
+	let args: RecipeInputPinDigit = $props();
 </script>
 
-<Story
-	component={PinInputDigit}
-	title="InputPinDigit"
-	description="Single digit input used in OTP/PIN flows."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<PinInputDigit
-				value={values.value}
-				focused={values.focused}
-				invalid={values.invalid}
-				size={values.size}
-				variant={values.variant}
-			/>
-			<PinInputDigit value="" size={values.size} variant={values.variant} />
-			<PinInputDigit value="" size={values.size} variant={values.variant} />
-			<PinInputDigit value="" size={values.size} variant={values.variant} />
-		</div>
-	{/snippet}
-</Story>
+<div class="_c1">
+	<InputPinDigit {...args} />
+	{#each [1, 2, 3] as digit (digit)}
+		<InputPinDigit value="" size={args.size} variant={args.variant} />
+	{/each}
+</div>
 
 <style>
 	._c1 {

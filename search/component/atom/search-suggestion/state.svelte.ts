@@ -1,6 +1,6 @@
-import type { SlotSearchSuggestion as SearchSuggestionProps } from '$stylist/search/interface/slot/search-suggestion';
+import type { RecipeSearchSuggestion } from '$stylist/search/interface/recipe/search-suggestion';
 
-export function createSearchSuggestionState(getProps: () => SearchSuggestionProps) {
+export function createSearchSuggestionState(getProps: () => RecipeSearchSuggestion) {
 	const props = $derived(getProps());
 	const displayedSuggestions = $derived(
 		(props.suggestions ?? []).slice(0, props.maxSuggestions ?? 5)
@@ -24,7 +24,7 @@ export function createSearchSuggestionState(getProps: () => SearchSuggestionProp
 		get buttonClass() {
 			return buttonClass;
 		},
-		handleSuggestionClick(suggestion: SearchSuggestionProps['suggestions'][number]) {
+		handleSuggestionClick(suggestion: RecipeSearchSuggestion['suggestions'][number]) {
 			props.onValueInput?.(suggestion);
 			props.onValueChange?.(suggestion);
 		}

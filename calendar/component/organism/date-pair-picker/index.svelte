@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Calendar from '$stylist/calendar/component/organism/calendar/index.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
+	import type { RecipeDatePairPicker } from '$stylist/calendar/interface/recipe/date-pair-picker';
 
 	/**
 	 * Two dates in one line, styled alike: the start is picked in a calendar
@@ -8,26 +9,6 @@
 	 * host computes it, e.g. start + tour length). For «Выезд/Заезд →
 	 * Возвращение» in a booking calculator.
 	 */
-	type Props = {
-		/** Start date, ISO `yyyy-mm-dd`, or '' when not chosen. */
-		value?: string;
-		/** End date, ISO — computed by the host. */
-		endValue?: string;
-		startLabel?: string;
-		endLabel?: string;
-		/** Time shown after the date, e.g. «04:00». */
-		startTime?: string | null;
-		endTime?: string | null;
-		/** What the end box says while there is no start date, e.g. «2-й день». */
-		endPlaceholder?: string;
-		/** Only these ISO dates can be picked; absent — any day from today. */
-		availableDates?: string[];
-		/** The end box is a picker too (off by default: the host computes the end). Its dates start at the start date. */
-		endEditable?: boolean;
-		onChange?: (value: string) => void;
-		onEndChange?: (value: string) => void;
-	};
-
 	let {
 		value = '',
 		endValue = '',
@@ -40,7 +21,7 @@
 		endEditable = false,
 		onChange,
 		onEndChange
-	}: Props = $props();
+	}: RecipeDatePairPicker = $props();
 
 	let openFor = $state<'start' | 'end' | null>(null);
 	const open = $derived(openFor !== null);

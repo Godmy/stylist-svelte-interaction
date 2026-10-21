@@ -1,56 +1,25 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
 	import DateTimePicker from './index.svelte';
-	import type { TokenControllerType } from '$stylist/domain/type/alias/controller-type';
+	import type { RecipeDateTimePicker } from '$stylist/calendar/interface/recipe/date-time-picker';
 
-	const controls = [
-		{
-			name: 'value',
-			type: 'text' as TokenControllerType,
-			defaultValue: new Date().toISOString(),
-			description: 'Selected date-time as ISO string'
-		},
-		{
-			name: 'disabled',
-			type: 'boolean' as TokenControllerType,
-			defaultValue: false,
-			description: 'Whether the picker is disabled'
-		},
-		{
-			name: 'placeholder',
-			type: 'text' as TokenControllerType,
-			defaultValue: 'Select date and time',
-			description: 'Placeholder text'
-		}
-	];
+	// Render of index.story.ts: the picker only shows a Date value; the ISO text arg is converted.
+	let { value, ...args }: RecipeDateTimePicker = $props();
 
-	const toDateOrUndefined = (value?: string) => (value ? new Date(value) : undefined);
-	const humanize = (value?: string) => (value ? new Date(value).toLocaleString() : 'Not set');
+	const toDateOrUndefined = (input: RecipeDateTimePicker['value']) =>
+		input instanceof Date
+			? input
+			: typeof input === 'string' && input
+				? new Date(input)
+				: undefined;
+	const date = $derived(toDateOrUndefined(value));
 </script>
 
-<Story
-	{controls}
-	title="DateTimePicker Component"
-	description="Inline date + time picker with dropdown calendar and keyboard-friendly selectors"
->
-	{#snippet children(controlValues: any)}
-		<div class="_c1">
-			<DateTimePicker
-				value={toDateOrUndefined(controlValues.value)}
-				disabled={controlValues.disabled}
-				placeholder={controlValues.placeholder}
-			/>
-			<div class="_c2">
-				Selected timestamp: {humanize(controlValues.value)}
-			</div>
-		</div>
-	{/snippet}
-</Story>
+<DateTimePicker {...args} value={date} />
+<div class="_c2">
+	Selected timestamp: {date ? date.toLocaleString() : 'Not set'}
+</div>
 
 <style>
-	._c1 {
-		padding: 1rem;
-	}
 	._c2 {
 		margin-top: 1rem;
 		border-radius: 1rem;

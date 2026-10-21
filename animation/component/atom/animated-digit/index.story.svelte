@@ -1,37 +1,29 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import AnimatedDigit from './index.svelte';
+	import type { RecipeAnimatedDigit } from '$stylist/animation/interface/recipe/animated-digit';
 
-	const controls: SlotStory[] = [
-		{ name: 'from', type: 'number', defaultValue: 1250 },
-		{ name: 'to', type: 'number', defaultValue: 9875 },
-		{ name: 'fontSize', type: 'range', defaultValue: 56, min: 16, max: 112, step: 2 },
-		{ name: 'color', type: 'color', defaultValue: '#2563eb' },
-		{ name: 'prefix', type: 'text', defaultValue: '$' },
-		{ name: 'suffix', type: 'text', defaultValue: '' }
-	];
+	// Render of index.story.ts: `format` is a function (prefix, rounding, suffix), which args cannot carry.
+	let {
+		prefix = '',
+		suffix = '',
+		fontSize = 56,
+		color = '#2563eb',
+		...args
+	}: RecipeAnimatedDigit & {
+		prefix?: string;
+		suffix?: string;
+		fontSize?: number;
+		color?: string;
+	} = $props();
+
+	const format = (value: number) => `${prefix}${Math.round(value).toLocaleString()}${suffix}`;
+	const style = $derived(`font-size:${fontSize}px; line-height:1; color:${color};`);
 </script>
 
-<Story
-	{controls}
-	component={AnimatedDigit}
-	title="AnimatedDigit"
-	description="Animates a numeric value and renders the formatted result."
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<p class="_c2">Revenue target</p>
-			<AnimatedDigit
-				from={Number(values.from)}
-				to={Number(values.to)}
-				format={(value) => `${values.prefix}${Math.round(value).toLocaleString()}${values.suffix}`}
-				class="_c3"
-				style={`font-size:${Number(values.fontSize) || 56}px; line-height:1; color:${values.color || '#2563eb'};`}
-			/>
-		</div>
-	{/snippet}
-</Story>
+<div class="_c1">
+	<p class="_c2">Revenue target</p>
+	<AnimatedDigit {...args} {format} class="_c3" {style} />
+</div>
 
 <style>
 	._c1 {
@@ -49,7 +41,7 @@
 		line-height: 1.25rem;
 	}
 
-	._c3 {
+	._c1 :global(._c3) {
 		font-weight: 700;
 	}
 </style>

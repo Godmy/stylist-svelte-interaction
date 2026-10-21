@@ -1,38 +1,20 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import TimeSlot from './index.svelte';
+	import type { RecipeTimeSlot } from '$stylist/calendar/interface/recipe/time-slot';
 
-	const controls: SlotStory[] = [
-		{ name: 'available', type: 'boolean', defaultValue: true },
-		{ name: 'selected', type: 'boolean', defaultValue: false },
-		{ name: 'active', type: 'boolean', defaultValue: false },
-		{ name: 'timeLabel', type: 'text', defaultValue: '9:00 AM - 10:00 AM' },
-		{ name: 'eventCount', type: 'number', defaultValue: 0, min: 0, max: 5 }
-	];
+	// Render of index.story.ts: the slot needs Date start/end and Date-based events.
+	let { eventCount = 0, ...args }: Partial<RecipeTimeSlot> & { eventCount?: number } = $props();
+
+	const start = new Date(2026, 1, 21, 9, 0);
+	const end = new Date(2026, 1, 21, 10, 0);
+	const events = $derived(
+		Array.from({ length: Math.max(0, eventCount) }, (_, i) => ({
+			id: String(i + 1),
+			title: `Event ${i + 1}`,
+			start,
+			end
+		}))
+	);
 </script>
 
-<Story
-	{controls}
-	component={TimeSlot}
-	title="TimeSlot"
-	category="Atoms/Interaction/Controls/Calendar"
-	description="Single time slot for schedule/calendar views"
->
-	{#snippet children(values: any)}
-		<TimeSlot
-			start={new Date(2026, 1, 21, 9, 0)}
-			end={new Date(2026, 1, 21, 10, 0)}
-			timeLabel={values.timeLabel as string}
-			available={values.available as boolean}
-			selected={values.selected as boolean}
-			active={values.active as boolean}
-			events={Array.from({ length: Math.max(0, Number(values.eventCount) || 0) }, (_, i) => ({
-				id: i + 1,
-				title: `Event ${i + 1}`,
-				start: new Date(2026, 1, 21, 9, 0),
-				end: new Date(2026, 1, 21, 10, 0)
-			})) as any}
-		/>
-	{/snippet}
-</Story>
+<TimeSlot {...args} {start} {end} {events} />

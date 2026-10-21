@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { createSkeletonState } from './state.svelte';
 	import type { RecipeSkeleton } from '$stylist/animation/interface/recipe/skeleton';
 
-	let props: RecipeSkeleton & HTMLAttributes<HTMLDivElement> = $props();
+	let props: RecipeSkeleton = $props();
 	const state = createSkeletonState(() => props);
 </script>
 

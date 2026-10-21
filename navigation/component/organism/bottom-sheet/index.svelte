@@ -1,15 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-
-	type Props = {
-		open?: boolean;
-		title?: string;
-		closable?: boolean;
-		onClose?: () => void;
-		children?: Snippet;
-		actions?: Snippet;
-	};
-
+	import type { RecipeBottomSheet } from '$stylist/navigation/interface/recipe/bottom-sheet';
 	let {
 		open = false,
 		title = 'Sheet',
@@ -17,7 +7,7 @@
 		onClose,
 		children,
 		actions
-	}: Props = $props();
+	}: RecipeBottomSheet = $props();
 
 	function close() {
 		if (!closable) return;

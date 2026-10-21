@@ -1,8 +1,7 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { HTMLAttributes } from 'svelte/elements';
 import type { RecipeLoading } from '$stylist/animation/interface/recipe/loading';
 
-export function createLoadingState(getProps: () => RecipeLoading & HTMLAttributes<HTMLDivElement>) {
+export function createLoadingState(getProps: () => RecipeLoading) {
 	const props = $derived(getProps());
 	const loading = $derived(props.loading ?? true);
 	const label = $derived(props.label ?? 'Loading');

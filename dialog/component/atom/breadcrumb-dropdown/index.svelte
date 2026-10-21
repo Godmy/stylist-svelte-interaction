@@ -1,14 +1,8 @@
 <script lang="ts">
 	import type { RecipeBreadcrumbDropdown } from '$stylist/dialog/interface/recipe/breadcrumb-dropdown';
 	import createBreadcrumbDropdownState from './state.svelte';
-	import type { BreadcrumbDropdownItem } from '$stylist/dialog/interface/slot/breadcrumb-dropdown-item';
 
-	let props: RecipeBreadcrumbDropdown & {
-		open?: boolean;
-		items?: BreadcrumbDropdownItem[];
-		onSelect?: (targetId: string) => void;
-		class?: string;
-	} = $props();
+	let props: RecipeBreadcrumbDropdown = $props();
 
 	const state = createBreadcrumbDropdownState(() => props);
 </script>

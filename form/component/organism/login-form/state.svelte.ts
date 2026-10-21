@@ -1,12 +1,6 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import type { HTMLAttributes } from 'svelte/elements';
-export function createLoginFormState(
-	getProps: () => HTMLAttributes<HTMLFormElement> & {
-		email?: string;
-		rememberMe?: boolean;
-		class?: string;
-	}
-): {
+import type { RecipeLoginForm } from '$stylist/form/interface/recipe/login-form';
+export function createLoginFormState(getProps: () => RecipeLoginForm): {
 	rootClass: string;
 	inputClass: string;
 	checkboxLabelClass: string;

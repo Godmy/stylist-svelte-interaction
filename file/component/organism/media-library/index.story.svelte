@@ -1,15 +1,10 @@
 <script lang="ts">
-	import type { SlotMediaItem } from '$stylist/file/interface/slot/media-item';
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
-
 	import MediaLibrary from './index.svelte';
+	import type { RecipeMediaLibrary } from '$stylist/file/interface/recipe/media-library';
+	import type { SlotMediaItem } from '$stylist/file/interface/slot/media-item';
 
-	const controls: SlotStory[] = [
-		{ name: 'allowUpload', type: 'boolean', defaultValue: true },
-		{ name: 'allowDownload', type: 'boolean', defaultValue: true },
-		{ name: 'allowDelete', type: 'boolean', defaultValue: true }
-	];
+	// Render of index.story.ts: every media item requires a Date `uploadDate`.
+	let args: RecipeMediaLibrary = $props();
 
 	const items: SlotMediaItem[] = [
 		{
@@ -33,30 +28,4 @@
 	];
 </script>
 
-<Story
-	component={MediaLibrary}
-	title="Media Library"
-	description="Media library with upload and selection."
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<MediaLibrary
-				{items}
-				allowUpload={values.allowUpload as boolean}
-				allowDownload={values.allowDownload as boolean}
-				allowDelete={values.allowDelete as boolean}
-				onItemSelect={(item: SlotMediaItem) => console.log('Item selected:', item)}
-				onItemDelete={(id: string) => console.log('Item deleted:', id)}
-				onItemDownload={(id: string) => console.log('Item downloaded:', id)}
-				onUpload={(files: FileList) => console.log('Files uploaded:', files.length)}
-			/>
-		</div>
-	{/snippet}
-</Story>
-
-<style>
-	._c1 {
-		height: 24rem;
-	}
-</style>
+<MediaLibrary {...args} {items} />

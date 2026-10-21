@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
 	import type { RecipeComponentInfoCard } from '$stylist/dialog/interface/recipe/component-info-card';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { createComponentInfoCardState } from './state.svelte';
@@ -16,7 +15,7 @@
 	const Calendar = 'calendar';
 	const User = 'user';
 
-	let props: RecipeComponentInfoCard & HTMLAttributes<HTMLDivElement> = $props();
+	let props: RecipeComponentInfoCard = $props();
 	const state = createComponentInfoCardState(() => props);
 </script>
 

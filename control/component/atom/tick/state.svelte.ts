@@ -1,13 +1,7 @@
-type SliderTickProps = {
-	value?: number;
-	position?: number;
-	active?: boolean;
-	label?: string;
-	class?: string;
-};
+import type { RecipeTick } from '$stylist/control/interface/recipe/tick';
 
 // Определение состояния для Slider Tick
-export function createSliderTickState(getProps: () => SliderTickProps) {
+export function createSliderTickState(getProps: () => RecipeTick) {
 	const props = $derived(getProps());
 	const value = $derived(props.value ?? 0);
 	const position = $derived(props.position ?? 0);

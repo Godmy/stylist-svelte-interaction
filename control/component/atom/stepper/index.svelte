@@ -1,13 +1,5 @@
 <script lang="ts">
-	type Props = {
-		value?: number;
-		min?: number;
-		max?: number;
-		step?: number;
-		label?: string;
-		disabled?: boolean;
-		onChange?: (value: number) => void;
-	};
+	import type { RecipeStepper } from '$stylist/control/interface/recipe/stepper';
 
 	let {
 		value = 0,
@@ -17,7 +9,7 @@
 		label = 'Quantity',
 		disabled = false,
 		onChange
-	}: Props = $props();
+	}: RecipeStepper = $props();
 
 	const normalized = $derived(Math.min(max, Math.max(min, value)));
 	const canDecrement = $derived(!disabled && normalized > min);

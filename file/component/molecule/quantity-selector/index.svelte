@@ -150,6 +150,7 @@
 		background: var(--color-background-primary);
 		color: var(--color-text-primary);
 		-moz-appearance: textfield;
+		appearance: textfield;
 	}
 
 	.c-qty-selector__input::-webkit-outer-spin-button,

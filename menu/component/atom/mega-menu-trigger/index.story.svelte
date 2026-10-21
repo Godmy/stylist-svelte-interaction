@@ -1,68 +1,35 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
+	// Render of index.story.ts: the trigger only reports clicks, so open states are toggled here (single trigger and a coordinated row).
 	import MegaMenuTrigger from './index.svelte';
+	import type { RecipeMegaMenuTrigger } from '$stylist/menu/interface/recipe/mega-menu-trigger';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'label',
-			type: 'text',
-			defaultValue: 'Экскурсии',
-			description: 'Trigger text'
-		},
-		{
-			name: 'active',
-			type: 'boolean',
-			defaultValue: false,
-			description: 'Section contains the current page (underline + accent colour)'
-		},
-		{
-			name: 'disabled',
-			type: 'boolean',
-			defaultValue: false,
-			description: 'Disable the trigger'
-		}
-	];
-
-	let open = $state(false);
+	let args: RecipeMegaMenuTrigger = $props();
+	// Follows the open control and is toggled by clicks.
+	let open = $derived(args.open ?? false);
 	let selected = $state('tours');
+	const sections = [
+		['excursions', 'Экскурсии'],
+		['tours', 'Туры'],
+		['destinations', 'Направления'],
+		['info', 'Туристам']
+	];
 </script>
 
-<Story
-	id="atoms-mega-menu-trigger"
-	title="MegaMenuTrigger"
-	category="Atoms/Interaction/Navigation"
-	description="Top-level disclosure button of a mega menu with a rotating chevron, aria-expanded and aria-controls."
-	tags={['mega-menu', 'trigger', 'button', 'disclosure']}
-	{controls}
->
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<MegaMenuTrigger
-				label={values.label}
-				active={values.active}
-				disabled={values.disabled}
-				{open}
-				controls="mega-trigger-demo-panel"
-				onclick={() => (open = !open)}
-			/>
-			<span class="_c2">aria-expanded = {open}</span>
-		</div>
-	{/snippet}
+<div class="_c1">
+	<MegaMenuTrigger {...args} {open} onclick={() => (open = !open)} />
+	<span class="_c2">aria-expanded = {open}</span>
+</div>
 
-	{#snippet variants()}
-		<div class="_c3">
-			{#each [['excursions', 'Экскурсии'], ['tours', 'Туры'], ['destinations', 'Направления'], ['info', 'Туристам']] as [id, label]}
-				<MegaMenuTrigger
-					{label}
-					open={selected === id}
-					active={id === 'excursions'}
-					onclick={() => (selected = selected === id ? '' : id)}
-				/>
-			{/each}
-		</div>
-	{/snippet}
-</Story>
+<div class="_c3">
+	{#each sections as [id, label] (id)}
+		<MegaMenuTrigger
+			{label}
+			open={selected === id}
+			active={id === 'excursions'}
+			onclick={() => (selected = selected === id ? '' : id)}
+		/>
+	{/each}
+</div>
 
 <style>
 	._c1 {

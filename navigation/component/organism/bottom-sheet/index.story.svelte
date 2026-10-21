@@ -1,18 +1,35 @@
 <script lang="ts">
 	import BottomSheet from './index.svelte';
+	import type { RecipeBottomSheet } from '$stylist/navigation/interface/recipe/bottom-sheet';
+
+	// Render of index.story.ts: the body and the actions footer are snippet props.
+	let args: RecipeBottomSheet = $props();
 </script>
 
-<div style="min-height:420px;padding:24px;background:#eef2f7;">
-	<BottomSheet open title="Booking details">
-		{#snippet children()}
-			<div style="display:grid;gap:12px;">
-				<p style="margin:0;">Pickup, date and traveler controls can live here on mobile.</p>
-				<label>Date <input type="date" /></label>
-			</div>
-		{/snippet}
+<div class="_c1">
+	<BottomSheet {...args}>
+		<div class="_c2">
+			<p class="_c3">Pickup, date and traveler controls can live here on mobile.</p>
+			<label>Date <input type="date" /></label>
+		</div>
 		{#snippet actions()}
-			<button>Cancel</button>
-			<button>Apply</button>
+			<button type="button">Cancel</button>
+			<button type="button">Apply</button>
 		{/snippet}
 	</BottomSheet>
 </div>
+
+<style>
+	._c1 {
+		min-height: 420px;
+		padding: 24px;
+		background: #eef2f7;
+	}
+	._c2 {
+		display: grid;
+		gap: 12px;
+	}
+	._c3 {
+		margin: 0;
+	}
+</style>
