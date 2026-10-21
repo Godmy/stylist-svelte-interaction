@@ -21,6 +21,7 @@ export type {
 	RecipeShortcutsPanel,
 	RecipeSlider,
 	RecipeSliderWithInput,
+	RecipeStepper,
 	RecipeSwitch,
 	RecipeTag,
 	RecipeTick,

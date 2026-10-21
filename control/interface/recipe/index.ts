@@ -19,6 +19,7 @@ export type { RecipeSelector } from './selector';
 export type { RecipeShortcutsPanel } from './shortcuts-panel';
 export type { RecipeSlider } from './slider';
 export type { RecipeSliderWithInput } from './slider-with-input';
+export type { RecipeStepper } from './stepper';
 export type { RecipeSwitch } from './switch';
 export type { RecipeTag } from './tag';
 export type { RecipeTick } from './tick';

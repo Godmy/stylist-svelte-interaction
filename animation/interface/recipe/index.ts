@@ -16,6 +16,7 @@ export type { RecipeMediaSlider } from './media-slider';
 export type { RecipePalmSway } from './palm-sway';
 export type { RecipePhraseArcFlight } from './phrase-arc-flight';
 export type { RecipeProgressBar } from './progress-bar';
+export type { RecipeScrollPhaseDebug } from './scroll-phase-debug';
 export type { RecipeSkeleton } from './skeleton';
 export type { RecipeSpinner } from './spinner';
 export type { RecipeTooltip } from './tooltip';

@@ -9,6 +9,7 @@ export {
 export { PresetPageButton } from './const';
 export type {
 	NavItem,
+	RecipeBottomSheet,
 	RecipePageButton,
 	RecipePageEllipsis,
 	RecipePagination,

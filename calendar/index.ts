@@ -56,6 +56,7 @@ export type {
 	RecipeCalendarGrid,
 	RecipeCalendarRange,
 	RecipeCalendarView,
+	RecipeDatePairPicker,
 	RecipeDatePicker,
 	RecipeDateRangePicker,
 	RecipeDateTimePicker,

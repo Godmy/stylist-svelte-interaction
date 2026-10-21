@@ -33,14 +33,21 @@ export type {
 } from './type';
 export type { ButtonPreset } from './function';
 export type {
+	RecipeAnimatedButton,
+	RecipeArrowButton,
 	RecipeButton,
 	RecipeButtonComposed,
 	RecipeButtonElement,
 	RecipeButtonFactoryInput,
 	RecipeCloseButton,
 	RecipeCopyButton,
+	RecipeFillButton,
 	RecipeFollowButton,
+	RecipeGlowButton,
 	RecipeIconButton,
+	RecipeMorphButton,
+	RecipeSelectionButton,
+	RecipeShineButton,
 	RecipeSplitButton,
 	RecipeToolButton,
 	RecipeWhatsappButton,

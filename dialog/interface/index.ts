@@ -7,6 +7,7 @@ export type {
 	RecipeBreadcrumbLink,
 	RecipeBreadcrumbSeparator,
 	RecipeBreadcrumbs,
+	RecipeBreadcrumbsContainer,
 	RecipeComponentInfoCard,
 	RecipeConfirmationDialog,
 	RecipeDialog,
@@ -20,7 +21,8 @@ export type {
 	RecipeTabList,
 	RecipeTabPanel,
 	RecipeTabPanels,
-	RecipeTabs
+	RecipeTabs,
+	RecipeTextInputDialog
 } from './recipe';
 export type {
 	BreadcrumbDropdownItem,

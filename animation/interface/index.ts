@@ -25,6 +25,7 @@ export type {
 	RecipePalmSway,
 	RecipePhraseArcFlight,
 	RecipeProgressBar,
+	RecipeScrollPhaseDebug,
 	RecipeSkeleton,
 	RecipeSpinner,
 	RecipeTooltip,
