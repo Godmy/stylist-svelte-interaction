@@ -8,7 +8,7 @@ export default {
 	title: 'FloatingActionButton',
 	description:
 		'Floating action button of an activity: round with an icon or extended with a label.',
-	args: { icon: 'plus', size: 'md', 'aria-label': 'Add' },
+	args: { icon: 'add', size: 'md', 'aria-label': 'Add' },
 	controls: {
 		icon: { type: 'text' },
 		label: { type: 'text' },

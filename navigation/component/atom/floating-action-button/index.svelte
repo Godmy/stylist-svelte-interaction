@@ -6,7 +6,7 @@
 
 	let {
 		element = $bindable(null),
-		icon = 'plus',
+		icon = 'add',
 		label,
 		size = 'md',
 		class: className,
