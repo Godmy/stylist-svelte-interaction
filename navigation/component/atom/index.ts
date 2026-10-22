@@ -1,3 +1,2 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { PageButton } from './page-button/index';
-export { PageEllipsis } from './page-ellipsis/index';
+export { FloatingActionButton } from './floating-action-button/index';

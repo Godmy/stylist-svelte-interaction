@@ -1,10 +1,14 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export {
-	PageButton,
-	PageEllipsis
-} from './atom';
+export { FloatingActionButton } from './atom';
+export { NavigationItem } from './molecule';
 export {
 	BottomSheet,
-	Pagination,
-	Sidebar
+	NavigationDrawer,
+	Sidebar,
+	TopAppBar
 } from './organism';
+export {
+	Activity,
+	NavigationGraph
+} from './page';
+export { Fragment } from './template';

@@ -1,0 +1,15 @@
+import type { HTMLAttributes } from 'svelte/elements';
+import type { RecipePageEllipsis } from '$stylist/pager/interface/recipe/page-ellipsis';
+
+export function createPageEllipsisState(
+	getProps: () => RecipePageEllipsis & HTMLAttributes<HTMLDivElement>
+) {
+	const props = $derived(getProps());
+	const containerClasses = $derived(`page-ellipsis ${props.class ?? ''}`.trim());
+
+	return {
+		get containerClasses() {
+			return containerClasses;
+		}
+	};
+}
