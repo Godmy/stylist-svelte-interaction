@@ -4,7 +4,7 @@
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
 	import type { RecipeInputPassword as IInputPasswordProps } from '$stylist/input/interface/recipe/input-password';
-	import createInputPasswordState from './state.svelte';
+	import createInputPasswordState from '$stylist/input/component/molecule/input-password/state.svelte';
 
 	const Eye = 'eye';
 	const EyeOff = 'eye-off';

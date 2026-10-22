@@ -1,4 +1,4 @@
-import ArcLetter from './index.svelte';
+import ArcLetter from '$stylist/animation/component/atom/arc-letter/index.svelte';
 import type { RecipeArcLetter } from '$stylist/animation/interface/recipe/arc-letter';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

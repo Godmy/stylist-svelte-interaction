@@ -1,4 +1,4 @@
-import AccordionLayout from './index.svelte';
+import AccordionLayout from '$stylist/dialog/component/atom/accordion-layout/index.svelte';
 import type { RecipeAccordionLayout } from '$stylist/dialog/interface/recipe/accordion-layout';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

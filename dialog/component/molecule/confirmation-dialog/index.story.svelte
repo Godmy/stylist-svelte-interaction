@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ConfirmationDialog from './index.svelte';
+	import ConfirmationDialog from '$stylist/dialog/component/molecule/confirmation-dialog/index.svelte';
 	import type { RecipeConfirmationDialog } from '$stylist/dialog/interface/recipe/confirmation-dialog';
 
 	// Render of index.story.ts: the dialog cannot open itself; the story owns the open state and closes it on confirm, cancel or close.

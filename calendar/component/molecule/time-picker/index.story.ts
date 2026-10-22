@@ -1,4 +1,4 @@
-import TimePicker from './index.svelte';
+import TimePicker from '$stylist/calendar/component/molecule/time-picker/index.svelte';
 import type { RecipeTimePicker } from '$stylist/calendar/interface/recipe/time-picker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

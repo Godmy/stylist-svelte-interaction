@@ -1,4 +1,4 @@
-import ScrollPhaseDebug from './index.svelte';
+import ScrollPhaseDebug from '$stylist/animation/component/atom/scroll-phase-debug/index.svelte';
 import type { RecipeScrollPhaseDebug } from '$stylist/animation/interface/recipe/scroll-phase-debug';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

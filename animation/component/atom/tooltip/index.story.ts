@@ -1,4 +1,4 @@
-import Tooltip from './index.svelte';
+import Tooltip from '$stylist/animation/component/atom/tooltip/index.svelte';
 import type { RecipeTooltip } from '$stylist/animation/interface/recipe/tooltip';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ALIGNMENT } from '$stylist/layout/const/array/alignment';

@@ -1,4 +1,4 @@
-import Selector from './index.svelte';
+import Selector from '$stylist/control/component/molecule/selector/index.svelte';
 import type { RecipeSelector } from '$stylist/control/interface/recipe/selector';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

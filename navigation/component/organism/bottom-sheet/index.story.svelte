@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BottomSheet from './index.svelte';
+	import BottomSheet from '$stylist/navigation/component/organism/bottom-sheet/index.svelte';
 	import type { RecipeBottomSheet } from '$stylist/navigation/interface/recipe/bottom-sheet';
 
 	// Render of index.story.ts: the body and the actions footer are snippet props.

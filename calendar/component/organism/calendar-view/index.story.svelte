@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CalendarView from './index.svelte';
+	import CalendarView from '$stylist/calendar/component/organism/calendar-view/index.svelte';
 	import type { RecipeCalendarView } from '$stylist/calendar/interface/recipe/calendar-view';
 	import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
 

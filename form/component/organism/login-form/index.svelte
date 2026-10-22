@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeLoginForm } from '$stylist/form/interface/recipe/login-form';
-	import createLoginFormState from './state.svelte';
+	import createLoginFormState from '$stylist/form/component/organism/login-form/state.svelte';
 
 	const props: RecipeLoginForm = $props();
 	const state = createLoginFormState(() => props);

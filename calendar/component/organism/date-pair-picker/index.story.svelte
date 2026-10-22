@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DatePairPicker from './index.svelte';
+	import DatePairPicker from '$stylist/calendar/component/organism/date-pair-picker/index.svelte';
 	import type { RecipeDatePairPicker } from '$stylist/calendar/interface/recipe/date-pair-picker';
 
 	// Render of index.story.ts: the picker is controlled, so the story keeps the picked dates and computes the end.

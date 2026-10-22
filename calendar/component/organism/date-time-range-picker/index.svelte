@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import type { RecipeDateTimeRangePicker } from '$stylist/calendar/interface/recipe/date-time-range-picker';
-	import createDateTimeRangePickerState from './state.svelte';
+	import createDateTimeRangePickerState from '$stylist/calendar/component/organism/date-time-range-picker/state.svelte';
 
 	let uidCounter = 0;
 	const X = 'x';

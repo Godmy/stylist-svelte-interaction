@@ -1,4 +1,4 @@
-import LetterArcPath from './index.svelte';
+import LetterArcPath from '$stylist/animation/component/atom/letter-arc-path/index.svelte';
 import type { RecipeLetterArcPath } from '$stylist/animation/interface/recipe/letter-arc-path';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

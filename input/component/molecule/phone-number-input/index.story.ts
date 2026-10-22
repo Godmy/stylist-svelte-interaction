@@ -1,4 +1,4 @@
-import PhoneNumberInput from './index.svelte';
+import PhoneNumberInput from '$stylist/input/component/molecule/phone-number-input/index.svelte';
 import type { RecipePhoneNumberInput } from '$stylist/input/interface/recipe/phone-number-input';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

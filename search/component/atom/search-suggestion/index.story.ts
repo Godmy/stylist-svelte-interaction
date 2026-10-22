@@ -1,4 +1,4 @@
-import SearchSuggestion from './index.svelte';
+import SearchSuggestion from '$stylist/search/component/atom/search-suggestion/index.svelte';
 import type { RecipeSearchSuggestion } from '$stylist/search/interface/recipe/search-suggestion';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

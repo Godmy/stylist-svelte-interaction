@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeBreadcrumbDropdown } from '$stylist/dialog/interface/recipe/breadcrumb-dropdown';
-	import createBreadcrumbDropdownState from './state.svelte';
+	import createBreadcrumbDropdownState from '$stylist/dialog/component/atom/breadcrumb-dropdown/state.svelte';
 
 	let props: RecipeBreadcrumbDropdown = $props();
 

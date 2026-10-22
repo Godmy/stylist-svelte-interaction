@@ -4,7 +4,7 @@
 	const Loader2 = 'loader-2';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { RecipeIconButton } from '$stylist/button/interface/recipe/icon-button';
-	import createIconButtonState from './state.svelte';
+	import createIconButtonState from '$stylist/button/component/atom/icon-button/state.svelte';
 
 	let props: RecipeIconButton & HTMLButtonAttributes = $props();
 	const factoryInput = $derived(createButtonFactoryInput(props as any));

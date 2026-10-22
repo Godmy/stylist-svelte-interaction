@@ -1,4 +1,4 @@
-import PhraseArcFlight from './index.svelte';
+import PhraseArcFlight from '$stylist/animation/component/molecule/phrase-arc-flight/index.svelte';
 import type { RecipePhraseArcFlight } from '$stylist/animation/interface/recipe/phrase-arc-flight';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,4 +1,4 @@
-import ComponentInfoCard from './index.svelte';
+import ComponentInfoCard from '$stylist/dialog/component/organism/component-info-card/index.svelte';
 import type { RecipeComponentInfoCard } from '$stylist/dialog/interface/recipe/component-info-card';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import type { RecipeSplitButton } from '$stylist/button/interface/recipe/split-button';
-	import createSplitButtonState from './state.svelte';
+	import createSplitButtonState from '$stylist/button/component/atom/split-button/state.svelte';
 
 	const ChevronDown = 'chevron-down';
 

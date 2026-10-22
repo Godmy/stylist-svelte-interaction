@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import type { RecipeDialogConfirm } from '$stylist/dialog/interface/recipe/dialog-confirm';
-	import createDialogConfirmState from './state.svelte';
+	import createDialogConfirmState from '$stylist/dialog/component/molecule/dialog-confirm/state.svelte';
 
 	let props: RecipeDialogConfirm = $props();
 	const state = createDialogConfirmState(() => props);

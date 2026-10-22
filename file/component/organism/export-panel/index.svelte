@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$stylist/button/component/atom/button/index.svelte';
-	import { createExportPanelState } from './state.svelte';
+	import { createExportPanelState } from '$stylist/file/component/organism/export-panel/state.svelte';
 	import type { RecipeExportPanel } from '$stylist/file/interface/recipe/export-panel';
 
 	let props: RecipeExportPanel = $props();

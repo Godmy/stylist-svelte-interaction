@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AnimatedBackground from './index.svelte';
+	import AnimatedBackground from '$stylist/animation/component/atom/animated-background/index.svelte';
 	import type { RecipeAnimatedBackground } from '$stylist/animation/interface/recipe/animated-background';
 
 	// Render of index.story.ts: the duration/opacity knobs become the component's CSS custom properties and the background needs content to show behind.

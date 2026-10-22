@@ -1,4 +1,4 @@
-import AtomicPrinciplesShowcase from './index.svelte';
+import AtomicPrinciplesShowcase from '$stylist/animation/component/organism/atomic-principles-showcase/index.svelte';
 import type { RecipeAtomicPrinciplesShowcase } from '$stylist/animation/interface/recipe/atomic-principles-showcase';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

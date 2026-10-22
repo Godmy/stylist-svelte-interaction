@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SchemaFormDialog from './index.svelte';
+	import SchemaFormDialog from '$stylist/form/component/organism/schema-form-dialog/index.svelte';
 	import type { RecipeSchemaFormDialog } from '$stylist/form/interface/recipe/schema-form-dialog';
 
 	// Render of index.story.ts: the dialog's open state and the saved data live in the story.

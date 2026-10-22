@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createFileBrowserState } from './state.svelte';
+	import { createFileBrowserState } from '$stylist/file/component/organism/file-browser/state.svelte';
 	import { FileBrowserManager } from '$stylist/file/class/manager/file-browser';
 	import type { SlotFolderItem } from '$stylist/file/interface/slot/folder-item';
 	import type { RecipeFileBrowser } from '$stylist/file/interface/recipe/file-browser';

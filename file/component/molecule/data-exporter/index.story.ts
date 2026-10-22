@@ -1,4 +1,4 @@
-import DataExporter from './index.svelte';
+import DataExporter from '$stylist/file/component/molecule/data-exporter/index.svelte';
 import type { RecipeDataExporter } from '$stylist/file/interface/recipe/data-exporter';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { DATA_EXPORTER_FORMAT } from '$stylist/file/const/array/data-exporter-format';

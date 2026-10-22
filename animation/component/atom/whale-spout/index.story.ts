@@ -1,4 +1,4 @@
-import WhaleSpout from './index.svelte';
+import WhaleSpout from '$stylist/animation/component/atom/whale-spout/index.svelte';
 import type { RecipeWhaleSpout } from '$stylist/animation/interface/recipe/whale-spout';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PresetCombobox } from '$stylist/control/const/preset/combobox';
 	import type { RecipeCombobox } from '$stylist/control/interface/recipe/combobox';
-	import { createComboboxState } from './state.svelte';
+	import { createComboboxState } from '$stylist/control/component/molecule/combobox/state.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 
 	let props: RecipeCombobox = $props();

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSkeletonState } from './state.svelte';
+	import { createSkeletonState } from '$stylist/animation/component/atom/skeleton/state.svelte';
 	import type { RecipeSkeleton } from '$stylist/animation/interface/recipe/skeleton';
 
 	let props: RecipeSkeleton = $props();

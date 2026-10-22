@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Breadcrumbs from './index.svelte';
-	import BreadcrumbLink from '../breadcrumb-link/index.svelte';
-	import BreadcrumbSeparator from '../breadcrumb-separator/index.svelte';
+	import Breadcrumbs from '$stylist/dialog/component/atom/breadcrumbs/index.svelte';
+	import BreadcrumbLink from '$stylist/dialog/component/atom/breadcrumb-link/index.svelte';
+	import BreadcrumbSeparator from '$stylist/dialog/component/atom/breadcrumb-separator/index.svelte';
 	import type { RecipeBreadcrumbsContainer } from '$stylist/dialog/interface/recipe/breadcrumbs-container';
 
 	// Render of index.story.ts: the container is only meaningful filled with BreadcrumbLink and BreadcrumbSeparator children.

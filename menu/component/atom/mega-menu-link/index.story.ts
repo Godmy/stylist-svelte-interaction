@@ -1,4 +1,4 @@
-import MegaMenuLink from './index.svelte';
+import MegaMenuLink from '$stylist/menu/component/atom/mega-menu-link/index.svelte';
 import type { RecipeMegaMenuLink } from '$stylist/menu/interface/recipe/mega-menu-link';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,4 +1,4 @@
-import AddressForm from './index.svelte';
+import AddressForm from '$stylist/form/component/organism/address-form/index.svelte';
 import type { RecipeAddressForm } from '$stylist/form/interface/recipe/address-form';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

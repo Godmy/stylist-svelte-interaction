@@ -1,4 +1,4 @@
-import Stepper from './index.svelte';
+import Stepper from '$stylist/dialog/component/molecule/stepper/index.svelte';
 import type { RecipeStepper } from '$stylist/dialog/interface/recipe/stepper';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';

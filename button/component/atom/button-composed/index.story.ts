@@ -1,4 +1,4 @@
-import ButtonComposed from './index.svelte';
+import ButtonComposed from '$stylist/button/component/atom/button-composed/index.svelte';
 import type { RecipeButtonComposed } from '$stylist/button/interface/recipe/button-composed';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

@@ -1,4 +1,4 @@
-import Breadcrumbs from './index.svelte';
+import Breadcrumbs from '$stylist/dialog/component/atom/breadcrumbs/index.svelte';
 import type { RecipeBreadcrumbsContainer } from '$stylist/dialog/interface/recipe/breadcrumbs-container';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

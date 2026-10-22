@@ -1,4 +1,4 @@
-import ToggleButtonGroup from './index.svelte';
+import ToggleButtonGroup from '$stylist/form/component/molecule/toggle-button-group/index.svelte';
 import type { RecipeToggleButtonGroup } from '$stylist/form/interface/recipe/toggle-button-group';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

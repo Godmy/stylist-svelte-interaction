@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FollowButton from './index.svelte';
+	import FollowButton from '$stylist/button/component/atom/follow-button/index.svelte';
 	import type { RecipeFollowButton } from '$stylist/button/interface/recipe/follow-button';
 
 	// Render of index.story.ts: isFollowing is host-controlled, so the story keeps it in local state and simulates the request in async callbacks.

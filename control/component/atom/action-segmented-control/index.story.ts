@@ -1,4 +1,4 @@
-import ActionSegmentedControl from './index.svelte';
+import ActionSegmentedControl from '$stylist/control/component/atom/action-segmented-control/index.svelte';
 import type { RecipeActionSegmentedControl } from '$stylist/control/interface/recipe/action-segmented-control';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

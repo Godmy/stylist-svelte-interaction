@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createMiniCalendarState from './state.svelte';
+	import createMiniCalendarState from '$stylist/calendar/component/organism/mini-calendar/state.svelte';
 	import type { RecipeMiniCalendar } from '$stylist/calendar/interface/recipe/mini-calendar';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';

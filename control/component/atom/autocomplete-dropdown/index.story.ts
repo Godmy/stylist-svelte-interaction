@@ -1,4 +1,4 @@
-import AutocompleteDropdown from './index.svelte';
+import AutocompleteDropdown from '$stylist/control/component/atom/autocomplete-dropdown/index.svelte';
 import type { RecipeAutocompleteDropdown } from '$stylist/control/interface/recipe/autocomplete-dropdown';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

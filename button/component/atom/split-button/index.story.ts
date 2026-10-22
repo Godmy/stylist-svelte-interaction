@@ -1,4 +1,4 @@
-import SplitButton from './index.svelte';
+import SplitButton from '$stylist/button/component/atom/split-button/index.svelte';
 import type { RecipeSplitButton } from '$stylist/button/interface/recipe/split-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FileExplorer from './index.svelte';
+	import FileExplorer from '$stylist/file/component/organism/file-explorer/index.svelte';
 	import type { RecipeFileExplorer } from '$stylist/file/interface/recipe/file-explorer';
 	import type { SlotFileSystemItem } from '$stylist/file/interface/slot/file-system-item';
 

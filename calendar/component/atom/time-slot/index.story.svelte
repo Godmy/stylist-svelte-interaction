@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TimeSlot from './index.svelte';
+	import TimeSlot from '$stylist/calendar/component/atom/time-slot/index.svelte';
 	import type { RecipeTimeSlot } from '$stylist/calendar/interface/recipe/time-slot';
 
 	// Render of index.story.ts: the slot needs Date start/end and Date-based events.

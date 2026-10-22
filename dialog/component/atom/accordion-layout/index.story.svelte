@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Accordion from '$stylist/dialog/component/molecule/accordion/index.svelte';
 	import AccordionGroup from '$stylist/dialog/component/molecule/accordion-group/index.svelte';
-	import AccordionLayout from './index.svelte';
+	import AccordionLayout from '$stylist/dialog/component/atom/accordion-layout/index.svelte';
 	import type { RecipeAccordionLayout } from '$stylist/dialog/interface/recipe/accordion-layout';
 
 	// Render of index.story.ts: AccordionLayout opens only inside an Accordion or AccordionGroup context.

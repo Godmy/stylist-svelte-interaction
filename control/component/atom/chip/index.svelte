@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeChip } from '$stylist/control/interface/recipe/chip';
-	import createChipState from './state.svelte';
+	import createChipState from '$stylist/control/component/atom/chip/state.svelte';
 
 	let props: RecipeChip = $props();
 

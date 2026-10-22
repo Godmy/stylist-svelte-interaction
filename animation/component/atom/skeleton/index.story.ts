@@ -1,4 +1,4 @@
-import Skeleton from './index.svelte';
+import Skeleton from '$stylist/animation/component/atom/skeleton/index.svelte';
 import type { RecipeSkeleton } from '$stylist/animation/interface/recipe/skeleton';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

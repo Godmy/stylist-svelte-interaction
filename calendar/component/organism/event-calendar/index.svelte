@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createEventCalendarState from './state.svelte';
+	import createEventCalendarState from '$stylist/calendar/component/organism/event-calendar/state.svelte';
 	import type { RecipeEventCalendar } from '$stylist/calendar/interface/recipe/event-calendar';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';

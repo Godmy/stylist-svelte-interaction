@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeComponentInfoCard } from '$stylist/dialog/interface/recipe/component-info-card';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createComponentInfoCardState } from './state.svelte';
+	import { createComponentInfoCardState } from '$stylist/dialog/component/organism/component-info-card/state.svelte';
 
 	const X = 'x';
 	const Package = 'package';

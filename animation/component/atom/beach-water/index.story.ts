@@ -1,4 +1,4 @@
-import BeachWater from './index.svelte';
+import BeachWater from '$stylist/animation/component/atom/beach-water/index.svelte';
 import type { RecipeBeachWater } from '$stylist/animation/interface/recipe/beach-water';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

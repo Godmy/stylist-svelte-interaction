@@ -1,4 +1,4 @@
-import TextInputDialog from './index.svelte';
+import TextInputDialog from '$stylist/dialog/component/organism/text-input-dialog/index.svelte';
 import type { RecipeTextInputDialog } from '$stylist/dialog/interface/recipe/text-input-dialog';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

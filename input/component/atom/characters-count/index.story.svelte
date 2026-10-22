@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the count follows a textarea bound to local state.
-	import CharactersCount from './index.svelte';
+	import CharactersCount from '$stylist/input/component/atom/characters-count/index.svelte';
 	import type { RecipeCharactersCount } from '$stylist/input/interface/recipe/characters-count';
 
 	let { disabled = false, ...args }: RecipeCharactersCount & { disabled?: boolean } = $props();

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SplitButton from './index.svelte';
+	import SplitButton from '$stylist/button/component/atom/split-button/index.svelte';
 	import type { RecipeSplitButton } from '$stylist/button/interface/recipe/split-button';
 
 	// Render of index.story.ts: items and primaryAction are required callbacks, not cloneable args.

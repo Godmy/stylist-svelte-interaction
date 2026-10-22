@@ -1,4 +1,4 @@
-import TabList from './index.svelte';
+import TabList from '$stylist/dialog/component/atom/tab-list/index.svelte';
 import type { RecipeTabList } from '$stylist/dialog/interface/recipe/tab-list';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import type { TokenSize } from '$stylist/design-token/type/alias/size';

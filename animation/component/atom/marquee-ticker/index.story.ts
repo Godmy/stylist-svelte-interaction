@@ -1,4 +1,4 @@
-import MarqueeTicker from './index.svelte';
+import MarqueeTicker from '$stylist/animation/component/atom/marquee-ticker/index.svelte';
 import type { RecipeMarqueeTicker } from '$stylist/animation/interface/recipe/marquee-ticker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

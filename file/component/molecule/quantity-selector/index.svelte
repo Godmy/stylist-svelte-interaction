@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PresetQuantitySelector } from '$stylist/file/const/preset/quantity-selector';
-	import { createQuantitySelectorState } from './state.svelte';
+	import { createQuantitySelectorState } from '$stylist/file/component/molecule/quantity-selector/state.svelte';
 	import type { RecipeQuantitySelector } from '$stylist/file/interface/recipe/quantity-selector';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 

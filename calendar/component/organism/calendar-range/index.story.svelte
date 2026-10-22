@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CalendarRange from './index.svelte';
+	import CalendarRange from '$stylist/calendar/component/organism/calendar-range/index.svelte';
 	import type { RecipeCalendarRange } from '$stylist/calendar/interface/recipe/calendar-range';
 
 	// Render of index.story.ts: the selected Date range lives in local state shown above the calendar.

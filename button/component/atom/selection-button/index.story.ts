@@ -1,4 +1,4 @@
-import SelectionButton from './index.svelte';
+import SelectionButton from '$stylist/button/component/atom/selection-button/index.svelte';
 import type { RecipeSelectionButton } from '$stylist/button/interface/recipe/selection-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

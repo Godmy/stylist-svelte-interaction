@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { STYLIST_TAB_DEFAULT_ITEMS } from '$stylist/dialog/const/record/stylist-tab-default-items';
-	import createStylistTabState from './state.svelte';
+	import createStylistTabState from '$stylist/dialog/component/molecule/stylist-tab/state.svelte';
 	import type { RecipeStylistTab } from '$stylist/dialog/interface/recipe/stylist-tab';
 
 	let {

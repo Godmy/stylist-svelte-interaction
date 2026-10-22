@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeComponentLibraryStats } from '$stylist/animation/interface/recipe/component-library-stats';
-	import { createComponentLibraryStatsState } from './state.svelte';
+	import { createComponentLibraryStatsState } from '$stylist/animation/component/organism/component-library-stats/state.svelte';
 
 	let { ...props }: RecipeComponentLibraryStats = $props();
 	const state = createComponentLibraryStatsState(() => props);

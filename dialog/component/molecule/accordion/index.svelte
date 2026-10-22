@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import { createAccordionState } from './state.svelte';
+	import { createAccordionState } from '$stylist/dialog/component/molecule/accordion/state.svelte';
 	import type { RecipeAccordion } from '$stylist/dialog/interface/recipe/accordion';
 
 	let props: RecipeAccordion = $props();

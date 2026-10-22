@@ -1,4 +1,4 @@
-import Checkbox from './index.svelte';
+import Checkbox from '$stylist/control/component/atom/checkbox/index.svelte';
 import type { RecipeCheckbox } from '$stylist/control/interface/recipe/checkbox';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

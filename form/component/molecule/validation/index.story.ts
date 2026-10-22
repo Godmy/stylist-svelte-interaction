@@ -1,4 +1,4 @@
-import Validation from './index.svelte';
+import Validation from '$stylist/form/component/molecule/validation/index.svelte';
 import type { RecipeValidation } from '$stylist/form/interface/recipe/validation';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';

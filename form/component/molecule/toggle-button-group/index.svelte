@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeToggleButtonGroup } from '$stylist/form/interface/recipe/toggle-button-group';
-	import createToggleButtonGroupState from './state.svelte';
+	import createToggleButtonGroupState from '$stylist/form/component/molecule/toggle-button-group/state.svelte';
 
 	let {
 		options = [],

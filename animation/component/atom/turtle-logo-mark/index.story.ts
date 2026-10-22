@@ -1,4 +1,4 @@
-import TurtleLogoMark from './index.svelte';
+import TurtleLogoMark from '$stylist/animation/component/atom/turtle-logo-mark/index.svelte';
 import type { RecipeTurtleLogoMark } from '$stylist/animation/interface/recipe/turtle-logo-mark';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the trigger only reports clicks, so open states are toggled here (single trigger and a coordinated row).
-	import MegaMenuTrigger from './index.svelte';
+	import MegaMenuTrigger from '$stylist/menu/component/atom/mega-menu-trigger/index.svelte';
 	import type { RecipeMegaMenuTrigger } from '$stylist/menu/interface/recipe/mega-menu-trigger';
 
 	let args: RecipeMegaMenuTrigger = $props();

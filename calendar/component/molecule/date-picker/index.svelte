@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeDatePicker } from '$stylist/calendar/interface/recipe/date-picker';
-	import createDatePickerState from './state.svelte';
+	import createDatePickerState from '$stylist/calendar/component/molecule/date-picker/state.svelte';
 
 	let props: RecipeDatePicker = $props();
 	const state = createDatePickerState(() => props);

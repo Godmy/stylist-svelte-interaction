@@ -1,4 +1,4 @@
-import Combobox from './index.svelte';
+import Combobox from '$stylist/control/component/molecule/combobox/index.svelte';
 import type { RecipeCombobox } from '$stylist/control/interface/recipe/combobox';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

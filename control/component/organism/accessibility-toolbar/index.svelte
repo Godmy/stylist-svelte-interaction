@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PresetAccessibilityToolbar } from '$stylist/control/const/preset/accessibility-toolbar';
-	import { createAccessibilityToolbarState } from './state.svelte';
+	import { createAccessibilityToolbarState } from '$stylist/control/component/organism/accessibility-toolbar/state.svelte';
 	import type { RecipeAccessibilityToolbar } from '$stylist/control/interface/recipe/accessibility-toolbar';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 

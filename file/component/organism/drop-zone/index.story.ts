@@ -1,4 +1,4 @@
-import DropZone from './index.svelte';
+import DropZone from '$stylist/file/component/organism/drop-zone/index.svelte';
 import type { RecipeDropZone } from '$stylist/file/interface/recipe/drop-zone';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

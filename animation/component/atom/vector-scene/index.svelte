@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeVectorScene } from '$stylist/animation/interface/recipe/vector-scene';
-	import createVectorSceneState from './state.svelte';
+	import createVectorSceneState from '$stylist/animation/component/atom/vector-scene/state.svelte';
 
 	let props: RecipeVectorScene = $props();
 	const state = createVectorSceneState(() => props);

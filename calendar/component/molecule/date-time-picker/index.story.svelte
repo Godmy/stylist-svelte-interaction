@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DateTimePicker from './index.svelte';
+	import DateTimePicker from '$stylist/calendar/component/molecule/date-time-picker/index.svelte';
 	import type { RecipeDateTimePicker } from '$stylist/calendar/interface/recipe/date-time-picker';
 
 	// Render of index.story.ts: the picker only shows a Date value; the ISO text arg is converted.

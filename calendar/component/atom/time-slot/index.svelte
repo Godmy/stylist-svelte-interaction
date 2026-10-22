@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createTimeSlotState from './state.svelte';
+	import createTimeSlotState from '$stylist/calendar/component/atom/time-slot/state.svelte';
 	import type { RecipeTimeSlot } from '$stylist/calendar/interface/recipe/time-slot';
 
 	let props: RecipeTimeSlot = $props();

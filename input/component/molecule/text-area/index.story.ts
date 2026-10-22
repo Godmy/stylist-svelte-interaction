@@ -1,4 +1,4 @@
-import TextArea from './index.svelte';
+import TextArea from '$stylist/input/component/molecule/text-area/index.svelte';
 import type { RecipeTextArea } from '$stylist/input/interface/recipe/text-area';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

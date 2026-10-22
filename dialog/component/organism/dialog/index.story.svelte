@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Dialog from './index.svelte';
+	import Dialog from '$stylist/dialog/component/organism/dialog/index.svelte';
 	import type { RecipeDialog } from '$stylist/dialog/interface/recipe/dialog';
 
 	// Render of index.story.ts: the overlay only closes through onClose; the story owns the open state and an open button.

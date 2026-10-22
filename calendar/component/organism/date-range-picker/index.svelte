@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import type { RecipeDateRangePicker } from '$stylist/calendar/interface/recipe/date-range-picker';
-	import createDateRangePickerState from './state.svelte';
+	import createDateRangePickerState from '$stylist/calendar/component/organism/date-range-picker/state.svelte';
 
 	const ChevronLeft = 'chevron-left';
 	const ChevronRight = 'chevron-right';

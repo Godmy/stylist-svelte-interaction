@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 	import type { RecipeDocumentPreview } from '$stylist/file/interface/recipe/document-preview';
-	import createDocumentPreviewState from './state.svelte';
+	import createDocumentPreviewState from '$stylist/file/component/organism/document-preview/state.svelte';
 	let props: RecipeDocumentPreview = $props();
 	const state = $derived(createDocumentPreviewState(props));
 	const restProps = $derived.by(() => {

@@ -1,4 +1,4 @@
-import FileBrowser from './index.svelte';
+import FileBrowser from '$stylist/file/component/organism/file-browser/index.svelte';
 import type { RecipeFileBrowser } from '$stylist/file/interface/recipe/file-browser';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

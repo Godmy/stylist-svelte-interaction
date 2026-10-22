@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Modal from './index.svelte';
+	import Modal from '$stylist/dialog/component/organism/modal/index.svelte';
 	import type { RecipeModal } from '$stylist/dialog/interface/recipe/modal';
 
 	// Render of index.story.ts: the overlay only closes through onClose; the story owns the open state and an open button.

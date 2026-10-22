@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeTabPanels } from '$stylist/dialog/interface/recipe/tab-panels';
-	import createTabPanelsState from './state.svelte';
+	import createTabPanelsState from '$stylist/dialog/component/atom/tab-panels/state.svelte';
 
 	let props: RecipeTabPanels = $props();
 

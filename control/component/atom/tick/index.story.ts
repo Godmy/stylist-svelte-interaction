@@ -1,4 +1,4 @@
-import Tick from './index.svelte';
+import Tick from '$stylist/control/component/atom/tick/index.svelte';
 import type { RecipeTick } from '$stylist/control/interface/recipe/tick';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

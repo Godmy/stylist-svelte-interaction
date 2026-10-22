@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: leading/trailing are named snippets, the menu remounts when defaultOpenId changes and events go to a local log.
-	import MegaMenu from './index.svelte';
+	import MegaMenu from '$stylist/menu/component/organism/mega-menu/index.svelte';
 	import type { RecipeMegaMenu } from '$stylist/menu/interface/recipe/mega-menu';
 
 	let args: RecipeMegaMenu = $props();

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Tabs from '$stylist/dialog/component/molecule/tabs/index.svelte';
-	import Tab from './index.svelte';
-	import TabList from '../tab-list/index.svelte';
-	import TabPanels from '../tab-panels/index.svelte';
-	import TabPanel from '../tab-panel/index.svelte';
+	import Tab from '$stylist/dialog/component/atom/tab/index.svelte';
+	import TabList from '$stylist/dialog/component/atom/tab-list/index.svelte';
+	import TabPanels from '$stylist/dialog/component/atom/tab-panels/index.svelte';
+	import TabPanel from '$stylist/dialog/component/atom/tab-panel/index.svelte';
 	import type { RecipeTab } from '$stylist/dialog/interface/recipe/tab';
 
 	// Render of index.story.ts: a Tab only works inside a Tabs context next to sibling tabs and panels.

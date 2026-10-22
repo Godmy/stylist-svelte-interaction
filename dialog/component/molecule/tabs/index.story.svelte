@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tabs from './index.svelte';
+	import Tabs from '$stylist/dialog/component/molecule/tabs/index.svelte';
 	import TabList from '$stylist/dialog/component/atom/tab-list/index.svelte';
 	import Tab from '$stylist/dialog/component/atom/tab/index.svelte';
 	import TabPanel from '$stylist/dialog/component/atom/tab-panel/index.svelte';

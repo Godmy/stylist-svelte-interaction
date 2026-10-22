@@ -3,7 +3,7 @@
 	import BreadcrumbLink from '$stylist/dialog/component/atom/breadcrumb-link/index.svelte';
 	import BreadcrumbSeparator from '$stylist/dialog/component/atom/breadcrumb-separator/index.svelte';
 	import type { RecipeBreadcrumbs } from '$stylist/dialog/interface/recipe/breadcrumbs';
-	import createBreadcrumbsState from './state.svelte';
+	import createBreadcrumbsState from '$stylist/dialog/component/molecule/breadcrumbs/state.svelte';
 
 	let props: RecipeBreadcrumbs = $props();
 	const state = createBreadcrumbsState(() => props);

@@ -1,4 +1,4 @@
-import UploadProgress from './index.svelte';
+import UploadProgress from '$stylist/file/component/organism/upload-progress/index.svelte';
 import type { RecipeUploadProgress } from '$stylist/file/interface/recipe/upload-progress';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { UPLOAD_PROGRESS_VARIANT } from '$stylist/file/const/array/upload-progress-variant';

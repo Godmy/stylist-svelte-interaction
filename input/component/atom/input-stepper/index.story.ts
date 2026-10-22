@@ -1,4 +1,4 @@
-import InputStepper from './index.svelte';
+import InputStepper from '$stylist/input/component/atom/input-stepper/index.svelte';
 import type { RecipeInputStepper } from '$stylist/input/interface/recipe/input-stepper';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

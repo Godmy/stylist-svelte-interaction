@@ -1,4 +1,4 @@
-import RangeInput from './index.svelte';
+import RangeInput from '$stylist/control/component/molecule/range-input/index.svelte';
 import type { RecipeRangeInput } from '$stylist/control/interface/recipe/range-input';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

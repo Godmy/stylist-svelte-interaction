@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createDataExporterState from './state.svelte';
+	import createDataExporterState from '$stylist/file/component/molecule/data-exporter/state.svelte';
 	import type { RecipeDataExporter } from '$stylist/file/interface/recipe/data-exporter';
 
 	let props: RecipeDataExporter = $props();

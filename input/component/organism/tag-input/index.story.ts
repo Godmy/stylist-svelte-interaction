@@ -1,4 +1,4 @@
-import TagInput from './index.svelte';
+import TagInput from '$stylist/input/component/organism/tag-input/index.svelte';
 import type { RecipeTagInput } from '$stylist/input/interface/recipe/tag-input';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

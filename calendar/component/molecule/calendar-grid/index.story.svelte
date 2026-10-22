@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CalendarGrid from './index.svelte';
+	import CalendarGrid from '$stylist/calendar/component/molecule/calendar-grid/index.svelte';
 	import type { RecipeCalendarGrid } from '$stylist/calendar/interface/recipe/calendar-grid';
 	import { generateCalendarDays } from '$stylist/calendar/function/script/generate-calendar-days';
 

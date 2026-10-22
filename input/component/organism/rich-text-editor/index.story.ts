@@ -1,4 +1,4 @@
-import RichTextEditor from './index.svelte';
+import RichTextEditor from '$stylist/input/component/organism/rich-text-editor/index.svelte';
 import type { RecipeRichTextEditor } from '$stylist/input/interface/recipe/rich-text-editor';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

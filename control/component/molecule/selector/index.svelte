@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PresetSelector } from '$stylist/control/const/preset/selector';
 	import type { RecipeSelector } from '$stylist/control/interface/recipe/selector';
-	import { createSelectorState } from './state.svelte';
+	import { createSelectorState } from '$stylist/control/component/molecule/selector/state.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 
 	let props: RecipeSelector = $props();

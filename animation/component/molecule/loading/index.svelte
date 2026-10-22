@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Spinner from '$stylist/animation/component/atom/spinner/index.svelte';
-	import { createLoadingState } from './state.svelte';
+	import { createLoadingState } from '$stylist/animation/component/molecule/loading/state.svelte';
 	import type { RecipeLoading } from '$stylist/animation/interface/recipe/loading';
 
 	let props: RecipeLoading = $props();

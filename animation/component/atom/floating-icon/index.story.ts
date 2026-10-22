@@ -1,4 +1,4 @@
-import FloatingIcon from './index.svelte';
+import FloatingIcon from '$stylist/animation/component/atom/floating-icon/index.svelte';
 import type { RecipeFloatingIcon } from '$stylist/animation/interface/recipe/floating-icon';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

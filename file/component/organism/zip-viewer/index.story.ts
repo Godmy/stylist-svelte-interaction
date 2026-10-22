@@ -1,4 +1,4 @@
-import ZipViewer from './index.svelte';
+import ZipViewer from '$stylist/file/component/organism/zip-viewer/index.svelte';
 import type { RecipeZipViewer } from '$stylist/file/interface/recipe/zip-viewer';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

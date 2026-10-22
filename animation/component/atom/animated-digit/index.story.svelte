@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AnimatedDigit from './index.svelte';
+	import AnimatedDigit from '$stylist/animation/component/atom/animated-digit/index.svelte';
 	import type { RecipeAnimatedDigit } from '$stylist/animation/interface/recipe/animated-digit';
 
 	// Render of index.story.ts: `format` is a function (prefix, rounding, suffix), which args cannot carry.

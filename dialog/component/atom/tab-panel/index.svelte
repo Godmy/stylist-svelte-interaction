@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import { TAB_PANEL_CONTEXT } from '$stylist/dialog/const/record/tab-panel-context';
 	import type { RecipeTabPanel } from '$stylist/dialog/interface/recipe/tab-panel';
-	import createTabPanelState from './state.svelte';
+	import createTabPanelState from '$stylist/dialog/component/atom/tab-panel/state.svelte';
 
 	let props: RecipeTabPanel = $props();
 

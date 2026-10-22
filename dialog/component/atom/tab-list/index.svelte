@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeTabList } from '$stylist/dialog/interface/recipe/tab-list';
-	import createTabListState from './state.svelte';
+	import createTabListState from '$stylist/dialog/component/atom/tab-list/state.svelte';
 
 	let props: RecipeTabList = $props();
 

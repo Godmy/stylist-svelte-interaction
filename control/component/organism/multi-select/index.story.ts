@@ -1,4 +1,4 @@
-import MultiSelect from './index.svelte';
+import MultiSelect from '$stylist/control/component/organism/multi-select/index.svelte';
 import type { RecipeMultiSelect } from '$stylist/control/interface/recipe/multi-select';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeTooltip } from '$stylist/animation/interface/recipe/tooltip';
-	import { createTooltipState } from './state.svelte';
+	import { createTooltipState } from '$stylist/animation/component/atom/tooltip/state.svelte';
 
 	let props: RecipeTooltip = $props();
 

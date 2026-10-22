@@ -1,4 +1,4 @@
-import MenuItem from './index.svelte';
+import MenuItem from '$stylist/menu/component/atom/menu-item/index.svelte';
 import type { RecipeMenuItem } from '$stylist/menu/interface/recipe/menu-item';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

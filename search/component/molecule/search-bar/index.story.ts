@@ -1,4 +1,4 @@
-import SearchBar from './index.svelte';
+import SearchBar from '$stylist/search/component/molecule/search-bar/index.svelte';
 import type { RecipeSearchBar } from '$stylist/search/interface/recipe/search-bar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

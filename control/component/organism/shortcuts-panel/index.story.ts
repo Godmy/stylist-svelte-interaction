@@ -1,4 +1,4 @@
-import ShortcutsPanel from './index.svelte';
+import ShortcutsPanel from '$stylist/control/component/organism/shortcuts-panel/index.svelte';
 import type { RecipeShortcutsPanel } from '$stylist/control/interface/recipe/shortcuts-panel';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

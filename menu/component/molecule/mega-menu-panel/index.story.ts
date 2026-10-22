@@ -1,4 +1,4 @@
-import MegaMenuPanel from './index.svelte';
+import MegaMenuPanel from '$stylist/menu/component/molecule/mega-menu-panel/index.svelte';
 import type { RecipeMegaMenuPanel } from '$stylist/menu/interface/recipe/mega-menu-panel';
 import type { SlotMegaMenuSection } from '$stylist/menu/interface/slot/mega-menu-section';
 import type { ContractStory } from '$stylist/html/interface/contract/story';

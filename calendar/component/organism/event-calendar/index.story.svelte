@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EventCalendar from './index.svelte';
+	import EventCalendar from '$stylist/calendar/component/organism/event-calendar/index.svelte';
 	import type { RecipeEventCalendar } from '$stylist/calendar/interface/recipe/event-calendar';
 	import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
 

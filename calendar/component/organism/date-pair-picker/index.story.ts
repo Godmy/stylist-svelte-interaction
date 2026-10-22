@@ -1,4 +1,4 @@
-import DatePairPicker from './index.svelte';
+import DatePairPicker from '$stylist/calendar/component/organism/date-pair-picker/index.svelte';
 import type { RecipeDatePairPicker } from '$stylist/calendar/interface/recipe/date-pair-picker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

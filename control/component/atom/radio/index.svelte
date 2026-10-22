@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeRadio } from '$stylist/control/interface/recipe/radio';
-	import createRadioState from './state.svelte';
+	import createRadioState from '$stylist/control/component/atom/radio/state.svelte';
 
 	let props: RecipeRadio = $props();
 	const state = createRadioState(() => props);

@@ -1,4 +1,4 @@
-import Loading from './index.svelte';
+import Loading from '$stylist/animation/component/molecule/loading/index.svelte';
 import type { RecipeLoading } from '$stylist/animation/interface/recipe/loading';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

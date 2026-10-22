@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import createFormSelectionState from './state.svelte';
+	import createFormSelectionState from '$stylist/form/component/molecule/form-selection/state.svelte';
 	import { FormManager } from '$stylist/form/class/manager/form';
 	import type { RecipeFormSelection } from '$stylist/form/interface/recipe/form-selection';
 

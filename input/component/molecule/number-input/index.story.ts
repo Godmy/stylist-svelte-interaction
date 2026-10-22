@@ -1,4 +1,4 @@
-import NumberInput from './index.svelte';
+import NumberInput from '$stylist/input/component/molecule/number-input/index.svelte';
 import type { RecipeNumberInput } from '$stylist/input/interface/recipe/number-input';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

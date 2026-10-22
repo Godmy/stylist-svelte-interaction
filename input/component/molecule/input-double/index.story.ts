@@ -1,4 +1,4 @@
-import InputDouble from './index.svelte';
+import InputDouble from '$stylist/input/component/molecule/input-double/index.svelte';
 import type { RecipeInputDouble } from '$stylist/input/interface/recipe/input-double';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

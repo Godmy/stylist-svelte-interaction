@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
 	import type { RecipeCloseButton } from '$stylist/button/interface/recipe/close-button';
-	import { createCloseButtonState } from './state.svelte';
+	import { createCloseButtonState } from '$stylist/button/component/atom/close-button/state.svelte';
 
 	let props: RecipeCloseButton = $props();
 	const state = createCloseButtonState(() => props);

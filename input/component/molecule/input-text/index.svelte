@@ -2,7 +2,7 @@
 	import '$stylist/input/const/style/field/index.css';
 	import { onMount } from 'svelte';
 	import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
-	import createInputTextState from './state.svelte';
+	import createInputTextState from '$stylist/input/component/molecule/input-text/state.svelte';
 	import type { RecipeInputText as IInputBaseProps } from '$stylist/input/interface/recipe/input-text';
 
 	let {

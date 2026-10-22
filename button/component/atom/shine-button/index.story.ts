@@ -1,4 +1,4 @@
-import ShineButton from './index.svelte';
+import ShineButton from '$stylist/button/component/atom/shine-button/index.svelte';
 import type { RecipeShineButton } from '$stylist/button/interface/recipe/shine-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

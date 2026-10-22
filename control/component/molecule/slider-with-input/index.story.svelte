@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the component resets to its value prop, so the value is controlled here.
-	import SliderWithInput from './index.svelte';
+	import SliderWithInput from '$stylist/control/component/molecule/slider-with-input/index.svelte';
 	import type { RecipeSliderWithInput } from '$stylist/control/interface/recipe/slider-with-input';
 
 	let args: RecipeSliderWithInput = $props();

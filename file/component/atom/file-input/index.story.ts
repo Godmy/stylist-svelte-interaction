@@ -1,4 +1,4 @@
-import FileInput from './index.svelte';
+import FileInput from '$stylist/file/component/atom/file-input/index.svelte';
 import type { RecipeFileInput } from '$stylist/file/interface/recipe/file-input';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Render of index.story.ts: the root needs ToggleGroupItem children to coordinate.
-	import ToggleGroupRoot from './index.svelte';
-	import ToggleGroupItem from '../toggle-group-item/index.svelte';
+	import ToggleGroupRoot from '$stylist/control/component/atom/toggle-group-root/index.svelte';
+	import ToggleGroupItem from '$stylist/control/component/atom/toggle-group-item/index.svelte';
 	import type { RecipeToggleGroupRoot } from '$stylist/control/interface/recipe/toggle-group-root';
 
 	let args: RecipeToggleGroupRoot = $props();

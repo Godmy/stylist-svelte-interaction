@@ -10,7 +10,7 @@
 	 */
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import createSearchBarState from './state.svelte';
+	import createSearchBarState from '$stylist/search/component/molecule/search-bar/state.svelte';
 	import type { RecipeSearchBar } from '$stylist/search/interface/recipe/search-bar';
 	import type { HTMLAttributes } from 'svelte/elements';
 

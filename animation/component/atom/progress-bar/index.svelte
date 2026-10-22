@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createProgressBarState } from './state.svelte';
+	import { createProgressBarState } from '$stylist/animation/component/atom/progress-bar/state.svelte';
 	import type { RecipeProgressBar } from '$stylist/animation/interface/recipe/progress-bar';
 
 	let props: RecipeProgressBar = $props();

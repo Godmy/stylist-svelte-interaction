@@ -1,4 +1,4 @@
-import GeneralToolbar from './index.svelte';
+import GeneralToolbar from '$stylist/dialog/component/molecule/general-toolbar/index.svelte';
 import type { RecipeGeneralToolbar } from '$stylist/dialog/interface/recipe/general-toolbar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

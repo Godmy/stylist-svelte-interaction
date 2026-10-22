@@ -1,4 +1,4 @@
-import Accordion from './index.svelte';
+import Accordion from '$stylist/dialog/component/molecule/accordion/index.svelte';
 import type { RecipeAccordion } from '$stylist/dialog/interface/recipe/accordion';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

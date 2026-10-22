@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Css3dCube from './index.svelte';
+	import Css3dCube from '$stylist/animation/component/atom/css-3d-cube/index.svelte';
 	import type { RecipeCss3dCube } from '$stylist/animation/interface/recipe/css-3d-cube';
 
 	// Render of index.story.ts: auto-rotation drives rotationY from local requestAnimationFrame state.

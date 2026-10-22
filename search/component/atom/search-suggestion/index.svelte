@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createSearchSuggestionState from './state.svelte';
+	import createSearchSuggestionState from '$stylist/search/component/atom/search-suggestion/state.svelte';
 	import type { RecipeSearchSuggestion } from '$stylist/search/interface/recipe/search-suggestion';
 
 	let {

@@ -1,4 +1,4 @@
-import MegaMenuFeature from './index.svelte';
+import MegaMenuFeature from '$stylist/menu/component/molecule/mega-menu-feature/index.svelte';
 import type { RecipeMegaMenuFeature } from '$stylist/menu/interface/recipe/mega-menu-feature';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

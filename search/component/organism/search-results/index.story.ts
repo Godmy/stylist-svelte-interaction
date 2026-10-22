@@ -1,4 +1,4 @@
-import SearchResults from './index.svelte';
+import SearchResults from '$stylist/search/component/organism/search-results/index.svelte';
 import type { RecipeSearchResults } from '$stylist/search/interface/recipe/search-results';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

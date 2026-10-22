@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the selected value is controlled through onSelect and local state.
-	import Selector from './index.svelte';
+	import Selector from '$stylist/control/component/molecule/selector/index.svelte';
 	import type { RecipeSelector } from '$stylist/control/interface/recipe/selector';
 
 	let args: RecipeSelector = $props();

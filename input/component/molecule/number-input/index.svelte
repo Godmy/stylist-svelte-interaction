@@ -2,7 +2,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { RecipeNumberInput } from '$stylist/input/interface/recipe/number-input';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createNumberInputState } from './state.svelte';
+	import { createNumberInputState } from '$stylist/input/component/molecule/number-input/state.svelte';
 
 	const Minus = 'minus';
 	const Plus = 'plus';

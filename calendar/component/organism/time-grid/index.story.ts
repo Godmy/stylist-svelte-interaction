@@ -1,4 +1,4 @@
-import TimeGrid from './index.svelte';
+import TimeGrid from '$stylist/calendar/component/organism/time-grid/index.svelte';
 import type { RecipeTimeGrid } from '$stylist/calendar/interface/recipe/time-grid';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

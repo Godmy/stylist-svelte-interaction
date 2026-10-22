@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DialogConfirm from './index.svelte';
+	import DialogConfirm from '$stylist/dialog/component/molecule/dialog-confirm/index.svelte';
 	import type { RecipeDialogConfirm } from '$stylist/dialog/interface/recipe/dialog-confirm';
 
 	// Render of index.story.ts: onClose and onConfirm are required callbacks; the story owns isOpen so they can close the dialog.

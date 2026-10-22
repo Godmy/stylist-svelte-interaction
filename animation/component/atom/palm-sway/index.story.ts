@@ -1,4 +1,4 @@
-import PalmSway from './index.svelte';
+import PalmSway from '$stylist/animation/component/atom/palm-sway/index.svelte';
 import type { RecipePalmSway } from '$stylist/animation/interface/recipe/palm-sway';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

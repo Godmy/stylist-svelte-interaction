@@ -1,4 +1,4 @@
-import WaveSurf from './index.svelte';
+import WaveSurf from '$stylist/animation/component/atom/wave-surf/index.svelte';
 import type { RecipeWaveSurf } from '$stylist/animation/interface/recipe/wave-surf';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

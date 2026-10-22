@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the burger only reports clicks, so the open state is toggled here.
-	import BurgerMenu from './index.svelte';
+	import BurgerMenu from '$stylist/menu/component/atom/burger-menu/index.svelte';
 	import type { RecipeBurgerMenu } from '$stylist/menu/interface/recipe/burger-menu';
 
 	let args: RecipeBurgerMenu = $props();

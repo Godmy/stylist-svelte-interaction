@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$stylist/button/component/atom/button/index.svelte';
-	import { createFileUploadState } from './state.svelte';
+	import { createFileUploadState } from '$stylist/file/component/molecule/file-upload/state.svelte';
 	import type { RecipeFileUpload } from '$stylist/file/interface/recipe/file-upload';
 
 	let props: RecipeFileUpload = $props();

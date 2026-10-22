@@ -1,4 +1,4 @@
-import AttachmentPreview from './index.svelte';
+import AttachmentPreview from '$stylist/file/component/molecule/attachment-preview/index.svelte';
 import type { RecipeAttachmentPreview } from '$stylist/file/interface/recipe/attachment-preview';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

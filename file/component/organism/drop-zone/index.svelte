@@ -2,7 +2,7 @@
 	import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
-	import { createDropZoneState } from './state.svelte';
+	import { createDropZoneState } from '$stylist/file/component/organism/drop-zone/state.svelte';
 	import { DropZoneManager } from '$stylist/file/class/manager/drop-zone';
 	import type { RecipeDropZone } from '$stylist/file/interface/recipe/drop-zone';
 

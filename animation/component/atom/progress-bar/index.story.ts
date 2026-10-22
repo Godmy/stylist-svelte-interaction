@@ -1,4 +1,4 @@
-import ProgressBar from './index.svelte';
+import ProgressBar from '$stylist/animation/component/atom/progress-bar/index.svelte';
 import type { RecipeProgressBar } from '$stylist/animation/interface/recipe/progress-bar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

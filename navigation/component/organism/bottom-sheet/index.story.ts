@@ -1,4 +1,4 @@
-import BottomSheet from './index.svelte';
+import BottomSheet from '$stylist/navigation/component/organism/bottom-sheet/index.svelte';
 import type { RecipeBottomSheet } from '$stylist/navigation/interface/recipe/bottom-sheet';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

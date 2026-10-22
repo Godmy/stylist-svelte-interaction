@@ -1,4 +1,4 @@
-import ToggleGroupRoot from './index.svelte';
+import ToggleGroupRoot from '$stylist/control/component/atom/toggle-group-root/index.svelte';
 import type { RecipeToggleGroupRoot } from '$stylist/control/interface/recipe/toggle-group-root';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SELECTION_TYPE } from '$stylist/control/const/array/selection-type';

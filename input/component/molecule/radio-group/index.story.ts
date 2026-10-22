@@ -1,4 +1,4 @@
-import RadioGroup from './index.svelte';
+import RadioGroup from '$stylist/input/component/molecule/radio-group/index.svelte';
 import type { RecipeRadioGroup } from '$stylist/input/interface/recipe/radio-group';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';

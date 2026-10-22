@@ -1,4 +1,4 @@
-import IconButton from './index.svelte';
+import IconButton from '$stylist/button/component/atom/icon-button/index.svelte';
 import type { RecipeIconButton } from '$stylist/button/interface/recipe/icon-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

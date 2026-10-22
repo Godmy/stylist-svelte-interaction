@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FileListItem from './index.svelte';
+	import FileListItem from '$stylist/file/component/organism/file-list-item/index.svelte';
 	import type { RecipeFileListItem } from '$stylist/file/interface/recipe/file-list-item';
 	import type { SlotFileItem } from '$stylist/file/interface/slot/file-item';
 

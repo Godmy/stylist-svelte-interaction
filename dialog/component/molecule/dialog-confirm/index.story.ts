@@ -1,4 +1,4 @@
-import DialogConfirm from './index.svelte';
+import DialogConfirm from '$stylist/dialog/component/molecule/dialog-confirm/index.svelte';
 import type { RecipeDialogConfirm } from '$stylist/dialog/interface/recipe/dialog-confirm';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

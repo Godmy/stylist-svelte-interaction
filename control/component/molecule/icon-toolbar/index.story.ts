@@ -1,4 +1,4 @@
-import IconToolbar from './index.svelte';
+import IconToolbar from '$stylist/control/component/molecule/icon-toolbar/index.svelte';
 import type { RecipeIconToolbar } from '$stylist/control/interface/recipe/icon-toolbar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';

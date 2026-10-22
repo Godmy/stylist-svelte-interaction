@@ -1,4 +1,4 @@
-import DateTimeRangePicker from './index.svelte';
+import DateTimeRangePicker from '$stylist/calendar/component/organism/date-time-range-picker/index.svelte';
 import type { RecipeDateTimeRangePicker } from '$stylist/calendar/interface/recipe/date-time-range-picker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

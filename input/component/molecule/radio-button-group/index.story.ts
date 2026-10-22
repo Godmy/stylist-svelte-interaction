@@ -1,4 +1,4 @@
-import RadioButtonGroup from './index.svelte';
+import RadioButtonGroup from '$stylist/input/component/molecule/radio-button-group/index.svelte';
 import type { RecipeRadioButtonGroup } from '$stylist/input/interface/recipe/radio-button-group';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

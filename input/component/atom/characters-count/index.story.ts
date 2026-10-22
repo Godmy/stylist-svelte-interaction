@@ -1,4 +1,4 @@
-import CharactersCount from './index.svelte';
+import CharactersCount from '$stylist/input/component/atom/characters-count/index.svelte';
 import type { RecipeCharactersCount } from '$stylist/input/interface/recipe/characters-count';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

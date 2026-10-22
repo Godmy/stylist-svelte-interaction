@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ZipViewer from './index.svelte';
+	import ZipViewer from '$stylist/file/component/organism/zip-viewer/index.svelte';
 	import type { RecipeZipViewer } from '$stylist/file/interface/recipe/zip-viewer';
 	import type { SlotZipEntry } from '$stylist/file/interface/slot/zip-entry';
 

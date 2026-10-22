@@ -1,4 +1,4 @@
-import DownloadCard from './index.svelte';
+import DownloadCard from '$stylist/file/component/molecule/download-card/index.svelte';
 import type { RecipeDownloadCard } from '$stylist/file/interface/recipe/download-card';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

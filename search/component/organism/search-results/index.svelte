@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import createSearchResultsState from './state.svelte';
+	import createSearchResultsState from '$stylist/search/component/organism/search-results/state.svelte';
 	import type { RecipeSearchResults } from '$stylist/search/interface/recipe/search-results';
 
 	let props: RecipeSearchResults = $props();

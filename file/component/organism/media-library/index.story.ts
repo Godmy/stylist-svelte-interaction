@@ -1,4 +1,4 @@
-import MediaLibrary from './index.svelte';
+import MediaLibrary from '$stylist/file/component/organism/media-library/index.svelte';
 import type { RecipeMediaLibrary } from '$stylist/file/interface/recipe/media-library';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { FILE_EXPLORER_VIEW_MODE } from '$stylist/file/const/array/file-explorer-view-mode';

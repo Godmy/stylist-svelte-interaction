@@ -1,4 +1,4 @@
-import MediaSlider from './index.svelte';
+import MediaSlider from '$stylist/animation/component/organism/media-slider/index.svelte';
 import type { RecipeMediaSlider } from '$stylist/animation/interface/recipe/media-slider';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

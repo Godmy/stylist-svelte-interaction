@@ -1,4 +1,4 @@
-import Switch from './index.svelte';
+import Switch from '$stylist/control/component/atom/switch/index.svelte';
 import type { RecipeSwitch } from '$stylist/control/interface/recipe/switch';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

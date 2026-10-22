@@ -1,4 +1,4 @@
-import DragDropFileUpload from './index.svelte';
+import DragDropFileUpload from '$stylist/file/component/organism/drag-drop-file-upload/index.svelte';
 import type { RecipeDragDropFileUpload } from '$stylist/file/interface/recipe/drag-drop-file-upload';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,4 +1,4 @@
-import InputAddon from './index.svelte';
+import InputAddon from '$stylist/input/component/atom/input-addon/index.svelte';
 import type { RecipeInputAddon } from '$stylist/input/interface/recipe/input-addon';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

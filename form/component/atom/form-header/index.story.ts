@@ -1,4 +1,4 @@
-import FormHeader from './index.svelte';
+import FormHeader from '$stylist/form/component/atom/form-header/index.svelte';
 import type { RecipeFormHeader } from '$stylist/form/interface/recipe/form-header';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

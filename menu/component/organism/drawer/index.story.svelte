@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the header and actions are named snippets, which story content cannot provide.
-	import Drawer from './index.svelte';
+	import Drawer from '$stylist/menu/component/organism/drawer/index.svelte';
 	import type { RecipeDrawer } from '$stylist/menu/interface/recipe/drawer';
 
 	let args: RecipeDrawer = $props();

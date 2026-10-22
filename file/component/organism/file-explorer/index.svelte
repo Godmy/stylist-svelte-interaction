@@ -3,7 +3,7 @@
 	import { FileExplorerManager } from '$stylist/file/class/manager/file-explorer';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
-	import { createFileExplorerState } from './state.svelte';
+	import { createFileExplorerState } from '$stylist/file/component/organism/file-explorer/state.svelte';
 	import type { SlotFileSystemItem } from '$stylist/file/interface/slot/file-system-item';
 	import type { RecipeFileExplorer } from '$stylist/file/interface/recipe/file-explorer';
 

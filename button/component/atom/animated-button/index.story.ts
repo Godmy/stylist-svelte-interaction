@@ -1,4 +1,4 @@
-import AnimatedButton from './index.svelte';
+import AnimatedButton from '$stylist/button/component/atom/animated-button/index.svelte';
 import type { RecipeAnimatedButton } from '$stylist/button/interface/recipe/animated-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

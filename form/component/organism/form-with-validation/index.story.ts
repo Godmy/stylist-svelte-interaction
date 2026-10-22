@@ -1,4 +1,4 @@
-import FormWithValidation from './index.svelte';
+import FormWithValidation from '$stylist/form/component/organism/form-with-validation/index.svelte';
 import type { RecipeFormWithValidation } from '$stylist/form/interface/recipe/form-with-validation';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MediaLibrary from './index.svelte';
+	import MediaLibrary from '$stylist/file/component/organism/media-library/index.svelte';
 	import type { RecipeMediaLibrary } from '$stylist/file/interface/recipe/media-library';
 	import type { SlotMediaItem } from '$stylist/file/interface/slot/media-item';
 

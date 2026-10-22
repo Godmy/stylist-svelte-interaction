@@ -1,4 +1,4 @@
-import BreadcrumbSeparator from './index.svelte';
+import BreadcrumbSeparator from '$stylist/dialog/component/atom/breadcrumb-separator/index.svelte';
 import type { RecipeBreadcrumbSeparator } from '$stylist/dialog/interface/recipe/breadcrumb-separator';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

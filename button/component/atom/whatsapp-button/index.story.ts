@@ -1,4 +1,4 @@
-import WhatsappButton from './index.svelte';
+import WhatsappButton from '$stylist/button/component/atom/whatsapp-button/index.svelte';
 import type { RecipeWhatsappButton } from '$stylist/button/interface/recipe/whatsapp-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

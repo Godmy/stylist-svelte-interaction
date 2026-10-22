@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeStepper } from '$stylist/dialog/interface/recipe/stepper';
-	import createStepperState from './state.svelte';
+	import createStepperState from '$stylist/dialog/component/molecule/stepper/state.svelte';
 
 	let props: RecipeStepper = $props();
 	const state = createStepperState(() => props);

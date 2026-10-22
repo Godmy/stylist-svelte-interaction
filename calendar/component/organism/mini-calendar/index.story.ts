@@ -1,4 +1,4 @@
-import MiniCalendar from './index.svelte';
+import MiniCalendar from '$stylist/calendar/component/organism/mini-calendar/index.svelte';
 import type { RecipeMiniCalendar } from '$stylist/calendar/interface/recipe/mini-calendar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

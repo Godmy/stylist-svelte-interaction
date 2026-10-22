@@ -1,4 +1,4 @@
-import TurtleCrawl from './index.svelte';
+import TurtleCrawl from '$stylist/animation/component/atom/turtle-crawl/index.svelte';
 import type { RecipeTurtleCrawl } from '$stylist/animation/interface/recipe/turtle-crawl';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

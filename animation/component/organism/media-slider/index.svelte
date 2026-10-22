@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeMediaSlider } from '$stylist/animation/interface/recipe/media-slider';
-	import createMediaSliderState from './state.svelte';
+	import createMediaSliderState from '$stylist/animation/component/organism/media-slider/state.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import BeachWater from '$stylist/animation/component/atom/beach-water/index.svelte';
 	import MarqueeTicker from '$stylist/animation/component/atom/marquee-ticker/index.svelte';

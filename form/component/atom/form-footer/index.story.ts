@@ -1,4 +1,4 @@
-import FormFooter from './index.svelte';
+import FormFooter from '$stylist/form/component/atom/form-footer/index.svelte';
 import type { RecipeFormFooter } from '$stylist/form/interface/recipe/form-footer';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

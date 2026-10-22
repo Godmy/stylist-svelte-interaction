@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeValidation } from '$stylist/form/interface/recipe/validation';
-	import createValidationState from './state.svelte';
+	import createValidationState from '$stylist/form/component/molecule/validation/state.svelte';
 
 	const props: RecipeValidation = $props();
 	const state = createValidationState(() => props);

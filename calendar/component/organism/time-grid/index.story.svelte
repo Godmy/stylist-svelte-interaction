@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TimeGrid from './index.svelte';
+	import TimeGrid from '$stylist/calendar/component/organism/time-grid/index.svelte';
 	import type { RecipeTimeGrid } from '$stylist/calendar/interface/recipe/time-grid';
 	import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
 

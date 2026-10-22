@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import type { RecipeCheckbox } from '$stylist/control/interface/recipe/checkbox';
-	import createCheckboxState from './state.svelte';
+	import createCheckboxState from '$stylist/control/component/atom/checkbox/state.svelte';
 
 	let {
 		id,

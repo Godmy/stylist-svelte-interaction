@@ -1,4 +1,4 @@
-import TabPanels from './index.svelte';
+import TabPanels from '$stylist/dialog/component/atom/tab-panels/index.svelte';
 import type { RecipeTabPanels } from '$stylist/dialog/interface/recipe/tab-panels';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

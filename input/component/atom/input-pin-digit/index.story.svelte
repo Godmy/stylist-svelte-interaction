@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: a PIN row of four digits, the first one driven by the args.
-	import InputPinDigit from './index.svelte';
+	import InputPinDigit from '$stylist/input/component/atom/input-pin-digit/index.svelte';
 	import type { RecipeInputPinDigit } from '$stylist/input/interface/recipe/input-pin-digit';
 
 	let args: RecipeInputPinDigit = $props();

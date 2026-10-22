@@ -1,4 +1,4 @@
-import ZoomControls from './index.svelte';
+import ZoomControls from '$stylist/control/component/atom/zoom-controls/index.svelte';
 import type { RecipeZoomControls } from '$stylist/control/interface/recipe/zoom-controls';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

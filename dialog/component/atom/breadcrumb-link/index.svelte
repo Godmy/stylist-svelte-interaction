@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeBreadcrumbLink } from '$stylist/dialog/interface/recipe/breadcrumb-link';
-	import createBreadcrumbLinkState from './state.svelte';
+	import createBreadcrumbLinkState from '$stylist/dialog/component/atom/breadcrumb-link/state.svelte';
 
 	let linkProps: RecipeBreadcrumbLink = $props();
 	const state = createBreadcrumbLinkState(() => linkProps);

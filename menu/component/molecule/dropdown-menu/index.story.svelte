@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the menu items close the dropdown through the closeDropdown argument of the children snippet.
-	import DropdownMenu from './index.svelte';
+	import DropdownMenu from '$stylist/menu/component/molecule/dropdown-menu/index.svelte';
 	import type { RecipeDropdownMenu } from '$stylist/menu/interface/recipe/dropdown-menu';
 
 	let args: RecipeDropdownMenu = $props();

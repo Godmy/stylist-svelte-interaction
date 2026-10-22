@@ -1,4 +1,4 @@
-import FileListItem from './index.svelte';
+import FileListItem from '$stylist/file/component/organism/file-list-item/index.svelte';
 import type { RecipeFileListItem } from '$stylist/file/interface/recipe/file-list-item';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

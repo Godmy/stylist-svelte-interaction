@@ -1,4 +1,4 @@
-import SchemaFormDialog from './index.svelte';
+import SchemaFormDialog from '$stylist/form/component/organism/schema-form-dialog/index.svelte';
 import type { RecipeSchemaFormDialog } from '$stylist/form/interface/recipe/schema-form-dialog';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

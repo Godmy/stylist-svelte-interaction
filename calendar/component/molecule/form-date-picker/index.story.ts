@@ -1,4 +1,4 @@
-import FormDatePicker from './index.svelte';
+import FormDatePicker from '$stylist/calendar/component/molecule/form-date-picker/index.svelte';
 import type { RecipeFormDatePicker } from '$stylist/calendar/interface/recipe/form-date-picker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

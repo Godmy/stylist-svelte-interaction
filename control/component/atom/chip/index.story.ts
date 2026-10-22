@@ -1,4 +1,4 @@
-import Chip from './index.svelte';
+import Chip from '$stylist/control/component/atom/chip/index.svelte';
 import type { RecipeChip } from '$stylist/control/interface/recipe/chip';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

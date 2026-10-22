@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Accordion from './index.svelte';
+	import Accordion from '$stylist/dialog/component/molecule/accordion/index.svelte';
 	import AccordionLayout from '$stylist/dialog/component/atom/accordion-layout/index.svelte';
 	import type { RecipeAccordion } from '$stylist/dialog/interface/recipe/accordion';
 

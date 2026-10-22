@@ -2,7 +2,7 @@
 	import '$stylist/input/const/style/field/index.css';
 	import { onMount } from 'svelte';
 	import type { RecipeInputGroup as IInputGroupProps } from '$stylist/input/interface/recipe/input-group';
-	import createInputGroupState from './state.svelte';
+	import createInputGroupState from '$stylist/input/component/molecule/input-group/state.svelte';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
 

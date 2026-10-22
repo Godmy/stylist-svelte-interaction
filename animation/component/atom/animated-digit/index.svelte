@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeAnimatedDigit } from '$stylist/animation/interface/recipe/animated-digit';
-	import createAnimatedDigitState from './state.svelte';
+	import createAnimatedDigitState from '$stylist/animation/component/atom/animated-digit/state.svelte';
 
 	let props: RecipeAnimatedDigit = $props();
 	const state = createAnimatedDigitState(() => props);

@@ -1,4 +1,4 @@
-import BurgerMenu from './index.svelte';
+import BurgerMenu from '$stylist/menu/component/atom/burger-menu/index.svelte';
 import type { RecipeBurgerMenu } from '$stylist/menu/interface/recipe/burger-menu';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

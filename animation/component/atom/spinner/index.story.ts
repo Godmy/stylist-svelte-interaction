@@ -1,4 +1,4 @@
-import Spinner from './index.svelte';
+import Spinner from '$stylist/animation/component/atom/spinner/index.svelte';
 import type { RecipeSpinner } from '$stylist/animation/interface/recipe/spinner';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

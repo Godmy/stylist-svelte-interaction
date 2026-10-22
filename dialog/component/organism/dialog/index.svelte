@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeDialog } from '$stylist/dialog/interface/recipe/dialog';
-	import createDialogState from './state.svelte';
+	import createDialogState from '$stylist/dialog/component/organism/dialog/state.svelte';
 
 	let props: RecipeDialog = $props();
 	const state = createDialogState(() => props);

@@ -1,4 +1,4 @@
-import AccessibilityToolbar from './index.svelte';
+import AccessibilityToolbar from '$stylist/control/component/organism/accessibility-toolbar/index.svelte';
 import type { RecipeAccessibilityToolbar } from '$stylist/control/interface/recipe/accessibility-toolbar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

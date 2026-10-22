@@ -1,4 +1,4 @@
-import MegaMenu from './index.svelte';
+import MegaMenu from '$stylist/menu/component/organism/mega-menu/index.svelte';
 import type { RecipeMegaMenu } from '$stylist/menu/interface/recipe/mega-menu';
 import type { SlotMegaMenuSection } from '$stylist/menu/interface/slot/mega-menu-section';
 import type { ContractStory } from '$stylist/html/interface/contract/story';

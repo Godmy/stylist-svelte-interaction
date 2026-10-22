@@ -1,4 +1,4 @@
-import Button from './index.svelte';
+import Button from '$stylist/button/component/atom/button/index.svelte';
 import type { RecipeButtonElement } from '$stylist/button/interface/recipe/button-element';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

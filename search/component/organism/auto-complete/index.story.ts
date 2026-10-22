@@ -1,4 +1,4 @@
-import AutoComplete from './index.svelte';
+import AutoComplete from '$stylist/search/component/organism/auto-complete/index.svelte';
 import type { RecipeAutoComplete } from '$stylist/search/interface/recipe/auto-complete';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

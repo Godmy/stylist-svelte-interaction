@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AnimatedButton from '../animated-button/index.svelte';
+	import AnimatedButton from '$stylist/button/component/atom/animated-button/index.svelte';
 	import type { RecipeSelectionButton } from '$stylist/button/interface/recipe/selection-button';
 	let { selected = $bindable(false), onclick, ...rest }: RecipeSelectionButton = $props();
 </script>

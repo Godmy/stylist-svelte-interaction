@@ -1,4 +1,4 @@
-import ComponentLibraryStats from './index.svelte';
+import ComponentLibraryStats from '$stylist/animation/component/organism/component-library-stats/index.svelte';
 import type { RecipeComponentLibraryStats } from '$stylist/animation/interface/recipe/component-library-stats';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

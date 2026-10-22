@@ -1,4 +1,4 @@
-import Calendar from './index.svelte';
+import Calendar from '$stylist/calendar/component/organism/calendar/index.svelte';
 import type { RecipeCalendar } from '$stylist/calendar/interface/recipe/calendar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

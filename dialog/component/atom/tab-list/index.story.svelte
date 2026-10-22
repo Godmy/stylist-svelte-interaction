@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Tabs from '$stylist/dialog/component/molecule/tabs/index.svelte';
-	import TabList from './index.svelte';
-	import Tab from '../tab/index.svelte';
+	import TabList from '$stylist/dialog/component/atom/tab-list/index.svelte';
+	import Tab from '$stylist/dialog/component/atom/tab/index.svelte';
 	import type { RecipeTabList } from '$stylist/dialog/interface/recipe/tab-list';
 	import type { TokenSize } from '$stylist/design-token/type/alias/size';
 

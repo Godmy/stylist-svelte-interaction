@@ -2,7 +2,7 @@
 	import { getContext, onDestroy, onMount } from 'svelte';
 	import { TAB_CONTEXT } from '$stylist/dialog/const/record/tab-context';
 	import type { RecipeTab } from '$stylist/dialog/interface/recipe/tab';
-	import createTabState from './state.svelte';
+	import createTabState from '$stylist/dialog/component/atom/tab/state.svelte';
 
 	let props: RecipeTab = $props();
 

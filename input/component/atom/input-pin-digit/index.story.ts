@@ -1,4 +1,4 @@
-import InputPinDigit from './index.svelte';
+import InputPinDigit from '$stylist/input/component/atom/input-pin-digit/index.svelte';
 import type { RecipeInputPinDigit } from '$stylist/input/interface/recipe/input-pin-digit';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

@@ -3,7 +3,7 @@
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import type { RecipeUploadProgress } from '$stylist/file/interface/recipe/upload-progress';
-	import { createUploadProgressState } from './state.svelte';
+	import { createUploadProgressState } from '$stylist/file/component/organism/upload-progress/state.svelte';
 	import { UploadProgressManager } from '$stylist/file/class/manager/upload-progress';
 
 	let props: RecipeUploadProgress = $props();

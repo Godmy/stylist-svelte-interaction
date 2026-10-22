@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeBreadcrumbSeparator } from '$stylist/dialog/interface/recipe/breadcrumb-separator';
-	import createBreadcrumbSeparatorState from './state.svelte';
+	import createBreadcrumbSeparatorState from '$stylist/dialog/component/atom/breadcrumb-separator/state.svelte';
 
 	let props: RecipeBreadcrumbSeparator = $props();
 	const state = createBreadcrumbSeparatorState(() => props);

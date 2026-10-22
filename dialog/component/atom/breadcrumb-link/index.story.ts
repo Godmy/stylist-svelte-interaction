@@ -1,4 +1,4 @@
-import BreadcrumbLink from './index.svelte';
+import BreadcrumbLink from '$stylist/dialog/component/atom/breadcrumb-link/index.svelte';
 import type { RecipeBreadcrumbLink } from '$stylist/dialog/interface/recipe/breadcrumb-link';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

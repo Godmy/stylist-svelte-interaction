@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ToolButton from './index.svelte';
+	import ToolButton from '$stylist/button/component/atom/tool-button/index.svelte';
 	import type { RecipeToolButton } from '$stylist/button/interface/recipe/tool-button';
 
 	// Render of index.story.ts: several tools share one local active-tool state.

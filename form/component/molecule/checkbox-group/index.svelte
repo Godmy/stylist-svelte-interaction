@@ -1,7 +1,7 @@
 <script lang="ts">
 	import SlotCheckbox from '$stylist/control/component/atom/checkbox/index.svelte';
 	import type { RecipeCheckboxGroup } from '$stylist/form/interface/recipe/checkbox-group';
-	import createCheckboxGroupState from './state.svelte';
+	import createCheckboxGroupState from '$stylist/form/component/molecule/checkbox-group/state.svelte';
 
 	let {
 		options,

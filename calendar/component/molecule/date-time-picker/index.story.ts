@@ -1,4 +1,4 @@
-import DateTimePicker from './index.svelte';
+import DateTimePicker from '$stylist/calendar/component/molecule/date-time-picker/index.svelte';
 import type { RecipeDateTimePicker } from '$stylist/calendar/interface/recipe/date-time-picker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

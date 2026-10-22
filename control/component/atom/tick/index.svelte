@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createSliderTickState from './state.svelte';
+	import createSliderTickState from '$stylist/control/component/atom/tick/state.svelte';
 	import type { RecipeTick } from '$stylist/control/interface/recipe/tick';
 
 	let props: RecipeTick = $props();

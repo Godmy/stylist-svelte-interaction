@@ -1,4 +1,4 @@
-import Stepper from './index.svelte';
+import Stepper from '$stylist/control/component/atom/stepper/index.svelte';
 import type { RecipeStepper } from '$stylist/control/interface/recipe/stepper';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

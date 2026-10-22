@@ -1,4 +1,4 @@
-import VectorScene from './index.svelte';
+import VectorScene from '$stylist/animation/component/atom/vector-scene/index.svelte';
 import type { RecipeVectorScene } from '$stylist/animation/interface/recipe/vector-scene';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

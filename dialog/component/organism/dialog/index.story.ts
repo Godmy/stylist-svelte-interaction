@@ -1,4 +1,4 @@
-import Dialog from './index.svelte';
+import Dialog from '$stylist/dialog/component/organism/dialog/index.svelte';
 import type { RecipeDialog } from '$stylist/dialog/interface/recipe/dialog';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

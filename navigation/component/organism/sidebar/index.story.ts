@@ -1,4 +1,4 @@
-import Sidebar from './index.svelte';
+import Sidebar from '$stylist/navigation/component/organism/sidebar/index.svelte';
 import type { RecipeSidebar } from '$stylist/navigation/interface/recipe/sidebar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

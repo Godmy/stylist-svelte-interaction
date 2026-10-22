@@ -1,4 +1,4 @@
-import InputError from './index.svelte';
+import InputError from '$stylist/input/component/atom/input-error/index.svelte';
 import type { RecipeInputError } from '$stylist/input/interface/recipe/input-error';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

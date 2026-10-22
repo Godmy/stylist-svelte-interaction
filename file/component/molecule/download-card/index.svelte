@@ -3,7 +3,7 @@
 	import { DownloadCardManager } from '$stylist/file/class/manager/download-card';
 	import type { RecipeDownloadCard } from '$stylist/file/interface/recipe/download-card';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createDownloadCardState } from './state.svelte';
+	import { createDownloadCardState } from '$stylist/file/component/molecule/download-card/state.svelte';
 
 	let props: RecipeDownloadCard = $props();
 	const state = createDownloadCardState(

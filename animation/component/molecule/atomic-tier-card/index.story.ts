@@ -1,4 +1,4 @@
-import AtomicTierCard from './index.svelte';
+import AtomicTierCard from '$stylist/animation/component/molecule/atomic-tier-card/index.svelte';
 import type { RecipeAtomicTierCard } from '$stylist/animation/interface/recipe/atomic-tier-card';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

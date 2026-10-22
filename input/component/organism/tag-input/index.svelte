@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeTagInput } from '$stylist/input/interface/recipe/tag-input';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createTagInputState } from './state.svelte';
+	import { createTagInputState } from '$stylist/input/component/organism/tag-input/state.svelte';
 	const X = 'x';
 
 	let props: RecipeTagInput = $props();

@@ -1,4 +1,4 @@
-import SimpleModal from './index.svelte';
+import SimpleModal from '$stylist/dialog/component/organism/simple-modal/index.svelte';
 import type { RecipeSimpleModal } from '$stylist/dialog/interface/recipe/simple-modal';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

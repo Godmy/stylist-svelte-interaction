@@ -1,4 +1,4 @@
-import ArrowButton from './index.svelte';
+import ArrowButton from '$stylist/button/component/atom/arrow-button/index.svelte';
 import type { RecipeArrowButton } from '$stylist/button/interface/recipe/arrow-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

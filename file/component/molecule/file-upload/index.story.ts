@@ -1,4 +1,4 @@
-import FileUpload from './index.svelte';
+import FileUpload from '$stylist/file/component/molecule/file-upload/index.svelte';
 import type { RecipeFileUpload } from '$stylist/file/interface/recipe/file-upload';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

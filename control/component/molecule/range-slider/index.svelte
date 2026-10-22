@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeRangeSlider } from '$stylist/control/interface/recipe/range-slider';
-	import createRangeSliderState from './state.svelte';
+	import createRangeSliderState from '$stylist/control/component/molecule/range-slider/state.svelte';
 
 	let props: RecipeRangeSlider = $props();
 	const state = createRangeSliderState(() => props);

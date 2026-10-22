@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeFollowButton } from '$stylist/button/interface/recipe/follow-button';
-	import { createFollowButtonState } from './state.svelte';
+	import { createFollowButtonState } from '$stylist/button/component/atom/follow-button/state.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 
 	let props: RecipeFollowButton = $props();

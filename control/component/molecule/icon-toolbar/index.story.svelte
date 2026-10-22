@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the active item is controlled through onSelect and local state.
-	import IconToolbar from './index.svelte';
+	import IconToolbar from '$stylist/control/component/molecule/icon-toolbar/index.svelte';
 	import type { RecipeIconToolbar } from '$stylist/control/interface/recipe/icon-toolbar';
 
 	let args: RecipeIconToolbar = $props();

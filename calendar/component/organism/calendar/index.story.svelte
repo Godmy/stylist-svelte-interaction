@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Calendar from './index.svelte';
+	import Calendar from '$stylist/calendar/component/organism/calendar/index.svelte';
 	import type { RecipeCalendar } from '$stylist/calendar/interface/recipe/calendar';
 
 	// Render of index.story.ts: value and minDate are Dates built from the text/boolean knobs.

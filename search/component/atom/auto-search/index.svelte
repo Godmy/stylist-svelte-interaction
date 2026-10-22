@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createAutoSearchState from './state.svelte';
+	import createAutoSearchState from '$stylist/search/component/atom/auto-search/state.svelte';
 	import type { RecipeAutoSearch } from '$stylist/search/interface/recipe/auto-search';
 
 	let {

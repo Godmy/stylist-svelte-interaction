@@ -1,4 +1,4 @@
-import AutoSearch from './index.svelte';
+import AutoSearch from '$stylist/search/component/atom/auto-search/index.svelte';
 import type { RecipeAutoSearch } from '$stylist/search/interface/recipe/auto-search';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

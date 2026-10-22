@@ -1,4 +1,4 @@
-import CheckboxGroup from './index.svelte';
+import CheckboxGroup from '$stylist/input/component/molecule/checkbox-group/index.svelte';
 import type { RecipeCheckboxGroup } from '$stylist/input/interface/recipe/checkbox-group';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

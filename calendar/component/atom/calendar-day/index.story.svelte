@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CalendarDay from './index.svelte';
+	import CalendarDay from '$stylist/calendar/component/atom/calendar-day/index.svelte';
 	import type { RecipeCalendarDay } from '$stylist/calendar/interface/recipe/calendar-day';
 
 	// Render of index.story.ts: the day cell needs a Date, which story args do not carry.

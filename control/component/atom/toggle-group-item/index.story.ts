@@ -1,4 +1,4 @@
-import ToggleGroupItem from './index.svelte';
+import ToggleGroupItem from '$stylist/control/component/atom/toggle-group-item/index.svelte';
 import type { RecipeToggleGroupItem } from '$stylist/control/interface/recipe/toggle-group-item';
 import type { TokenSelectionType } from '$stylist/control/type/alias/selection-type';
 import type { ContractStory } from '$stylist/html/interface/contract/story';

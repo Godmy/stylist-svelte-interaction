@@ -1,4 +1,4 @@
-import CopyButton from './index.svelte';
+import CopyButton from '$stylist/button/component/atom/copy-button/index.svelte';
 import type { RecipeCopyButton } from '$stylist/button/interface/recipe/copy-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

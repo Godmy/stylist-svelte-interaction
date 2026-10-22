@@ -1,4 +1,4 @@
-import AnimatedBackground from './index.svelte';
+import AnimatedBackground from '$stylist/animation/component/atom/animated-background/index.svelte';
 import type { RecipeAnimatedBackground } from '$stylist/animation/interface/recipe/animated-background';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

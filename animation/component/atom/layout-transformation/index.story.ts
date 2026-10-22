@@ -1,4 +1,4 @@
-import LayoutTransformation from './index.svelte';
+import LayoutTransformation from '$stylist/animation/component/atom/layout-transformation/index.svelte';
 import type { RecipeLayoutTransformation } from '$stylist/animation/interface/recipe/layout-transformation';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

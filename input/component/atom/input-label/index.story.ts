@@ -1,4 +1,4 @@
-import InputLabel from './index.svelte';
+import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
 import type { RecipeInputLabel } from '$stylist/input/interface/recipe/input-label';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

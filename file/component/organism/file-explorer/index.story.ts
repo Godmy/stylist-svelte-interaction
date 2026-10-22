@@ -1,4 +1,4 @@
-import FileExplorer from './index.svelte';
+import FileExplorer from '$stylist/file/component/organism/file-explorer/index.svelte';
 import type { RecipeFileExplorer } from '$stylist/file/interface/recipe/file-explorer';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { FILE_EXPLORER_VIEW_MODE } from '$stylist/file/const/array/file-explorer-view-mode';

@@ -1,4 +1,4 @@
-import QuantitySelector from './index.svelte';
+import QuantitySelector from '$stylist/file/component/molecule/quantity-selector/index.svelte';
 import type { RecipeQuantitySelector } from '$stylist/file/interface/recipe/quantity-selector';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

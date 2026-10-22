@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Render of index.story.ts: the item needs a ToggleGroupRoot parent that provides its context.
-	import ToggleGroupItem from './index.svelte';
-	import ToggleGroupRoot from '../toggle-group-root/index.svelte';
+	import ToggleGroupItem from '$stylist/control/component/atom/toggle-group-item/index.svelte';
+	import ToggleGroupRoot from '$stylist/control/component/atom/toggle-group-root/index.svelte';
 	import type { RecipeToggleGroupItem } from '$stylist/control/interface/recipe/toggle-group-item';
 	import type { TokenSelectionType } from '$stylist/control/type/alias/selection-type';
 

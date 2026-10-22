@@ -1,4 +1,4 @@
-import DropdownMenu from './index.svelte';
+import DropdownMenu from '$stylist/menu/component/molecule/dropdown-menu/index.svelte';
 import type { RecipeDropdownMenu } from '$stylist/menu/interface/recipe/dropdown-menu';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ALIGNMENT } from '$stylist/layout/const/array/alignment';

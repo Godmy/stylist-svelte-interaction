@@ -1,4 +1,4 @@
-import Tab from './index.svelte';
+import Tab from '$stylist/dialog/component/atom/tab/index.svelte';
 import type { RecipeTab } from '$stylist/dialog/interface/recipe/tab';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

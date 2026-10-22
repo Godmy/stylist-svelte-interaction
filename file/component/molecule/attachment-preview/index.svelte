@@ -2,7 +2,7 @@
 	import { AttachmentPreviewManager } from '$stylist/file/class/manager/attachment-preview';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createAttachmentPreviewState } from './state.svelte';
+	import { createAttachmentPreviewState } from '$stylist/file/component/molecule/attachment-preview/state.svelte';
 	import type { RecipeAttachmentPreview } from '$stylist/file/interface/recipe/attachment-preview';
 
 	let props: RecipeAttachmentPreview = $props();

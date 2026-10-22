@@ -1,4 +1,4 @@
-import LoginForm from './index.svelte';
+import LoginForm from '$stylist/form/component/organism/login-form/index.svelte';
 import type { RecipeLoginForm } from '$stylist/form/interface/recipe/login-form';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

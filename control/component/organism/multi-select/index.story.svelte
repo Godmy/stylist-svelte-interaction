@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the component resets its selection to the value prop, so the value is controlled here.
-	import MultiSelect from './index.svelte';
+	import MultiSelect from '$stylist/control/component/organism/multi-select/index.svelte';
 	import type { RecipeMultiSelect } from '$stylist/control/interface/recipe/multi-select';
 
 	let args: RecipeMultiSelect = $props();

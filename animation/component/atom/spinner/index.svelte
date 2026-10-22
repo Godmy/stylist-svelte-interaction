@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSpinnerState } from './state.svelte';
+	import { createSpinnerState } from '$stylist/animation/component/atom/spinner/state.svelte';
 	import type { RecipeSpinner } from '$stylist/animation/interface/recipe/spinner';
 
 	let props: RecipeSpinner = $props();

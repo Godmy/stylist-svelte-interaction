@@ -1,4 +1,4 @@
-import MegaMenuTrigger from './index.svelte';
+import MegaMenuTrigger from '$stylist/menu/component/atom/mega-menu-trigger/index.svelte';
 import type { RecipeMegaMenuTrigger } from '$stylist/menu/interface/recipe/mega-menu-trigger';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -2,7 +2,7 @@
 	import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
 	import type { RecipeGeneralToolbar } from '$stylist/dialog/interface/recipe/general-toolbar';
-	import createGeneralToolbarState from './state.svelte';
+	import createGeneralToolbarState from '$stylist/dialog/component/molecule/general-toolbar/state.svelte';
 
 	let props: RecipeGeneralToolbar = $props();
 	const state = createGeneralToolbarState(() => props);

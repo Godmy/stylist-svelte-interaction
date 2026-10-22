@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeTabs } from '$stylist/dialog/interface/recipe/tabs';
 	import { setContext } from 'svelte';
-	import { createTabsState } from './state.svelte';
+	import { createTabsState } from '$stylist/dialog/component/molecule/tabs/state.svelte';
 
 	let props: RecipeTabs = $props();
 

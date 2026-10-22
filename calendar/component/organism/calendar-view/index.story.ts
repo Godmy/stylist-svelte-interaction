@@ -1,4 +1,4 @@
-import CalendarView from './index.svelte';
+import CalendarView from '$stylist/calendar/component/organism/calendar-view/index.svelte';
 import type { RecipeCalendarView } from '$stylist/calendar/interface/recipe/calendar-view';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_CALENDAR } from '$stylist/calendar/const/array/calendar-enum';

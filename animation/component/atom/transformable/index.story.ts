@@ -1,4 +1,4 @@
-import Transformable from './index.svelte';
+import Transformable from '$stylist/animation/component/atom/transformable/index.svelte';
 import type { RecipeTransformable } from '$stylist/animation/interface/recipe/transformable';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

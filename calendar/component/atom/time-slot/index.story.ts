@@ -1,4 +1,4 @@
-import TimeSlot from './index.svelte';
+import TimeSlot from '$stylist/calendar/component/atom/time-slot/index.svelte';
 import type { RecipeTimeSlot } from '$stylist/calendar/interface/recipe/time-slot';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

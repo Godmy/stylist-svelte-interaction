@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import createToggleGroupItemState from './state.svelte';
+	import createToggleGroupItemState from '$stylist/control/component/atom/toggle-group-item/state.svelte';
 	import type { RecipeToggleGroupItem as RecipeToggleGroupItem } from '$stylist/control/interface/recipe/toggle-group-item';
 	import type { SlotToggleGroupContext } from '$stylist/control/interface/slot/toggle-group-context';
 

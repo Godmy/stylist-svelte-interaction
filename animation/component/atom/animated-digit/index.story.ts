@@ -1,4 +1,4 @@
-import AnimatedDigit from './index.svelte';
+import AnimatedDigit from '$stylist/animation/component/atom/animated-digit/index.svelte';
 import type { RecipeAnimatedDigit } from '$stylist/animation/interface/recipe/animated-digit';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

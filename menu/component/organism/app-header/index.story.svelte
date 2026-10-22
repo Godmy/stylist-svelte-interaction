@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Render of index.story.ts: the trailing actions are a named snippet, which story content cannot provide.
-	import AppHeader from './index.svelte';
+	import AppHeader from '$stylist/menu/component/organism/app-header/index.svelte';
 	import type { RecipeAppHeader } from '$stylist/menu/interface/recipe/app-header';
 
 	let args: RecipeAppHeader = $props();

@@ -1,4 +1,4 @@
-import CalendarRange from './index.svelte';
+import CalendarRange from '$stylist/calendar/component/organism/calendar-range/index.svelte';
 import type { RecipeCalendarRange } from '$stylist/calendar/interface/recipe/calendar-range';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

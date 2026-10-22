@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Breadcrumbs from './index.svelte';
+	import Breadcrumbs from '$stylist/dialog/component/molecule/breadcrumbs/index.svelte';
 	import type { RecipeBreadcrumbs } from '$stylist/dialog/interface/recipe/breadcrumbs';
 
 	// Render of index.story.ts: Breadcrumbs reports navigation through onNavigate; the story owns the active crumb.

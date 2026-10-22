@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TextInputDialog from './index.svelte';
+	import TextInputDialog from '$stylist/dialog/component/organism/text-input-dialog/index.svelte';
 	import type { RecipeTextInputDialog } from '$stylist/dialog/interface/recipe/text-input-dialog';
 
 	// Render of index.story.ts: the textarea is bound to a local draft, and the error message follows its length.

@@ -1,4 +1,4 @@
-import InputText from './index.svelte';
+import InputText from '$stylist/input/component/molecule/input-text/index.svelte';
 import type { RecipeInputText } from '$stylist/input/interface/recipe/input-text';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

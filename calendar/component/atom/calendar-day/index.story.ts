@@ -1,4 +1,4 @@
-import CalendarDay from './index.svelte';
+import CalendarDay from '$stylist/calendar/component/atom/calendar-day/index.svelte';
 import type { RecipeCalendarDay } from '$stylist/calendar/interface/recipe/calendar-day';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

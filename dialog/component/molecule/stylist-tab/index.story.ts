@@ -1,4 +1,4 @@
-import StylistTab from './index.svelte';
+import StylistTab from '$stylist/dialog/component/molecule/stylist-tab/index.svelte';
 import type { RecipeStylistTab } from '$stylist/dialog/interface/recipe/stylist-tab';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

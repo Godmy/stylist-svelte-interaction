@@ -1,4 +1,4 @@
-import FillButton from './index.svelte';
+import FillButton from '$stylist/button/component/atom/fill-button/index.svelte';
 import type { RecipeFillButton } from '$stylist/button/interface/recipe/fill-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

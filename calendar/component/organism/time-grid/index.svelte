@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createTimeGridState from './state.svelte';
+	import createTimeGridState from '$stylist/calendar/component/organism/time-grid/state.svelte';
 	import type { RecipeTimeGrid } from '$stylist/calendar/interface/recipe/time-grid';
 	import TimeSlotComponent from '$stylist/calendar/component/atom/time-slot/index.svelte';
 	import Button from '$stylist/button/component/atom/button/index.svelte';

@@ -1,4 +1,4 @@
-import FollowButton from './index.svelte';
+import FollowButton from '$stylist/button/component/atom/follow-button/index.svelte';
 import type { RecipeFollowButton } from '$stylist/button/interface/recipe/follow-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE } from '$stylist/design-token/const/array/size';

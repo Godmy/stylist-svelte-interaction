@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeButtonElement as SlotButtonElement } from '$stylist/button/interface/recipe/button-element';
-	import createButtonState from './state.svelte';
+	import createButtonState from '$stylist/button/component/atom/button/state.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { CONTROL_BUTTON_ICON } from '$stylist/button/const/map/button';
 	import type { HTMLButtonAttributes } from 'svelte/elements';

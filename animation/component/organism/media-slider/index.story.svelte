@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MediaSlider from './index.svelte';
+	import MediaSlider from '$stylist/animation/component/organism/media-slider/index.svelte';
 	import type { RecipeMediaSlider } from '$stylist/animation/interface/recipe/media-slider';
 	import type { MediaSliderSlide } from '$stylist/animation/type/object/media-slider';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeAddressForm } from '$stylist/form/interface/recipe/address-form';
-	import createAddressFormState from './state.svelte';
+	import createAddressFormState from '$stylist/form/component/organism/address-form/state.svelte';
 
 	const props: RecipeAddressForm = $props();
 	const state = createAddressFormState(() => props);

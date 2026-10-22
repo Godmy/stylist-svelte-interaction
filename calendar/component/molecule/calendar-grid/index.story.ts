@@ -1,4 +1,4 @@
-import CalendarGrid from './index.svelte';
+import CalendarGrid from '$stylist/calendar/component/molecule/calendar-grid/index.svelte';
 import type { RecipeCalendarGrid } from '$stylist/calendar/interface/recipe/calendar-grid';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

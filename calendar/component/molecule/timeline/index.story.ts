@@ -1,4 +1,4 @@
-import Timeline from './index.svelte';
+import Timeline from '$stylist/calendar/component/molecule/timeline/index.svelte';
 import type { RecipeTimeline } from '$stylist/calendar/interface/recipe/timeline';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';

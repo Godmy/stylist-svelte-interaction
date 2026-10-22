@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MarqueeTicker from './index.svelte';
+	import MarqueeTicker from '$stylist/animation/component/atom/marquee-ticker/index.svelte';
 	import type { RecipeMarqueeTicker } from '$stylist/animation/interface/recipe/marquee-ticker';
 
 	// Render of index.story.ts: the editable `text` knob becomes `items`, so changing it plays the letter change transition.

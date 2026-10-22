@@ -1,4 +1,4 @@
-import SliderWithInput from './index.svelte';
+import SliderWithInput from '$stylist/control/component/molecule/slider-with-input/index.svelte';
 import type { RecipeSliderWithInput } from '$stylist/control/interface/recipe/slider-with-input';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

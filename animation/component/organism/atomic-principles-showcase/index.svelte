@@ -5,7 +5,7 @@
 	import AtomicTierCard from '$stylist/animation/component/molecule/atomic-tier-card/index.svelte';
 	import { PresetAtomicPrinciplesShowcase } from '$stylist/animation/const/preset/atomic-principles-showcase';
 	import type { RecipeAtomicPrinciplesShowcase } from '$stylist/animation/interface/recipe/atomic-principles-showcase';
-	import { createAtomicPrinciplesShowcaseState } from './state.svelte';
+	import { createAtomicPrinciplesShowcaseState } from '$stylist/animation/component/organism/atomic-principles-showcase/state.svelte';
 
 	let { ...props }: RecipeAtomicPrinciplesShowcase = $props();
 	const state = createAtomicPrinciplesShowcaseState(() => props);

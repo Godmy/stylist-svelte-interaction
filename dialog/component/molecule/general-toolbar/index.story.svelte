@@ -1,5 +1,5 @@
 <script lang="ts">
-	import GeneralToolbar from './index.svelte';
+	import GeneralToolbar from '$stylist/dialog/component/molecule/general-toolbar/index.svelte';
 	import type { RecipeGeneralToolbar } from '$stylist/dialog/interface/recipe/general-toolbar';
 
 	// Render of index.story.ts: toolbarItems carry action callbacks, which story args cannot hold.

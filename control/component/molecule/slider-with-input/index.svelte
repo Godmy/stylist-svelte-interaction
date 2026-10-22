@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeSliderWithInput } from '$stylist/control/interface/recipe/slider-with-input';
-	import createSliderWithInputState from './state.svelte';
+	import createSliderWithInputState from '$stylist/control/component/molecule/slider-with-input/state.svelte';
 
 	let props: RecipeSliderWithInput = $props();
 	const state = createSliderWithInputState(() => props);

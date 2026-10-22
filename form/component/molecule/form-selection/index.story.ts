@@ -1,4 +1,4 @@
-import FormSection from './index.svelte';
+import FormSection from '$stylist/form/component/molecule/form-selection/index.svelte';
 import type { RecipeFormSelection } from '$stylist/form/interface/recipe/form-selection';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import type { HtmlElementNode } from '$stylist/html/type/struct/html-element-node';

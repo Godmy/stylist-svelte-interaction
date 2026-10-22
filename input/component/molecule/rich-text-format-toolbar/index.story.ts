@@ -1,4 +1,4 @@
-import RichTextFormatToolbar from './index.svelte';
+import RichTextFormatToolbar from '$stylist/input/component/molecule/rich-text-format-toolbar/index.svelte';
 import type { RecipeRichTextFormatToolbar } from '$stylist/input/interface/recipe/rich-text-format-toolbar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

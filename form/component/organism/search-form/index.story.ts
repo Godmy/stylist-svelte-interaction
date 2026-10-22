@@ -1,4 +1,4 @@
-import SearchForm from './index.svelte';
+import SearchForm from '$stylist/form/component/organism/search-form/index.svelte';
 import type { RecipeSearchForm } from '$stylist/form/interface/recipe/search-form';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

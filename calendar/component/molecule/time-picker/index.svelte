@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeTimePicker } from '$stylist/calendar/interface/recipe/time-picker';
-	import createTimePickerState from './state.svelte';
+	import createTimePickerState from '$stylist/calendar/component/molecule/time-picker/state.svelte';
 
 	let props: RecipeTimePicker = $props();
 	const state = createTimePickerState(() => props);

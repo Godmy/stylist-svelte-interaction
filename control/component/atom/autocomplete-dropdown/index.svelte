@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createAutocompleteDropdownState from './state.svelte';
+	import createAutocompleteDropdownState from '$stylist/control/component/atom/autocomplete-dropdown/state.svelte';
 	import type { RecipeAutocompleteDropdown } from '$stylist/control/interface/recipe/autocomplete-dropdown';
 
 	let {

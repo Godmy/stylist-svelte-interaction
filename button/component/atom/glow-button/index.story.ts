@@ -1,4 +1,4 @@
-import GlowButton from './index.svelte';
+import GlowButton from '$stylist/button/component/atom/glow-button/index.svelte';
 import type { RecipeGlowButton } from '$stylist/button/interface/recipe/glow-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

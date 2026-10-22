@@ -1,4 +1,4 @@
-import MorphButton from './index.svelte';
+import MorphButton from '$stylist/button/component/atom/morph-button/index.svelte';
 import type { RecipeMorphButton } from '$stylist/button/interface/recipe/morph-button';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

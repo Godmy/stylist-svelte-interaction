@@ -1,4 +1,4 @@
-import InputPassword from './index.svelte';
+import InputPassword from '$stylist/input/component/molecule/input-password/index.svelte';
 import type { RecipeInputPassword } from '$stylist/input/interface/recipe/input-password';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

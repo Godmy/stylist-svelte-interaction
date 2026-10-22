@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CalendarGrid from '$stylist/calendar/component/molecule/calendar-grid/index.svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import createCalendarState from './state.svelte';
+	import createCalendarState from '$stylist/calendar/component/organism/calendar/state.svelte';
 	import type { RecipeCalendar } from '$stylist/calendar/interface/recipe/calendar';
 
 	const ChevronLeft = 'chevron-left';

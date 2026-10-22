@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeScreenReader } from '$stylist/form/interface/recipe/screen-reader';
-	import createScreenReaderState from './state.svelte';
+	import createScreenReaderState from '$stylist/form/component/organism/screen-reader/state.svelte';
 
 	const props: RecipeScreenReader = $props();
 	const state = createScreenReaderState(() => props);

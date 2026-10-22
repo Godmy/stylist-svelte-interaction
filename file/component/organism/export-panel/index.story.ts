@@ -1,4 +1,4 @@
-import ExportPanel from './index.svelte';
+import ExportPanel from '$stylist/file/component/organism/export-panel/index.svelte';
 import type { RecipeExportPanel } from '$stylist/file/interface/recipe/export-panel';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,4 +1,4 @@
-import ScreenReader from './index.svelte';
+import ScreenReader from '$stylist/form/component/organism/screen-reader/index.svelte';
 import type { RecipeScreenReader } from '$stylist/form/interface/recipe/screen-reader';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

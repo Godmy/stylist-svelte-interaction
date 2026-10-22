@@ -1,4 +1,4 @@
-import Tag from './index.svelte';
+import Tag from '$stylist/control/component/atom/tag/index.svelte';
 import type { RecipeTag } from '$stylist/control/interface/recipe/tag';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_COLOR_TONE } from '$stylist/design-token/const/array/color-tone';

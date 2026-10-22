@@ -1,4 +1,4 @@
-import BreadcrumbDropdown from './index.svelte';
+import BreadcrumbDropdown from '$stylist/dialog/component/atom/breadcrumb-dropdown/index.svelte';
 import type { RecipeBreadcrumbDropdown } from '$stylist/dialog/interface/recipe/breadcrumb-dropdown';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

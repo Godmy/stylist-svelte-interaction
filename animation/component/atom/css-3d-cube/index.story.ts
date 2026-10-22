@@ -1,4 +1,4 @@
-import Css3dCube from './index.svelte';
+import Css3dCube from '$stylist/animation/component/atom/css-3d-cube/index.svelte';
 import type { RecipeCss3dCube } from '$stylist/animation/interface/recipe/css-3d-cube';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

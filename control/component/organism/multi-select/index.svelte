@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeMultiSelect } from '$stylist/control/interface/recipe/multi-select';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createMultiSelectState } from './state.svelte';
+	import { createMultiSelectState } from '$stylist/control/component/organism/multi-select/state.svelte';
 
 	let props: RecipeMultiSelect = $props();
 	const state = createMultiSelectState(() => props);

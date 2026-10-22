@@ -1,4 +1,4 @@
-import RangeSlider from './index.svelte';
+import RangeSlider from '$stylist/control/component/molecule/range-slider/index.svelte';
 import type { RecipeRangeSlider } from '$stylist/control/interface/recipe/range-slider';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

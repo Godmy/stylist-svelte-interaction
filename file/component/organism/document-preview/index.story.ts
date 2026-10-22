@@ -1,4 +1,4 @@
-import DocumentPreview from './index.svelte';
+import DocumentPreview from '$stylist/file/component/organism/document-preview/index.svelte';
 import type { RecipeDocumentPreview } from '$stylist/file/interface/recipe/document-preview';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

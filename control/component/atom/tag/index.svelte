@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeTag } from '$stylist/control/interface/recipe/tag';
-	import createTagState from './state.svelte';
+	import createTagState from '$stylist/control/component/atom/tag/state.svelte';
 
 	let props: RecipeTag = $props();
 	const restProps = $derived(

@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Render of index.story.ts: the addon is attached to a demo input and may hold an icon component.
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import InputAddon from './index.svelte';
+	import InputAddon from '$stylist/input/component/atom/input-addon/index.svelte';
 	import type { RecipeInputAddon } from '$stylist/input/interface/recipe/input-addon';
 
 	let {
