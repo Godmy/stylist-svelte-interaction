@@ -11,7 +11,7 @@ export interface RecipeRadioButtonGroup extends ComputeIntersectAll<
 	value?: string;
 	disabled?: boolean;
 	orientation?: TokenOrientation;
-	options: Array<{ value: string; label: string; disabled?: boolean }>;
+	options: Array<{ value: string; label: string; disabled?: boolean; defaultChecked?: boolean }>;
 	optionClass?: string;
 	labelClass?: string;
 	radioClass?: string;

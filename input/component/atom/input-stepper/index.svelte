@@ -2,7 +2,7 @@
 	import type { RecipeInputStepper } from '$stylist/input/interface/recipe/input-stepper';
 
 	let {
-		value = 0,
+		value = $bindable(0),
 		min = 0,
 		max = 99,
 		step = 1,
@@ -26,6 +26,7 @@
 </script>
 
 <div
+	role="group"
 	class={`input-stepper ${className}`.trim()}
 	data-size={size}
 	aria-label={label}
@@ -81,9 +82,9 @@
 		width: 1.7em;
 		height: 1.7em;
 		flex: none;
-		border: 1px solid rgba(23, 35, 31, 0.18);
+		border: 1px solid var(--color-border-primary, #cbd5e1);
 		border-radius: 999px;
-		background: rgba(255, 255, 255, 0.42);
+		background: var(--color-background-secondary, #f8fafc);
 		color: inherit;
 		font: inherit;
 		line-height: 1;
@@ -94,7 +95,7 @@
 	}
 
 	.input-stepper__button:hover:not(:disabled) {
-		background: rgba(23, 35, 31, 0.08);
+		background: var(--color-background-tertiary, #e2e8f0);
 	}
 
 	.input-stepper__button:disabled {

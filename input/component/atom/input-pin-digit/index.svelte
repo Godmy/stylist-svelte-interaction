@@ -1,8 +1,15 @@
 <script lang="ts">
 	import type { RecipeInputPinDigit as IPinInputDigitProps } from '$stylist/input/interface/recipe/input-pin-digit';
 	import { createFieldClassState } from '$stylist/input/function/script/create-field-class-state';
+	import HtmlInputText from '$stylist/html/component/atom/input-text/index.svelte';
+	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
 
-	let props: IPinInputDigitProps = $props();
+	let {
+		value = $bindable(''),
+		element = $bindable<HTMLInputElement | null>(null),
+		...props
+	}: IPinInputDigitProps = $props();
+	const nativeProps = $derived(resolveInputAttributes(props));
 	const state = $derived(
 		createFieldClassState(
 			{
@@ -19,16 +26,19 @@
 	);
 </script>
 
-<input
+<HtmlInputText
+	bind:element
+	{...nativeProps}
+	inputmode={props.inputmode ?? 'numeric'}
 	class={classes}
 	data-size={state.size}
 	data-error={state.hasError || undefined}
-	maxLength={1}
-	value={props.value}
+	maxlength={1}
+	bind:value
 />
 
 <style>
-	.input-pin-digit {
+	:global(.input-pin-digit) {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -37,32 +47,32 @@
 		border-radius: var(--border-radius-base, 0.375rem);
 		background: var(--color-background-primary);
 		color: var(--color-text-primary);
-		outline: none;
 	}
 
-	.input-pin-digit[data-size='sm'] {
+	:global(.input-pin-digit[data-size='sm']) {
 		width: 2rem;
 		height: 2rem;
 		font-size: var(--text-size-sm, 0.875rem);
 	}
 
-	.input-pin-digit[data-size='md'] {
+	:global(.input-pin-digit[data-size='md']) {
 		width: 2.5rem;
 		height: 2.5rem;
 		font-size: var(--text-size-md, 1rem);
 	}
 
-	.input-pin-digit[data-size='lg'] {
+	:global(.input-pin-digit[data-size='lg']) {
 		width: 3rem;
 		height: 3rem;
 		font-size: var(--text-size-lg, 1.125rem);
 	}
 
-	.input-pin-digit[data-error] {
+	:global(.input-pin-digit[data-error]) {
 		border-color: var(--color-danger-500);
 	}
 
-	.input-pin-digit--focused {
+	:global(.input-pin-digit--focused),
+	:global(.input-pin-digit:focus-visible) {
 		outline: 2px solid var(--color-primary-500, #3b82f6);
 		outline-offset: 2px;
 	}

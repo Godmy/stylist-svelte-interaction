@@ -6,7 +6,6 @@ export {
 	InputDouble,
 	InputEmail,
 	InputError,
-	InputField,
 	InputGroup,
 	InputHelper,
 	InputLabel,
@@ -28,10 +27,12 @@ export {
 	createCharacterCountState,
 	createFieldClassState,
 	createFieldPresetState,
+	createInputFormReset,
 	formatPhoneNumber,
 	normalizePhoneInputValue,
 	resolveAllowedOption,
-	resolveCharacterCountState
+	resolveCharacterCountState,
+	resolveInputAttributes
 } from './function';
 export type {
 	RecipeCharactersCount,
@@ -40,7 +41,6 @@ export type {
 	RecipeInputDouble,
 	RecipeInputEmail,
 	RecipeInputError,
-	RecipeInputField,
 	RecipeInputGroup,
 	RecipeInputHelper,
 	RecipeInputLabel,

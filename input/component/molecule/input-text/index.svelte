@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '$stylist/input/const/style/field/index.css';
 	import { onMount } from 'svelte';
+	import HtmlInput from '$stylist/html/component/atom/input/index.svelte';
 	import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
 	import createInputTextState from '$stylist/input/component/molecule/input-text/state.svelte';
 	import type { RecipeInputText as IInputBaseProps } from '$stylist/input/interface/recipe/input-text';
@@ -33,9 +34,16 @@
 		min,
 		max,
 		step,
+		element: inputElement = $bindable<HTMLInputElement | null>(null),
+		'aria-describedby': describedBy,
+		'aria-invalid': ariaInvalid,
 		...restProps
 	}: IInputBaseProps = $props();
 
+	const generatedId = $props.id();
+	const controlId = $derived(id ?? generatedId);
+	const showErrorText = $derived((error || errors.length > 0) && showErrors && errors.length > 0);
+	const helperId = $derived(`${controlId}-helper`);
 	const state = createInputTextState(() => ({
 		variant,
 		size,
@@ -43,12 +51,11 @@
 		error: error || errors.length > 0,
 		block,
 		class: className,
-		id,
+		id: controlId,
 		helperText,
 		showHelperWhenError
 	}));
 
-	let inputElement: HTMLInputElement | null = null;
 	onMount(() => {
 		if (autofocus) inputElement?.focus();
 	});
@@ -57,7 +64,7 @@
 <div class={state.containerClasses}>
 	<InputLabel
 		{label}
-		{id}
+		id={controlId}
 		labelId={state.labelId}
 		{size}
 		{disabled}
@@ -65,8 +72,9 @@
 		{showRequiredIndicator}
 	/>
 
-	<input
-		{id}
+	<HtmlInput
+		{...restProps}
+		id={controlId}
 		{type}
 		{name}
 		bind:value
@@ -74,7 +82,7 @@
 		{required}
 		{readonly}
 		{disabled}
-		bind:this={inputElement}
+		bind:element={inputElement}
 		{autocomplete}
 		{pattern}
 		{minlength}
@@ -87,23 +95,23 @@
 		data-size={state.size}
 		data-disabled={disabled || undefined}
 		data-error={state.hasError || undefined}
-		aria-describedby={state.hasError && showErrors
-			? state.errorId
-			: helperText
-				? undefined
-				: undefined}
-		aria-invalid={state.hasError ? 'true' : 'false'}
+		aria-describedby={[
+			describedBy,
+			showErrorText ? state.errorId : state.showHelper ? helperId : undefined
+		]
+			.filter(Boolean)
+			.join(' ') || undefined}
+		aria-invalid={state.hasError ? 'true' : ariaInvalid}
 		aria-required={required ? 'true' : 'false'}
-		{...restProps}
 	/>
 
-	{#if state.hasError && showErrors && errors.length > 0}
+	{#if showErrorText}
 		<p id={state.errorId} class={state.errorTextClasses} role="alert">
-			{#each errors as error_msg, i}
+			{#each errors as error_msg, i (i)}
 				{error_msg}{i < errors.length - 1 ? ' ' : ''}
 			{/each}
 		</p>
 	{:else if state.showHelper}
-		<p class={state.helperTextClasses}>{helperText}</p>
+		<p id={helperId} class={state.helperTextClasses}>{helperText}</p>
 	{/if}
 </div>

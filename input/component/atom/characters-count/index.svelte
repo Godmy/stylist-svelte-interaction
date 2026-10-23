@@ -4,9 +4,22 @@
 
 	let props: RecipeCharactersCount = $props();
 	const state = createCharactersCountState(() => props);
+	const rest = $derived.by(() => {
+		const {
+			class: _class,
+			children: _children,
+			current: _current,
+			max: _max,
+			showPercentage: _percentage,
+			text: _text,
+			variant: _variant,
+			...native
+		} = props;
+		return native;
+	});
 </script>
 
-<div class={state.classes}>
+<div {...rest} class={state.classes}>
 	{#if props.children}
 		{@render props.children()}
 	{:else}

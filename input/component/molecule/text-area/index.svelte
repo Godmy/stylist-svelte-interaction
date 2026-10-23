@@ -2,21 +2,33 @@
 	import '$stylist/input/const/style/field/index.css';
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
 	import { onMount } from 'svelte';
+	import HtmlTextarea from '$stylist/html/component/atom/textarea/index.svelte';
+	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
 	import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
 	import type { RecipeTextArea } from '$stylist/input/interface/recipe/text-area';
 	import createTextareaState from '$stylist/input/component/molecule/text-area/state.svelte';
 
-	let props: RecipeTextArea &
+	let {
+		value = $bindable(''),
+		element: textareaElement = $bindable<HTMLTextAreaElement | null>(null),
+		...props
+	}: RecipeTextArea &
 		Omit<HTMLTextareaAttributes, 'class' | 'autocomplete' | 'id' | 'disabled'> = $props();
-	const state = createTextareaState(() => props);
+	const generatedId = $props.id();
+	const controlId = $derived(props.id ?? generatedId);
+	const nativeProps = $derived(resolveInputAttributes(props));
+	const state = createTextareaState(() => ({ ...props, value, id: controlId }));
+	const showErrorText = $derived(
+		state.hasError && (props.showErrors ?? true) && (props.errors?.length ?? 0) > 0
+	);
 
-	let textareaElement: HTMLTextAreaElement | null = null;
 	onMount(() => {
 		if (props.autofocus) textareaElement?.focus();
 	});
 
 	$effect(() => {
-		if (props.autoResize && props.value) {
+		const currentValue = value;
+		if (props.autoResize && typeof currentValue === 'string') {
 			state.autoResizeTextarea(textareaElement);
 		}
 	});
@@ -25,7 +37,7 @@
 <div class={state.containerClasses}>
 	<InputLabel
 		label={props.label}
-		id={props.id}
+		id={controlId}
 		labelId={state.labelId}
 		size={props.size}
 		disabled={props.disabled}
@@ -33,10 +45,11 @@
 		showRequiredIndicator={props.showRequiredIndicator}
 	/>
 
-	<textarea
-		id={props.id}
+	<HtmlTextarea
+		{...nativeProps}
+		id={controlId}
 		name={props.name}
-		bind:value={props.value}
+		bind:value
 		placeholder={props.placeholder}
 		required={props.required ?? false}
 		readonly={props.readonly ?? false}
@@ -45,29 +58,34 @@
 		minlength={props.minlength}
 		maxlength={props.maxlength}
 		rows={props.rows ?? 4}
-		bind:this={textareaElement}
+		bind:element={textareaElement}
 		class={`${state.classes} text-area__textarea`}
 		data-variant={state.variant}
 		data-size={state.size}
 		data-disabled={(props.disabled ?? false) || undefined}
 		data-error={state.hasError || undefined}
-		oninput={() => state.handleInput(textareaElement)}
-		aria-describedby={state.hasError && (props.showErrors ?? true)
-			? state.errorId
-			: props.helperText
-				? undefined
-				: undefined}
-		aria-invalid={state.hasError ? 'true' : 'false'}
-		aria-required={props.required ? 'true' : 'false'}></textarea>
+		oninput={(event) => {
+			state.handleInput(textareaElement);
+			props.oninput?.call(event.currentTarget, event);
+		}}
+		aria-describedby={[
+			props['aria-describedby'],
+			showErrorText ? state.errorId : state.showHelper ? `${controlId}-helper` : undefined
+		]
+			.filter(Boolean)
+			.join(' ') || undefined}
+		aria-invalid={state.hasError ? 'true' : props['aria-invalid']}
+		aria-required={props.required ? 'true' : 'false'}
+	/>
 
-	{#if state.hasError && (props.showErrors ?? true) && (props.errors?.length ?? 0) > 0}
+	{#if showErrorText}
 		<p id={state.errorId} class={state.errorTextClasses} role="alert">
-			{#each props.errors ?? [] as error_msg, i}
+			{#each props.errors ?? [] as error_msg, i (i)}
 				{error_msg}{i < (props.errors?.length ?? 0) - 1 ? ' ' : ''}
 			{/each}
 		</p>
 	{:else if state.showHelper}
-		<p class={state.helperTextClasses}>{props.helperText}</p>
+		<p id={`${controlId}-helper`} class={state.helperTextClasses}>{props.helperText}</p>
 	{/if}
 
 	{#if props.maxlength}
@@ -81,7 +99,7 @@
 </div>
 
 <style>
-	.text-area__textarea {
+	:global(.text-area__textarea) {
 		resize: vertical;
 	}
 

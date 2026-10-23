@@ -1,34 +1,12 @@
 export const formatPhoneNumber = (value: string): string => {
 	if (!value) return '';
 
-	const cleaned = value.replace(/\D/g, '');
-	let formatted = '+7 (';
-
-	for (let i = 0; i < 11; i++) {
-		if (i < cleaned.length) {
-			if (i === 0) {
-				formatted += cleaned[i];
-			} else if (i === 3) {
-				formatted += ') ' + cleaned[i];
-			} else if (i === 6) {
-				formatted += '-' + cleaned[i];
-			} else if (i === 8) {
-				formatted += '-' + cleaned[i];
-			} else {
-				formatted += cleaned[i];
-			}
-		} else if (i === 0) {
-			formatted += '_';
-		} else if (i === 3) {
-			formatted += ') _';
-		} else if (i === 6 || i === 8) {
-			formatted += '-_';
-		} else {
-			formatted += '_';
-		}
-	}
-
-	return formatted;
+	const cleaned = value.replace(/\D/g, '').slice(0, 11);
+	if (!cleaned) return '';
+	const digits = (cleaned.startsWith('7') || cleaned.startsWith('8') ? cleaned.slice(1) : cleaned)
+		.slice(0, 10)
+		.padEnd(10, '_');
+	return `+7 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 8)}-${digits.slice(8, 10)}`;
 };
 
 export default formatPhoneNumber;

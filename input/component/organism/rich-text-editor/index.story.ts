@@ -9,10 +9,15 @@ export default {
 	description:
 		'Contenteditable rich text editor with a formatting toolbar (bold, italic, headings, lists, links, images).',
 	args: {
+		skin: true,
 		value: '<p>Hello, <strong>world</strong>!</p>',
 		placeholder: 'Start writing here...',
 		showToolbar: true
 	},
-	controls: { placeholder: { type: 'text' }, showToolbar: { type: 'boolean' } },
+	controls: {
+		placeholder: { type: 'text' },
+		showToolbar: { type: 'boolean' },
+		skin: { type: 'boolean' }
+	},
 	presets: { Empty: { value: '' } }
 } satisfies ContractStory<RecipeRichTextEditor>;

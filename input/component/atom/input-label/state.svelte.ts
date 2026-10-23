@@ -1,7 +1,6 @@
 import type { RecipeInputLabel } from '$stylist/input/interface/recipe/input-label';
 
-export const createInputLabelState = (getProps: () => RecipeInputLabel) => {
-	const props = $derived(getProps());
+export const createInputLabelState = (_getProps: () => RecipeInputLabel) => {
 	return {
 		get labelClasses() {
 			return 'input-field-label';

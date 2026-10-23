@@ -1,8 +1,11 @@
 import type { RecipeNumberInput } from '$stylist/input/interface/recipe/number-input';
 
-export const createNumberInputState = (getProps: () => RecipeNumberInput) => {
+export const createNumberInputState = (
+	getProps: () => RecipeNumberInput,
+	getElement?: () => HTMLInputElement | null
+) => {
 	const props = $derived(getProps());
-	let currentValue = $derived(props.value ?? 0);
+	let currentValue = $derived<number | undefined>(props.value);
 
 	const disabled = $derived(props.disabled ?? false);
 	const readonly = $derived(props.readonly ?? false);
@@ -26,6 +29,7 @@ export const createNumberInputState = (getProps: () => RecipeNumberInput) => {
 	);
 
 	function emitChange() {
+		if (currentValue === undefined || !Number.isFinite(currentValue)) return;
 		props.onValueInput?.(currentValue);
 		props.onValueChange?.(currentValue);
 		props.onChange?.(currentValue);
@@ -34,9 +38,10 @@ export const createNumberInputState = (getProps: () => RecipeNumberInput) => {
 	function increment() {
 		if (disabled || readonly) return;
 
-		const newValue = currentValue + step;
-		if (newValue <= max) {
-			currentValue = newValue;
+		const element = getElement?.();
+		if (element) {
+			element.stepUp();
+			currentValue = element.valueAsNumber;
 			emitChange();
 		}
 	}
@@ -44,27 +49,18 @@ export const createNumberInputState = (getProps: () => RecipeNumberInput) => {
 	function decrement() {
 		if (disabled || readonly) return;
 
-		const newValue = currentValue - step;
-		if (newValue >= min) {
-			currentValue = newValue;
+		const element = getElement?.();
+		if (element) {
+			element.stepDown();
+			currentValue = element.valueAsNumber;
 			emitChange();
 		}
 	}
 
 	function handleInput(event: Event) {
 		const target = event.target as HTMLInputElement;
-		const newValue = parseFloat(target.value);
-
-		if (Number.isNaN(newValue)) {
-			return;
-		}
-
-		let clampedValue = Math.min(Math.max(newValue, min), max);
-		if (step !== 0) {
-			clampedValue = Math.round(clampedValue / step) * step;
-		}
-
-		currentValue = clampedValue;
+		// Typing preserves the browser value and validity; only step buttons normalise it.
+		currentValue = target.value === '' ? undefined : target.valueAsNumber;
 		emitChange();
 	}
 
@@ -87,7 +83,7 @@ export const createNumberInputState = (getProps: () => RecipeNumberInput) => {
 		get currentValue() {
 			return currentValue;
 		},
-		set currentValue(value: number) {
+		set currentValue(value: number | undefined) {
 			currentValue = value;
 		},
 		get containerClasses() {

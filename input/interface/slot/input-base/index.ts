@@ -1,4 +1,5 @@
 import type { HTMLInputAttributes } from 'svelte/elements';
+import type { RecipeHtmlInput } from '$stylist/html/interface/recipe/input';
 import type { TokenSize } from '$stylist/design-token/type/alias/size';
 import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 import type { SlotInputCore } from '$stylist/input/interface/slot/input-core';
@@ -11,7 +12,7 @@ export interface SlotInputBase<V extends string = TokenColorTone, S extends stri
 		SlotInputWithLabel,
 		SlotInputWithValidation,
 		SlotInputWithHelper,
-		Omit<HTMLInputAttributes, 'size' | 'class' | 'disabled' | 'id' | 'autocomplete'> {
+		Omit<RecipeHtmlInput, 'size' | 'class' | 'disabled' | 'id' | 'autocomplete'> {
 	type?: HTMLInputAttributes['type'];
 	value?: string;
 	placeholder?: string;

@@ -1,9 +1,9 @@
-import type { HTMLInputAttributes } from 'svelte/elements';
+import type { RecipeHtmlInputTel } from '$stylist/html/interface/recipe/input-tel';
 /**
  * PhoneNumberInput types and interfaces following SOLID principles
  */
 
-export interface SlotPhoneNumberInput extends HTMLInputAttributes {
+export interface SlotPhoneNumberInput extends RecipeHtmlInputTel {
 	value?: string;
 	placeholder?: string;
 	disabled?: boolean;

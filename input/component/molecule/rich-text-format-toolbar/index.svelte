@@ -81,7 +81,7 @@
 			aria-label="Text style"
 			onchange={(event) => formatStyle((event.target as HTMLSelectElement).value)}
 		>
-			{#each textStyles as style}
+			{#each textStyles as style (style.value)}
 				<option value={style.value}>{style.label}</option>
 			{/each}
 		</select>
@@ -91,7 +91,7 @@
 			aria-label="Font family"
 			onchange={(event) => onFormatText?.('fontName', (event.target as HTMLSelectElement).value)}
 		>
-			{#each fontFamilies as family}
+			{#each fontFamilies as family (family)}
 				<option value={family}>{family}</option>
 			{/each}
 		</select>
@@ -101,7 +101,7 @@
 			aria-label="Font size"
 			onchange={(event) => onFormatText?.('fontSize', (event.target as HTMLSelectElement).value)}
 		>
-			{#each fontSizes as size}
+			{#each fontSizes as size (size.value)}
 				<option value={size.value}>{size.label}</option>
 			{/each}
 		</select>
@@ -117,6 +117,7 @@
 			title="Bold"
 		>
 			<BaseIcon
+				size={16}
 				name="bold"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -128,6 +129,7 @@
 			title="Italic"
 		>
 			<BaseIcon
+				size={16}
 				name="italic"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -139,6 +141,7 @@
 			title="Underline"
 		>
 			<BaseIcon
+				size={16}
 				name="underline"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -153,7 +156,7 @@
 			aria-label="Text color"
 			onchange={(event) => onFormatText?.('foreColor', (event.target as HTMLSelectElement).value)}
 		>
-			{#each textColors as color}
+			{#each textColors as color (color.value)}
 				<option value={color.value}>{color.label}</option>
 			{/each}
 		</select>
@@ -163,7 +166,7 @@
 			aria-label="Highlight color"
 			onchange={(event) => onFormatText?.('hiliteColor', (event.target as HTMLSelectElement).value)}
 		>
-			{#each highlightColors as color}
+			{#each highlightColors as color (color.value)}
 				<option value={color.value}>{color.label}</option>
 			{/each}
 		</select>
@@ -179,6 +182,7 @@
 			title="Align left"
 		>
 			<BaseIcon
+				size={16}
 				name="align-left"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -190,6 +194,7 @@
 			title="Align center"
 		>
 			<BaseIcon
+				size={16}
 				name="align-center"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -201,6 +206,7 @@
 			title="Align right"
 		>
 			<BaseIcon
+				size={16}
 				name="align-right"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -217,6 +223,7 @@
 			title="Bullet list"
 		>
 			<BaseIcon
+				size={16}
 				name="list"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -228,6 +235,7 @@
 			title="Numbered list"
 		>
 			<BaseIcon
+				size={16}
 				name="list-ordered"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -239,6 +247,7 @@
 			title="Horizontal rule"
 		>
 			<BaseIcon
+				size={16}
 				name="divider"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -250,6 +259,7 @@
 			title="Link"
 		>
 			<BaseIcon
+				size={16}
 				name="link"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>
@@ -261,6 +271,7 @@
 			title="Image"
 		>
 			<BaseIcon
+				size={16}
 				name="image"
 				class={`${iconClass ? `${iconClass} ` : ''}rich-text-format-toolbar__icon`}
 			/>

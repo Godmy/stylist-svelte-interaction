@@ -3,6 +3,16 @@
 	import { createFieldClassState } from '$stylist/input/function/script/create-field-class-state';
 
 	let props: IInputAddonProps = $props();
+	const rest = $derived.by(() => {
+		const {
+			class: _class,
+			variant: _variant,
+			position: _position,
+			children: _children,
+			...native
+		} = props;
+		return native;
+	});
 	const state = $derived(
 		createFieldClassState(
 			{
@@ -23,8 +33,8 @@
 	);
 </script>
 
-<div class={classes}>
-	{#if props.children}{#if props.children}{@render props.children()}{/if}{/if}
+<div {...rest} class={classes}>
+	{#if props.children}{@render props.children()}{/if}
 </div>
 
 <style>

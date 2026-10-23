@@ -11,6 +11,7 @@ export const createTagInputState = (getProps: () => RecipeTagInput) => {
 	}
 
 	function addTag(raw: string) {
+		if (props.disabled) return;
 		const tag = raw.trim();
 		if (
 			!tag ||
@@ -33,9 +34,10 @@ export const createTagInputState = (getProps: () => RecipeTagInput) => {
 	}
 
 	function handleInput(event: Event) {
+		if (props.disabled) return;
 		inputText = (event.target as HTMLInputElement).value;
 		const delimiter = props.delimiter ?? ',';
-		if (inputText.includes(delimiter)) {
+		if (delimiter && inputText.includes(delimiter)) {
 			const parts = inputText.split(delimiter);
 			for (let i = 0; i < parts.length - 1; i += 1) addTag(parts[i]);
 			inputText = parts[parts.length - 1];
@@ -43,6 +45,7 @@ export const createTagInputState = (getProps: () => RecipeTagInput) => {
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
+		if (props.disabled || event.isComposing) return;
 		const delimiter = props.delimiter ?? ',';
 		if (event.key === 'Enter' || event.key === delimiter) {
 			event.preventDefault();

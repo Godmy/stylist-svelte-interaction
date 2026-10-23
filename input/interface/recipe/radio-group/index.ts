@@ -11,6 +11,7 @@ export interface RecipeRadioGroup extends Omit<
 		label: string;
 		description?: string;
 		disabled?: boolean;
+		defaultChecked?: boolean;
 	}[];
 	label?: string;
 	description?: string;

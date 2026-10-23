@@ -2,7 +2,6 @@
 export { CheckboxGroup } from './checkbox-group/index';
 export { InputDouble } from './input-double/index';
 export { InputEmail } from './input-email/index';
-export { InputField } from './input-field/index';
 export { InputGroup } from './input-group/index';
 export { InputName } from './input-name/index';
 export { InputPassword } from './input-password/index';

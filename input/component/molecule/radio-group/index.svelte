@@ -1,12 +1,31 @@
 <script lang="ts">
 	import createRadioGroupState from '$stylist/input/component/molecule/radio-group/state.svelte';
 	import type { RecipeRadioGroup } from '$stylist/input/interface/recipe/radio-group';
+	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
+	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/index.svelte';
 
-	const props: RecipeRadioGroup = $props();
-	const state = createRadioGroupState(() => props);
+	let { value = $bindable(''), ...props }: RecipeRadioGroup = $props();
+	const state = createRadioGroupState(() => ({ ...props, value }));
+	const nativeProps = $derived(resolveInputAttributes(props, ['options', 'orientation']));
+	let rootElement: HTMLFieldSetElement | undefined;
+	createInputFormReset(
+		() => rootElement,
+		(element) => {
+			value =
+				Array.from(element.querySelectorAll<HTMLInputElement>('input[type="radio"]')).find(
+					(input) => input.defaultChecked
+				)?.value ?? '';
+		},
+		() => props.form
+	);
 </script>
 
-<fieldset class="{state.rootClass} {props.class ?? ''}">
+<fieldset
+	form={props.form}
+	bind:this={rootElement}
+	disabled={props.disabled}
+	class="{state.rootClass} {props.class ?? ''}"
+>
 	{#if props.label}
 		<legend class={state.labelClass}>
 			{props.label}
@@ -22,16 +41,18 @@
 
 	<div class={state.optionsContainerClass}>
 		{#each props.options as option (option.value)}
-			{@const isChecked = props.value === option.value}
+			{@const isChecked = value === option.value}
 			<label class="{state.optionLabelClass} {isChecked ? 'radio-option--checked' : ''}">
 				<span class="radio-option-indicator-wrapper">
 					<span class="radio-indicator-container">
 						<input
+							{...nativeProps}
 							type="radio"
 							class={state.inputClass}
 							name={props.name}
 							value={option.value}
-							bind:group={props.value}
+							bind:group={value}
+							defaultChecked={option.defaultChecked}
 							disabled={props.disabled || option.disabled}
 							required={props.required}
 						/>
@@ -57,9 +78,33 @@
 </fieldset>
 
 <style>
+	.c-radio-group {
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	.c-radio-group__options {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.c-radio-group__options--horizontal {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	.c-radio-group__option {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		border: 1px solid transparent;
+		border-radius: 0.375rem;
+		padding: 0.5rem 0.75rem;
+	}
 	.radio-option--checked {
 		border-color: var(--color-primary-500);
 		background-color: var(--color-primary-50);
+		color: var(--color-primary-900, #1e3a8a);
 	}
 
 	.radio-option-indicator-wrapper {

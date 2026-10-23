@@ -14,17 +14,22 @@ export const createPhoneNumberInputState = (getProps: () => RecipePhoneNumberInp
 	);
 	const helpTextClass = $derived(error ? 'input-field-error-text' : 'input-field-helper-text');
 	const formattedValue = $derived(formatPhoneNumber(props.value ?? ''));
+	let value = $derived(props.value ?? '');
 
 	function handleInput(event: Event) {
 		props.onInput?.(event);
 		const target = event.target as HTMLInputElement;
 		const nextValue = normalizePhoneInputValue(target.value);
-		props.value = nextValue;
+		value = nextValue;
+		target.value = formatPhoneNumber(nextValue);
 		props.onValueInput?.(nextValue, event);
 		props.onValueChange?.(nextValue);
 	}
 
 	return {
+		get value() {
+			return value;
+		},
 		get containerClass() {
 			return containerClass;
 		},

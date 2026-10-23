@@ -14,7 +14,7 @@ export const createTextareaState = (getProps: () => RecipeTextArea) => {
 		resolveAllowedOption(props.size as TokenSize | undefined, TOKEN_SIZE, 'md')
 	);
 	const disabled = $derived(!!props.disabled);
-	const hasError = $derived(!!props.error);
+	const hasError = $derived(!!props.error || (props.errors?.length ?? 0) > 0);
 	const errorId = $derived(props.id ? `${String(props.id)}-error` : undefined);
 	const labelId = $derived(props.id ? `${String(props.id)}-label` : undefined);
 	const currentLength = $derived(String(props.value ?? '').length);

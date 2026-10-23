@@ -13,9 +13,10 @@ export const createRichTextEditorState = (getProps: () => RecipeRichTextEditor) 
 
 	// Update local state when value prop changes
 	$effect(() => {
-		if (props.value !== undefined && content !== props.value) {
-			content = props.value;
-		}
+		const next = props.value;
+		untrack(() => {
+			if (next !== undefined && content !== next) content = next;
+		});
 	});
 
 	function updateContent() {
@@ -38,8 +39,9 @@ export const createRichTextEditorState = (getProps: () => RecipeRichTextEditor) 
 	}
 
 	function formatText(command: string, value: string = '') {
+		if (!editorRef) return;
+		editorRef.focus();
 		document.execCommand(command, false, value);
-		editorRef?.focus();
 		updateContent();
 	}
 
@@ -110,6 +112,9 @@ export const createRichTextEditorState = (getProps: () => RecipeRichTextEditor) 
 		get content() {
 			return content;
 		},
+		set content(value: string) {
+			content = value;
+		},
 		get isFocused() {
 			return isFocused;
 		},
@@ -124,9 +129,6 @@ export const createRichTextEditorState = (getProps: () => RecipeRichTextEditor) 
 		},
 		set editorRef(value: HTMLDivElement | null) {
 			editorRef = value;
-			if (value && props.value && value.innerHTML !== props.value) {
-				value.innerHTML = props.value;
-			}
 		},
 
 		// Actions

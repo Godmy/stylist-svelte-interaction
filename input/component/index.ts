@@ -12,7 +12,6 @@ export {
 	CheckboxGroup,
 	InputDouble,
 	InputEmail,
-	InputField,
 	InputGroup,
 	InputName,
 	InputPassword,

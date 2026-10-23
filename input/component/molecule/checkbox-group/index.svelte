@@ -1,11 +1,12 @@
 <script lang="ts">
-	import SlotCheckbox from '$stylist/control/component/atom/checkbox/index.svelte';
+	import HtmlInputCheckbox from '$stylist/html/component/atom/input-checkbox/index.svelte';
 	import type { RecipeCheckboxGroup } from '$stylist/input/interface/recipe/checkbox-group';
 	import createCheckboxGroupState from '$stylist/input/component/molecule/checkbox-group/state.svelte';
+	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/index.svelte';
 
 	let {
 		options,
-		value = [],
+		value = $bindable<string[]>([]),
 		label,
 		description,
 		class: hostClass = '',
@@ -30,15 +31,33 @@
 		disabled,
 		required,
 		name,
-		onValueInput,
+		onValueInput: (next) => {
+			value = next;
+			onValueInput?.(next);
+		},
 		onValueChange,
 		onInput,
 		onChange,
 		...restProps
 	}));
+	let rootElement: HTMLFieldSetElement | undefined;
+	createInputFormReset(
+		() => rootElement,
+		(element) => {
+			value = Array.from(element.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
+				.filter((input) => input.defaultChecked)
+				.map((input) => input.value);
+		},
+		() => restProps.form
+	);
 </script>
 
-<fieldset class={['c-checkbox-group', hostClass].filter(Boolean).join(' ')} {...restProps}>
+<fieldset
+	bind:this={rootElement}
+	{...restProps}
+	{disabled}
+	class={['c-checkbox-group', hostClass].filter(Boolean).join(' ')}
+>
 	{#if label}
 		<legend class="c-checkbox-group__legend">
 			{label}
@@ -51,17 +70,22 @@
 	{/if}
 
 	<div class="c-checkbox-group__options">
-		{#each options as option}
-			<div class="c-checkbox-group__item">
+		{#each options as option (option.id)}
+			<div class={['c-checkbox-group__item', itemClass]}>
 				<div class="c-checkbox-group__checkbox-wrap">
-					<SlotCheckbox
+					<HtmlInputCheckbox
 						id={option.id}
 						{name}
 						value={option.value}
 						checked={state.selectedValues.includes(option.value)}
+						defaultChecked={option.defaultChecked}
+						required={required &&
+							state.selectedValues.length === 0 &&
+							options.find((candidate) => !candidate.disabled)?.value === option.value}
 						disabled={disabled || option.disabled}
 						onchange={state.handleItemChange(option.value)}
-						label={option.label}
+						form={restProps.form}
+						aria-describedby={option.description ? `${option.id}-description` : undefined}
 					/>
 				</div>
 				<div class="c-checkbox-group__text">
@@ -69,7 +93,7 @@
 						{option.label}
 					</label>
 					{#if option.description}
-						<p class="c-checkbox-group__option-desc">
+						<p id={`${option.id}-description`} class="c-checkbox-group__option-desc">
 							{option.description}
 						</p>
 					{/if}

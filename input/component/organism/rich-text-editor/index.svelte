@@ -3,43 +3,66 @@
 	import RichTextFormatToolbar from '$stylist/input/component/molecule/rich-text-format-toolbar/index.svelte';
 	import type { RecipeRichTextEditor } from '$stylist/input/interface/recipe/rich-text-editor';
 	import createRichTextEditorState from '$stylist/input/component/organism/rich-text-editor/state.svelte';
+	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
+	import HtmlStyle from '$stylist/html/component/atom/style/index.svelte';
+	import { serializeHtmlStylesheet } from '$stylist/html/function/serialize/html-stylesheet';
 
-	let props: RecipeRichTextEditor & HTMLAttributes<HTMLDivElement> = $props();
-	const state = createRichTextEditorState(() => props);
+	let { value = $bindable(''), ...props }: RecipeRichTextEditor & HTMLAttributes<HTMLDivElement> =
+		$props();
+	const nativeProps = $derived(
+		resolveInputAttributes(props, ['skin', 'placeholder', 'aria-label'])
+	);
+	const stylesheet = serializeHtmlStylesheet({ scope: '[data-input-editor-skin]' });
+	const state = createRichTextEditorState(() => ({
+		...props,
+		value,
+		onValueInput: (next) => {
+			value = next;
+			props.onValueInput?.(next);
+		}
+	}));
 </script>
 
-<div class={state.rootClasses} {...props}>
-	{#if props.showToolbar ?? true}
-		<RichTextFormatToolbar
-			class={state.toolbarClasses}
-			buttonClass={state.buttonClasses}
-			dividerClass={state.dividerClasses}
-			iconClass={state.iconButtonClasses}
-			showLinkInput={state.showLinkInput}
-			linkUrl={state.linkUrl}
-			linkInputClass={state.linkInputClasses}
-			linkInputFieldClass={state.linkInputFieldClasses}
-			linkInputButtonClass={state.linkInputButtonClasses}
-			onFormatText={state.formatText}
-			onToggleHeading={state.toggleHeading}
-			onToggleBlockquote={state.toggleBlockquote}
-			onToggleHorizontalRule={state.toggleHorizontalRule}
-			onToggleLinkInput={state.toggleLinkInput}
-			onSetShowLinkInput={state.setShowLinkInput}
-			onSetLinkUrl={state.setLinkUrl}
-			onInsertLink={state.insertLink}
-			onInsertImage={state.insertImage}
-		/>
-	{/if}
+<svelte:head
+	>{#if props.skin}<HtmlStyle text={stylesheet} />{/if}</svelte:head
+>
+
+{#snippet toolbar()}
+	<RichTextFormatToolbar
+		class={state.toolbarClasses}
+		buttonClass={state.buttonClasses}
+		dividerClass={state.dividerClasses}
+		iconClass={state.iconButtonClasses}
+		showLinkInput={state.showLinkInput}
+		linkUrl={state.linkUrl}
+		linkInputClass={state.linkInputClasses}
+		linkInputFieldClass={state.linkInputFieldClasses}
+		linkInputButtonClass={state.linkInputButtonClasses}
+		onFormatText={state.formatText}
+		onToggleHeading={state.toggleHeading}
+		onToggleBlockquote={state.toggleBlockquote}
+		onToggleHorizontalRule={state.toggleHorizontalRule}
+		onToggleLinkInput={state.toggleLinkInput}
+		onSetShowLinkInput={state.setShowLinkInput}
+		onSetLinkUrl={state.setLinkUrl}
+		onInsertLink={state.insertLink}
+		onInsertImage={state.insertImage}
+	/>
+{/snippet}
+
+<div {...nativeProps} class={state.rootClasses}>
+	{#if (props.showToolbar ?? true) && props.toolbarPosition !== 'bottom'}{@render toolbar()}{/if}
 
 	<div
 		contenteditable="true"
 		role="textbox"
 		tabindex="0"
 		aria-multiline="true"
-		aria-label={props.placeholder ?? 'Rich text editor'}
+		aria-label={props['aria-label'] ?? props.placeholder ?? 'Rich text editor'}
+		data-input-editor-skin={props.skin ? '' : undefined}
 		class={state.editorClasses}
 		bind:this={state.editorRef}
+		bind:innerHTML={state.content}
 		oninput={state.handleInput}
 		onblur={() => {
 			state.handleBlur();
@@ -47,6 +70,7 @@
 		}}
 		onfocus={state.handleFocus}
 	></div>
+	{#if (props.showToolbar ?? true) && props.toolbarPosition === 'bottom'}{@render toolbar()}{/if}
 </div>
 
 <style>
@@ -89,7 +113,10 @@
 	.rich-text-editor__editor {
 		padding: 0.75rem 1rem;
 		min-height: 12.5rem;
-		outline: none;
+	}
+	.rich-text-editor__editor:focus-visible {
+		outline: var(--focus-width, 2px) solid var(--color-primary-500, Highlight);
+		outline-offset: -2px;
 	}
 
 	.rich-text-editor__editor--focused {

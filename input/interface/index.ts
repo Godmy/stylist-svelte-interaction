@@ -6,7 +6,6 @@ export type {
 	RecipeInputDouble,
 	RecipeInputEmail,
 	RecipeInputError,
-	RecipeInputField,
 	RecipeInputGroup,
 	RecipeInputHelper,
 	RecipeInputLabel,

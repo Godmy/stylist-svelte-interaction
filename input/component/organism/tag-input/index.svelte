@@ -2,19 +2,30 @@
 	import type { RecipeTagInput } from '$stylist/input/interface/recipe/tag-input';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { createTagInputState } from '$stylist/input/component/organism/tag-input/state.svelte';
+	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
 	const X = 'x';
 
-	let props: RecipeTagInput = $props();
-	const state = createTagInputState(() => props);
+	let { tags = $bindable<string[]>([]), ...props }: RecipeTagInput = $props();
+	const nativeProps = $derived(resolveInputAttributes(props, ['disabled', 'placeholder', 'name']));
+	const state = createTagInputState(() => ({
+		...props,
+		tags,
+		onInput: (next) => {
+			tags = next;
+			props.onInput?.(next);
+		}
+	}));
 </script>
 
-<div class={`c-tag-input ${state.className}`} {...props}>
-	{#each state.currentTags as tag, index}
+<div {...nativeProps} class={`c-tag-input ${state.className}`}>
+	{#each state.currentTags as tag, index (index)}
 		<span class={`c-tag-input__tag ${state.tagClass}`}>
 			{tag}
 			<button
 				type="button"
 				class={`c-tag-input__remove ${state.removeButtonClass}`}
+				disabled={state.disabled}
+				aria-label={`Remove ${tag}`}
 				onclick={() => state.removeTag(index)}
 			>
 				<BaseIcon name={X} size={16} />
@@ -71,7 +82,10 @@
 		min-width: 11.25rem;
 		padding: 0.5rem 0.75rem;
 		border: none;
-		outline: none;
 		background: transparent;
+	}
+	.c-tag-input:focus-within {
+		outline: var(--focus-width, 2px) solid var(--color-primary-500, Highlight);
+		outline-offset: var(--focus-offset, 2px);
 	}
 </style>

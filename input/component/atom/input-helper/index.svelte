@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '$stylist/input/const/style/field/index.css';
 	import type { RecipeInputHelper as IInputHelperProps } from '$stylist/input/interface/recipe/input-helper';
 	import { createFieldClassState } from '$stylist/input/function/script/create-field-class-state';
 
@@ -14,13 +15,13 @@
 		)
 	);
 	const restProps = $derived.by(() => {
-		const { class: _class, text: _text, variant: _variant, ...rest } = props;
+		const { class: _class, children: _children, text: _text, variant: _variant, ...rest } = props;
 		return rest;
 	});
 </script>
 
 <p class={state.classes} {...restProps}>
-	{props.text ?? ''}
+	{#if props.children}{@render props.children()}{:else}{props.text ?? ''}{/if}
 </p>
 
 <style>

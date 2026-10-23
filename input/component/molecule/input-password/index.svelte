@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '$stylist/input/const/style/field/index.css';
 	import { onMount } from 'svelte';
+	import HtmlInput from '$stylist/html/component/atom/input/index.svelte';
+	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import InputLabel from '$stylist/input/component/atom/input-label/index.svelte';
 	import type { RecipeInputPassword as IInputPasswordProps } from '$stylist/input/interface/recipe/input-password';
@@ -9,10 +11,20 @@
 	const Eye = 'eye';
 	const EyeOff = 'eye-off';
 
-	let props: IInputPasswordProps = $props();
-	const state = createInputPasswordState(() => props);
+	let {
+		value = $bindable(''),
+		showPassword = $bindable(false),
+		element: inputElement = $bindable<HTMLInputElement | null>(null),
+		...props
+	}: IInputPasswordProps = $props();
+	const generatedId = $props.id();
+	const controlId = $derived(props.id ?? generatedId);
+	const nativeProps = $derived(resolveInputAttributes(props));
+	const state = createInputPasswordState(() => ({ ...props, value, showPassword, id: controlId }));
+	const showErrorText = $derived(
+		state.hasError && (props.showErrors ?? true) && (props.errors?.length ?? 0) > 0
+	);
 
-	let inputElement: HTMLInputElement | null = null;
 	onMount(() => {
 		if (props.autofocus) inputElement?.focus();
 	});
@@ -21,7 +33,7 @@
 <div class={state.containerClasses}>
 	<InputLabel
 		label={props.label}
-		id={props.id}
+		id={controlId}
 		labelId={state.labelId}
 		size={props.size}
 		disabled={props.disabled}
@@ -30,16 +42,17 @@
 	/>
 
 	<div class="input-password__wrapper">
-		<input
-			id={props.id}
+		<HtmlInput
+			{...nativeProps}
+			id={controlId}
 			type={state.currentType}
 			name={props.name}
-			bind:value={props.value}
+			bind:value
 			placeholder={props.placeholder ?? 'Password'}
 			required={props.required ?? false}
 			readonly={props.readonly ?? false}
 			disabled={props.disabled ?? false}
-			bind:this={inputElement}
+			bind:element={inputElement}
 			autocomplete={props.autocomplete ?? 'current-password'}
 			pattern={props.pattern}
 			minlength={props.minlength ?? 8}
@@ -49,12 +62,13 @@
 			data-size={state.inputSize}
 			data-disabled={(props.disabled ?? false) || undefined}
 			data-error={state.hasError || undefined}
-			aria-describedby={state.hasError && (props.showErrors ?? true)
-				? state.errorId
-				: props.helperText
-					? undefined
-					: undefined}
-			aria-invalid={state.hasError ? 'true' : 'false'}
+			aria-describedby={[
+				props['aria-describedby'],
+				showErrorText ? state.errorId : state.showHelper ? `${controlId}-helper` : undefined
+			]
+				.filter(Boolean)
+				.join(' ') || undefined}
+			aria-invalid={state.hasError ? 'true' : props['aria-invalid']}
 			aria-required={props.required ? 'true' : 'false'}
 		/>
 
@@ -62,27 +76,27 @@
 			<button
 				type="button"
 				class={state.passwordToggleClasses}
-				onclick={() => (props.showPassword = !props.showPassword)}
-				tabindex="-1"
-				aria-label={props.showPassword ? 'Hide password' : 'Show password'}
+				onclick={() => (showPassword = !showPassword)}
+				aria-label={showPassword ? 'Hide password' : 'Show password'}
+				aria-pressed={showPassword}
 			>
-				{#if props.showPassword}
-					<BaseIcon name={EyeOff} class="_c1" />
+				{#if showPassword}
+					<BaseIcon name={EyeOff} size={20} class="_c1" />
 				{:else}
-					<BaseIcon name={Eye} class="_c1" />
+					<BaseIcon name={Eye} size={20} class="_c1" />
 				{/if}
 			</button>
 		{/if}
 	</div>
 
-	{#if state.hasError && (props.showErrors ?? true) && (props.errors?.length ?? 0) > 0}
+	{#if showErrorText}
 		<p id={state.errorId} class={state.errorTextClasses} role="alert">
-			{#each props.errors ?? [] as error_msg, i}
+			{#each props.errors ?? [] as error_msg, i (i)}
 				{error_msg}{i < (props.errors?.length ?? 0) - 1 ? ' ' : ''}
 			{/each}
 		</p>
 	{:else if state.showHelper}
-		<p class={state.helperTextClasses}>{props.helperText}</p>
+		<p id={`${controlId}-helper`} class={state.helperTextClasses}>{props.helperText}</p>
 	{/if}
 
 	{#if props.showPasswordStrength && state.passwordStrength}
@@ -106,8 +120,12 @@
 		display: flex;
 		align-items: stretch;
 	}
+	.input-password__wrapper :global(.input-field__control) {
+		padding-inline-end: 2.5rem;
+	}
 
 	.input-password-toggle {
+		color: inherit;
 		position: absolute;
 		inset-block: 0;
 		inset-inline-end: 0;

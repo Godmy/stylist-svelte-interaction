@@ -5,7 +5,6 @@ export type { RecipeInputAddon } from './input-addon';
 export type { RecipeInputDouble } from './input-double';
 export type { RecipeInputEmail } from './input-email';
 export type { RecipeInputError } from './input-error';
-export type { RecipeInputField } from './input-field';
 export type { RecipeInputGroup } from './input-group';
 export type { RecipeInputHelper } from './input-helper';
 export type { RecipeInputLabel } from './input-label';

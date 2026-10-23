@@ -1,6 +1,8 @@
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 export interface RecipeRichTextEditor extends ComputeIntersectAll<[]> {
 	value?: string;
+	/** Explicitly style editable HTML with the shared, locally scoped HTML skin. */
+	skin?: boolean;
 	placeholder?: string;
 	onValueInput?: (content: string) => void;
 	onValueChange?: (content: string) => void;
