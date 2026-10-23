@@ -12,6 +12,16 @@ export interface RecipeNavigationDrawer extends Omit<RecipeHtmlAside, 'children'
 	onSelect?: (id: string) => void;
 	/** Escape, scrim click; without it `open` is reset (bind:open). */
 	onClose?: () => void;
+	/**
+	 * Labelled sections become an accordion with one section open — the one holding the
+	 * active destination at first — so a long drawer fits without scrolling.
+	 */
+	accordion?: boolean;
+	/**
+	 * Label of the accordion section to open, e.g. the nested graph of the current
+	 * fragment when that fragment is not a drawer item itself (a detail screen).
+	 */
+	openSection?: string;
 	/** Accessible name of the drawer navigation. */
 	label?: string;
 	header?: Snippet;

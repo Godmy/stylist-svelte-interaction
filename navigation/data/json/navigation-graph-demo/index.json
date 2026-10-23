@@ -6,6 +6,7 @@
 		{
 			"id": "discover",
 			"label": "Discover",
+			"href": "/",
 			"icon": "landing",
 			"description": "Landing with hero and highlights",
 			"topLevel": true
@@ -20,16 +21,19 @@
 				{
 					"id": "catalog-list",
 					"label": "Tours",
+					"href": "/tours",
 					"description": "Recycler list of tours"
 				},
 				{
 					"id": "catalog-detail",
 					"label": "Tour details",
+					"href": "/tours/:tour",
 					"description": "Details of the selected tour"
 				},
 				{
 					"id": "catalog-gallery",
 					"label": "Gallery",
+					"href": "/tours/:tour/photos",
 					"description": "Pager of tour photos",
 					"fab": false
 				}
@@ -38,6 +42,7 @@
 		{
 			"id": "bookings",
 			"label": "Bookings",
+			"href": "/bookings",
 			"icon": "calendar",
 			"badge": 2,
 			"description": "Paged list of bookings",
@@ -51,6 +56,7 @@
 				{
 					"id": "profile",
 					"label": "Profile",
+					"href": "/account",
 					"icon": "user",
 					"topLevel": true,
 					"fab": false
@@ -58,6 +64,7 @@
 				{
 					"id": "settings",
 					"label": "Settings",
+					"href": "/account/settings",
 					"icon": "settings",
 					"topLevel": true,
 					"fab": false

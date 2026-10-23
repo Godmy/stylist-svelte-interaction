@@ -65,6 +65,38 @@ describe('NavigationComposite', () => {
 		expect(ids(graph.initial('catalog-detail'))).toEqual(['discover', 'catalog-detail']);
 	});
 
+	it('syncs the back stack to a destination opened from outside', () => {
+		const start = graph.initial();
+		// Deep link: a synthetic stack through the top-level source of the action.
+		const deep = graph.sync(start, 'catalog-detail', { tour: 'Yala' });
+		expect(ids(deep)).toEqual(['discover', 'catalog-list', 'catalog-detail']);
+		expect(deep?.[0]).toBe(start[0]);
+		expect(deep?.at(-1)?.args).toEqual({ tour: 'Yala' });
+		// Same destination and args (the router echoing an own navigation): no change.
+		expect(graph.sync(deep!, 'catalog-detail', { tour: 'Yala' })).toBeNull();
+		// Same destination, new args: the top entry keeps its key and takes the args.
+		const other = graph.sync(deep!, 'catalog-detail', { tour: 'Galle' });
+		expect(ids(other)).toEqual(['discover', 'catalog-list', 'catalog-detail']);
+		expect(other?.at(-1)?.key).toBe(deep?.at(-1)?.key);
+		expect(other?.at(-1)?.args).toEqual({ tour: 'Galle' });
+		// Action target of the top is pushed; the browser Back pops to the entry below.
+		const gallery = graph.sync(other!, 'catalog-gallery', { tour: 'Galle' });
+		expect(ids(gallery)).toEqual(['discover', 'catalog-list', 'catalog-detail', 'catalog-gallery']);
+		expect(graph.sync(gallery!, 'catalog-detail', { tour: 'Galle' })).toEqual(other);
+		// Top-level destination resets the stack like a drawer selection.
+		expect(ids(graph.sync(gallery!, 'bookings'))).toEqual(['discover', 'bookings']);
+		expect(ids(graph.sync(gallery!, 'discover'))).toEqual(['discover']);
+		// Args compare as strings, in any order.
+		expect(graph.sync(deep!, 'catalog-detail', { tour: 'Yala', extra: undefined })).toBeNull();
+		expect(graph.sync(start, 'missing')).toBeNull();
+	});
+
+	it('starts a deep link at the destination itself when it is the start', () => {
+		const stack = graph.sync(graph.initial(), 'discover', { ref: 'mail' });
+		expect(ids(stack)).toEqual(['discover']);
+		expect(stack?.[0].args).toEqual({ ref: 'mail' });
+	});
+
 	it('rejects duplicate ids', () => {
 		expect(() =>
 			NavigationComposite.fromGraph({

@@ -185,6 +185,53 @@ export class NavigationComposite {
 		return [base, top?.id === to.id ? top : this.entry(to.id)];
 	}
 
+	/**
+	 * Back stack for a destination opened from outside (a router URL, a reload, the
+	 * browser Back button); null when unknown or already on top with the same args.
+	 * An entry already in the stack is popped to, a top-level destination is selected,
+	 * an action target of the top is pushed; any other deep link gets a synthetic stack:
+	 * the start, the top-level source of an action leading to it, then the destination.
+	 */
+	sync(
+		stack: readonly ContractNavigationEntry[],
+		id: string,
+		args?: Record<string, unknown>
+	): ContractNavigationEntry[] | null {
+		const to = this.resolve(id);
+		if (!to) return null;
+		const sameArgs = (entry: ContractNavigationEntry) => {
+			const a = entry.args ?? {};
+			const b = args ?? {};
+			const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+			return [...keys].every((key) => String(a[key] ?? '') === String(b[key] ?? ''));
+		};
+		const index = stack.findLastIndex((entry) => entry.id === to.id && sameArgs(entry));
+		if (index === stack.length - 1) return null;
+		if (index >= 0) return stack.slice(0, index + 1);
+
+		const top = stack.at(-1);
+		if (top?.id === to.id) return [...stack.slice(0, -1), { ...top, args }];
+		if (this.isTopLevel(to.id)) {
+			const next = this.select(stack, to.id);
+			return next && args ? [...next.slice(0, -1), this.entry(to.id, args)] : next;
+		}
+		if (top && this.actionsFrom(top.id).some((action) => this.resolve(action.to) === to)) {
+			return [...stack, this.entry(to.id, args)];
+		}
+
+		const start = this.root.startLeaf();
+		const base = stack[0]?.id === start.id ? stack[0] : this.entry(start.id);
+		const source = this.transitions().find(
+			(item) => this.resolve(item.to.id) === to && this.isTopLevel(item.from.id)
+		)?.from;
+		const sourceLeaf = source?.startLeaf();
+		const middle =
+			sourceLeaf && sourceLeaf !== start && sourceLeaf !== to
+				? [stack.find((entry) => entry.id === sourceLeaf.id) ?? this.entry(sourceLeaf.id)]
+				: [];
+		return to === start ? [this.entry(to.id, args)] : [base, ...middle, this.entry(to.id, args)];
+	}
+
 	back(stack: readonly ContractNavigationEntry[]): ContractNavigationEntry[] | null {
 		return stack.length > 1 ? stack.slice(0, -1) : null;
 	}

@@ -10,13 +10,21 @@ export function createNavigationState(
 		graph: ContractNavigationGraph;
 		/** Deep-linked destination id; the back stack starts as [start, initial]. */
 		initial?: string;
+		/** Controlled destination id; the stack is synced to it without `onNavigate`. */
+		current?: string;
+		currentArgs?: Record<string, unknown>;
 		onNavigate?: (entry: ContractNavigationEntry) => void;
 	}
 ): ContractNavigator & { readonly composite: NavigationComposite } {
 	const options = $derived(getOptions());
 	const composite = $derived(NavigationComposite.fromGraph(options.graph));
 	let stack = $state.raw<ContractNavigationEntry[]>(
-		untrack(() => composite.initial(options.initial))
+		untrack(() => {
+			const { current, currentArgs, initial } = options;
+			if (!current) return composite.initial(initial);
+			const start = composite.initial();
+			return composite.sync(start, current, currentArgs) ?? start;
+		})
 	);
 	let direction = $state<ContractNavigator['direction']>('replace');
 
@@ -28,6 +36,23 @@ export function createNavigationState(
 	const destination = $derived(composite.find(entry.id)?.destination ?? options.graph);
 	const actions = $derived(composite.actionsFrom(entry.id));
 	const isTopLevel = $derived(composite.isTopLevel(entry.id));
+
+	// Only the controlled id and its args trigger a sync: other prop changes must not pull
+	// the stack back while the router is still loading a page the user navigated to.
+	const current = $derived(options.current);
+	const currentArgsKey = $derived(JSON.stringify(options.currentArgs ?? {}));
+	$effect.pre(() => {
+		const id = current;
+		void currentArgsKey;
+		if (!id) return;
+		untrack(() => {
+			const next = composite.sync(validStack, id, options.currentArgs);
+			if (!next) return;
+			direction =
+				next.length < validStack.length ? 'back' : composite.isTopLevel(id) ? 'replace' : 'forward';
+			stack = next;
+		});
+	});
 
 	function commit(next: ContractNavigationEntry[] | null, nextDirection: typeof direction) {
 		const unchanged =

@@ -12,10 +12,30 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	graph: ContractNavigationGraph;
 	/** Deep-linked destination id. */
 	initial?: string;
+	/**
+	 * Controlled current destination id, e.g. from the router. When it changes from
+	 * outside (a link, a reload, the browser Back button) the back stack is synced to it
+	 * without calling `onNavigate`; takes precedence over `initial`.
+	 */
+	current?: string;
+	/** Args of the `current` destination, e.g. route params. */
+	currentArgs?: Record<string, unknown>;
 	/** App name in the drawer header. */
 	heading?: string;
 	/** Media query of the permanent drawer; `(min-width: 1024px)` by default. */
 	permanentDrawer?: string;
+	/**
+	 * `false` renders no navigation drawer: top-level fragments show no navigation icon,
+	 * inner ones the Up button. For an activity nested in a sheet or a dialog.
+	 */
+	drawer?: boolean;
+	/**
+	 * `false` switches fragments without the slide-in, e.g. for a full-screen workspace
+	 * where moving content distracts; reduced motion disables it as well.
+	 */
+	animated?: boolean;
+	/** Labelled drawer sections (nested graphs) as an accordion, one open at a time. */
+	drawerAccordion?: boolean;
 	/** Current fragment content; switch on `navigator.destination.id`. */
 	fragment: Snippet<[ContractNavigator]>;
 	/** Action buttons on the right of the top app bar. */

@@ -9,6 +9,8 @@ export function createActivityState(getProps: () => RecipeActivity) {
 	const navigator = createNavigationState(() => ({
 		graph: props.graph,
 		initial: props.initial,
+		current: props.current,
+		currentArgs: props.currentArgs,
 		onNavigate: props.onNavigate
 	}));
 	const permanentQuery = $derived(
@@ -17,10 +19,11 @@ export function createActivityState(getProps: () => RecipeActivity) {
 	const reducedMotion = new MediaQuery('(prefers-reduced-motion: reduce)', false);
 	let drawerOpen = $state(false);
 
-	const permanent = $derived(permanentQuery.current);
+	const hasDrawer = $derived(props.drawer !== false);
+	const permanent = $derived(hasDrawer && permanentQuery.current);
 	const modalOpen = $derived(!permanent && drawerOpen);
 	const navigationMode = $derived<'menu' | 'up' | 'none'>(
-		!navigator.isTopLevel && navigator.canGoBack ? 'up' : permanent ? 'none' : 'menu'
+		!navigator.isTopLevel && navigator.canGoBack ? 'up' : permanent || !hasDrawer ? 'none' : 'menu'
 	);
 	const showFab = $derived(!!props.fab && navigator.destination.fab !== false);
 
@@ -36,18 +39,29 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		return result;
 	});
 
+	/** Drawer section (nested graph label) of the current fragment, detail screens included. */
+	const activeSection = $derived.by(() => {
+		const parent = navigator.composite.find(navigator.entry.id)?.parent;
+		return parent && parent.parent ? parent.label : undefined;
+	});
+
 	const transition = $derived({
 		x: navigator.direction === 'forward' ? 24 : navigator.direction === 'back' ? -24 : 0,
 		y: navigator.direction === 'replace' ? 8 : 0,
-		duration: reducedMotion.current ? 0 : 220
+		duration: reducedMotion.current || props.animated === false ? 0 : 220
 	});
 
 	const restProps = $derived.by(() => {
 		const {
 			graph: _graph,
 			initial: _initial,
+			current: _current,
+			currentArgs: _currentArgs,
 			heading: _heading,
 			permanentDrawer: _permanentDrawer,
+			drawer: _drawer,
+			drawerAccordion: _drawerAccordion,
+			animated: _animated,
 			fragment: _fragment,
 			actions: _actions,
 			fab: _fab,
@@ -78,6 +92,9 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		get navigator() {
 			return navigator;
 		},
+		get hasDrawer() {
+			return hasDrawer;
+		},
 		get permanent() {
 			return permanent;
 		},
@@ -95,6 +112,9 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		},
 		get sections() {
 			return sections;
+		},
+		get activeSection() {
+			return activeSection;
 		},
 		get transition() {
 			return transition;

@@ -25,11 +25,14 @@ export default {
 			],
 			description: 'Deep-linked destination'
 		},
-		permanentDrawer: { type: 'text', description: 'Media query of the permanent drawer' }
+		permanentDrawer: { type: 'text', description: 'Media query of the permanent drawer' },
+		drawer: { type: 'boolean', description: 'Renders the navigation drawer' }
 	},
 	presets: {
 		'Deep link': { initial: 'catalog-detail' },
-		'Always modal drawer': { permanentDrawer: 'not all' }
+		'Always modal drawer': { permanentDrawer: 'not all' },
+		'Without drawer': { drawer: false, initial: 'catalog-detail' },
+		'Activity + URL': { current: 'catalog-detail', currentArgs: { tour: 'Yala safari' } }
 	},
 	layout: 'fullscreen'
 } satisfies ContractStory<RecipeActivity>;

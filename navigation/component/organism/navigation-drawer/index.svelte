@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Accordion from '$stylist/dialog/component/molecule/accordion/index.svelte';
+	import AccordionLayout from '$stylist/dialog/component/atom/accordion-layout/index.svelte';
 	import HtmlAside from '$stylist/html/component/organism/aside/index.svelte';
 	import HtmlDiv from '$stylist/html/component/organism/div/index.svelte';
 	import HtmlH2 from '$stylist/html/component/atom/h2/index.svelte';
@@ -16,6 +18,8 @@
 		isActive,
 		onSelect,
 		onClose,
+		accordion = false,
+		openSection,
 		label = 'Navigation',
 		header,
 		footer,
@@ -24,6 +28,16 @@
 	}: RecipeNavigationDrawer = $props();
 
 	const visible = $derived(mode === 'permanent' || open);
+	const sectionKey = (section: (typeof sections)[number], index: number) =>
+		section.label ?? `section-${index}`;
+	// The open accordion section follows `openSection`, else the active destination.
+	const activeSection = $derived.by(() => {
+		if (openSection) return openSection;
+		const index = sections.findIndex((section) =>
+			section.destinations.some((destination) => isActive?.(destination.id))
+		);
+		return index === -1 ? undefined : sectionKey(sections[index], index);
+	});
 
 	function close() {
 		if (onClose) onClose();
@@ -41,6 +55,20 @@
 		return () => previous?.focus?.();
 	});
 </script>
+
+{#snippet list(section: (typeof sections)[number])}
+	<HtmlUl class="c-navigation-drawer__list">
+		{#each section.destinations as destination (destination.id)}
+			<HtmlLi>
+				<NavigationItem
+					{destination}
+					active={isActive?.(destination.id) ?? false}
+					onSelect={(id) => onSelect?.(id)}
+				/>
+			</HtmlLi>
+		{/each}
+	</HtmlUl>
+{/snippet}
 
 <svelte:window
 	onkeydown={(event) => mode === 'modal' && open && event.key === 'Escape' && close()}
@@ -65,22 +93,30 @@
 		<HtmlDiv class="c-navigation-drawer__header">{@render header()}</HtmlDiv>
 	{/if}
 	<HtmlNav class="c-navigation-drawer__nav" aria-label={label}>
-		{#each sections as section, index (section.label ?? index)}
-			{#if section.label}
-				<HtmlH2 class="c-navigation-drawer__section">{section.label}</HtmlH2>
-			{/if}
-			<HtmlUl class="c-navigation-drawer__list">
-				{#each section.destinations as destination (destination.id)}
-					<HtmlLi>
-						<NavigationItem
-							{destination}
-							active={isActive?.(destination.id) ?? false}
-							onSelect={(id) => onSelect?.(id)}
-						/>
-					</HtmlLi>
+		{#if accordion}
+			<Accordion class="c-navigation-drawer__accordion" defaultValue={activeSection}>
+				{#each sections as section, index (sectionKey(section, index))}
+					{#if section.label}
+						<AccordionLayout
+							class="c-navigation-drawer__accordion-section"
+							value={sectionKey(section, index)}
+							title={section.label}
+						>
+							{@render list(section)}
+						</AccordionLayout>
+					{:else}
+						{@render list(section)}
+					{/if}
 				{/each}
-			</HtmlUl>
-		{/each}
+			</Accordion>
+		{:else}
+			{#each sections as section, index (sectionKey(section, index))}
+				{#if section.label}
+					<HtmlH2 class="c-navigation-drawer__section">{section.label}</HtmlH2>
+				{/if}
+				{@render list(section)}
+			{/each}
+		{/if}
 	</HtmlNav>
 	{#if footer}
 		<HtmlDiv class="c-navigation-drawer__footer">{@render footer()}</HtmlDiv>
@@ -142,6 +178,30 @@
 			color: var(--color-text-secondary);
 			font-size: var(--font-relative-small, 0.875em);
 			font-weight: var(--typography-font-weight-medium, 500);
+		}
+		/* Drawer-scoped accordion, edge to edge of the drawer: no frame of its own, square
+		   full-width section headers; the items keep the drawer's inset (beats the
+		   accordion's scoped rules). */
+		.c-navigation-drawer .c-navigation-drawer__nav .c-navigation-drawer__accordion {
+			margin-inline: calc(var(--layout-spacing-1rem, 1rem) * -0.75);
+			border: 0;
+			border-radius: 0;
+		}
+		.c-navigation-drawer .c-navigation-drawer__accordion-section {
+			border-bottom: 0;
+		}
+		.c-navigation-drawer .c-navigation-drawer__accordion-section .c-accordion-layout__header {
+			padding: calc(var(--layout-spacing-1rem, 1rem) * 0.75)
+				calc(var(--layout-spacing-1rem, 1rem) * 1.75);
+			border-radius: 0;
+			background: transparent;
+			font-weight: var(--typography-font-weight-semibold, 600);
+		}
+		.c-navigation-drawer .c-navigation-drawer__accordion-section .c-accordion-layout__content {
+			padding: 2px calc(var(--layout-spacing-1rem, 1rem) * 0.75)
+				calc(var(--layout-spacing-1rem, 1rem) / 2);
+			border-top: 0;
+			background: transparent;
 		}
 		.c-navigation-drawer__list {
 			display: grid;

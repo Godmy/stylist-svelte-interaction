@@ -1,14 +1,51 @@
 <script lang="ts">
 	// Render of index.story.ts: fragments, top bar actions and the FAB are snippet props.
+	import { untrack } from 'svelte';
 	import Activity from '$stylist/navigation/component/page/activity/index.svelte';
 	import FloatingActionButton from '$stylist/navigation/component/atom/floating-action-button/index.svelte';
 	import Fragment from '$stylist/navigation/component/template/fragment/index.svelte';
 	import NavigationGraph from '$stylist/navigation/component/page/navigation-graph/index.svelte';
 	import Pagination from '$stylist/pager/component/organism/pagination/index.svelte';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
+	import { NavigationComposite } from '$stylist/navigation/class/composite/navigation';
+	import { resolveNavigationDestination } from '$stylist/navigation/function/resolve/navigation-destination';
+	import { resolveNavigationHref } from '$stylist/navigation/function/resolve/navigation-href';
+	import type { ContractNavigationEntry } from '$stylist/navigation/interface/contract/navigation-entry';
 	import type { RecipeActivity } from '$stylist/navigation/interface/recipe/activity';
 
 	let args: RecipeActivity = $props();
+
+	// «Activity + URL» preset: `current` turns on a simulated browser. The address bar,
+	// its Back/Forward and the links drive `current`; `onNavigate` pushes the href.
+	const composite = $derived(NavigationComposite.fromGraph(args.graph));
+	const hrefOf = (id: string, entryArgs?: Record<string, unknown>) => {
+		const destination = composite.find(id)?.destination;
+		return destination ? resolveNavigationHref(destination, entryArgs) : undefined;
+	};
+	const initialHref = untrack(() =>
+		args.current ? (hrefOf(args.current, args.currentArgs) ?? '/') : ''
+	);
+	let history = $state<string[]>(initialHref ? [initialHref] : []);
+	let position = $state(0);
+	let address = $state(initialHref);
+	const location = $derived(history[position]);
+	const match = $derived(location ? resolveNavigationDestination(args.graph, location) : undefined);
+
+	function open(href: string) {
+		if (href === location) return;
+		history = [...history.slice(0, position + 1), href];
+		position = history.length - 1;
+		address = href;
+	}
+	function go(step: number) {
+		position = Math.min(Math.max(position + step, 0), history.length - 1);
+		address = history[position];
+	}
+	function navigated(entry: ContractNavigationEntry) {
+		const href = hrefOf(entry.id, entry.args);
+		if (args.current && href) open(href);
+		args.onNavigate?.(entry);
+	}
 	const tours = [
 		'Sigiriya sunrise',
 		'Tea hills of Ella',
@@ -20,7 +57,41 @@
 	let bookingPage = $state(1);
 </script>
 
-<Activity {...args}>
+{#if args.current}
+	<form
+		class="_browser"
+		onsubmit={(event) => {
+			event.preventDefault();
+			open(address.trim() || '/');
+		}}
+	>
+		<button type="button" aria-label="Back" disabled={position === 0} onclick={() => go(-1)}>
+			‹
+		</button>
+		<button
+			type="button"
+			aria-label="Forward"
+			disabled={position >= history.length - 1}
+			onclick={() => go(1)}
+		>
+			›
+		</button>
+		<input aria-label="Address" bind:value={address} spellcheck="false" />
+		<button type="submit">Go</button>
+		<button type="button" onclick={() => open('/tours/Galle%20fort%20walk/photos')}>
+			External link
+		</button>
+		<span class="_match">{match ? match.destination.id : 'no destination'}</span>
+	</form>
+{/if}
+
+<Activity
+	{...args}
+	current={args.current ? (match?.destination.id ?? args.current) : undefined}
+	currentArgs={args.current ? match?.args : args.currentArgs}
+	onNavigate={navigated}
+	style={args.current ? 'height: calc(100dvh - 3rem)' : undefined}
+>
 	{#snippet fragment(navigator)}
 		{@const tour = String(navigator.entry.args?.tour ?? tours[0])}
 		{#if navigator.destination.id === 'discover'}
@@ -126,6 +197,27 @@
 </Activity>
 
 <style>
+	._browser {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		height: 3rem;
+		padding: 0 0.5rem;
+		box-sizing: border-box;
+		background: var(--color-background-secondary);
+		border-bottom: 1px solid var(--color-border-primary);
+	}
+	._browser input {
+		flex: 1;
+		min-width: 0;
+		padding: 0.35rem 0.6rem;
+		font: inherit;
+	}
+	._match {
+		font-size: 0.8rem;
+		opacity: 0.7;
+		white-space: nowrap;
+	}
 	._hero {
 		display: grid;
 		gap: 1rem;

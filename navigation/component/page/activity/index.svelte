@@ -13,6 +13,13 @@
 	const activity = createActivityState(() => props);
 	const navigator = $derived(activity.navigator);
 	let scrolled = $state(false);
+	let content = $state<HTMLElement | null>(null);
+	// The content scrolls inside the activity, not the window: a new fragment starts at
+	// the top instead of inheriting the previous one's scroll position.
+	$effect(() => {
+		void navigator.entry.key;
+		if (content && navigator.direction !== 'back') content.scrollTop = 0;
+	});
 	// Template snippets below are cast to `Snippet`: as props they fail svelte-check
 	// with a duplicated SnippetReturn type.
 </script>
@@ -32,19 +39,24 @@
 <HtmlDiv
 	{...activity.restProps}
 	class={['c-activity', props.class]}
-	data-drawer={activity.permanent ? 'permanent' : 'modal'}
+	data-drawer={activity.hasDrawer ? (activity.permanent ? 'permanent' : 'modal') : 'none'}
 >
-	<NavigationDrawer
-		class="c-activity__drawer"
-		sections={activity.sections}
-		mode={activity.permanent ? 'permanent' : 'modal'}
-		open={activity.drawerOpen}
-		isActive={(id) => navigator.isActive(id)}
-		onSelect={activity.select}
-		onClose={activity.closeDrawer}
-		header={(props.drawerHeader || props.heading ? drawerHeader : undefined) as Snippet | undefined}
-		footer={props.drawerFooter}
-	/>
+	{#if activity.hasDrawer}
+		<NavigationDrawer
+			class="c-activity__drawer"
+			sections={activity.sections}
+			mode={activity.permanent ? 'permanent' : 'modal'}
+			open={activity.drawerOpen}
+			isActive={(id) => navigator.isActive(id)}
+			onSelect={activity.select}
+			onClose={activity.closeDrawer}
+			accordion={props.drawerAccordion}
+			openSection={activity.activeSection}
+			header={(props.drawerHeader || props.heading ? drawerHeader : undefined) as
+				Snippet | undefined}
+			footer={props.drawerFooter}
+		/>
+	{/if}
 	<HtmlDiv class="c-activity__body" inert={activity.modalOpen}>
 		<TopAppBar
 			class="c-activity__bar"
@@ -56,6 +68,7 @@
 			actions={(props.actions ? actions : undefined) as Snippet | undefined}
 		/>
 		<HtmlMain
+			bind:element={content}
 			class="c-activity__content"
 			onscroll={(event) => (scrolled = event.currentTarget.scrollTop > 0)}
 		>

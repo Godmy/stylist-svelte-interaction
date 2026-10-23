@@ -9,6 +9,11 @@ export interface ContractNavigationDestination {
 	label: string;
 	/** Svg icon name shown in the drawer item. */
 	icon?: string;
+	/**
+	 * Address of the screen for URL-bound activities; `:name` segments take the entry
+	 * args (`/admin/orders/:number`). See `resolveNavigationHref`.
+	 */
+	href?: string;
 	/** Short secondary line for the drawer and the graph overview. */
 	description?: string;
 	/** Counter or status chip of the drawer item. */
