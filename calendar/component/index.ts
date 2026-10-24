@@ -8,6 +8,7 @@ export {
 	DatePicker,
 	DateTimePicker,
 	FormDatePicker,
+	MonthRangePicker,
 	TimePicker,
 	Timeline
 } from './molecule';
@@ -20,5 +21,6 @@ export {
 	DateTimeRangePicker,
 	EventCalendar,
 	MiniCalendar,
-	TimeGrid
+	TimeGrid,
+	Timetable
 } from './organism';

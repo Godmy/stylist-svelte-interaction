@@ -11,6 +11,7 @@ export {
 	AtomicPrinciplesShowcase,
 	AtomicTierCard,
 	BeachWater,
+	CarouselZoom,
 	ComponentLibraryStats,
 	Css3dCube,
 	FloatingIcon,
@@ -25,6 +26,8 @@ export {
 	ScrollPhaseDebug,
 	Skeleton,
 	Spinner,
+	TiltCard,
+	TiltShowcase,
 	Tooltip,
 	Transformable,
 	TurtleCrawl,
@@ -44,24 +47,33 @@ export {
 } from './const';
 export {
 	animateValue,
+	carouselIndex,
 	createMotionPreferenceState,
 	createScrollProgressState,
 	createStickyScrollProgress,
 	getEasingFunction,
-	mapProgress
+	mapProgress,
+	pointerPosition,
+	tiltRotation,
+	tiltSample
 } from './function';
 export type {
+	CarouselImage,
 	EasingFunction,
 	InteractionFeedback,
 	MediaSliderSlide,
+	TiltSample,
 	TokenConnector,
 	TokenLoading,
 	TokenTransition
 } from './type';
 export type {
 	BehaviorAnimate,
+	BehaviorCarousel,
+	BehaviorImageZoom,
 	BehaviorMotion,
 	BehaviorMotionPreset,
+	BehaviorTilt,
 	BehaviorTransform,
 	BehaviorTransformable,
 	BehaviorVectorScene,
@@ -71,6 +83,7 @@ export type {
 	RecipeAtomicPrinciplesShowcase,
 	RecipeAtomicTierCard,
 	RecipeBeachWater,
+	RecipeCarouselZoom,
 	RecipeComponentLibraryStats,
 	RecipeCss3dCube,
 	RecipeFloatingIcon,
@@ -85,6 +98,8 @@ export type {
 	RecipeScrollPhaseDebug,
 	RecipeSkeleton,
 	RecipeSpinner,
+	RecipeTiltCard,
+	RecipeTiltShowcase,
 	RecipeTooltip,
 	RecipeTransformable,
 	RecipeTurtleCrawl,
@@ -92,7 +107,10 @@ export type {
 	RecipeVectorScene,
 	RecipeWaveSurf,
 	RecipeWhaleSpout,
-	SlotComponentLibraryStats
+	SlotCarouselImages,
+	SlotComponentLibraryStats,
+	SlotTiltCard,
+	SlotTiltShowcase
 } from './interface';
 export type {
 	MediaSliderFormSlide,

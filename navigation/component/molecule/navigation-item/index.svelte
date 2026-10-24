@@ -2,6 +2,7 @@
 	import HtmlButton from '$stylist/html/component/atom/button/index.svelte';
 	import HtmlSpan from '$stylist/html/component/atom/span/index.svelte';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
+	import Svg from '$stylist/svg/component/atom/svg/index.svelte';
 	import type { RecipeNavigationItem } from '$stylist/navigation/interface/recipe/navigation-item';
 
 	let {
@@ -22,7 +23,10 @@
 	disabled={destination.disabled}
 	onclick={() => onSelect?.(destination.id)}
 >
-	{#if destination.icon}
+	<!-- Inline SVG renders on the server at once; a named icon loads from the registry. -->
+	{#if destination.iconSvg}
+		<HtmlSpan class="c-navigation-item__icon" aria-hidden="true"><Svg svg={destination.iconSvg} size={24} /></HtmlSpan>
+	{:else if destination.icon}
 		<Icon name={destination.icon} size={24} class="c-navigation-item__icon" aria-hidden="true" />
 	{/if}
 	<HtmlSpan class="c-navigation-item__label">{destination.label}</HtmlSpan>
@@ -64,6 +68,11 @@
 		.c-navigation-item:disabled {
 			opacity: var(--opacity-60, 0.6);
 			cursor: not-allowed;
+		}
+		.c-navigation-item__icon {
+			display: inline-grid;
+			place-items: center;
+			flex-shrink: 0;
 		}
 		.c-navigation-item__label {
 			flex: 1;

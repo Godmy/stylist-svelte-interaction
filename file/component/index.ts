@@ -15,7 +15,9 @@ export {
 	FileBrowser,
 	FileExplorer,
 	FileListItem,
+	FileManager,
 	MediaLibrary,
 	UploadProgress,
 	ZipViewer
 } from './organism';
+export { FileStorage } from './page';

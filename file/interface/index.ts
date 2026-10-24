@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export type { BehaviorFileManager } from './behavior';
 export type {
 	RecipeAttachmentPreview,
 	RecipeDataExporter,
@@ -11,6 +12,8 @@ export type {
 	RecipeFileExplorer,
 	RecipeFileInput,
 	RecipeFileListItem,
+	RecipeFileManager,
+	RecipeFileStorage,
 	RecipeFileUpload,
 	RecipeMediaLibrary,
 	RecipeQuantitySelector,
@@ -27,6 +30,8 @@ export type {
 	SlotDropZoneStyleClasses,
 	SlotExportPanelStyleClasses,
 	SlotFileItem,
+	SlotFileManager,
+	SlotFileStorage,
 	SlotFileSystemItem,
 	SlotFolderItem,
 	SlotMediaItem,

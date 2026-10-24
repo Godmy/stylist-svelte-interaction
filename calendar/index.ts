@@ -13,10 +13,12 @@ export {
 	EventCalendar,
 	FormDatePicker,
 	MiniCalendar,
+	MonthRangePicker,
 	TimeGrid,
 	TimePicker,
 	TimeSlot,
-	Timeline
+	Timeline,
+	Timetable
 } from './component';
 export {
 	TOKEN_CALENDAR,
@@ -41,16 +43,23 @@ export {
 	navigateMonth,
 	startOfDay,
 	startOfWeek,
+	timetableCell,
 	toInputDateString
 } from './function';
 export type { DatePickerValue } from './interface';
 export type {
+	TimetableCell,
+	TimetableClass,
+	TimetableDay,
+	TimetableLesson,
+	TimetablePeriod,
 	TokenPriority,
 	TokenTimeFormat,
 	TokenTimeMeasure,
 	TokenTimeRange
 } from './type';
 export type {
+	BehaviorTimetable,
 	RecipeCalendar,
 	RecipeCalendarDay,
 	RecipeCalendarGrid,
@@ -64,11 +73,14 @@ export type {
 	RecipeEventCalendar,
 	RecipeFormDatePicker,
 	RecipeMiniCalendar,
+	RecipeMonthRangePicker,
 	RecipeTimeGrid,
 	RecipeTimePicker,
 	RecipeTimeSlot,
 	RecipeTimeline,
+	RecipeTimetable,
 	SlotCalendarDay,
 	SlotCalendarEvent,
-	SlotDatePicker
+	SlotDatePicker,
+	SlotTimetable
 } from './interface';

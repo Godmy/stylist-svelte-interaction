@@ -25,6 +25,8 @@ export {
 	FileExplorer,
 	FileInput,
 	FileListItem,
+	FileManager,
+	FileStorage,
 	FileUpload,
 	MediaLibrary,
 	QuantitySelector,
@@ -36,16 +38,24 @@ export {
 	EXPORT_FORMAT,
 	FILE_EXPLORER_VIEW_MODE,
 	FILE_ITEM_TYPE,
+	FILE_MANAGER_SAMPLE,
 	MEDIA_LIBRARY_MEDIA_TYPE,
+	PresetFileManagerLabels,
+	PresetFileManagerLabelsRu,
 	PresetQuantitySelector,
 	TOKEN_DOCUMENT_FORMAT,
 	UPLOAD_PROGRESS_VARIANT,
 	UPLOAD_STATUS
 } from './const';
+export {
+	fileKind,
+	fileManagerFilter
+} from './function';
 export type {
 	DataExporterFormat,
 	ExportFormat,
 	FileItemType,
+	FileManagerEntry,
 	FileStateOptions,
 	FileStateResult,
 	MediaType,
@@ -54,6 +64,7 @@ export type {
 	ViewMode
 } from './type';
 export type {
+	BehaviorFileManager,
 	RecipeAttachmentPreview,
 	RecipeDataExporter,
 	RecipeDocumentPreview,
@@ -65,6 +76,8 @@ export type {
 	RecipeFileExplorer,
 	RecipeFileInput,
 	RecipeFileListItem,
+	RecipeFileManager,
+	RecipeFileStorage,
 	RecipeFileUpload,
 	RecipeMediaLibrary,
 	RecipeQuantitySelector,
@@ -79,6 +92,8 @@ export type {
 	SlotDropZoneStyleClasses,
 	SlotExportPanelStyleClasses,
 	SlotFileItem,
+	SlotFileManager,
+	SlotFileStorage,
 	SlotFileSystemItem,
 	SlotFolderItem,
 	SlotMediaItem,

@@ -24,11 +24,14 @@ export {
 } from './atom';
 export {
 	AtomicTierCard,
+	CarouselZoom,
 	Loading,
-	PhraseArcFlight
+	PhraseArcFlight,
+	TiltCard
 } from './molecule';
 export {
 	AtomicPrinciplesShowcase,
 	ComponentLibraryStats,
 	MediaSlider
 } from './organism';
+export { TiltShowcase } from './page';

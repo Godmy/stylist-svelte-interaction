@@ -17,6 +17,8 @@ export interface RecipeNavigationDrawer extends Omit<RecipeHtmlAside, 'children'
 	 * active destination at first — so a long drawer fits without scrolling.
 	 */
 	accordion?: boolean;
+	/** Keep every accordion section open until this option is disabled. */
+	expandAll?: boolean;
 	/**
 	 * Label of the accordion section to open, e.g. the nested graph of the current
 	 * fragment when that fragment is not a drawer item itself (a detail screen).

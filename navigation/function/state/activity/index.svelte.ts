@@ -14,7 +14,7 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		onNavigate: props.onNavigate
 	}));
 	const permanentQuery = $derived(
-		new MediaQuery(props.permanentDrawer ?? '(min-width: 1024px)', false)
+		new MediaQuery(props.permanentDrawer ?? '(min-width: 1024px)', props.permanentDrawerFallback ?? false)
 	);
 	const reducedMotion = new MediaQuery('(prefers-reduced-motion: reduce)', false);
 	let drawerOpen = $state(false);
@@ -31,17 +31,32 @@ export function createActivityState(getProps: () => RecipeActivity) {
 	const sections = $derived.by(() => {
 		const result: ContractNavigationDrawerSection[] = [];
 		for (const node of navigator.composite.topLevel()) {
-			const label = node.parent && node.parent.parent ? node.parent.label : undefined;
-			const last = result.at(-1);
-			if (last && last.label === label) last.destinations.push(node.destination);
-			else result.push({ label, destinations: [node.destination] });
+			const ancestors = [];
+			for (let parent = node.parent; parent?.parent; parent = parent.parent) ancestors.unshift(parent);
+			let target = result;
+			let section: ContractNavigationDrawerSection | undefined;
+			for (const parent of ancestors) {
+				section = target.find((item) => item.label === parent.label);
+				if (!section) {
+					section = { label: parent.label, icon: parent.destination.icon, iconSvg: parent.destination.iconSvg, destinations: [] };
+					target.push(section);
+				}
+				target = section.sections ??= [];
+			}
+			if (section) section.destinations.push(node.destination);
+			else {
+				let unlabelled = result.find((item) => !item.label);
+				if (!unlabelled) result.push(unlabelled = { destinations: [] });
+				unlabelled.destinations.push(node.destination);
+			}
 		}
 		return result;
 	});
 
 	/** Drawer section (nested graph label) of the current fragment, detail screens included. */
 	const activeSection = $derived.by(() => {
-		const parent = navigator.composite.find(navigator.entry.id)?.parent;
+		let parent = navigator.composite.find(navigator.entry.id)?.parent;
+		while (parent?.parent?.parent) parent = parent.parent;
 		return parent && parent.parent ? parent.label : undefined;
 	});
 
@@ -59,8 +74,10 @@ export function createActivityState(getProps: () => RecipeActivity) {
 			currentArgs: _currentArgs,
 			heading: _heading,
 			permanentDrawer: _permanentDrawer,
+			permanentDrawerFallback: _permanentDrawerFallback,
 			drawer: _drawer,
 			drawerAccordion: _drawerAccordion,
+			drawerExpandAll: _drawerExpandAll,
 			animated: _animated,
 			fragment: _fragment,
 			actions: _actions,

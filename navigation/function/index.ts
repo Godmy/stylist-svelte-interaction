@@ -1,5 +1,9 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { resolveNavigationGraphLayout } from './resolve';
+export {
+	resolveNavigationDestination,
+	resolveNavigationGraphLayout,
+	resolveNavigationHref
+} from './resolve';
 export {
 	createActivityState,
 	createNavigationState,

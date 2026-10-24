@@ -9,6 +9,7 @@
 	import HtmlUl from '$stylist/html/component/molecule/ul/index.svelte';
 	import NavigationItem from '$stylist/navigation/component/molecule/navigation-item/index.svelte';
 	import type { RecipeNavigationDrawer } from '$stylist/navigation/interface/recipe/navigation-drawer';
+	import type { ContractNavigationDrawerSection } from '$stylist/navigation/interface/contract/navigation-drawer-section';
 
 	let {
 		element = $bindable(null),
@@ -19,6 +20,7 @@
 		onSelect,
 		onClose,
 		accordion = false,
+		expandAll = false,
 		openSection,
 		label = 'Navigation',
 		header,
@@ -30,12 +32,14 @@
 	const visible = $derived(mode === 'permanent' || open);
 	const sectionKey = (section: (typeof sections)[number], index: number) =>
 		section.label ?? `section-${index}`;
+	function sectionActive(section: ContractNavigationDrawerSection): boolean {
+		return section.destinations.some((destination) => isActive?.(destination.id)) ||
+			(section.sections?.some(sectionActive) ?? false);
+	}
 	// The open accordion section follows `openSection`, else the active destination.
 	const activeSection = $derived.by(() => {
 		if (openSection) return openSection;
-		const index = sections.findIndex((section) =>
-			section.destinations.some((destination) => isActive?.(destination.id))
-		);
+		const index = sections.findIndex(sectionActive);
 		return index === -1 ? undefined : sectionKey(sections[index], index);
 	});
 
@@ -68,6 +72,15 @@
 			</HtmlLi>
 		{/each}
 	</HtmlUl>
+	{#if section.sections?.length}
+		<Accordion class="c-navigation-drawer__nested" defaultValue={section.sections.find(sectionActive)?.label}>
+			{#each section.sections as child, index (sectionKey(child, index))}
+				<AccordionLayout class="c-navigation-drawer__subsection" value={sectionKey(child, index)} title={child.label ?? ''} icon={child.icon} iconSvg={child.iconSvg} alwaysOpen={expandAll}>
+					{@render list(child)}
+				</AccordionLayout>
+			{/each}
+		</Accordion>
+	{/if}
 {/snippet}
 
 <svelte:window
@@ -101,6 +114,9 @@
 							class="c-navigation-drawer__accordion-section"
 							value={sectionKey(section, index)}
 							title={section.label}
+							icon={section.icon}
+							iconSvg={section.iconSvg}
+							alwaysOpen={expandAll}
 						>
 							{@render list(section)}
 						</AccordionLayout>
@@ -197,9 +213,10 @@
 			background: transparent;
 			font-weight: var(--typography-font-weight-semibold, 600);
 		}
+		/* Equal space above the first item and below the last one, so an open section's
+		   items sit as far from their own header as from the next one. */
 		.c-navigation-drawer .c-navigation-drawer__accordion-section .c-accordion-layout__content {
-			padding: 2px calc(var(--layout-spacing-1rem, 1rem) * 0.75)
-				calc(var(--layout-spacing-1rem, 1rem) / 2);
+			padding: calc(var(--layout-spacing-1rem, 1rem) / 2) calc(var(--layout-spacing-1rem, 1rem) * 0.75);
 			border-top: 0;
 			background: transparent;
 		}
@@ -213,6 +230,35 @@
 		.c-navigation-drawer__footer {
 			margin-top: auto;
 			padding: var(--layout-spacing-1rem, 1rem);
+		}
+		.c-navigation-drawer__nested {
+			border: 0;
+			border-radius: 0;
+		}
+		.c-navigation-drawer__nested .c-accordion-layout__header {
+			font-size: 0.875rem;
+		}
+		/* A nested section lies inside the parent's content inset, so its header gives that
+		   inset back on both sides: its icon and chevron lie exactly under the parent's. */
+		.c-navigation-drawer .c-navigation-drawer__nested .c-accordion-layout__header {
+			padding-inline: calc(var(--layout-spacing-1rem, 1rem) * (1.75 - 0.75));
+		}
+		/* One grid at every nesting level: icons in one column (a slot of
+		   --c-navigation-drawer-icon-size), text from one line, chevrons and badges on one
+		   right edge. A nested section adds no inset of its own, and an item without an icon
+		   starts its text where the others do once the drawer shows any icon. */
+		.c-navigation-drawer .c-navigation-drawer__nested .c-accordion-layout__content {
+			padding-inline: 0;
+		}
+		.c-navigation-drawer .c-accordion-layout__icon,
+		.c-navigation-drawer .c-navigation-item__icon {
+			width: var(--c-navigation-drawer-icon-size, 1.5rem);
+		}
+		.c-navigation-drawer:has(.c-navigation-item__icon, .c-accordion-layout__icon)
+			.c-navigation-item:not(:has(.c-navigation-item__icon)) {
+			padding-inline-start: calc(
+				var(--layout-spacing-1rem, 1rem) * 1.75 + var(--c-navigation-drawer-icon-size, 1.5rem)
+			);
 		}
 		@media (prefers-reduced-motion: reduce) {
 			.c-navigation-drawer[data-mode='modal'],

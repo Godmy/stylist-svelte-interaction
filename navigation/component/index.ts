@@ -1,14 +1,19 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export { FloatingActionButton } from './atom';
-export { NavigationItem } from './molecule';
+export {
+	NavigationItem,
+	SectionBar
+} from './molecule';
 export {
 	BottomSheet,
 	NavigationDrawer,
 	Sidebar,
-	TopAppBar
+	TopAppBar,
+	WorkspaceMenu
 } from './organism';
 export {
 	Activity,
-	NavigationGraph
+	NavigationGraph,
+	NavigationPatterns
 } from './page';
 export { Fragment } from './template';

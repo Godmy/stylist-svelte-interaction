@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export type { BehaviorSectionSelect } from './behavior';
 export type {
 	ContractNavigationAction,
 	ContractNavigationDestination,
@@ -16,7 +17,15 @@ export type {
 	RecipeNavigationDrawer,
 	RecipeNavigationGraph,
 	RecipeNavigationItem,
+	RecipeNavigationPatterns,
+	RecipeSectionBar,
 	RecipeSidebar,
-	RecipeTopAppBar
+	RecipeTopAppBar,
+	RecipeWorkspaceMenu
 } from './recipe';
-export type { NavItem } from './slot';
+export type {
+	NavItem,
+	SlotNavigationPatterns,
+	SlotSectionBar,
+	SlotWorkspaceMenu
+} from './slot';

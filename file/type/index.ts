@@ -10,3 +10,4 @@ export type {
 	UploadStatus,
 	ViewMode
 } from './alias';
+export type { FileManagerEntry } from './struct';

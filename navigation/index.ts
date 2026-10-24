@@ -8,16 +8,22 @@ export {
 	NavigationDrawer,
 	NavigationGraph,
 	NavigationItem,
+	NavigationPatterns,
+	SectionBar,
 	Sidebar,
-	TopAppBar
+	TopAppBar,
+	WorkspaceMenu
 } from './component';
 export {
 	createActivityState,
 	createNavigationState,
 	createSidebarState,
-	resolveNavigationGraphLayout
+	resolveNavigationDestination,
+	resolveNavigationGraphLayout,
+	resolveNavigationHref
 } from './function';
 export type {
+	BehaviorSectionSelect,
 	ContractNavigationAction,
 	ContractNavigationDestination,
 	ContractNavigationDrawerSection,
@@ -33,6 +39,12 @@ export type {
 	RecipeNavigationDrawer,
 	RecipeNavigationGraph,
 	RecipeNavigationItem,
+	RecipeNavigationPatterns,
+	RecipeSectionBar,
 	RecipeSidebar,
-	RecipeTopAppBar
+	RecipeTopAppBar,
+	RecipeWorkspaceMenu,
+	SlotNavigationPatterns,
+	SlotSectionBar,
+	SlotWorkspaceMenu
 } from './interface';

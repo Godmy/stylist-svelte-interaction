@@ -5,3 +5,10 @@ export type {
 	TokenTimeMeasure,
 	TokenTimeRange
 } from './alias';
+export type {
+	TimetableCell,
+	TimetableClass,
+	TimetableDay,
+	TimetableLesson,
+	TimetablePeriod
+} from './struct';

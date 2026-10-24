@@ -1,8 +1,11 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type {
 	BehaviorAnimate,
+	BehaviorCarousel,
+	BehaviorImageZoom,
 	BehaviorMotion,
 	BehaviorMotionPreset,
+	BehaviorTilt,
 	BehaviorTransform,
 	BehaviorTransformable,
 	BehaviorVectorScene
@@ -14,6 +17,7 @@ export type {
 	RecipeAtomicPrinciplesShowcase,
 	RecipeAtomicTierCard,
 	RecipeBeachWater,
+	RecipeCarouselZoom,
 	RecipeComponentLibraryStats,
 	RecipeCss3dCube,
 	RecipeFloatingIcon,
@@ -28,6 +32,8 @@ export type {
 	RecipeScrollPhaseDebug,
 	RecipeSkeleton,
 	RecipeSpinner,
+	RecipeTiltCard,
+	RecipeTiltShowcase,
 	RecipeTooltip,
 	RecipeTransformable,
 	RecipeTurtleCrawl,
@@ -36,4 +42,9 @@ export type {
 	RecipeWaveSurf,
 	RecipeWhaleSpout
 } from './recipe';
-export type { SlotComponentLibraryStats } from './slot';
+export type {
+	SlotCarouselImages,
+	SlotComponentLibraryStats,
+	SlotTiltCard,
+	SlotTiltShowcase
+} from './slot';

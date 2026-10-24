@@ -1,5 +1,6 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type { DatePickerValue } from './slot';
+export type { BehaviorTimetable } from './behavior';
 export type {
 	RecipeCalendar,
 	RecipeCalendarDay,
@@ -14,13 +15,16 @@ export type {
 	RecipeEventCalendar,
 	RecipeFormDatePicker,
 	RecipeMiniCalendar,
+	RecipeMonthRangePicker,
 	RecipeTimeGrid,
 	RecipeTimePicker,
 	RecipeTimeSlot,
-	RecipeTimeline
+	RecipeTimeline,
+	RecipeTimetable
 } from './recipe';
 export type {
 	SlotCalendarDay,
 	SlotCalendarEvent,
-	SlotDatePicker
+	SlotDatePicker,
+	SlotTimetable
 } from './slot';

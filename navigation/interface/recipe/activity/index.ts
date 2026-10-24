@@ -24,6 +24,8 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	heading?: string;
 	/** Media query of the permanent drawer; `(min-width: 1024px)` by default. */
 	permanentDrawer?: string;
+	/** SSR/hydration fallback for the permanent-drawer query; false by default. */
+	permanentDrawerFallback?: boolean;
 	/**
 	 * `false` renders no navigation drawer: top-level fragments show no navigation icon,
 	 * inner ones the Up button. For an activity nested in a sheet or a dialog.
@@ -36,6 +38,8 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	animated?: boolean;
 	/** Labelled drawer sections (nested graphs) as an accordion, one open at a time. */
 	drawerAccordion?: boolean;
+	/** Keep every labelled drawer section expanded. */
+	drawerExpandAll?: boolean;
 	/** Current fragment content; switch on `navigator.destination.id`. */
 	fragment: Snippet<[ContractNavigator]>;
 	/** Action buttons on the right of the top app bar. */
@@ -43,6 +47,7 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	/** Floating action button; hidden on destinations with `fab: false`. */
 	fab?: Snippet<[ContractNavigator]>;
 	drawerHeader?: Snippet;
-	drawerFooter?: Snippet;
+	/** Footer receives navigation and a callback to dismiss a modal drawer. */
+	drawerFooter?: Snippet<[ContractNavigator, () => void]>;
 	onNavigate?: (entry: ContractNavigationEntry) => void;
 }

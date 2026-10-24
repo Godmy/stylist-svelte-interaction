@@ -6,3 +6,7 @@ export {
 	createMegaMenuState,
 	createMenuItemState
 } from './state';
+export {
+	siteMenuGroup,
+	siteMenuSearch
+} from './transform';

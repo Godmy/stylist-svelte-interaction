@@ -13,7 +13,12 @@ export {
 	AddressForm,
 	FormWithValidation,
 	LoginForm,
+	RatingFeedback,
 	SchemaFormDialog,
 	ScreenReader,
 	SearchForm
 } from './organism';
+export {
+	FeedbackScenario,
+	SupportCounter
+} from './page';

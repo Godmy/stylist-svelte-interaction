@@ -8,6 +8,8 @@ export type { SlotDropItem } from './drop-item';
 export type { SlotDropZoneStyleClasses } from './drop-zone-style-classes';
 export type { SlotExportPanelStyleClasses } from './export-panel-style-classes';
 export type { SlotFileItem } from './file-item';
+export type { SlotFileManager } from './file-manager';
+export type { SlotFileStorage } from './file-storage';
 export type { SlotFileSystemItem } from './file-system-item';
 export type { SlotFolderItem } from './folder-item';
 export type { SlotMediaItem } from './media-item';

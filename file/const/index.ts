@@ -4,9 +4,14 @@ export {
 	EXPORT_FORMAT,
 	FILE_EXPLORER_VIEW_MODE,
 	FILE_ITEM_TYPE,
+	FILE_MANAGER_SAMPLE,
 	MEDIA_LIBRARY_MEDIA_TYPE,
 	TOKEN_DOCUMENT_FORMAT,
 	UPLOAD_PROGRESS_VARIANT,
 	UPLOAD_STATUS
 } from './array';
-export { PresetQuantitySelector } from './preset';
+export {
+	PresetFileManagerLabels,
+	PresetFileManagerLabelsRu,
+	PresetQuantitySelector
+} from './preset';

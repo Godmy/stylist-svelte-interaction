@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export type { BehaviorSiteMenu } from './behavior';
 export type {
 	RecipeAppHeader,
 	RecipeBurgerMenu,
@@ -10,11 +11,13 @@ export type {
 	RecipeMegaMenuLink,
 	RecipeMegaMenuPanel,
 	RecipeMegaMenuTrigger,
-	RecipeMenuItem
+	RecipeMenuItem,
+	RecipeSiteMenu
 } from './recipe';
 export type {
 	SlotMegaMenuColumn,
 	SlotMegaMenuFeature,
 	SlotMegaMenuLink,
-	SlotMegaMenuSection
+	SlotMegaMenuSection,
+	SlotSiteMenu
 } from './slot';

@@ -14,5 +14,6 @@ export {
 export {
 	AppHeader,
 	Drawer,
-	MegaMenu
+	MegaMenu,
+	SiteMenu
 } from './organism';

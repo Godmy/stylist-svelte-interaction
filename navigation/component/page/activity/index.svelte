@@ -19,6 +19,9 @@
 	$effect(() => {
 		void navigator.entry.key;
 		if (content && navigator.direction !== 'back') content.scrollTop = 0;
+		// External fragment changes (for example a footer Settings action) also
+		// dismiss the modal drawer so it cannot cover the newly opened screen.
+		activity.closeDrawer();
 	});
 	// Template snippets below are cast to `Snippet`: as props they fail svelte-check
 	// with a duplicated SnippetReturn type.
@@ -36,6 +39,10 @@
 	{/if}
 {/snippet}
 
+{#snippet drawerFooter()}
+	{@render props.drawerFooter?.(navigator, activity.closeDrawer)}
+{/snippet}
+
 <HtmlDiv
 	{...activity.restProps}
 	class={['c-activity', props.class]}
@@ -51,10 +58,11 @@
 			onSelect={activity.select}
 			onClose={activity.closeDrawer}
 			accordion={props.drawerAccordion}
+			expandAll={props.drawerExpandAll}
 			openSection={activity.activeSection}
 			header={(props.drawerHeader || props.heading ? drawerHeader : undefined) as
 				Snippet | undefined}
-			footer={props.drawerFooter}
+			footer={(props.drawerFooter ? drawerFooter : undefined) as Snippet | undefined}
 		/>
 	{/if}
 	<HtmlDiv class="c-activity__body" inert={activity.modalOpen}>

@@ -8,3 +8,4 @@ export { DateTimeRangePicker } from './date-time-range-picker/index';
 export { EventCalendar } from './event-calendar/index';
 export { MiniCalendar } from './mini-calendar/index';
 export { TimeGrid } from './time-grid/index';
+export { Timetable } from './timetable/index';

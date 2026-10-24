@@ -10,3 +10,4 @@ export type { RecipeMegaMenuLink } from './mega-menu-link';
 export type { RecipeMegaMenuPanel } from './mega-menu-panel';
 export type { RecipeMegaMenuTrigger } from './mega-menu-trigger';
 export type { RecipeMenuItem } from './menu-item';
+export type { RecipeSiteMenu } from './site-menu';

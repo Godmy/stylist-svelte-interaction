@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export { timetableCell } from './resolve';
 export {
 	formatDayLabel,
 	formatDisplayDate,

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
+	import Svg from '$stylist/svg/component/atom/svg/index.svelte';
 	import {
 		ACCORDION_CONTEXT_DEFAULT,
 		type AccordionContext
@@ -10,12 +11,15 @@
 	let props: RecipeAccordionLayout = $props();
 
 	const ctx = getContext<AccordionContext>('accordion-context') ?? ACCORDION_CONTEXT_DEFAULT;
-	const open = $derived(ctx.isPanelOpen(props.value));
+	const open = $derived(props.alwaysOpen || ctx.isPanelOpen(props.value));
 
 	const restProps = $derived.by(() => {
 		const {
 			value: _v,
 			title: _t,
+			icon: _icon,
+			iconSvg: _iconSvg,
+			alwaysOpen: _alwaysOpen,
 			subtitle: _st,
 			children: _c,
 			headerEnd: _he,
@@ -36,11 +40,22 @@
 	<button
 		type="button"
 		class="c-accordion-layout__header"
-		onclick={() => !props.disabled && ctx.handleValueChange(props.value)}
+		onclick={() => !props.disabled && !props.alwaysOpen && ctx.handleValueChange(props.value)}
 		aria-expanded={open}
-		aria-disabled={props.disabled}
+		aria-disabled={props.disabled || props.alwaysOpen || undefined}
+		aria-label={props.title}
+		title={props.title}
 		disabled={props.disabled}
 	>
+		{#if props.icon || props.iconSvg}
+			<span class="c-accordion-layout__icon" aria-hidden="true">
+				{#if props.iconSvg}
+					<Svg svg={props.iconSvg} size={24} />
+				{:else}
+					<BaseIcon name={props.icon} size={24} />
+				{/if}
+			</span>
+		{/if}
 		<span class="c-accordion-layout__title-group">
 			<span class="c-accordion-layout__titles">
 				<span class="c-accordion-layout__title">{props.title}</span>
@@ -73,6 +88,7 @@
 	}
 
 	.c-accordion-layout__header {
+		gap: 0.75rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -85,6 +101,12 @@
 		border: none;
 		cursor: pointer;
 		transition: background-color var(--duration-120, 120ms);
+	}
+
+	.c-accordion-layout__icon {
+		display: inline-grid;
+		place-items: center;
+		flex-shrink: 0;
 	}
 
 	.c-accordion-layout__header:hover {

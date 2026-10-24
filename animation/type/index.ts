@@ -8,6 +8,10 @@ export type {
 export type { EasingFunction } from './compute';
 export type { MediaSliderSlide } from './object';
 export type {
+	CarouselImage,
+	TiltSample
+} from './struct';
+export type {
 	MediaSliderFormSlide,
 	MediaSliderHeroSlide,
 	MediaSliderMediaSlide

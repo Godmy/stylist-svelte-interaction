@@ -10,6 +10,8 @@ export type { RecipeFileBrowser } from './file-browser';
 export type { RecipeFileExplorer } from './file-explorer';
 export type { RecipeFileInput } from './file-input';
 export type { RecipeFileListItem } from './file-list-item';
+export type { RecipeFileManager } from './file-manager';
+export type { RecipeFileStorage } from './file-storage';
 export type { RecipeFileUpload } from './file-upload';
 export type { RecipeMediaLibrary } from './media-library';
 export type { RecipeQuantitySelector } from './quantity-selector';
