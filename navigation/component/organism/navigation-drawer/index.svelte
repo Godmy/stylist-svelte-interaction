@@ -8,6 +8,7 @@
 	import HtmlNav from '$stylist/html/component/organism/nav/index.svelte';
 	import HtmlUl from '$stylist/html/component/molecule/ul/index.svelte';
 	import NavigationItem from '$stylist/navigation/component/molecule/navigation-item/index.svelte';
+	import { isIconName } from '$stylist/svg/function/check/icon-name';
 	import type { RecipeNavigationDrawer } from '$stylist/navigation/interface/recipe/navigation-drawer';
 	import type { ContractNavigationDrawerSection } from '$stylist/navigation/interface/contract/navigation-drawer-section';
 
@@ -33,8 +34,10 @@
 	const sectionKey = (section: (typeof sections)[number], index: number) =>
 		section.label ?? `section-${index}`;
 	function sectionActive(section: ContractNavigationDrawerSection): boolean {
-		return section.destinations.some((destination) => isActive?.(destination.id)) ||
-			(section.sections?.some(sectionActive) ?? false);
+		return (
+			section.destinations.some((destination) => isActive?.(destination.id)) ||
+			(section.sections?.some(sectionActive) ?? false)
+		);
 	}
 	// The open accordion section follows `openSection`, else the active destination.
 	const activeSection = $derived.by(() => {
@@ -73,9 +76,19 @@
 		{/each}
 	</HtmlUl>
 	{#if section.sections?.length}
-		<Accordion class="c-navigation-drawer__nested" defaultValue={section.sections.find(sectionActive)?.label}>
+		<Accordion
+			class="c-navigation-drawer__nested"
+			defaultValue={section.sections.find(sectionActive)?.label}
+		>
 			{#each section.sections as child, index (sectionKey(child, index))}
-				<AccordionLayout class="c-navigation-drawer__subsection" value={sectionKey(child, index)} title={child.label ?? ''} icon={child.icon} iconSvg={child.iconSvg} alwaysOpen={expandAll}>
+				<AccordionLayout
+					class="c-navigation-drawer__subsection"
+					value={sectionKey(child, index)}
+					title={child.label ?? ''}
+					icon={isIconName(child.icon) ? child.icon : undefined}
+					iconSvg={child.iconSvg}
+					alwaysOpen={expandAll}
+				>
 					{@render list(child)}
 				</AccordionLayout>
 			{/each}
@@ -114,7 +127,7 @@
 							class="c-navigation-drawer__accordion-section"
 							value={sectionKey(section, index)}
 							title={section.label}
-							icon={section.icon}
+							icon={isIconName(section.icon) ? section.icon : undefined}
 							iconSvg={section.iconSvg}
 							alwaysOpen={expandAll}
 						>
@@ -147,7 +160,7 @@
 			box-sizing: border-box;
 			width: min(22.5rem, calc(100vw - 3.5rem));
 			height: 100%;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			padding: calc(var(--space-4, 1rem) * 0.75);
 			overflow-y: auto;
 			background: var(--color-background-raised, var(--color-background-primary));
 			color: var(--color-text-primary);
@@ -156,20 +169,20 @@
 			position: fixed;
 			inset-block: 0;
 			inset-inline-start: 0;
-			z-index: var(--layout-z-index-modal, 1400);
-			border-start-end-radius: var(--layout-border-radius-xxl, 1rem);
-			border-end-end-radius: var(--layout-border-radius-xxl, 1rem);
+			z-index: var(--z-index-modal, 1400);
+			border-start-end-radius: var(--radius-4, 1rem);
+			border-end-end-radius: var(--radius-4, 1rem);
 			box-shadow: var(--elevation-modal);
 			transform: translateX(-105%);
 			visibility: hidden;
 			transition:
-				transform var(--motion-duration-300, 300ms) var(--motion-easing-emphasized, ease),
-				visibility 0s linear var(--motion-duration-300, 300ms);
+				transform var(--duration-300, 300ms) var(--easing-emphasized, ease),
+				visibility 0s linear var(--duration-300, 300ms);
 		}
 		.c-navigation-drawer[data-mode='modal'][data-open] {
 			transform: none;
 			visibility: visible;
-			transition: transform var(--motion-duration-300, 300ms) var(--motion-easing-emphasized, ease);
+			transition: transform var(--duration-300, 300ms) var(--easing-emphasized, ease);
 		}
 		.c-navigation-drawer[data-mode='permanent'] {
 			width: 18rem;
@@ -178,28 +191,28 @@
 		.c-navigation-drawer__scrim {
 			position: fixed;
 			inset: 0;
-			z-index: var(--layout-z-index-overlay, 1300);
+			z-index: var(--z-index-overlay, 1300);
 			background: var(--color-scrim, var(--color-backdrop));
 		}
 		.c-navigation-drawer__header {
-			padding: var(--layout-spacing-1rem, 1rem);
+			padding: var(--space-4, 1rem);
 		}
 		.c-navigation-drawer__nav {
 			flex: 1;
 		}
 		.c-navigation-drawer__section {
-			margin: var(--layout-spacing-1rem, 1rem) 0 0;
-			padding: calc(var(--layout-spacing-1rem, 1rem) / 2) var(--layout-spacing-1rem, 1rem);
+			margin: var(--space-4, 1rem) 0 0;
+			padding: calc(var(--space-4, 1rem) / 2) var(--space-4, 1rem);
 			border-top: var(--border-width-thin, 1px) solid var(--color-border-primary);
 			color: var(--color-text-secondary);
 			font-size: var(--font-relative-small, 0.875em);
-			font-weight: var(--typography-font-weight-medium, 500);
+			font-weight: var(--font-weight-medium, 500);
 		}
 		/* Drawer-scoped accordion, edge to edge of the drawer: no frame of its own, square
 		   full-width section headers; the items keep the drawer's inset (beats the
 		   accordion's scoped rules). */
 		.c-navigation-drawer .c-navigation-drawer__nav .c-navigation-drawer__accordion {
-			margin-inline: calc(var(--layout-spacing-1rem, 1rem) * -0.75);
+			margin-inline: calc(var(--space-4, 1rem) * -0.75);
 			border: 0;
 			border-radius: 0;
 		}
@@ -207,16 +220,15 @@
 			border-bottom: 0;
 		}
 		.c-navigation-drawer .c-navigation-drawer__accordion-section .c-accordion-layout__header {
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 0.75)
-				calc(var(--layout-spacing-1rem, 1rem) * 1.75);
+			padding: calc(var(--space-4, 1rem) * 0.75) calc(var(--space-4, 1rem) * 1.75);
 			border-radius: 0;
 			background: transparent;
-			font-weight: var(--typography-font-weight-semibold, 600);
+			font-weight: var(--font-weight-semibold, 600);
 		}
 		/* Equal space above the first item and below the last one, so an open section's
 		   items sit as far from their own header as from the next one. */
 		.c-navigation-drawer .c-navigation-drawer__accordion-section .c-accordion-layout__content {
-			padding: calc(var(--layout-spacing-1rem, 1rem) / 2) calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			padding: calc(var(--space-4, 1rem) / 2) calc(var(--space-4, 1rem) * 0.75);
 			border-top: 0;
 			background: transparent;
 		}
@@ -229,7 +241,7 @@
 		}
 		.c-navigation-drawer__footer {
 			margin-top: auto;
-			padding: var(--layout-spacing-1rem, 1rem);
+			padding: var(--space-4, 1rem);
 		}
 		.c-navigation-drawer__nested {
 			border: 0;
@@ -241,7 +253,7 @@
 		/* A nested section lies inside the parent's content inset, so its header gives that
 		   inset back on both sides: its icon and chevron lie exactly under the parent's. */
 		.c-navigation-drawer .c-navigation-drawer__nested .c-accordion-layout__header {
-			padding-inline: calc(var(--layout-spacing-1rem, 1rem) * (1.75 - 0.75));
+			padding-inline: calc(var(--space-4, 1rem) * (1.75 - 0.75));
 		}
 		/* One grid at every nesting level: icons in one column (a slot of
 		   --c-navigation-drawer-icon-size), text from one line, chevrons and badges on one
@@ -257,7 +269,7 @@
 		.c-navigation-drawer:has(.c-navigation-item__icon, .c-accordion-layout__icon)
 			.c-navigation-item:not(:has(.c-navigation-item__icon)) {
 			padding-inline-start: calc(
-				var(--layout-spacing-1rem, 1rem) * 1.75 + var(--c-navigation-drawer-icon-size, 1.5rem)
+				var(--space-4, 1rem) * 1.75 + var(--c-navigation-drawer-icon-size, 1.5rem)
 			);
 		}
 		@media (prefers-reduced-motion: reduce) {

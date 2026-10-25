@@ -4,14 +4,14 @@
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { createShortcutsPanelState } from '$stylist/control/component/organism/shortcuts-panel/state.svelte';
 	const Keyboard = 'keyboard';
-	const Command = 'command';
+	const Command = 'keyboard';
 	const Search = 'search';
 	const Zap = 'zap';
 	const Eye = 'eye';
 	const SidebarIcon = 'sidebar';
 	const Layout = 'layout';
 	const Grid = 'grid';
-	const Moon = 'moon';
+	const Moon = 'dark-mode';
 	const Code = 'code';
 	const Copy = 'copy';
 
@@ -447,7 +447,7 @@
 		}
 	}
 	.shortcut-item {
-		animation: fade-slide-in var(--duration-300) var(--animation-ease-out);
+		animation: fade-slide-in var(--duration-300) var(--easing-ease-out);
 	}
 
 	@keyframes fade-slide-in {
@@ -462,7 +462,7 @@
 	}
 
 	.category-section {
-		animation: fade-in var(--duration-400) var(--animation-ease-out);
+		animation: fade-in var(--duration-400) var(--easing-ease-out);
 	}
 
 	@keyframes fade-in {

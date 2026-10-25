@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import { createEventDispatcher } from 'svelte';
 import type { SlotAttachment } from '$stylist/file/interface/slot/attachment';
 
@@ -16,7 +17,7 @@ export class AttachmentPreviewManager {
 		return (bytes / 1048576).toFixed(1) + ' MB';
 	}
 
-	static getIconName(type: string): string {
+	static getIconName(type: string): TokenIconName {
 		switch (type) {
 			case 'image':
 			case 'video':

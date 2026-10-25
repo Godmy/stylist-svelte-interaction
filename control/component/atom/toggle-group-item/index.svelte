@@ -52,8 +52,8 @@
 		border: 1px solid transparent;
 		cursor: pointer;
 		transition:
-			background-color var(--motion-duration-200, 200ms),
-			color var(--motion-duration-200, 200ms);
+			background-color var(--duration-200, 200ms),
+			color var(--duration-200, 200ms);
 	}
 
 	.c-toggle-group-item:hover:not([data-disabled]) {

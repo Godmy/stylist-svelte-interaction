@@ -50,7 +50,7 @@
 		align-items: center;
 		gap: 0.5rem;
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		padding: 0.5rem;
 		background-color: var(--color-background-primary);
 	}
@@ -62,7 +62,7 @@
 		background-color: var(--color-primary-100);
 		padding-block: 0.25rem;
 		padding-inline: 0.75rem;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		color: var(--color-primary-800);
 	}
 

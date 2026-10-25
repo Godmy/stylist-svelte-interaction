@@ -64,7 +64,7 @@
 		gap: 4px;
 		background: var(--color-background-primary, #ffffff);
 		border: 1px solid var(--color-border-primary, #e0e0e0);
-		border-radius: var(--layout-border-radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		padding: 4px;
 		box-shadow: var(--elevation-level1, 0 1px 3px rgba(0, 0, 0, 0.1));
 	}
@@ -78,9 +78,9 @@
 		border: none;
 		background: transparent;
 		color: var(--color-text-primary, #333);
-		border-radius: var(--layout-border-radius-sm, 0.125rem);
+		border-radius: var(--radius-0-5, 0.125rem);
 		cursor: pointer;
-		transition: all 150ms var(--motion-easing-ease, ease);
+		transition: all 150ms var(--easing-ease, ease);
 	}
 
 	.zoom-button:hover {

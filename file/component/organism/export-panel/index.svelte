@@ -80,10 +80,10 @@
 	.c-export-panel {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-4);
-		padding: var(--spacing-4);
+		gap: var(--space-4);
+		padding: var(--space-4);
 		background-color: var(--color-background-primary);
-		border-radius: var(--border-radius-lg);
+		border-radius: var(--radius-2);
 		border: 1px solid var(--color-border-primary);
 		min-width: 300px;
 	}
@@ -92,13 +92,13 @@
 		font-weight: var(--font-weight-semibold);
 		font-size: var(--font-size-4);
 		color: var(--color-text-primary);
-		margin-bottom: var(--spacing-2);
+		margin-bottom: var(--space-2);
 	}
 
 	.panel-section {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-2);
+		gap: var(--space-2);
 	}
 
 	.section-title {
@@ -109,16 +109,16 @@
 
 	.format-options {
 		display: flex;
-		gap: var(--spacing-2);
+		gap: var(--space-2);
 		flex-wrap: wrap;
 	}
 
 	.format-option {
 		flex: 1;
 		text-align: center;
-		padding: var(--spacing-2);
+		padding: var(--space-2);
 		border: 1px solid var(--color-border-secondary);
-		border-radius: var(--border-radius-base);
+		border-radius: var(--radius-1-5);
 		cursor: pointer;
 		transition: all var(--duration-200);
 	}
@@ -136,6 +136,6 @@
 	.checkbox-group {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-2);
+		gap: var(--space-2);
 	}
 </style>

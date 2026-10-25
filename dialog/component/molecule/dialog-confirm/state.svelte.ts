@@ -2,8 +2,8 @@ import type { RecipeDialogConfirm } from '$stylist/dialog/interface/recipe/dialo
 import { DialogConfirmManager } from '$stylist/dialog/class/manager/dialog-confirm';
 
 const DIALOG_CONFIRM_ICON_NAMES = {
-	danger: 'alert-triangle',
-	warning: 'triangle-alert',
+	danger: 'alert',
+	warning: 'alert',
 	info: 'info'
 } as const;
 

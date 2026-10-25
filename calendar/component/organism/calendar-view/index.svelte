@@ -137,7 +137,7 @@
 <style>
 	.c-calendar-view {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--radius-lg, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		overflow: hidden;
 	}
 
@@ -147,7 +147,7 @@
 		justify-content: space-between;
 		gap: 1rem;
 		flex-wrap: wrap;
-		padding: var(--spacing-lg, 1.5rem);
+		padding: var(--space-6, 1.5rem);
 		border-bottom: 1px solid var(--color-border-primary);
 	}
 
@@ -173,12 +173,12 @@
 	}
 
 	.c-calendar-view__nav-btn {
-		width: var(--spacing-xl, 2rem);
-		height: var(--spacing-xl, 2rem);
+		width: var(--space-8, 2rem);
+		height: var(--space-8, 2rem);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: var(--radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 	}
 
 	.c-calendar-view__nav-btn:hover {
@@ -186,12 +186,12 @@
 	}
 
 	.c-calendar-view__today-btn {
-		margin-inline: var(--spacing-sm, 0.75rem);
-		height: var(--spacing-xl, 2rem);
+		margin-inline: var(--space-3, 0.75rem);
+		height: var(--space-8, 2rem);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: var(--radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 	}
 
 	.c-calendar-view__today-btn:hover {
@@ -199,9 +199,9 @@
 	}
 
 	.c-calendar-view__view-btn {
-		height: var(--spacing-xl, 2rem);
-		padding-inline: var(--spacing-md, 1rem);
-		border-radius: var(--radius-md, 0.375rem);
+		height: var(--space-8, 2rem);
+		padding-inline: var(--space-4, 1rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		display: flex;
 		align-items: center;
 	}
@@ -230,18 +230,18 @@
 	}
 
 	.c-calendar-view__weekday {
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 		text-align: center;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		font-weight: var(--font-weight-medium, 500);
 		color: var(--color-text-secondary);
 		background: var(--color-background-secondary);
 	}
 
 	.c-calendar-view__day {
-		min-height: var(--spacing-24, 6rem);
+		min-height: var(--space-24, 6rem);
 		min-width: 0;
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 		border-top: 1px solid var(--color-border-primary);
 		border-right: 1px solid var(--color-border-primary);
 		cursor: pointer;
@@ -268,19 +268,19 @@
 	}
 
 	.c-calendar-view__date-num {
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	.c-calendar-view__date-num--today {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--spacing-6, 1.5rem);
-		height: var(--spacing-6, 1.5rem);
+		width: var(--space-6, 1.5rem);
+		height: var(--space-6, 1.5rem);
 		border-radius: 9999px;
 		background: var(--color-primary-500);
 		color: var(--color-text-inverse);
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	.c-calendar-view__add-btn {
@@ -311,8 +311,8 @@
 
 	.c-calendar-view__event {
 		min-width: 0;
-		font-size: var(--text-size-xs, 0.75rem);
-		padding: var(--spacing-xs, 0.25rem);
+		font-size: var(--font-size-3, 0.75rem);
+		padding: var(--space-1, 0.25rem);
 		border-radius: 0.25rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -323,8 +323,8 @@
 	}
 
 	.c-calendar-view__week-num {
-		padding: var(--spacing-sm, 0.75rem);
-		font-size: var(--text-size-xs, 0.75rem);
+		padding: var(--space-3, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		font-weight: var(--font-weight-medium, 500);
 		color: var(--color-text-secondary);
 		background: var(--color-background-tertiary, var(--color-background-secondary));

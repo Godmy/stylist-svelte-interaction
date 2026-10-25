@@ -25,7 +25,9 @@ export {
 	copyTextToClipboard,
 	createButtonFactoryInput,
 	createButtonPreset,
-	createButtonState
+	createButtonState,
+	createClickableState,
+	createFocusableState
 } from './function';
 export type {
 	ButtonPropsRecord,
@@ -39,9 +41,11 @@ export type {
 	RecipeButtonComposed,
 	RecipeButtonElement,
 	RecipeButtonFactoryInput,
+	RecipeClickable,
 	RecipeCloseButton,
 	RecipeCopyButton,
 	RecipeFillButton,
+	RecipeFocusable,
 	RecipeFollowButton,
 	RecipeGlowButton,
 	RecipeIconButton,

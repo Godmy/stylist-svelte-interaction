@@ -230,7 +230,7 @@
 		max-width: 42rem;
 		max-height: 90vh;
 		background: var(--color-background-primary, #fff);
-		border-radius: var(--radius-xl, 0.75rem);
+		border-radius: var(--radius-3, 0.75rem);
 		box-shadow: 0 20px 60px rgb(0 0 0 / 0.2);
 	}
 	.c-schema-form-dialog__header {
@@ -259,7 +259,7 @@
 		width: 2.25rem;
 		height: 2.25rem;
 		border: none;
-		border-radius: var(--radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background: transparent;
 		color: var(--color-text-tertiary, #9ca3af);
 		cursor: pointer;
@@ -283,7 +283,7 @@
 	.c-schema-form-dialog__form-error {
 		margin-bottom: 1rem;
 		padding: 0.75rem;
-		border-radius: var(--radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background: #fef2f2;
 		color: #b91c1c;
 		font-size: 0.875rem;
@@ -322,7 +322,7 @@
 		display: block;
 		width: 100%;
 		border: 1px solid var(--color-border-primary, #d1d5db);
-		border-radius: var(--radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		padding: 0.5rem 0.75rem;
 		font-size: 0.875rem;
 		color: var(--color-text-primary, #111827);

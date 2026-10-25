@@ -161,7 +161,7 @@
 				var(--color-border-accent, var(--color-primary-600, #2563eb))
 			);
 			display: grid;
-			gap: var(--carousel-zoom-gap, calc(var(--layout-spacing-1rem, 1rem) * 0.75));
+			gap: var(--carousel-zoom-gap, calc(var(--space-4, 1rem) * 0.75));
 			min-width: 0;
 			color: var(--color-text-primary);
 		}
@@ -179,7 +179,7 @@
 			padding: 0;
 			overflow: hidden;
 			border: 0;
-			border-radius: var(--carousel-zoom-radius, var(--layout-border-radius-lg, 0.5rem));
+			border-radius: var(--carousel-zoom-radius, var(--radius-2, 0.5rem));
 			background: var(--carousel-zoom-background, var(--color-background-secondary));
 			cursor: zoom-in;
 		}
@@ -199,13 +199,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			gap: calc(var(--space-4, 1rem) / 2);
 		}
 		.c-carousel-zoom__step {
 			min-width: 2.75rem;
 			min-height: 2.75rem;
 			border: var(--border-width-thin, 1px) solid currentColor;
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: transparent;
 			cursor: pointer;
 		}
@@ -215,15 +215,15 @@
 		}
 		.c-carousel-zoom__thumbnails {
 			display: flex;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			gap: calc(var(--space-4, 1rem) / 2);
 			overflow-x: auto;
-			padding: calc(var(--layout-spacing-1rem, 1rem) / 4);
+			padding: calc(var(--space-4, 1rem) / 4);
 		}
 		.c-carousel-zoom__thumbnail {
 			flex: 0 0 var(--carousel-zoom-thumbnail-size, 4rem);
 			padding: 0.125rem;
 			border: var(--border-width-medium, 2px) solid transparent;
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: transparent;
 			cursor: pointer;
 		}
@@ -235,7 +235,7 @@
 			width: 100%;
 			aspect-ratio: 1;
 			object-fit: cover;
-			border-radius: var(--layout-border-radius-sm, 0.125rem);
+			border-radius: var(--radius-0-5, 0.125rem);
 		}
 		@media (prefers-reduced-motion: reduce) {
 			.c-carousel-zoom__image {

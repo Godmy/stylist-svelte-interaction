@@ -94,7 +94,7 @@
 		justify-content: space-between;
 		width: 100%;
 		text-align: left;
-		padding: var(--spacing-md, 1rem);
+		padding: var(--space-4, 1rem);
 		font-weight: 500;
 		background: var(--color-background-primary);
 		color: var(--color-text-primary);
@@ -160,7 +160,7 @@
 		align-items: center;
 		flex-shrink: 0;
 		transition: transform var(--duration-200, 200ms)
-			var(--animation-ease, cubic-bezier(0.4, 0, 0.2, 1));
+			var(--easing-ease, cubic-bezier(0.4, 0, 0.2, 1));
 	}
 
 	.c-accordion-layout[data-expanded] .c-accordion-layout__chevron {
@@ -178,7 +178,7 @@
 	}
 
 	.c-accordion-layout__content {
-		padding: var(--spacing-md, 1rem);
+		padding: var(--space-4, 1rem);
 		border-top: 1px solid var(--color-border-primary);
 		background: var(--color-background-primary);
 	}

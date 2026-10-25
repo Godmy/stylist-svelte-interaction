@@ -44,7 +44,7 @@
 		justify-content: center;
 		text-align: center;
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background: var(--color-background-primary);
 		color: var(--color-text-primary);
 	}
@@ -52,19 +52,19 @@
 	:global(.input-pin-digit[data-size='sm']) {
 		width: 2rem;
 		height: 2rem;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	:global(.input-pin-digit[data-size='md']) {
 		width: 2.5rem;
 		height: 2.5rem;
-		font-size: var(--text-size-md, 1rem);
+		font-size: var(--font-size-4, 1rem);
 	}
 
 	:global(.input-pin-digit[data-size='lg']) {
 		width: 3rem;
 		height: 3rem;
-		font-size: var(--text-size-lg, 1.125rem);
+		font-size: var(--font-size-4-5, 1.125rem);
 	}
 
 	:global(.input-pin-digit[data-error]) {

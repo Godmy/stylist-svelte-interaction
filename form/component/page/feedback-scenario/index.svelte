@@ -70,40 +70,40 @@
 			display: grid;
 			grid-template-columns: minmax(0, 1fr) minmax(16.25rem, 0.8fr);
 			align-items: center;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 2);
+			gap: calc(var(--space-4, 1rem) * 2);
 			color: var(--color-text-primary);
 		}
 		.c-feedback-scenario__sample {
 			display: grid;
 			place-items: center;
 			min-width: 0;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 2);
-			border-radius: var(--layout-border-radius-xxl, 1rem);
+			padding: calc(var(--space-4, 1rem) * 2);
+			border-radius: var(--radius-4, 1rem);
 			background: var(--color-background-tertiary, var(--color-background-secondary));
 		}
 		.c-feedback-scenario__panel {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 1.5);
+			gap: calc(var(--space-4, 1rem) * 0.75);
+			padding: calc(var(--space-4, 1rem) * 1.5);
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-xl, 0.75rem);
+			border-radius: var(--radius-3, 0.75rem);
 			background: var(--color-background-primary);
 		}
 		.c-feedback-scenario__title {
 			margin: 0;
-			font-size: var(--typography-font-size-5, 1.25rem);
+			font-size: var(--font-size-5, 1.25rem);
 		}
 		.c-feedback-scenario__field {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 4);
-			font-weight: var(--typography-font-weight-medium, 500);
+			gap: calc(var(--space-4, 1rem) / 4);
+			font-weight: var(--font-weight-medium, 500);
 		}
 		.c-feedback-scenario__input {
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid var(--color-border-secondary);
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: var(--color-background-primary);
 			color: var(--color-text-primary);
 			font: inherit;
@@ -120,7 +120,7 @@
 				grid-template-columns: 1fr;
 			}
 			.c-feedback-scenario__sample {
-				padding: var(--layout-spacing-1rem, 1rem);
+				padding: var(--space-4, 1rem);
 			}
 		}
 	}

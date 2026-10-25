@@ -473,7 +473,7 @@
 		border-width: 1px;
 		border-style: solid;
 		border-radius: 1.25rem;
-		animation: fade-slide-up var(--duration-300) var(--animation-ease-out);
+		animation: fade-slide-up var(--duration-300) var(--easing-ease-out);
 	}
 
 	.stat-card--indigo {

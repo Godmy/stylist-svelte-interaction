@@ -87,8 +87,8 @@
 		box-sizing: border-box;
 		width: 100%;
 		cursor: pointer;
-		border-start-start-radius: var(--border-radius-base, 0.375rem);
-		border-end-start-radius: var(--border-radius-base, 0.375rem);
+		border-start-start-radius: var(--radius-1-5, 0.375rem);
+		border-end-start-radius: var(--radius-1-5, 0.375rem);
 		border-start-end-radius: 0;
 		border-end-end-radius: 0;
 		border: 1px solid var(--color-border-primary);
@@ -105,8 +105,8 @@
 		min-width: 7.5rem;
 		border-start-start-radius: 0;
 		border-end-start-radius: 0;
-		border-start-end-radius: var(--border-radius-base, 0.375rem);
-		border-end-end-radius: var(--border-radius-base, 0.375rem);
+		border-start-end-radius: var(--radius-1-5, 0.375rem);
+		border-end-end-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		border-inline-start: none;
 		padding: 0.625rem 2rem 0.625rem 0.75rem;
@@ -128,8 +128,8 @@
 		inset-block: 0;
 		inset-inline-end: 0;
 		padding-inline: 0.75rem;
-		border-start-end-radius: var(--border-radius-base, 0.375rem);
-		border-end-end-radius: var(--border-radius-base, 0.375rem);
+		border-start-end-radius: var(--radius-1-5, 0.375rem);
+		border-end-end-radius: var(--radius-1-5, 0.375rem);
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -145,7 +145,7 @@
 		inset-inline: 0;
 		box-sizing: border-box;
 		margin-block-start: 0.25rem;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		background-color: var(--color-background-primary);
 		padding: 1rem;

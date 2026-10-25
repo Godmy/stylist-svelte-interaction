@@ -44,7 +44,7 @@
 		box-sizing: border-box;
 		width: 100%;
 		min-height: 2.5rem;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		padding: 0.625rem 0.75rem;
 		background: var(--color-background-primary);
@@ -72,7 +72,7 @@
 		margin-block-start: 0.25rem;
 		width: max(100%, 16rem);
 		max-width: min(20rem, calc(100vw - 2rem));
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		background-color: var(--color-background-primary);
 		padding: 0.625rem;

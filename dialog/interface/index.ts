@@ -14,6 +14,7 @@ export type {
 	RecipeDialogConfirm,
 	RecipeGeneralToolbar,
 	RecipeModal,
+	RecipePopover,
 	RecipeSimpleModal,
 	RecipeStepper,
 	RecipeStylistTab,

@@ -1,14 +1,15 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { RecipeShortcutsPanel } from '$stylist/control/interface/recipe/shortcuts-panel';
 const Keyboard = 'keyboard';
-const Command = 'command';
+const Command = 'keyboard';
 const Search = 'search';
 const Zap = 'zap';
 const Eye = 'eye';
 const SidebarIcon = 'sidebar';
 const Layout = 'layout';
 const Grid = 'grid';
-const Moon = 'moon';
+const Moon = 'dark-mode';
 const Code = 'code';
 const Copy = 'copy';
 
@@ -16,7 +17,7 @@ const shortcuts: {
 	keys: string[];
 	description: string;
 	category: string;
-	icon?: string;
+	icon?: TokenIconName;
 }[] = [
 	{
 		keys: ['Ctrl', '/'],
@@ -78,7 +79,7 @@ export function createShortcutsPanelState(
 				keys: string[];
 				description: string;
 				category: string;
-				icon?: string;
+				icon?: TokenIconName;
 			}[]
 		>();
 		shortcuts.forEach((shortcut) => {

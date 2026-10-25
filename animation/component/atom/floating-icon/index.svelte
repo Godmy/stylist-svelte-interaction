@@ -15,7 +15,7 @@
 	class={`floating-icon floating-icon--${accent} ${still ? 'floating-icon--still' : ''} ${className}`}
 	style={delay ? `animation-delay: ${delay};` : undefined}
 >
-	<BaseIcon name={icon} size="xl" class="floating-icon__glyph" />
+	<BaseIcon name={icon} size={32} class="floating-icon__glyph" />
 </span>
 
 <style>
@@ -36,7 +36,7 @@
 		);
 		box-shadow: var(--floating-icon-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1));
 		animation: floating-icon-float var(--floating-icon-duration, var(--duration-s6, 6s))
-			var(--animation-ease-in-out, ease-in-out) infinite;
+			var(--easing-ease-in-out, ease-in-out) infinite;
 	}
 
 	.floating-icon--still {

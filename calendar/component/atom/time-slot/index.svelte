@@ -30,7 +30,7 @@
 	.c-time-slot {
 		display: flex;
 		flex-direction: column;
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 		border: 1px solid var(--color-border-primary);
 		border-radius: 0.25rem;
 		cursor: pointer;
@@ -74,14 +74,14 @@
 	}
 
 	.c-time-slot__label {
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		font-weight: var(--font-weight-medium, 500);
 		color: var(--color-text-primary);
 	}
 
 	.c-time-slot__count {
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
-		margin-top: var(--spacing-xs, 0.25rem);
+		margin-top: var(--space-1, 0.25rem);
 	}
 </style>

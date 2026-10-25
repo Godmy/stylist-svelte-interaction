@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { SlotZipEntry } from '$stylist/file/interface/slot/zip-entry';
 
 export class ZipViewerManager {
@@ -14,7 +15,7 @@ export class ZipViewerManager {
 		return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 	}
 
-	static getEntryIcon(entry: SlotZipEntry): string {
+	static getEntryIcon(entry: SlotZipEntry): TokenIconName {
 		return entry.type === 'directory' ? 'folder' : 'file';
 	}
 

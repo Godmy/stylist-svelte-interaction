@@ -41,7 +41,7 @@
 		display: block;
 		width: 100%;
 		height: var(--information-skeleton-height);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background: var(--information-skeleton-base);
 	}
 

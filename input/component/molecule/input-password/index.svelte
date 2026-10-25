@@ -180,7 +180,7 @@
 	}
 
 	.input-password__strength-label {
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 		white-space: nowrap;
 	}

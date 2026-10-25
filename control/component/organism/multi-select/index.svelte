@@ -215,7 +215,7 @@
 		position: absolute;
 		top: 100%;
 		left: 0;
-		z-index: var(--layout-z-index-docked, 10);
+		z-index: var(--z-index-docked, 10);
 		margin-top: 0.25rem;
 		width: 100%;
 		border: 1px solid var(--color-border-primary);
@@ -246,7 +246,7 @@
 		cursor: pointer;
 		font-size: 0.875rem;
 		color: var(--color-text-primary);
-		transition: background-color var(--motion-duration-120, 120ms);
+		transition: background-color var(--duration-120, 120ms);
 	}
 
 	.c-multiselect__option:hover:not(.c-multiselect__option--disabled) {

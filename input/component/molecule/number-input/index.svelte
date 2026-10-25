@@ -115,14 +115,14 @@
 	}
 
 	.number-input__button--decrement {
-		border-start-start-radius: var(--border-radius-base, 0.375rem);
-		border-end-start-radius: var(--border-radius-base, 0.375rem);
+		border-start-start-radius: var(--radius-1-5, 0.375rem);
+		border-end-start-radius: var(--radius-1-5, 0.375rem);
 		border-inline-end: none;
 	}
 
 	.number-input__button--increment {
-		border-start-end-radius: var(--border-radius-base, 0.375rem);
-		border-end-end-radius: var(--border-radius-base, 0.375rem);
+		border-start-end-radius: var(--radius-1-5, 0.375rem);
+		border-end-end-radius: var(--radius-1-5, 0.375rem);
 		border-inline-start: none;
 	}
 </style>

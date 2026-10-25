@@ -115,7 +115,7 @@
 		}
 		.c-activity__bar {
 			position: relative;
-			z-index: var(--layout-z-index-sticky, 1100);
+			z-index: var(--z-index-sticky, 1100);
 			flex-shrink: 0;
 		}
 		.c-activity__content {
@@ -135,14 +135,14 @@
 		}
 		.c-activity__fab {
 			position: absolute;
-			inset-inline-end: var(--layout-spacing-1rem, 1rem);
-			inset-block-end: var(--layout-spacing-1rem, 1rem);
-			z-index: var(--layout-z-index-sticky, 1100);
+			inset-inline-end: var(--space-4, 1rem);
+			inset-block-end: var(--space-4, 1rem);
+			z-index: var(--z-index-sticky, 1100);
 		}
 		.c-activity__app-name {
 			margin: 0;
-			font-size: var(--typography-font-size-5, 1.25rem);
-			font-weight: var(--typography-font-weight-semibold, 600);
+			font-size: var(--font-size-5, 1.25rem);
+			font-weight: var(--font-weight-semibold, 600);
 		}
 	}
 </style>

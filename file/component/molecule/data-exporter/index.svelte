@@ -18,14 +18,14 @@
 <style>
 	.data-exporter {
 		display: flex;
-		gap: var(--spacing-2);
+		gap: var(--space-2);
 		align-items: center;
 	}
 
 	select,
 	button {
-		padding: var(--spacing-2);
-		border-radius: var(--border-radius-base);
+		padding: var(--space-2);
+		border-radius: var(--radius-1-5);
 		border: 1px solid var(--color-border-secondary);
 	}
 

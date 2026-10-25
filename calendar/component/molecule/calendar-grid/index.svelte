@@ -49,7 +49,7 @@
 
 	.c-calendar-grid__weekday {
 		text-align: center;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 </style>

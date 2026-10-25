@@ -71,12 +71,12 @@
 		.c-top-app-bar {
 			display: flex;
 			align-items: center;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			gap: calc(var(--space-4, 1rem) / 2);
 			min-height: 4rem;
-			padding: 0 calc(var(--layout-spacing-1rem, 1rem) / 2);
+			padding: 0 calc(var(--space-4, 1rem) / 2);
 			background: var(--color-background-primary);
 			color: var(--color-text-primary);
-			transition: box-shadow var(--motion-duration-200, 200ms) var(--motion-easing-ease, ease);
+			transition: box-shadow var(--duration-200, 200ms) var(--easing-ease, ease);
 		}
 		.c-top-app-bar[data-elevated] {
 			box-shadow: var(--elevation-level2);
@@ -92,13 +92,13 @@
 			justify-content: center;
 		}
 		.c-top-app-bar__actions {
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 4);
+			gap: calc(var(--space-4, 1rem) / 4);
 		}
 		/* 48px hit area around the 24px burger; beats its scoped `padding: 0`. */
 		.c-top-app-bar .c-top-app-bar__leading > .c-top-app-bar__burger {
 			box-sizing: content-box;
 			padding: 0.9375rem 0.75rem;
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 		}
 		.c-top-app-bar__icon-button,
 		.c-top-app-bar__actions > button {
@@ -109,7 +109,7 @@
 			min-height: 1.5rem;
 			padding: 0.75rem;
 			border: 0;
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 			background: transparent;
 			color: inherit;
 			cursor: pointer;
@@ -128,7 +128,7 @@
 		.c-top-app-bar__titles {
 			flex: 1;
 			min-width: 0;
-			padding-inline: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			padding-inline: calc(var(--space-4, 1rem) / 2);
 		}
 		.c-top-app-bar__heading,
 		.c-top-app-bar__subheading {
@@ -138,9 +138,9 @@
 			white-space: nowrap;
 		}
 		.c-top-app-bar__heading {
-			font-size: var(--typography-font-size-5, 1.25rem);
-			font-weight: var(--typography-font-weight-normal, 400);
-			line-height: var(--typography-line-height-tight, 1.25);
+			font-size: var(--font-size-5, 1.25rem);
+			font-weight: var(--font-weight-normal, 400);
+			line-height: var(--line-height-tight, 1.25);
 		}
 		.c-top-app-bar__subheading {
 			color: var(--color-text-secondary);

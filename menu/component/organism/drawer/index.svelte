@@ -67,7 +67,7 @@
 		display: flex;
 		opacity: var(--opacity-100);
 		background-color: color-mix(in srgb, var(--color-text-primary) 50%, transparent);
-		transition: opacity var(--duration-300) var(--animation-ease);
+		transition: opacity var(--duration-300) var(--easing-ease);
 	}
 
 	.drawer__backdrop--clear {

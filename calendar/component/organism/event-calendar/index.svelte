@@ -176,7 +176,7 @@
 <style>
 	.c-event-calendar {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--radius-lg, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		overflow: hidden;
 		background: var(--color-background-primary);
 		box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
@@ -188,7 +188,7 @@
 		justify-content: space-between;
 		gap: 1rem;
 		flex-wrap: wrap;
-		padding: var(--spacing-lg, 1.5rem);
+		padding: var(--space-6, 1.5rem);
 		border-bottom: 1px solid var(--color-border-primary);
 		background: var(--color-background-secondary);
 	}
@@ -206,7 +206,7 @@
 		margin-left: 1rem;
 		font-weight: 700;
 		color: var(--color-text-primary);
-		font-size: var(--text-size-xl, 1.25rem);
+		font-size: var(--font-size-5, 1.25rem);
 	}
 	.c-event-calendar__view-tabs {
 		display: flex;
@@ -218,9 +218,9 @@
 	}
 
 	.c-event-calendar__weekday {
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 		text-align: center;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		font-weight: var(--font-weight-medium, 500);
 		color: var(--color-text-secondary);
 	}
@@ -245,7 +245,7 @@
 	}
 
 	.c-event-calendar__date-header {
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 		font-weight: var(--font-weight-semibold, 600);
 		color: var(--color-text-secondary);
 	}
@@ -258,7 +258,7 @@
 	.c-event-calendar__day-events {
 		max-height: 25rem;
 		overflow-y: auto;
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 	}
 
 	.c-event-calendar__grid {
@@ -274,7 +274,7 @@
 	.c-event-calendar__day {
 		min-height: 6rem;
 		min-width: 0;
-		padding: var(--spacing-xs, 0.25rem);
+		padding: var(--space-1, 0.25rem);
 		border-top: 1px solid var(--color-border-secondary);
 		border-right: 1px solid var(--color-border-secondary);
 		position: relative;
@@ -294,7 +294,7 @@
 
 	.c-event-calendar__date-num {
 		text-align: right;
-		padding: var(--spacing-xs, 0.25rem);
+		padding: var(--space-1, 0.25rem);
 	}
 	.c-event-calendar__date-num--today {
 		display: flex;
@@ -310,9 +310,9 @@
 
 	.c-event-calendar__event {
 		min-width: 0;
-		font-size: var(--text-size-xs, 0.75rem);
-		padding: var(--spacing-xs, 0.25rem);
-		border-radius: var(--radius-sm, 0.25rem);
+		font-size: var(--font-size-3, 0.75rem);
+		padding: var(--space-1, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -329,7 +329,7 @@
 	.c-event-calendar__event-time {
 		margin-left: 0.25rem;
 		color: var(--color-text-secondary);
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 	}
 
 	.c-event-calendar__modal-overlay {
@@ -340,30 +340,30 @@
 		align-items: center;
 		justify-content: center;
 		z-index: 100;
-		padding: var(--spacing-lg, 1.5rem);
+		padding: var(--space-6, 1.5rem);
 	}
 
 	.c-event-calendar__modal {
 		background: var(--color-background-primary);
-		border-radius: var(--radius-lg, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		box-shadow: var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1));
-		padding: var(--spacing-xl, 2rem);
+		padding: var(--space-8, 2rem);
 		max-width: 28rem;
 		width: 100%;
-		margin-inline: var(--spacing-md, 1rem);
+		margin-inline: var(--space-4, 1rem);
 	}
 
 	.c-event-calendar__modal-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		margin-bottom: var(--spacing-md, 1rem);
+		margin-bottom: var(--space-4, 1rem);
 	}
 	.c-event-calendar__modal-title {
 		font-weight: var(--font-weight-semibold, 600);
 		color: var(--color-text-primary);
 		margin: 0;
-		font-size: var(--text-size-lg, 1.125rem);
+		font-size: var(--font-size-4-5, 1.125rem);
 	}
 	.c-event-calendar__modal-close {
 		background: none;
@@ -376,19 +376,19 @@
 		color: var(--color-text-primary);
 	}
 	.c-event-calendar__modal-body {
-		padding-block: var(--spacing-sm, 0.75rem);
+		padding-block: var(--space-3, 0.75rem);
 	}
 	.c-event-calendar__modal-desc {
 		color: var(--color-text-secondary);
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 	.c-event-calendar__modal-meta {
-		margin-top: var(--spacing-sm, 0.75rem);
+		margin-top: var(--space-3, 0.75rem);
 		color: var(--color-text-secondary);
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 	}
 	.c-event-calendar__modal-footer {
-		margin-top: var(--spacing-lg, 1.5rem);
+		margin-top: var(--space-6, 1.5rem);
 	}
 	.c-event-calendar__modal-actions {
 		display: flex;

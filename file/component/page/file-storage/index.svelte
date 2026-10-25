@@ -40,18 +40,18 @@
 		.c-file-storage {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 1.5);
+			gap: calc(var(--space-4, 1rem) * 1.5);
 			color: var(--color-text-primary);
 		}
 		.c-file-storage__details {
-			padding: var(--layout-spacing-1rem, 1rem);
+			padding: var(--space-4, 1rem);
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-xl, 0.75rem);
+			border-radius: var(--radius-3, 0.75rem);
 			background: var(--color-background-secondary);
 		}
 		.c-file-storage__title {
-			margin: 0 0 calc(var(--layout-spacing-1rem, 1rem) / 2);
-			font-size: var(--typography-font-size-5, 1.25rem);
+			margin: 0 0 calc(var(--space-4, 1rem) / 2);
+			font-size: var(--font-size-5, 1.25rem);
 		}
 	}
 </style>

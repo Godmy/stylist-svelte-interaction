@@ -110,7 +110,7 @@
 		padding-block: 0.5rem;
 		padding-inline: 0.75rem 2.5rem;
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background-color: var(--color-background-primary);
 		cursor: pointer;
 	}
@@ -136,7 +136,7 @@
 		padding: 1rem;
 		background-color: var(--color-background-primary);
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-large, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	}
 
@@ -153,7 +153,7 @@
 	}
 
 	.c-dtrp__col-header {
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		font-weight: 600;
 		margin-block-end: 0.5rem;
 		color: var(--color-text-primary);
@@ -161,7 +161,7 @@
 
 	.c-dtrp__field-label {
 		display: block;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 		margin-block-end: 0.25rem;
 		margin-block-start: 0.5rem;
@@ -170,15 +170,15 @@
 	.c-dtrp__field-input {
 		box-sizing: border-box;
 		width: 100%;
-		border-radius: var(--border-radius-sm, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		border: 1px solid var(--color-border-primary);
 		padding: 0.375rem 0.5rem;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	.c-dtrp__error {
 		margin-block: 0.5rem 0;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-danger-600);
 	}
 
@@ -193,12 +193,12 @@
 
 	.c-dtrp__action {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-sm, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		background: var(--color-background-primary);
 		color: var(--color-text-primary);
 		padding: 0.375rem 0.75rem;
 		cursor: pointer;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	.c-dtrp__action:hover {

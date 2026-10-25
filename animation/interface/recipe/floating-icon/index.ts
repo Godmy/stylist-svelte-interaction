@@ -1,8 +1,9 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 
 export interface RecipeFloatingIcon {
 	/** Icon name from the svg registry. */
-	icon: string;
+	icon: TokenIconName;
 	/** Semantic accent tone driving the gradient fill. */
 	accent?: TokenColorTone;
 	/** CSS `animation-delay` value, e.g. `"0.1s"`. */

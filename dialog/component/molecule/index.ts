@@ -5,6 +5,7 @@ export { Breadcrumbs } from './breadcrumbs/index';
 export { ConfirmationDialog } from './confirmation-dialog/index';
 export { DialogConfirm } from './dialog-confirm/index';
 export { GeneralToolbar } from './general-toolbar/index';
+export { Popover } from './popover/index';
 export { Stepper } from './stepper/index';
 export { StylistTab } from './stylist-tab/index';
 export { Tabs } from './tabs/index';

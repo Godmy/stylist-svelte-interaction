@@ -14,7 +14,7 @@
 		<div class={state.headerClasses}>
 			<div class="c-time-grid__header-left">
 				<Button variant="ghost" size="sm" onclick={() => state.navigateWeek(-1)}>
-					<Icon name="chevron-down" direction="left" size="md" />
+					<Icon name="chevron-left" size={20} />
 				</Button>
 				<Button
 					variant="ghost"
@@ -25,7 +25,7 @@
 					Today
 				</Button>
 				<Button variant="ghost" size="sm" onclick={() => state.navigateWeek(1)}>
-					<Icon name="chevron-down" direction="right" size="md" />
+					<Icon name="chevron-right" size={20} />
 				</Button>
 				<h2 class="c-time-grid__title">
 					{state.viewStartDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
@@ -105,7 +105,7 @@
 								</div>
 								{#if event.location}
 									<div class="c-time-grid__event-location">
-										<Icon name="map-pin" size="xs" />
+										<Icon name="map-pin" size={12} />
 										<span class="c-time-grid__event-loc-text">{event.location}</span>
 									</div>
 								{/if}
@@ -187,7 +187,7 @@
 										<div class="c-time-grid__event-title">{event.title}</div>
 										{#if event.location}
 											<div class="c-time-grid__event-location">
-												<Icon name="map-pin" size="xs" class="c-time-grid__event-icon" />
+												<Icon name="map-pin" size={12} class="c-time-grid__event-icon" />
 												<span class="c-time-grid__event-loc-text">{event.location}</span>
 											</div>
 										{/if}
@@ -205,7 +205,7 @@
 <style>
 	.c-time-grid {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--radius-lg, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		overflow: auto;
 	}
 
@@ -215,7 +215,7 @@
 		justify-content: space-between;
 		gap: 1rem;
 		flex-wrap: wrap;
-		padding: var(--spacing-lg, 1.5rem);
+		padding: var(--space-6, 1.5rem);
 		border-bottom: 1px solid var(--color-border-primary);
 	}
 
@@ -233,12 +233,12 @@
 		margin-left: 1rem;
 		font-weight: var(--font-weight-semibold, 600);
 		color: var(--color-text-primary);
-		font-size: var(--text-size-lg, 1.125rem);
+		font-size: var(--font-size-4-5, 1.125rem);
 	}
 
 	.c-time-grid__view-tabs {
 		display: flex;
-		gap: var(--spacing-sm, 0.75rem);
+		gap: var(--space-3, 0.75rem);
 		flex-wrap: wrap;
 	}
 
@@ -268,14 +268,14 @@
 	}
 
 	.c-time-grid__gutter-spacer {
-		height: var(--spacing-xl, 2rem);
+		height: var(--space-8, 2rem);
 	}
 
 	.c-time-grid__gutter-slot {
-		padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.75rem);
+		padding: var(--space-1, 0.25rem) var(--space-3, 0.75rem);
 		border-bottom: 1px solid var(--color-border-secondary, var(--color-border-primary));
 		text-align: right;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 
@@ -288,9 +288,9 @@
 	}
 
 	.c-time-grid__day-header {
-		padding: var(--spacing-sm, 0.75rem);
+		padding: var(--space-3, 0.75rem);
 		text-align: center;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		font-weight: var(--font-weight-medium, 500);
 	}
 
@@ -330,11 +330,11 @@
 
 	.c-time-grid__event {
 		position: absolute;
-		left: var(--spacing-xs, 0.25rem);
-		right: var(--spacing-xs, 0.25rem);
-		padding: var(--spacing-xs, 0.25rem);
-		font-size: var(--text-size-xs, 0.75rem);
-		border-radius: var(--radius-sm, 0.25rem);
+		left: var(--space-1, 0.25rem);
+		right: var(--space-1, 0.25rem);
+		padding: var(--space-1, 0.25rem);
+		font-size: var(--font-size-3, 0.75rem);
+		border-radius: var(--radius-1, 0.25rem);
 		overflow: hidden;
 		cursor: pointer;
 		background: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
@@ -346,7 +346,7 @@
 		position: static;
 		margin-block-end: 0.25rem;
 		padding: 0.375rem 0.5rem;
-		border-radius: var(--radius-sm, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		border-left: 3px solid var(--color-primary-500);
 		background: color-mix(in srgb, var(--color-primary-500) 8%, transparent);
 	}
@@ -359,14 +359,14 @@
 	}
 
 	.c-time-grid__event-time {
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 
 	.c-time-grid__event-location {
 		display: flex;
 		align-items: center;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 		gap: 0.125rem;
 	}
@@ -387,7 +387,7 @@
 		align-items: center;
 		padding: 0.125rem 0.375rem;
 		border-radius: 9999px;
-		font-size: var(--text-size-2xs, 0.625rem);
+		font-size: var(--font-size-2-5, 0.625rem);
 		font-weight: var(--font-weight-medium, 500);
 		margin-block-start: 0.25rem;
 	}

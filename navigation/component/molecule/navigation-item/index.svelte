@@ -2,6 +2,7 @@
 	import HtmlButton from '$stylist/html/component/atom/button/index.svelte';
 	import HtmlSpan from '$stylist/html/component/atom/span/index.svelte';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
+	import { isIconName } from '$stylist/svg/function/check/icon-name';
 	import Svg from '$stylist/svg/component/atom/svg/index.svelte';
 	import type { RecipeNavigationItem } from '$stylist/navigation/interface/recipe/navigation-item';
 
@@ -25,9 +26,16 @@
 >
 	<!-- Inline SVG renders on the server at once; a named icon loads from the registry. -->
 	{#if destination.iconSvg}
-		<HtmlSpan class="c-navigation-item__icon" aria-hidden="true"><Svg svg={destination.iconSvg} size={24} /></HtmlSpan>
+		<HtmlSpan class="c-navigation-item__icon" aria-hidden="true"
+			><Svg svg={destination.iconSvg} size={24} /></HtmlSpan
+		>
 	{:else if destination.icon}
-		<Icon name={destination.icon} size={24} class="c-navigation-item__icon" aria-hidden="true" />
+		<Icon
+			name={isIconName(destination.icon) ? destination.icon : 'box'}
+			size={24}
+			class="c-navigation-item__icon"
+			aria-hidden="true"
+		/>
 	{/if}
 	<HtmlSpan class="c-navigation-item__label">{destination.label}</HtmlSpan>
 	{#if destination.badge !== undefined}
@@ -40,19 +48,19 @@
 		.c-navigation-item {
 			display: flex;
 			align-items: center;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			gap: calc(var(--space-4, 1rem) * 0.75);
 			width: 100%;
 			min-height: 3.5rem;
-			padding: 0 var(--layout-spacing-1rem, 1rem);
+			padding: 0 var(--space-4, 1rem);
 			border: 0;
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 			background: transparent;
 			color: var(--color-text-secondary);
 			font: inherit;
-			font-weight: var(--typography-font-weight-medium, 500);
+			font-weight: var(--font-weight-medium, 500);
 			text-align: start;
 			cursor: pointer;
-			transition: background-color var(--motion-duration-150, 150ms) var(--motion-easing-ease, ease);
+			transition: background-color var(--duration-150, 150ms) var(--easing-ease, ease);
 		}
 		.c-navigation-item:hover:not(:disabled) {
 			background: var(--color-background-container, var(--color-background-secondary));

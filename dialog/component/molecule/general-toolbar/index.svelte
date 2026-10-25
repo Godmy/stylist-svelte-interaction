@@ -32,12 +32,12 @@
 <style>
 	.toolbar {
 		display: flex;
-		gap: var(--spacing-2);
+		gap: var(--space-2);
 		flex-wrap: wrap;
 		align-items: center;
-		padding: var(--spacing-2);
+		padding: var(--space-2);
 		background-color: var(--color-background-secondary);
-		border-radius: var(--border-radius-lg);
+		border-radius: var(--radius-2);
 		border: 1px solid var(--color-border-secondary);
 	}
 

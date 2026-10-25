@@ -153,7 +153,7 @@
 		--color-background-secondary: rgba(23, 35, 31, 0.06);
 		--color-primary-500: #17231f;
 		--color-border-primary: rgba(23, 35, 31, 0.28);
-		--border-radius-base: 10px;
+		--calendar-radius: 10px;
 		--font-weight-medium: 650;
 		position: relative;
 		display: grid;

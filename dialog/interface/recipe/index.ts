@@ -13,6 +13,7 @@ export type { RecipeDialog } from './dialog';
 export type { RecipeDialogConfirm } from './dialog-confirm';
 export type { RecipeGeneralToolbar } from './general-toolbar';
 export type { RecipeModal } from './modal';
+export type { RecipePopover } from './popover';
 export type { RecipeSimpleModal } from './simple-modal';
 export type { RecipeStepper } from './stepper';
 export type { RecipeStylistTab } from './stylist-tab';

@@ -61,10 +61,10 @@
 		.c-workspace-menu {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			gap: calc(var(--space-4, 1rem) / 2);
 			min-width: 0;
-			padding: var(--layout-spacing-1rem, 1rem);
-			border-radius: var(--layout-border-radius-xl, 0.75rem);
+			padding: var(--space-4, 1rem);
+			border-radius: var(--radius-3, 0.75rem);
 			background: var(--color-background-secondary);
 			color: var(--color-text-primary);
 		}
@@ -76,7 +76,7 @@
 			width: 100%;
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: var(--color-background-primary);
 			color: inherit;
 			font: inherit;
@@ -84,7 +84,7 @@
 			cursor: pointer;
 		}
 		.c-workspace-menu__item {
-			margin-block: calc(var(--layout-spacing-1rem, 1rem) * 0.35);
+			margin-block: calc(var(--space-4, 1rem) * 0.35);
 		}
 		.c-workspace-menu__item[aria-current] {
 			border-color: var(--color-primary-600, #2563eb);
@@ -98,8 +98,8 @@
 			outline-offset: var(--focus-offset, 0.125rem);
 		}
 		.c-workspace-menu__group-title {
-			padding-block: calc(var(--layout-spacing-1rem, 1rem) * 0.8);
-			font-weight: var(--typography-font-weight-bold, 700);
+			padding-block: calc(var(--space-4, 1rem) * 0.8);
+			font-weight: var(--font-weight-bold, 700);
 			cursor: pointer;
 		}
 	}

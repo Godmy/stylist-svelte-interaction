@@ -79,9 +79,9 @@
 		font-weight: 500;
 		gap: 0.25rem;
 		transition:
-			background var(--motion-duration-120, 120ms) var(--motion-easing-ease, ease),
-			color var(--motion-duration-120, 120ms) var(--motion-easing-ease, ease),
-			border-color var(--motion-duration-120, 120ms) var(--motion-easing-ease, ease);
+			background var(--duration-120, 120ms) var(--easing-ease, ease),
+			color var(--duration-120, 120ms) var(--easing-ease, ease),
+			border-color var(--duration-120, 120ms) var(--easing-ease, ease);
 	}
 
 	/* ── Sizes ─────────────────────────────────────────────────── */
@@ -273,8 +273,8 @@
 		cursor: pointer;
 		line-height: 1;
 		transition:
-			background var(--motion-duration-120, 120ms) var(--motion-easing-ease, ease),
-			color var(--motion-duration-120, 120ms) var(--motion-easing-ease, ease);
+			background var(--duration-120, 120ms) var(--easing-ease, ease),
+			color var(--duration-120, 120ms) var(--easing-ease, ease);
 	}
 	.c-tag__close:hover {
 		background: color-mix(in srgb, currentColor 18%, transparent);

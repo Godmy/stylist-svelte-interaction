@@ -81,27 +81,27 @@
 				var(--color-warning-300, #c6a690)
 			);
 			display: grid;
-			gap: var(--layout-spacing-1rem, 1rem);
+			gap: var(--space-4, 1rem);
 			min-width: 0;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 3) calc(var(--layout-spacing-1rem, 1rem) * 2);
-			border-radius: var(--layout-border-radius-xl, 1rem);
+			padding: calc(var(--space-4, 1rem) * 3) calc(var(--space-4, 1rem) * 2);
+			border-radius: var(--radius-4, 1rem);
 			background: var(--color-background-secondary);
 		}
 		.c-tilt-showcase__card {
-			border-radius: var(--layout-border-radius-xxl, 1.2rem);
+			border-radius: var(--radius-5, 1.25rem);
 		}
 		.c-tilt-showcase__art {
 			position: relative;
 			isolation: isolate;
 			min-height: 22.5rem;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 2);
+			padding: calc(var(--space-4, 1rem) * 2);
 			overflow: hidden;
 			border-radius: inherit;
 			box-shadow: var(--elevation-level3, 0 25px 55px #30264750);
 			color: var(--color-text-inverse, #fff);
 		}
 		.c-tilt-showcase__eyebrow {
-			font-size: var(--typography-font-size-2, 0.65rem);
+			font-size: var(--font-size-2-5, 0.625rem);
 			letter-spacing: 0.2em;
 		}
 		.c-tilt-showcase__orbit {
@@ -111,13 +111,13 @@
 			width: 15rem;
 			height: 15rem;
 			border: 1.5rem solid color-mix(in srgb, currentColor 30%, transparent);
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 			transform: rotate(-25deg) scaleY(0.6);
 		}
 		.c-tilt-showcase__heading {
 			position: relative;
 			max-width: 12ch;
-			margin: calc(var(--layout-spacing-1rem, 1rem) * 3) 0 0;
+			margin: calc(var(--space-4, 1rem) * 3) 0 0;
 			font-size: clamp(2rem, 4vw, 3.5rem);
 			line-height: 1.05;
 			letter-spacing: -0.05em;
@@ -136,11 +136,11 @@
 		}
 		@media (max-width: 760px) {
 			.c-tilt-showcase {
-				padding: calc(var(--layout-spacing-1rem, 1rem) * 2) var(--layout-spacing-1rem, 1rem);
+				padding: calc(var(--space-4, 1rem) * 2) var(--space-4, 1rem);
 			}
 			.c-tilt-showcase__art {
 				min-height: 20rem;
-				padding: calc(var(--layout-spacing-1rem, 1rem) * 1.5);
+				padding: calc(var(--space-4, 1rem) * 1.5);
 			}
 		}
 	}

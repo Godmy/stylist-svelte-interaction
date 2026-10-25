@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { SlotFileSystemItem } from '$stylist/file/interface/slot/file-system-item';
 
 export class FileExplorerManager {
@@ -31,7 +32,7 @@ export class FileExplorerManager {
 		return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 	}
 
-	static getFileIcon(item: SlotFileSystemItem): string {
+	static getFileIcon(item: SlotFileSystemItem): TokenIconName {
 		return item.type === 'folder' ? 'folder' : 'file';
 	}
 

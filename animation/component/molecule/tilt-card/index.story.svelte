@@ -20,11 +20,11 @@
 <style>
 	:global {
 		.c-tilt-card-story {
-			border-radius: var(--layout-border-radius-xl, 1rem);
+			border-radius: var(--radius-4, 1rem);
 		}
 		.c-tilt-card-story__content {
 			max-width: 22rem;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 2);
+			padding: calc(var(--space-4, 1rem) * 2);
 			border-radius: inherit;
 			background: linear-gradient(
 				135deg,
@@ -34,7 +34,7 @@
 			color: var(--color-text-inverse, #fff);
 		}
 		.c-tilt-card-story__button {
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			padding: calc(var(--space-4, 1rem) * 0.75);
 			font: inherit;
 		}
 	}

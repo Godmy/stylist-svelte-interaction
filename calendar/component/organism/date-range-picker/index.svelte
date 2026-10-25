@@ -105,7 +105,7 @@
 		padding-block: 0.5rem;
 		padding-inline: 0.75rem 2.5rem;
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background-color: var(--color-background-primary);
 		cursor: pointer;
 	}
@@ -136,7 +136,7 @@
 		padding: 0.75rem;
 		background-color: var(--color-background-primary);
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-large, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	}
 
@@ -152,7 +152,7 @@
 		border: none;
 		cursor: pointer;
 		padding: 0.25rem;
-		border-radius: var(--border-radius-sm, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		color: var(--color-text-secondary);
 	}
 
@@ -161,7 +161,7 @@
 	}
 
 	.c-drp__month-label {
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		font-weight: 500;
 	}
 
@@ -171,7 +171,7 @@
 		gap: 0.25rem;
 		margin-block-end: 0.25rem;
 		text-align: center;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 
@@ -183,8 +183,8 @@
 
 	.c-drp__day {
 		height: 2rem;
-		border-radius: var(--border-radius-sm, 0.25rem);
-		font-size: var(--text-size-xs, 0.75rem);
+		border-radius: var(--radius-1, 0.25rem);
+		font-size: var(--font-size-3, 0.75rem);
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -219,12 +219,12 @@
 
 	.c-drp__action {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-sm, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		background: var(--color-background-primary);
 		color: var(--color-text-primary);
 		padding: 0.375rem 0.75rem;
 		cursor: pointer;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	.c-drp__action:hover {

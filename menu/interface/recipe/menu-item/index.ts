@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { SlotChildren } from '$stylist/theme/interface/slot/children';
 import type { BehaviorClickable } from '$stylist/layout/interface/behavior/clickable';
 import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focusable';
@@ -35,7 +36,7 @@ export interface RecipeMenuItem extends ComputeIntersectAll<
 	/**
 	 * Icon name for the menu item
 	 */
-	icon?: string;
+	icon?: TokenIconName;
 	/**
 	 * Whether the menu item is disabled
 	 * @default false

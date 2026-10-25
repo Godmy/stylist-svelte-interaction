@@ -1,8 +1,9 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { TokenColorTone } from '$stylist/design-token/type/alias/color-tone';
 
 export interface RecipeAtomicTierCard {
 	/** Icon name for the floating badge. */
-	icon: string;
+	icon: TokenIconName;
 	/** Accent tone shared by the icon fill, card border and count. */
 	accent?: TokenColorTone;
 	/** Tier name, e.g. `"Atoms"`. */

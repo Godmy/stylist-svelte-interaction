@@ -17,7 +17,7 @@
 			<span class="atomic-principles-showcase__badge">
 				<BaseIcon
 					name={PresetAtomicPrinciplesShowcase.BadgeIcon}
-					size="sm"
+					size={16}
 					class="atomic-principles-showcase__badge-icon"
 				/>
 				<Text text={state.badgeText} fontSize="3" fontWeight="semibold" />

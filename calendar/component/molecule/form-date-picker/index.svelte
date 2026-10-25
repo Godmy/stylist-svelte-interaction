@@ -76,7 +76,7 @@
 	.fdp__label {
 		display: block;
 		margin-block-end: 0.25rem;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		font-weight: 500;
 		color: var(--color-text-primary);
 	}
@@ -89,7 +89,7 @@
 		box-sizing: border-box;
 		display: block;
 		width: 100%;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		padding: 0.5rem 2.5rem 0.5rem 0.75rem;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -119,7 +119,7 @@
 		inset-inline: 0;
 		box-sizing: border-box;
 		margin-block-start: 0.25rem;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		background-color: var(--color-background-primary);
 		padding: 0.75rem;
@@ -130,20 +130,20 @@
 		box-sizing: border-box;
 		display: block;
 		width: 100%;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		padding: 0.5rem;
 	}
 
 	.fdp__helper {
 		margin-block-start: 0.25rem;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 
 	.fdp__error {
 		margin-block-start: 0.25rem;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-danger-600);
 	}
 

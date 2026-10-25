@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import { MediaLibraryManager } from '$stylist/file/class/manager/media-library';
 import type { RecipeMediaLibrary } from '$stylist/file/interface/recipe/media-library';
 import type { MediaType } from '$stylist/file/type/alias/media-library-media-type';
@@ -51,7 +52,7 @@ export function createMediaLibraryState(getProps: () => RecipeMediaLibrary) {
 		fileInputRef?.click();
 	}
 
-	function getFileIcon(type: MediaType): string {
+	function getFileIcon(type: MediaType): TokenIconName {
 		switch (type) {
 			case 'image':
 				return 'image';

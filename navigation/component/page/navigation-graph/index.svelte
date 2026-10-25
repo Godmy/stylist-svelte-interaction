@@ -158,19 +158,19 @@
 	:global {
 		.c-navigation-graph {
 			display: grid;
-			gap: var(--layout-spacing-1rem, 1rem);
+			gap: var(--space-4, 1rem);
 			min-width: 0;
 			color: var(--color-text-primary);
 		}
 		.c-navigation-graph__heading {
 			margin: 0;
-			font-size: var(--typography-font-size-5, 1.25rem);
-			font-weight: var(--typography-font-weight-semibold, 600);
+			font-size: var(--font-size-5, 1.25rem);
+			font-weight: var(--font-weight-semibold, 600);
 		}
 		.c-navigation-graph__viewport {
 			overflow: auto;
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-xl, 0.75rem);
+			border-radius: var(--radius-3, 0.75rem);
 			background: var(--color-background-secondary);
 		}
 		.c-navigation-graph__canvas {
@@ -202,9 +202,9 @@
 			display: grid;
 			align-content: center;
 			box-sizing: border-box;
-			padding: 0 calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			padding: 0 calc(var(--space-4, 1rem) * 0.75);
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-lg, 0.5rem);
+			border-radius: var(--radius-2, 0.5rem);
 			background: var(--color-background-raised, var(--color-background-primary));
 			color: inherit;
 			font: inherit;
@@ -236,7 +236,7 @@
 		}
 		.c-navigation-graph__label {
 			overflow: hidden;
-			font-weight: var(--typography-font-weight-medium, 500);
+			font-weight: var(--font-weight-medium, 500);
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
@@ -249,19 +249,19 @@
 			font-size: var(--font-relative-small, 0.875em);
 		}
 		.c-navigation-graph__caption {
-			padding-bottom: calc(var(--layout-spacing-1rem, 1rem) / 2);
-			font-weight: var(--typography-font-weight-semibold, 600);
+			padding-bottom: calc(var(--space-4, 1rem) / 2);
+			font-weight: var(--font-weight-semibold, 600);
 			text-align: start;
 		}
 		.c-navigation-graph__table th,
 		.c-navigation-graph__table td {
-			padding: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			padding: calc(var(--space-4, 1rem) / 2);
 			border-bottom: var(--border-width-thin, 1px) solid var(--color-border-primary);
 			text-align: start;
 		}
 		.c-navigation-graph__table th {
 			color: var(--color-text-secondary);
-			font-weight: var(--typography-font-weight-medium, 500);
+			font-weight: var(--font-weight-medium, 500);
 		}
 	}
 </style>

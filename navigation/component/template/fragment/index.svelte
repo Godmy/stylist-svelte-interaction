@@ -44,7 +44,7 @@
 <style>
 	:global {
 		.c-fragment {
-			--c-fragment-gutter: var(--layout-spacing-1rem, 1rem);
+			--c-fragment-gutter: var(--space-4, 1rem);
 			box-sizing: border-box;
 			width: 100%;
 			margin-inline: auto;
@@ -76,16 +76,16 @@
 			padding: var(--c-fragment-gutter) var(--c-fragment-gutter) 0;
 		}
 		.c-fragment__header {
-			margin-bottom: var(--layout-spacing-1rem, 1rem);
+			margin-bottom: var(--space-4, 1rem);
 		}
 		.c-fragment__heading {
 			margin: 0;
-			font-size: var(--typography-font-size-6, 1.5rem);
-			font-weight: var(--typography-font-weight-semibold, 600);
-			line-height: var(--typography-line-height-tight, 1.25);
+			font-size: var(--font-size-6, 1.5rem);
+			font-weight: var(--font-weight-semibold, 600);
+			line-height: var(--line-height-tight, 1.25);
 		}
 		.c-fragment__description {
-			margin: calc(var(--layout-spacing-1rem, 1rem) / 4) 0 0;
+			margin: calc(var(--space-4, 1rem) / 4) 0 0;
 			color: var(--color-text-secondary);
 		}
 	}

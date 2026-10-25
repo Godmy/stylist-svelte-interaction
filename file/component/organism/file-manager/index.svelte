@@ -276,14 +276,14 @@
 		.c-file-manager {
 			display: flex;
 			flex-direction: column;
-			gap: var(--layout-spacing-1rem, 1rem);
+			gap: var(--space-4, 1rem);
 			color: var(--color-text-primary);
 		}
 		.c-file-manager__row {
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			gap: calc(var(--space-4, 1rem) * 0.75);
 		}
 		.c-file-manager__row--between {
 			justify-content: space-between;
@@ -294,13 +294,13 @@
 		.c-file-manager__field {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 4);
-			font-weight: var(--typography-font-weight-medium, 500);
+			gap: calc(var(--space-4, 1rem) / 4);
+			font-weight: var(--font-weight-medium, 500);
 		}
 		.c-file-manager__input {
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid var(--color-border-secondary);
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: var(--color-background-primary);
 			color: var(--color-text-primary);
 			font: inherit;
@@ -308,7 +308,7 @@
 		.c-file-manager__button {
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid var(--color-primary-600);
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: var(--color-primary-600);
 			color: var(--color-on-primary, #fff);
 			font: inherit;
@@ -329,15 +329,15 @@
 			outline-offset: var(--focus-offset, 0.125rem);
 		}
 		.c-file-manager__panel {
-			padding: var(--layout-spacing-1rem, 1rem);
+			padding: var(--space-4, 1rem);
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-xl, 0.75rem);
+			border-radius: var(--radius-3, 0.75rem);
 			background: var(--color-background-primary);
 		}
 		.c-file-manager__entries {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			gap: calc(var(--space-4, 1rem) * 0.75);
 		}
 		.c-file-manager__entries--grid {
 			display: grid;
@@ -346,12 +346,12 @@
 		.c-file-manager__entry {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			gap: calc(var(--space-4, 1rem) / 2);
 			min-width: 0;
 		}
 		.c-file-manager__name {
 			margin: 0;
-			font-size: var(--typography-font-size-4, 1rem);
+			font-size: var(--font-size-4, 1rem);
 			overflow-wrap: anywhere;
 		}
 		.c-file-manager__meta {
@@ -359,11 +359,11 @@
 		}
 		.c-file-manager__badge {
 			display: inline-block;
-			padding: calc(var(--layout-spacing-1rem, 1rem) / 8) calc(var(--layout-spacing-1rem, 1rem) / 2);
-			border-radius: var(--layout-border-radius-full, 9999px);
+			padding: calc(var(--space-4, 1rem) / 8) calc(var(--space-4, 1rem) / 2);
+			border-radius: var(--radius-full, 9999px);
 			background: var(--color-secondary-container, var(--color-background-secondary));
 			color: var(--color-on-secondary-container, var(--color-text-primary));
-			font-size: var(--typography-font-size-3, 0.75rem);
+			font-size: var(--font-size-3, 0.75rem);
 		}
 		.c-file-manager__notice {
 			margin: 0;

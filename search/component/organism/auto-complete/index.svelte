@@ -78,7 +78,7 @@
 		padding-inline-start: 2.5rem;
 		padding-inline-end: 0.75rem;
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background-color: var(--color-background-primary);
 	}
 
@@ -94,7 +94,7 @@
 		max-height: 15rem;
 		width: 100%;
 		overflow: auto;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		background-color: var(--color-background-primary);
 		padding-block: 0.25rem;
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -119,7 +119,7 @@
 
 	.c-auto-complete__meta {
 		margin-inline-start: 0.5rem;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 </style>

@@ -76,7 +76,7 @@
 <style>
 	.rich-text-editor {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-large, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		overflow: hidden;
 	}
 
@@ -135,7 +135,7 @@
 		gap: 0.5rem;
 		background-color: var(--color-background-primary);
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		box-shadow:
 			0 4px 6px -1px rgba(0, 0, 0, 0.1),
 			0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -145,9 +145,9 @@
 		flex: 1;
 		padding: 0.25rem 0.5rem;
 		border: 1px solid var(--color-border-primary);
-		border-start-start-radius: var(--border-radius-sm, 0.25rem);
-		border-end-start-radius: var(--border-radius-sm, 0.25rem);
-		font-size: var(--text-size-sm, 0.875rem);
+		border-start-start-radius: var(--radius-1, 0.25rem);
+		border-end-start-radius: var(--radius-1, 0.25rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 	}
 
 	.rich-text-editor__link-button {
@@ -155,9 +155,9 @@
 		background-color: var(--color-primary-500);
 		color: var(--color-text-inverse);
 		border: none;
-		border-start-end-radius: var(--border-radius-sm, 0.25rem);
-		border-end-end-radius: var(--border-radius-sm, 0.25rem);
-		font-size: var(--text-size-sm, 0.875rem);
+		border-start-end-radius: var(--radius-1, 0.25rem);
+		border-end-end-radius: var(--radius-1, 0.25rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		cursor: pointer;
 	}
 </style>

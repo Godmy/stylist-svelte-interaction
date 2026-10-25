@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { TOKEN_ORIENTATION } from '$stylist/layout/const/array/orientation';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
+	import { isIconName } from '$stylist/svg/function/check/icon-name';
 	import type { RecipeIconToolbar } from '$stylist/control/interface/recipe/icon-toolbar';
 
 	let {
@@ -39,7 +40,7 @@
 			onclick={() => onSelect?.(item.name)}
 		>
 			<span class="icon">
-				<Icon name={item.name} size="sm" />
+				<Icon name={isIconName(item.name) ? item.name : 'box'} size={16} />
 			</span>
 			{#if active === item.name}
 				<span class="active-indicator"></span>

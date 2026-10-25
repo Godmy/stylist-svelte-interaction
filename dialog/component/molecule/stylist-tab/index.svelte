@@ -47,8 +47,8 @@
 	.stylist-tab {
 		display: inline-flex;
 		align-items: center;
-		gap: var(--spacing-1);
-		padding-left: var(--spacing-1);
+		gap: var(--space-1);
+		padding-left: var(--space-1);
 	}
 
 	.tab-item {
@@ -56,12 +56,12 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: flex-start;
-		gap: var(--spacing-2);
+		gap: var(--space-2);
 		width: var(--size-2_2rem);
 		height: var(--size-2_2rem);
-		padding: 0 var(--spacing-2);
+		padding: 0 var(--space-2);
 		border: 1px solid color-mix(in srgb, var(--color-border-primary) 35%, transparent);
-		border-radius: var(--border-radius-xl);
+		border-radius: var(--radius-4);
 		background: color-mix(in srgb, var(--color-background-primary) 80%, transparent);
 		color: var(--color-text-primary);
 		cursor: pointer;
@@ -95,8 +95,8 @@
 		opacity: var(--opacity-0);
 		transform: translateX(-0.2rem);
 		transition:
-			opacity var(--duration-120) var(--animation-ease),
-			transform var(--duration-150) var(--animation-ease);
+			opacity var(--duration-120) var(--easing-ease),
+			transform var(--duration-150) var(--easing-ease);
 	}
 
 	.tab-item.is-active .tab-text {
@@ -110,15 +110,15 @@
 		left: 50%;
 		top: calc(100% + 0.3rem);
 		transform: translateX(-50%);
-		padding: var(--spacing-1) var(--spacing-2);
-		border-radius: var(--border-radius-md);
+		padding: var(--space-1) var(--space-2);
+		border-radius: var(--radius-1-5);
 		font-size: var(--font-size-3);
 		font-weight: var(--font-weight-semibold);
 		background: var(--color-text-primary);
 		color: var(--color-text-inverse);
 		opacity: var(--opacity-0);
 		pointer-events: none;
-		transition: opacity var(--duration-120) var(--animation-ease);
+		transition: opacity var(--duration-120) var(--easing-ease);
 		z-index: var(--z-index-layer55);
 	}
 

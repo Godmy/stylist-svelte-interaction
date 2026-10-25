@@ -53,8 +53,8 @@
 		border: none;
 		cursor: pointer;
 		transition:
-			background-color var(--motion-duration-120, 120ms),
-			color var(--motion-duration-120, 120ms);
+			background-color var(--duration-120, 120ms),
+			color var(--duration-120, 120ms);
 	}
 
 	.c-action-segmented__item:hover:not([data-disabled]) {

@@ -31,10 +31,10 @@
 	:global {
 		.c-section-bar {
 			display: flex;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			gap: calc(var(--space-4, 1rem) / 2);
 			max-width: 100%;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 0.7);
-			border-radius: var(--layout-border-radius-md, 0.5rem);
+			padding: calc(var(--space-4, 1rem) * 0.7);
+			border-radius: var(--radius-2, 0.5rem);
 			background: var(--color-background-inverse, #0f172a);
 			color: var(--color-text-inverse, #fff);
 		}
@@ -43,7 +43,7 @@
 		}
 		.c-section-bar--bottom {
 			position: sticky;
-			bottom: var(--layout-spacing-1rem, 1rem);
+			bottom: var(--space-4, 1rem);
 			flex-wrap: wrap;
 			justify-content: center;
 		}
@@ -51,7 +51,7 @@
 			flex-shrink: 0;
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid transparent;
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: transparent;
 			color: inherit;
 			font: inherit;
@@ -59,7 +59,7 @@
 		}
 		.c-section-bar__item[aria-current] {
 			border-color: currentColor;
-			font-weight: var(--typography-font-weight-bold, 700);
+			font-weight: var(--font-weight-bold, 700);
 		}
 		.c-section-bar__item:focus-visible {
 			outline: var(--focus-width, 2px) solid var(--color-border-accent, var(--color-primary-500));

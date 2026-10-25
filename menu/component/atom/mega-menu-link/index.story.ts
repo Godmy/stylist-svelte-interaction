@@ -47,7 +47,13 @@ export default {
 			badge: '',
 			active: true
 		},
-		Plain: { label: 'Без иконки и описания', href: '#plain', icon: '', description: '', badge: '' },
+		Plain: {
+			label: 'Без иконки и описания',
+			href: '#plain',
+			icon: undefined,
+			description: '',
+			badge: ''
+		},
 		Compact: {
 			label: 'Компактная ссылка',
 			href: '#compact',

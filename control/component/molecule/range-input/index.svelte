@@ -116,7 +116,7 @@
 		width: 6rem;
 		padding: 0.25rem 0.5rem;
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--layout-border-radius-base, 0.25rem);
+		border-radius: var(--radius-1, 0.25rem);
 		background-color: var(--color-background-primary);
 		color: var(--color-text-primary);
 	}

@@ -169,7 +169,7 @@
 		align-items: center;
 		justify-content: space-between;
 		min-height: 2.875rem;
-		letter-spacing: var(--typography-letter-spacing-narrow, -0.01em);
+		letter-spacing: var(--letter-spacing-narrow, -0.01em);
 		background-image: var(
 			--gradients-types-custom12,
 			linear-gradient(
@@ -235,7 +235,7 @@
 		top: calc(100% + 0.25rem);
 		left: 0;
 		right: 0;
-		z-index: var(--layout-z-index-dropdown, 1000);
+		z-index: var(--z-index-dropdown, 1000);
 		margin: 0;
 		padding: 0.25rem;
 		list-style: none;
@@ -247,15 +247,14 @@
 		background: color-mix(in srgb, var(--color-background-primary) 98%, transparent);
 		backdrop-filter: blur(18px);
 		-webkit-backdrop-filter: blur(18px);
-		animation: select-dropdown-appear var(--motion-duration-180, 180ms)
-			var(--motion-easing-ease-out, ease-out);
+		animation: select-dropdown-appear var(--duration-180, 180ms) var(--easing-ease-out, ease-out);
 	}
 
 	.c-selector__option,
 	.c-selector__native option {
 		background-color: var(--select-option-bg);
 		color: var(--select-option-color);
-		font-weight: var(--typography-font-weight-medium, 500);
+		font-weight: var(--font-weight-medium, 500);
 	}
 
 	.c-selector__option {
@@ -267,9 +266,9 @@
 		border-radius: 0.375rem;
 		cursor: pointer;
 		transition:
-			background var(--motion-duration-150, 150ms) var(--motion-easing-ease, ease),
-			color var(--motion-duration-150, 150ms) var(--motion-easing-ease, ease),
-			transform var(--motion-duration-150, 150ms) var(--motion-easing-ease, ease);
+			background var(--duration-150, 150ms) var(--easing-ease, ease),
+			color var(--duration-150, 150ms) var(--easing-ease, ease),
+			transform var(--duration-150, 150ms) var(--easing-ease, ease);
 		border: 1px solid transparent;
 	}
 

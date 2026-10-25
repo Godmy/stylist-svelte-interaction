@@ -112,10 +112,10 @@
 
 	.sidebar__mobile-button {
 		position: absolute;
-		top: var(--spacing-4);
-		left: var(--spacing-4);
-		padding: var(--spacing-2);
-		border-radius: var(--radius-md);
+		top: var(--space-4);
+		left: var(--space-4);
+		padding: var(--space-2);
+		border-radius: var(--radius-1-5);
 		color: var(--color-text-primary);
 	}
 	@media (min-width: 1024px) {
@@ -166,11 +166,11 @@
 		border-bottom-width: 1px;
 		border-style: solid;
 		border-color: var(--color-border-primary);
-		padding: var(--spacing-4);
+		padding: var(--space-4);
 	}
 
 	.sidebar__logo-wrapper {
-		margin-right: var(--spacing-3);
+		margin-right: var(--space-3);
 	}
 
 	.sidebar__title {
@@ -180,23 +180,23 @@
 	.sidebar__nav {
 		flex: 1 1 0%;
 		overflow-y: auto;
-		padding-top: var(--spacing-4);
-		padding-bottom: var(--spacing-4);
+		padding-top: var(--space-4);
+		padding-bottom: var(--space-4);
 	}
 
 	.sidebar__nav-list {
-		padding-left: var(--spacing-2);
-		padding-right: var(--spacing-2);
+		padding-left: var(--space-2);
+		padding-right: var(--space-2);
 	}
 	.sidebar__nav-list > * + * {
-		margin-top: var(--spacing-1);
+		margin-top: var(--space-1);
 	}
 
 	.sidebar__nav-item {
 		display: flex;
 		align-items: center;
-		border-radius: var(--radius-lg);
-		padding: var(--spacing-3);
+		border-radius: var(--radius-2);
+		padding: var(--space-3);
 		transition-property: color, background-color, border-color;
 		transition-duration: 150ms;
 		border-color: var(--color-border-primary);
@@ -217,7 +217,7 @@
 	}
 
 	.sidebar__nav-item-icon-wrapper {
-		margin-right: var(--spacing-3);
+		margin-right: var(--space-3);
 	}
 
 	.sidebar__nav-item-label {
@@ -228,10 +228,10 @@
 	.sidebar__nav-item-badge {
 		border-radius: 9999px;
 		background-color: var(--color-background-tertiary);
-		padding-left: var(--spacing-2);
-		padding-right: var(--spacing-2);
-		padding-top: calc(var(--spacing-1, 0.25rem) / 2);
-		padding-bottom: calc(var(--spacing-1, 0.25rem) / 2);
+		padding-left: var(--space-2);
+		padding-right: var(--space-2);
+		padding-top: calc(var(--space-1, 0.25rem) / 2);
+		padding-bottom: calc(var(--space-1, 0.25rem) / 2);
 		color: var(--color-text-primary);
 	}
 
@@ -240,7 +240,7 @@
 		border-top-width: 1px;
 		border-style: solid;
 		border-color: var(--color-border-primary);
-		padding: var(--spacing-4);
+		padding: var(--space-4);
 	}
 
 	.sidebar__content-area {

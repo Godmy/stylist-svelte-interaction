@@ -198,7 +198,7 @@
 		appearance: none;
 		height: var(--range-slider-thumb-size);
 		width: var(--range-slider-thumb-size);
-		border-radius: var(--layout-border-radius-full, 9999px);
+		border-radius: var(--radius-full, 9999px);
 		background-color: var(--range-slider-thumb-background);
 		border: 2px solid var(--range-slider-thumb-border-color);
 		box-shadow: var(--layout-box-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
@@ -214,7 +214,7 @@
 	.c-range-slider__thumb::-moz-range-thumb {
 		height: var(--range-slider-thumb-size);
 		width: var(--range-slider-thumb-size);
-		border-radius: var(--layout-border-radius-full, 9999px);
+		border-radius: var(--radius-full, 9999px);
 		background-color: var(--range-slider-thumb-background);
 		border: 2px solid var(--range-slider-thumb-border-color);
 		box-shadow: var(--layout-box-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));

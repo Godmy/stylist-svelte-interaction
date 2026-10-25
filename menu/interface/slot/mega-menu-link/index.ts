@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 export interface SlotMegaMenuLink {
 	/** Stable identifier of the link */
 	id: string;
@@ -8,7 +9,7 @@ export interface SlotMegaMenuLink {
 	/** Optional secondary line under the label */
 	description?: string;
 	/** Optional icon name from the svg icon set */
-	icon?: string;
+	icon?: TokenIconName;
 	/** Inline SVG markup used instead of `icon` (e.g. a brand logo) */
 	iconSvg?: string;
 	/** CSS background of the icon tile, e.g. a brand colour */

@@ -77,14 +77,14 @@
 <style>
 	.c-mini-calendar {
 		border: 1px solid var(--color-border-primary);
-		border-radius: var(--radius-lg, 0.5rem);
+		border-radius: var(--radius-2, 0.5rem);
 		overflow: hidden;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		background: var(--color-background-primary);
 	}
 
 	.c-mini-calendar--compact {
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 	}
 
 	.c-mini-calendar__header {
@@ -92,7 +92,7 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 0.5rem;
-		padding: var(--spacing-xs, 0.25rem);
+		padding: var(--space-1, 0.25rem);
 		border-bottom: 1px solid var(--color-border-primary);
 	}
 
@@ -105,11 +105,11 @@
 	.c-mini-calendar__header-right {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-xs, 0.25rem);
+		gap: var(--space-1, 0.25rem);
 	}
 
 	.c-mini-calendar__today-label {
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 	}
 
 	.c-mini-calendar__grid {
@@ -119,16 +119,16 @@
 	}
 
 	.c-mini-calendar__weekday {
-		padding: var(--spacing-xs, 0.25rem);
+		padding: var(--space-1, 0.25rem);
 		text-align: center;
 		font-weight: var(--font-weight-medium, 500);
 		color: var(--color-text-secondary);
 	}
 
 	.c-mini-calendar__day {
-		min-height: var(--spacing-xl, 2rem);
+		min-height: var(--space-8, 2rem);
 		aspect-ratio: 1 / 1;
-		padding: var(--spacing-xs, 0.25rem);
+		padding: var(--space-1, 0.25rem);
 		text-align: center;
 		border-top: 1px solid var(--color-border-secondary, var(--color-border-primary));
 		border-right: 1px solid var(--color-border-secondary, var(--color-border-primary));
@@ -166,19 +166,19 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: var(--spacing-1, 0.25rem);
-		margin-top: var(--spacing-1, 0.25rem);
+		gap: var(--space-1, 0.25rem);
+		margin-top: var(--space-1, 0.25rem);
 	}
 
 	.c-mini-calendar__event-dot {
-		width: var(--spacing-xs, 0.25rem);
-		height: var(--spacing-xs, 0.25rem);
+		width: var(--space-1, 0.25rem);
+		height: var(--space-1, 0.25rem);
 		border-radius: 9999px;
 		background: var(--color-primary-500);
 	}
 
 	.c-mini-calendar__event-more {
-		font-size: var(--text-size-2xs, 0.625rem);
+		font-size: var(--font-size-2-5, 0.625rem);
 		color: var(--color-text-secondary);
 	}
 

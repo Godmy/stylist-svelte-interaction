@@ -75,48 +75,48 @@
 		.c-support-counter {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			gap: calc(var(--space-4, 1rem) * 0.75);
 			max-width: 28.75rem;
 			margin-inline: auto;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 2);
+			padding: calc(var(--space-4, 1rem) * 2);
 			border: var(--border-width-thin, 1px) solid var(--color-border-primary);
-			border-radius: var(--layout-border-radius-xl, 0.75rem);
+			border-radius: var(--radius-3, 0.75rem);
 			background: var(--color-background-primary);
 			color: var(--color-text-primary);
 		}
 		.c-support-counter__badge {
 			align-self: start;
-			padding: calc(var(--layout-spacing-1rem, 1rem) / 8) calc(var(--layout-spacing-1rem, 1rem) / 2);
-			border-radius: var(--layout-border-radius-full, 9999px);
+			padding: calc(var(--space-4, 1rem) / 8) calc(var(--space-4, 1rem) / 2);
+			border-radius: var(--radius-full, 9999px);
 			background: var(--color-warning-container, var(--color-background-secondary));
 			color: var(--color-on-warning-container, var(--color-text-primary));
-			font-size: var(--typography-font-size-3, 0.75rem);
+			font-size: var(--font-size-3, 0.75rem);
 		}
 		.c-support-counter__title {
 			margin: 0;
-			font-size: var(--typography-font-size-6, 1.5rem);
+			font-size: var(--font-size-6, 1.5rem);
 		}
 		.c-support-counter__value {
-			font-size: var(--typography-font-size-16, 4rem);
-			font-weight: var(--typography-font-weight-extrabold, 800);
+			font-size: var(--font-size-16, 4rem);
+			font-weight: var(--font-weight-extrabold, 800);
 			font-variant-numeric: tabular-nums;
 			letter-spacing: -0.06em;
 		}
 		.c-support-counter__form {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			gap: calc(var(--space-4, 1rem) * 0.75);
 		}
 		.c-support-counter__field {
 			display: flex;
 			flex-direction: column;
-			gap: calc(var(--layout-spacing-1rem, 1rem) / 4);
-			font-weight: var(--typography-font-weight-medium, 500);
+			gap: calc(var(--space-4, 1rem) / 4);
+			font-weight: var(--font-weight-medium, 500);
 		}
 		.c-support-counter__input {
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid var(--color-border-secondary);
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: var(--color-background-primary);
 			color: var(--color-text-primary);
 			font: inherit;
@@ -124,7 +124,7 @@
 		.c-support-counter__button {
 			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
 			border: var(--border-width-thin, 1px) solid var(--color-primary-600);
-			border-radius: var(--layout-border-radius-md, 0.375rem);
+			border-radius: var(--radius-1-5, 0.375rem);
 			background: var(--color-primary-600);
 			color: var(--color-on-primary, #fff);
 			font: inherit;

@@ -100,8 +100,8 @@
 		.c-rating-feedback {
 			--c-rating-feedback-accent: var(--color-warning-400, #fbbf24);
 			max-width: 25.625rem;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 2);
-			border-radius: var(--layout-border-radius-xxxl, 1.5rem);
+			padding: calc(var(--space-4, 1rem) * 2);
+			border-radius: var(--radius-6, 1.5rem);
 			box-shadow: var(--elevation-level3, 0 18px 45px rgba(0, 0, 0, 0.15));
 		}
 		.c-rating-feedback--dark {
@@ -118,15 +118,14 @@
 			place-items: center;
 			width: 3rem;
 			height: 3rem;
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 			background: color-mix(in srgb, currentColor 12%, transparent);
 			color: var(--c-rating-feedback-accent);
-			font-size: var(--typography-font-size-6, 1.5rem);
+			font-size: var(--font-size-6, 1.5rem);
 		}
 		.c-rating-feedback__title {
-			margin: calc(var(--layout-spacing-1rem, 1rem) * 1.3) 0
-				calc(var(--layout-spacing-1rem, 1rem) * 0.7);
-			font-size: var(--typography-font-size-6, 1.5rem);
+			margin: calc(var(--space-4, 1rem) * 1.3) 0 calc(var(--space-4, 1rem) * 0.7);
+			font-size: var(--font-size-6, 1.5rem);
 			color: inherit;
 		}
 		.c-rating-feedback__text {
@@ -142,18 +141,18 @@
 		}
 		.c-rating-feedback__fieldset {
 			min-width: 0;
-			margin: calc(var(--layout-spacing-1rem, 1rem) * 1.2) 0;
+			margin: calc(var(--space-4, 1rem) * 1.2) 0;
 			padding: 0;
 			border: 0;
 		}
 		.c-rating-feedback__legend {
-			margin-block-end: calc(var(--layout-spacing-1rem, 1rem) * 0.8);
-			font-size: var(--typography-font-size-3, 0.75rem);
+			margin-block-end: calc(var(--space-4, 1rem) * 0.8);
+			font-size: var(--font-size-3, 0.75rem);
 		}
 		.c-rating-feedback__ratings {
 			display: flex;
 			justify-content: space-between;
-			gap: calc(var(--layout-spacing-1rem, 1rem) * 0.6);
+			gap: calc(var(--space-4, 1rem) * 0.6);
 		}
 		.c-rating-feedback__rating {
 			position: relative;
@@ -161,9 +160,9 @@
 			place-items: center;
 			width: 2.8rem;
 			height: 2.8rem;
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 			background: color-mix(in srgb, currentColor 10%, transparent);
-			font-weight: var(--typography-font-weight-bold, 700);
+			font-weight: var(--font-weight-bold, 700);
 			cursor: pointer;
 		}
 		.c-rating-feedback__rating[data-selected] {
@@ -185,13 +184,13 @@
 		}
 		.c-rating-feedback__button {
 			width: 100%;
-			padding: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			padding: calc(var(--space-4, 1rem) * 0.75);
 			border: 0;
-			border-radius: var(--layout-border-radius-full, 9999px);
+			border-radius: var(--radius-full, 9999px);
 			background: var(--c-rating-feedback-accent);
 			color: var(--color-on-warning, #0f172a);
 			font: inherit;
-			font-weight: var(--typography-font-weight-bold, 700);
+			font-weight: var(--font-weight-bold, 700);
 			letter-spacing: 0.07em;
 			text-transform: uppercase;
 			cursor: pointer;
@@ -206,10 +205,10 @@
 		}
 		@media (max-width: 440px) {
 			.c-rating-feedback {
-				padding: calc(var(--layout-spacing-1rem, 1rem) * 1.2);
+				padding: calc(var(--space-4, 1rem) * 1.2);
 			}
 			.c-rating-feedback__ratings {
-				gap: calc(var(--layout-spacing-1rem, 1rem) * 0.35);
+				gap: calc(var(--space-4, 1rem) * 0.35);
 			}
 			.c-rating-feedback__rating {
 				width: 2.5rem;

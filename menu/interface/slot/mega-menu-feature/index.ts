@@ -1,3 +1,4 @@
+import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { Snippet } from 'svelte';
 
 export interface SlotMegaMenuFeature {
@@ -16,7 +17,7 @@ export interface SlotMegaMenuFeature {
 	/** Optional alt text for the image */
 	imageAlt?: string;
 	/** Optional icon shown when there is no image */
-	icon?: string;
+	icon?: TokenIconName;
 	/** Replaces the eyebrow/title/text/CTA body; `title` still names the link for screen readers */
 	content?: Snippet;
 }

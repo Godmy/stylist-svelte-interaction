@@ -140,10 +140,10 @@
 		}
 		.c-timetable__caption {
 			caption-side: top;
-			padding-block: calc(var(--layout-spacing-1rem, 1rem) * 0.75);
+			padding-block: calc(var(--space-4, 1rem) * 0.75);
 			text-align: start;
-			font-size: var(--typography-font-size-5, 1.25rem);
-			font-weight: var(--typography-font-weight-bold, 700);
+			font-size: var(--font-size-5, 1.25rem);
+			font-weight: var(--font-weight-bold, 700);
 			color: var(--color-text-primary);
 		}
 		.c-timetable__head,
@@ -155,20 +155,20 @@
 			vertical-align: top;
 		}
 		.c-timetable__head {
-			font-weight: var(--typography-font-weight-semibold, 600);
+			font-weight: var(--font-weight-semibold, 600);
 			background: var(--color-background-secondary);
 			color: var(--color-text-primary);
 		}
 		.c-timetable__note {
 			display: block;
 			font-size: var(--font-relative-small, 0.875em);
-			font-weight: var(--typography-font-weight-normal, 400);
+			font-weight: var(--font-weight-normal, 400);
 			color: var(--color-text-secondary);
 		}
 		.c-timetable__lesson {
 			display: block;
-			margin-block-end: calc(var(--layout-spacing-1rem, 1rem) / 4);
-			padding-inline-start: calc(var(--layout-spacing-1rem, 1rem) / 2);
+			margin-block-end: calc(var(--space-4, 1rem) / 4);
+			padding-inline-start: calc(var(--space-4, 1rem) / 2);
 			border-inline-start: var(--border-width-medium, 2px) solid var(--color-primary-500);
 		}
 		.c-timetable__empty {
@@ -181,7 +181,7 @@
 			margin: 0;
 			padding: 0;
 			border: 0;
-			border-radius: var(--layout-border-radius-base, 0.25rem);
+			border-radius: var(--radius-1, 0.25rem);
 			background: transparent;
 			color: inherit;
 			font: inherit;

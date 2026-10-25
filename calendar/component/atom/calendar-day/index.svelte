@@ -38,7 +38,7 @@
 		place-items: center;
 		width: 100%;
 		border: 0;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
 		background: transparent;
 		font: inherit;
 		font-weight: var(--font-weight-medium, 500);
@@ -86,13 +86,13 @@
 	}
 
 	.c-calendar-day[data-range-start] {
-		border-start-start-radius: var(--border-radius-base, 0.375rem);
-		border-end-start-radius: var(--border-radius-base, 0.375rem);
+		border-start-start-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
+		border-end-start-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
 	}
 
 	.c-calendar-day[data-range-end] {
-		border-start-end-radius: var(--border-radius-base, 0.375rem);
-		border-end-end-radius: var(--border-radius-base, 0.375rem);
+		border-start-end-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
+		border-end-end-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
 	}
 
 	.c-calendar-day[data-selected] {

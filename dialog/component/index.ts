@@ -16,6 +16,7 @@ export {
 	ConfirmationDialog,
 	DialogConfirm,
 	GeneralToolbar,
+	Popover,
 	Stepper,
 	StylistTab,
 	Tabs

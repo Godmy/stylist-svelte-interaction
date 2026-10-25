@@ -98,10 +98,10 @@
 	}
 
 	.field-group.horizontal .field-label {
-		padding-top: var(--spacing-2);
+		padding-top: var(--space-2);
 	}
 
 	.field-group.vertical .field-label {
-		padding-bottom: var(--spacing-1);
+		padding-bottom: var(--space-1);
 	}
 </style>

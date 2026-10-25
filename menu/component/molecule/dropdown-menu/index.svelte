@@ -61,8 +61,8 @@
 		position: absolute;
 		z-index: 10;
 		min-width: var(--size-14rem, 14rem);
-		margin-top: var(--spacing-2, 0.5rem);
-		padding: var(--spacing-1, 0.25rem) 0;
+		margin-top: var(--space-2, 0.5rem);
+		padding: var(--space-1, 0.25rem) 0;
 		background: var(--color-background-primary);
 		border: 1px solid var(--color-border-primary);
 		border-radius: 0.375rem;
@@ -88,16 +88,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: var(--spacing-1, 0.25rem);
+		gap: var(--space-1, 0.25rem);
 	}
 
 	.c-dropdown__content {
-		padding: var(--spacing-1, 0.25rem) 0;
+		padding: var(--space-1, 0.25rem) 0;
 	}
 
 	.c-dropdown__chevron {
-		margin-left: var(--spacing-1, 0.25rem);
-		transition: transform var(--duration-200, 200ms) var(--animation-ease-in-out, ease-in-out);
+		margin-left: var(--space-1, 0.25rem);
+		transition: transform var(--duration-200, 200ms) var(--easing-ease-in-out, ease-in-out);
 		display: inline-flex;
 		align-items: center;
 	}

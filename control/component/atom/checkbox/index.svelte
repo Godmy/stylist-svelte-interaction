@@ -115,7 +115,7 @@
 		border: 2px solid var(--color-border-primary);
 		accent-color: var(--color-primary-500);
 		cursor: pointer;
-		transition: border-color var(--motion-duration-120, 120ms);
+		transition: border-color var(--duration-120, 120ms);
 	}
 
 	.c-checkbox__input[data-size='xs'] {

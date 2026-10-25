@@ -81,7 +81,7 @@
 		width: 100%;
 		text-align: left;
 		padding: 0.5rem 1rem;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -118,7 +118,7 @@
 	.search-suggestion__empty {
 		padding: 1rem;
 		text-align: center;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		color: var(--color-text-secondary);
 	}
 
@@ -148,13 +148,13 @@
 
 	.search-suggestion__count {
 		margin-inline-start: auto;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 
 	.search-suggestion__category {
 		margin-inline-start: 1.5rem;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 </style>

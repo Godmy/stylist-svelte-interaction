@@ -145,7 +145,7 @@
 		padding: 0.5rem 0.75rem;
 		font-size: 0.875rem;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-		transition: border-color var(--motion-duration-120, 120ms);
+		transition: border-color var(--duration-120, 120ms);
 	}
 
 	.c-combobox__input-row:focus-within {
@@ -226,7 +226,7 @@
 		position: absolute;
 		top: 100%;
 		left: 0;
-		z-index: var(--layout-z-index-docked, 10);
+		z-index: var(--z-index-docked, 10);
 		margin-top: 0.5rem;
 		max-height: 15rem;
 		width: 100%;
@@ -249,7 +249,7 @@
 		background: transparent;
 		cursor: pointer;
 		color: var(--color-text-primary);
-		transition: background-color var(--motion-duration-120, 120ms);
+		transition: background-color var(--duration-120, 120ms);
 	}
 
 	.c-combobox__option:hover:not([data-disabled]) {
