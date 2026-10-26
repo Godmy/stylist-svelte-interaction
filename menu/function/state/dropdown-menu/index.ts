@@ -1,2 +1,2 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { createDropdownMenuState } from './index.svelte';
+export { createDropdownMenuState } from './state.svelte';

@@ -1,2 +1,2 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { createPageButtonState } from './index.svelte';
+export { createPageButtonState } from './state.svelte';

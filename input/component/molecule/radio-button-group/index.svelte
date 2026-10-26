@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeRadioButtonGroup } from '$stylist/input/interface/recipe/radio-button-group';
 	import createRadioButtonGroupState from '$stylist/input/component/molecule/radio-button-group/state.svelte';
-	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/index.svelte';
+	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/state.svelte';
 
 	let { value = $bindable(''), ...props }: RecipeRadioButtonGroup = $props();
 

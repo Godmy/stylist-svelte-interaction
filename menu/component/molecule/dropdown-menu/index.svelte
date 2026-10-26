@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PresetDropdownMenu } from '$stylist/menu/const/preset/dropdown-menu';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
-	import { createDropdownMenuState } from '$stylist/menu/function/state/dropdown-menu/index.svelte';
+	import { createDropdownMenuState } from '$stylist/menu/function/state/dropdown-menu/state.svelte';
 	import type { RecipeDropdownMenu } from '$stylist/menu/interface/recipe/dropdown-menu';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 

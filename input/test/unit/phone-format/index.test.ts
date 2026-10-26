@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { formatPhoneNumber } from '$stylist/input/function/state/format-phone-number/index.svelte';
-import { normalizePhoneInputValue } from '$stylist/input/function/state/normalize-phone-input-value/index.svelte';
+import { formatPhoneNumber } from '$stylist/input/function/state/format-phone-number/state.svelte';
+import { normalizePhoneInputValue } from '$stylist/input/function/state/normalize-phone-input-value/state.svelte';
 
 describe('Russian phone composition', () => {
 	it.each(['+7 (999) 123-45-67', '8 (999) 123-45-67', '79991234567'])(

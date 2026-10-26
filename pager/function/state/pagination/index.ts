@@ -1,2 +1,2 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { createPaginationState } from './index.svelte';
+export { createPaginationState } from './state.svelte';

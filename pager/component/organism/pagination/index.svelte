@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipePagination } from '$stylist/pager/interface/recipe/pagination';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createPaginationState } from '$stylist/pager/function/state/pagination/index.svelte';
+	import { createPaginationState } from '$stylist/pager/function/state/pagination/state.svelte';
 
 	let props: RecipePagination = $props();
 	const state = createPaginationState(() => props);

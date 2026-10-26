@@ -1,2 +1,2 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { createInputFormReset } from './index.svelte';
+export { createInputFormReset } from './state.svelte';

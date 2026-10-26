@@ -2,7 +2,7 @@
 	import HtmlInputCheckbox from '$stylist/html/component/atom/input-checkbox/index.svelte';
 	import type { RecipeCheckboxGroup } from '$stylist/input/interface/recipe/checkbox-group';
 	import createCheckboxGroupState from '$stylist/input/component/molecule/checkbox-group/state.svelte';
-	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/index.svelte';
+	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/state.svelte';
 
 	let {
 		options,

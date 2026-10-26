@@ -1,4 +1,4 @@
-import { createButtonState as createButtonStateImpl } from '$stylist/button/function/state/button/index.svelte';
+import { createButtonState as createButtonStateImpl } from '$stylist/button/function/state/button/state.svelte';
 import type { RecipeSplitButton } from '$stylist/button/interface/recipe/split-button';
 
 export function createSplitButtonState(getProps: () => RecipeSplitButton) {

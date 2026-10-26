@@ -1,5 +1,5 @@
 import { MediaQuery } from 'svelte/reactivity';
-import { createNavigationState } from '$stylist/navigation/function/state/navigation/index.svelte';
+import { createNavigationState } from '$stylist/navigation/function/state/navigation/state.svelte';
 import type { ContractNavigationDrawerSection } from '$stylist/navigation/interface/contract/navigation-drawer-section';
 import type { RecipeActivity } from '$stylist/navigation/interface/recipe/activity';
 

@@ -1,4 +1,4 @@
-import createCharacterCountScriptState from '$stylist/input/function/state/character-count/index.svelte';
+import createCharacterCountScriptState from '$stylist/input/function/state/character-count/state.svelte';
 import type { RecipeCharactersCount as ICharacterCountProps } from '$stylist/input/interface/recipe/characters-count';
 
 export const createCharactersCountState = (getProps: () => ICharacterCountProps) => {

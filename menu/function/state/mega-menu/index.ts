@@ -1,2 +1,2 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { createMegaMenuState } from './index.svelte';
+export { createMegaMenuState } from './state.svelte';

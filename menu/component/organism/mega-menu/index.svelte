@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MegaMenuTrigger from '$stylist/menu/component/atom/mega-menu-trigger/index.svelte';
 	import MegaMenuPanel from '$stylist/menu/component/molecule/mega-menu-panel/index.svelte';
-	import { createMegaMenuState } from '$stylist/menu/function/state/mega-menu/index.svelte';
+	import { createMegaMenuState } from '$stylist/menu/function/state/mega-menu/state.svelte';
 	import type { RecipeMegaMenu } from '$stylist/menu/interface/recipe/mega-menu';
 
 	let props: RecipeMegaMenu = $props();

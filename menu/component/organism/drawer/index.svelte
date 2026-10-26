@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeDrawer } from '$stylist/menu/interface/recipe/drawer';
-	import { createDrawerState } from '$stylist/menu/function/state/drawer/index.svelte';
+	import { createDrawerState } from '$stylist/menu/function/state/drawer/state.svelte';
 
 	let props: RecipeDrawer = $props();
 	const state = createDrawerState(() => props);

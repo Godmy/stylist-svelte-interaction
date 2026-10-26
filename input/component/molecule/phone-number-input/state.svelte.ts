@@ -1,5 +1,5 @@
-import formatPhoneNumber from '$stylist/input/function/state/format-phone-number/index.svelte';
-import normalizePhoneInputValue from '$stylist/input/function/state/normalize-phone-input-value/index.svelte';
+import formatPhoneNumber from '$stylist/input/function/state/format-phone-number/state.svelte';
+import normalizePhoneInputValue from '$stylist/input/function/state/normalize-phone-input-value/state.svelte';
 import type { RecipePhoneNumberInput } from '$stylist/input/interface/recipe/phone-number-input';
 
 export const createPhoneNumberInputState = (getProps: () => RecipePhoneNumberInput) => {

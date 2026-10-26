@@ -4,7 +4,7 @@
 	import { createPhoneNumberInputState } from '$stylist/input/component/molecule/phone-number-input/state.svelte';
 	import HtmlInputTel from '$stylist/html/component/atom/input-tel/index.svelte';
 	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
-	import { normalizePhoneInputValue } from '$stylist/input/function/state/normalize-phone-input-value/index.svelte';
+	import { normalizePhoneInputValue } from '$stylist/input/function/state/normalize-phone-input-value/state.svelte';
 
 	let {
 		value = $bindable(''),

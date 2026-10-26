@@ -6,7 +6,7 @@
 	import HtmlP from '$stylist/html/component/atom/p/index.svelte';
 	import NavigationDrawer from '$stylist/navigation/component/organism/navigation-drawer/index.svelte';
 	import TopAppBar from '$stylist/navigation/component/organism/top-app-bar/index.svelte';
-	import { createActivityState } from '$stylist/navigation/function/state/activity/index.svelte';
+	import { createActivityState } from '$stylist/navigation/function/state/activity/state.svelte';
 	import type { RecipeActivity } from '$stylist/navigation/interface/recipe/activity';
 
 	let props: RecipeActivity = $props();

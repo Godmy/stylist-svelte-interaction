@@ -2,7 +2,7 @@
 	import createRadioGroupState from '$stylist/input/component/molecule/radio-group/state.svelte';
 	import type { RecipeRadioGroup } from '$stylist/input/interface/recipe/radio-group';
 	import { resolveInputAttributes } from '$stylist/input/function/resolve/input-attributes';
-	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/index.svelte';
+	import { createInputFormReset } from '$stylist/input/function/state/input-form-reset/state.svelte';
 
 	let { value = $bindable(''), ...props }: RecipeRadioGroup = $props();
 	const state = createRadioGroupState(() => ({ ...props, value }));

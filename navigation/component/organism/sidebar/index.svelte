@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeSidebar } from '$stylist/navigation/interface/recipe/sidebar';
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createSidebarState } from '$stylist/navigation/function/state/sidebar/index.svelte';
+	import { createSidebarState } from '$stylist/navigation/function/state/sidebar/state.svelte';
 
 	let props: RecipeSidebar = $props();
 	const state = createSidebarState(() => props);
