@@ -14,7 +14,10 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		onNavigate: props.onNavigate
 	}));
 	const permanentQuery = $derived(
-		new MediaQuery(props.permanentDrawer ?? '(min-width: 1024px)', props.permanentDrawerFallback ?? false)
+		new MediaQuery(
+			props.permanentDrawer ?? '(min-width: 1024px)',
+			props.permanentDrawerFallback ?? false
+		)
 	);
 	const reducedMotion = new MediaQuery('(prefers-reduced-motion: reduce)', false);
 	let drawerOpen = $state(false);
@@ -32,13 +35,19 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		const result: ContractNavigationDrawerSection[] = [];
 		for (const node of navigator.composite.topLevel()) {
 			const ancestors = [];
-			for (let parent = node.parent; parent?.parent; parent = parent.parent) ancestors.unshift(parent);
+			for (let parent = node.parent; parent?.parent; parent = parent.parent)
+				ancestors.unshift(parent);
 			let target = result;
 			let section: ContractNavigationDrawerSection | undefined;
 			for (const parent of ancestors) {
 				section = target.find((item) => item.label === parent.label);
 				if (!section) {
-					section = { label: parent.label, icon: parent.destination.icon, iconSvg: parent.destination.iconSvg, destinations: [] };
+					section = {
+						label: parent.label,
+						icon: parent.destination.icon,
+						iconSvg: parent.destination.iconSvg,
+						destinations: []
+					};
 					target.push(section);
 				}
 				target = section.sections ??= [];
@@ -46,7 +55,7 @@ export function createActivityState(getProps: () => RecipeActivity) {
 			if (section) section.destinations.push(node.destination);
 			else {
 				let unlabelled = result.find((item) => !item.label);
-				if (!unlabelled) result.push(unlabelled = { destinations: [] });
+				if (!unlabelled) result.push((unlabelled = { destinations: [] }));
 				unlabelled.destinations.push(node.destination);
 			}
 		}

@@ -4,4 +4,7 @@ import type { SlotRatingFeedback } from '$stylist/form/interface/slot/rating-fee
 
 /** Five-point rating card with submit and confirmation states. */
 export interface RecipeRatingFeedback
-	extends Omit<RecipeHtmlSection, 'children' | 'title'>, BehaviorRatingFeedback, SlotRatingFeedback {}
+	extends
+		Omit<RecipeHtmlSection, 'children' | 'title'>,
+		BehaviorRatingFeedback,
+		SlotRatingFeedback {}
