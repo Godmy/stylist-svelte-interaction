@@ -9,7 +9,6 @@ export function createPaginationState(getProps: () => RecipePagination) {
 	const showPrevNext = $derived(props.showPrevNext ?? true);
 	const showDots = $derived(props.showDots ?? true);
 	const maxVisible = $derived(props.maxVisible ?? 5);
-	const size = $derived(props.size ?? 'md');
 	const disabled = $derived(props.disabled ?? false);
 	const containerClass = $derived(props.class == null ? undefined : String(props.class));
 	const navClass = $derived('pagination__nav');

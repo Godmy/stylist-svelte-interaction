@@ -9,7 +9,7 @@
 		onValueInput,
 		onValueChange,
 		/** @deprecated use onValueInput/onValueChange */
-		onChange = (value: string) => {},
+		onChange = () => {},
 		class: className = ''
 	}: RecipeAutocompleteDropdown = $props();
 
@@ -48,7 +48,7 @@
 
 	{#if state.isOpen}
 		<div role="listbox" class={state.listboxClass}>
-			{#each options as option, i}
+			{#each options as option (option.value)}
 				<div
 					role="option"
 					aria-selected={state.localValue === option.value}

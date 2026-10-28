@@ -6,7 +6,7 @@ export function createClickableState(getProps: () => ClickProps) {
 	const normalizedProps = $derived(ObjectManagerGesture.normalizeClickContract(props));
 
 	const classes = $derived.by(() => {
-		const { variant = 'default', class: className = '' } = props;
+		const { class: className = '' } = props;
 		const { disabled = false, pressEffect = true, hoverEffect = true } = normalizedProps;
 
 		if (disabled)

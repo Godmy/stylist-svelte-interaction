@@ -8,7 +8,7 @@
 		onValueInput,
 		onValueChange,
 		/** @deprecated use onValueInput/onValueChange */
-		onInput = (value: string) => {},
+		onInput = () => {},
 		class: className = ''
 	}: RecipeAutoSearch = $props();
 

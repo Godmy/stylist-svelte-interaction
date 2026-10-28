@@ -6,24 +6,6 @@
 
 	let props: RecipeCombobox = $props();
 	const state = createComboboxState(() => props);
-
-	const restProps = $derived.by(() => {
-		const {
-			class: _class,
-			id: _id,
-			items: _items,
-			value: _value,
-			label: _label,
-			description: _description,
-			placeholder: _placeholder,
-			emptyText: _emptyText,
-			disabled: _disabled,
-			clearable: _clearable,
-			loading: _loading,
-			...rest
-		} = props;
-		return rest;
-	});
 </script>
 
 <div

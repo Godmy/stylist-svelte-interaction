@@ -11,7 +11,7 @@
 	let viewportWidth = $state(0);
 	let viewportHeight = $state(0);
 
-	function trackViewport(node: HTMLElement) {
+	function trackViewport(_node: HTMLElement) {
 		function update() {
 			viewportWidth = window.innerWidth;
 			viewportHeight = window.innerHeight;

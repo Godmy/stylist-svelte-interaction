@@ -1,10 +1,8 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { RecipePageEllipsis } from '$stylist/pager/interface/recipe/page-ellipsis';
-	import { createPageEllipsisState } from '$stylist/pager/function/state/page-ellipsis/state.svelte';
 
 	let props: RecipePageEllipsis & HTMLAttributes<HTMLDivElement> = $props();
-	const state = createPageEllipsisState(() => props);
 </script>
 
 <div class={`${props.class ?? ''} _c1`} {...props}>

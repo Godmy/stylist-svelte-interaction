@@ -4,16 +4,7 @@
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { createShortcutsPanelState } from '$stylist/control/component/organism/shortcuts-panel/state.svelte';
 	const Keyboard = 'keyboard';
-	const Command = 'keyboard';
-	const Search = 'search';
 	const Zap = 'zap';
-	const Eye = 'eye';
-	const SidebarIcon = 'sidebar';
-	const Layout = 'layout';
-	const Grid = 'grid';
-	const Moon = 'dark-mode';
-	const Code = 'code';
-	const Copy = 'copy';
 
 	let props: RecipeShortcutsPanel & HTMLAttributes<HTMLDivElement> = $props();
 	const state = createShortcutsPanelState(() => props);
@@ -31,7 +22,7 @@
 	</div>
 
 	<div class="sp-shortcuts-list">
-		{#each state.categoryOrder as category}
+		{#each state.categoryOrder as category (category)}
 			{#if state.groupedShortcuts.has(category)}
 				{@const categoryShortcuts = state.groupedShortcuts.get(category) || []}
 				<div class="category-section">
@@ -44,7 +35,7 @@
 					</div>
 
 					<div class="sp-items">
-						{#each categoryShortcuts as shortcut, index}
+						{#each categoryShortcuts as shortcut, index (shortcut.description)}
 							<div class="shortcut-item sp-item group" style="animation-delay: {index * 30}ms">
 								<div class="sp-item-inner">
 									<div class="sp-item-left">
@@ -58,7 +49,7 @@
 										<span class="sp-item-desc">{shortcut.description}</span>
 									</div>
 									<div class="sp-keys">
-										{#each shortcut.keys as key, i}
+										{#each shortcut.keys as key, i (i)}
 											<kbd class="sp-kbd {state.getKeyColor(key)}">{key}</kbd>
 											{#if i < shortcut.keys.length - 1}
 												<span class="sp-key-sep">+</span>

@@ -9,9 +9,8 @@
 	const state = createSplitButtonState(() => props);
 
 	let divAttributes = $derived.by(() => {
-		const allProps = props as Record<string, any>;
-		const divCompatibleProps: Record<string, any> = {};
-		for (const [key, value] of Object.entries(allProps)) {
+		const divCompatibleProps: Record<string, unknown> = {};
+		for (const [key, value] of Object.entries(props)) {
 			if (
 				key.startsWith('data-') ||
 				key.startsWith('aria-') ||
@@ -59,7 +58,7 @@
 	id={state.buttonId}
 >
 	<button
-		type={'button' as any}
+		type="button"
 		disabled={Boolean(state.isDisabled)}
 		aria-busy={typeof props.loading === 'boolean' ? props.loading : undefined}
 		aria-live={typeof props.loading === 'boolean' && props.loading ? 'polite' : undefined}
@@ -76,7 +75,7 @@
 		{/if}
 	</button>
 	<button
-		type={'button' as any}
+		type="button"
 		disabled={Boolean(state.isDisabled)}
 		class="c-split-button__toggle"
 		onclick={state.toggleDropdown}
@@ -90,7 +89,7 @@
 	{#if state.isOpen}
 		<div class="c-split-button__menu" role="menu" aria-orientation="vertical" tabindex="-1">
 			<div class="c-split-button__menu-inner" role="none">
-				{#each props.items as item}
+				{#each props.items as item, index (index)}
 					<button
 						class="c-split-button__menu-item"
 						data-disabled={item.disabled || undefined}

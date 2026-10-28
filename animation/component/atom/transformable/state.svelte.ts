@@ -1,5 +1,4 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
-import { ManagerMotion } from '$stylist/animation/class/manager/motion';
 import type { RecipeTransformable } from '$stylist/animation/interface/recipe/transformable';
 
 export const createTransformableState = (getProps: () => RecipeTransformable) => {
@@ -7,9 +6,6 @@ export const createTransformableState = (getProps: () => RecipeTransformable) =>
 	// SlotState
 	let isHovered = $state(false);
 	let isActive = $state(false);
-
-	// Нормализация props
-	const normalizedProps = $derived(ManagerMotion.normalizeBehaviorTransformable(props));
 
 	// Вычисляемые классы
 	const classes = $derived.by(() =>
