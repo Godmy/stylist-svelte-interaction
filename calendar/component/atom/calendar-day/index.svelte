@@ -70,6 +70,9 @@
 		);
 	}
 
+	/* Период — сплошная полоса: внутренние дни без скругления, у начала
+	   скруглены только левые углы, у конца — правые, однодневный период —
+	   все. Сегодня внутри периода теряет свой круг, иначе полоса рвётся. */
 	.c-calendar-day[data-in-range] {
 		border-radius: 0;
 		background: color-mix(
@@ -80,22 +83,29 @@
 	}
 
 	.c-calendar-day[data-range-start],
-	.c-calendar-day[data-range-end] {
+	.c-calendar-day[data-range-end],
+	.c-calendar-day[data-range-start]:hover:not(:disabled),
+	.c-calendar-day[data-range-end]:hover:not(:disabled) {
 		background: var(--calendar-day-accent, var(--color-primary-500));
 		color: var(--color-text-inverse, white);
 	}
 
-	.c-calendar-day[data-range-start] {
-		border-start-start-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
-		border-end-start-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
+	.c-calendar-day[data-range-start]:not([data-range-end]) {
+		border-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem)) 0 0
+			var(--calendar-radius, var(--radius-1-5, 0.375rem));
 	}
 
-	.c-calendar-day[data-range-end] {
-		border-start-end-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
-		border-end-end-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
+	.c-calendar-day[data-range-end]:not([data-range-start]) {
+		border-radius: 0 var(--calendar-radius, var(--radius-1-5, 0.375rem))
+			var(--calendar-radius, var(--radius-1-5, 0.375rem)) 0;
 	}
 
-	.c-calendar-day[data-selected] {
+	.c-calendar-day[data-range-start][data-range-end] {
+		border-radius: var(--calendar-radius, var(--radius-1-5, 0.375rem));
+	}
+
+	.c-calendar-day[data-selected],
+	.c-calendar-day[data-selected]:hover:not(:disabled) {
 		background: var(--calendar-day-accent, var(--color-primary-500));
 		color: var(--color-text-inverse, white);
 	}
