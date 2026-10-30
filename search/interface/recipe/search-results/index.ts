@@ -1,15 +1,9 @@
-import type { HTMLAttributes } from 'svelte/elements';
-import type { SearchResultItem } from '$stylist/search/type/object/search-results-item';
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
+import type { RecipeHtmlDiv } from '$stylist/html/interface/recipe/div';
+import type { SlotSearchResults } from '$stylist/search/interface/slot/search-results';
+import type { SlotSearchSkin } from '$stylist/search/interface/slot/search-skin';
 
-export interface RecipeSearchResults extends Omit<
-	HTMLAttributes<HTMLDivElement>,
-	'class' | 'results'
-> {
-	results?: SearchResultItem[];
-	query?: string;
-	loading?: boolean;
-	class?: string | null;
-	onResultClick?: (result: SearchResultItem) => void;
-	showMetadata?: boolean;
-	maxResults?: number;
-}
+/** Result list (`<ul>` of buttons) with loading and empty states. */
+export interface RecipeSearchResults extends ComputeIntersectAll<
+	[Omit<RecipeHtmlDiv, 'children' | 'class' | 'results'>, SlotSearchResults, SlotSearchSkin]
+> {}

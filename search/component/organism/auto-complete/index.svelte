@@ -1,125 +1,136 @@
 <script lang="ts">
+	import HtmlUl from '$stylist/html/component/molecule/ul/index.svelte';
+	import HtmlLi from '$stylist/html/component/organism/li/index.svelte';
+	import HtmlStyle from '$stylist/html/component/atom/style/index.svelte';
+	import SearchField from '$stylist/search/component/atom/search-field/index.svelte';
+	import { serializeHtmlStylesheet } from '$stylist/html/function/serialize/html-stylesheet';
+	import { SEARCH_SKIN_SCOPE } from '$stylist/search/const/value/search-skin-scope';
+	import createAutoCompleteState from '$stylist/search/component/organism/auto-complete/state.svelte';
 	import type { RecipeAutoComplete } from '$stylist/search/interface/recipe/auto-complete';
-	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	import { createAutoCompleteState } from '$stylist/search/component/organism/auto-complete/state.svelte';
-	const Search = 'search';
 
-	let props: RecipeAutoComplete = $props();
-	const state = createAutoCompleteState(() => props);
+	let {
+		value = $bindable(''),
+		element = $bindable(null),
+		options = [],
+		placeholder = 'Search…',
+		showAllSuggestions = false,
+		class: className = '',
+		inputClass = '',
+		listClass = '',
+		itemClass = '',
+		skin = true,
+		onValueInput,
+		onSelect,
+		onkeydown,
+		onfocus,
+		onblur,
+		...rest
+	}: RecipeAutoComplete = $props();
+
+	const listId = $props.id();
+	const stylesheet = serializeHtmlStylesheet({ scope: SEARCH_SKIN_SCOPE });
+	const state = createAutoCompleteState(() => ({
+		value,
+		options,
+		showAllSuggestions,
+		class: className,
+		listClass,
+		itemClass,
+		onSelect,
+		onkeydown,
+		onfocus,
+		onblur,
+		onValueInput: (next) => {
+			value = next;
+			onValueInput?.(next);
+		}
+	}));
 </script>
 
-<div class={`c-auto-complete ${state.className}`.trim()}>
-	<div class="c-auto-complete__input-wrap">
-		<div class="c-auto-complete__icon">
-			<BaseIcon name={Search} size={20} style="color: var(--color-text-tertiary)" />
-		</div>
-		<input
-			type="text"
-			class={`c-auto-complete__input ${state.inputClass}`}
-			placeholder={state.placeholder}
-			value={state.inputValue}
-			oninput={state.handleInput}
-			onkeydown={state.handleKeyDown}
-			onfocus={state.open}
-			onblur={state.close}
-			{...props}
-		/>
-	</div>
+<svelte:head
+	>{#if skin}<HtmlStyle text={stylesheet} />{/if}</svelte:head
+>
 
-	{#if state.isOpen && state.options.length > 0}
-		<ul class={`c-auto-complete__list ${state.listClass}`} role="listbox">
-			{#each state.options as option, index}
-				<li
-					class={`c-auto-complete__item ${index === state.highlightedIndex ? 'c-auto-complete__item--highlighted' : ''} ${state.itemClass}`}
-					role="option"
-					aria-selected={index === state.highlightedIndex}
-					onclick={() => state.handleSelect(option)}
-					onkeydown={(event) => {
-						if (event.key === 'Enter' || event.key === ' ') {
-							event.preventDefault();
-							state.handleSelect(option);
-						}
-					}}
-					tabindex={0}
-				>
-					<span>{option.label}</span>
-					{#if option.meta}
-						<span class="c-auto-complete__meta">{option.meta}</span>
-					{/if}
-				</li>
-			{/each}
-		</ul>
-	{/if}
+<div class={state.rootClass} data-search-skin={skin ? '' : undefined}>
+	<SearchField
+		{...rest}
+		bind:value
+		bind:element
+		{placeholder}
+		{inputClass}
+		skin={false}
+		class="c-auto-complete__field"
+		role="combobox"
+		autocomplete="off"
+		aria-autocomplete="list"
+		aria-expanded={state.expanded}
+		aria-controls={listId}
+		aria-activedescendant={state.highlightedIndex >= 0
+			? `${listId}-${state.highlightedIndex}`
+			: undefined}
+		onValueInput={state.handleValueInput}
+		onkeydown={state.handleKeydown}
+		onfocus={state.handleFocus}
+		onblur={state.handleBlur}
+	/>
+
+	<HtmlUl id={listId} role="listbox" class={state.listClass} hidden={!state.expanded}>
+		{#each state.options as option, index (option.id)}
+			<HtmlLi
+				id="{listId}-{index}"
+				role="option"
+				aria-selected={index === state.highlightedIndex}
+				class={state.itemClass}
+				onmousedown={state.keepFocus}
+				onclick={() => state.handleSelect(option)}
+			>
+				<span>{option.label}</span>
+				{#if option.meta}
+					<span class="c-auto-complete__meta">{option.meta}</span>
+				{/if}
+			</HtmlLi>
+		{/each}
+	</HtmlUl>
 </div>
 
 <style>
-	.c-auto-complete {
-		position: relative;
-	}
-
-	.c-auto-complete__input-wrap {
-		position: relative;
-	}
-
-	.c-auto-complete__icon {
-		pointer-events: none;
-		position: absolute;
-		inset-block: 0;
-		inset-inline-start: 0;
-		display: flex;
-		align-items: center;
-		padding-inline-start: 0.75rem;
-	}
-
-	.c-auto-complete__input {
-		display: block;
-		width: 100%;
-		padding-block: 0.5rem;
-		padding-inline-start: 2.5rem;
-		padding-inline-end: 0.75rem;
-		border: 1px solid var(--color-border-primary);
-		border-radius: var(--radius-1-5, 0.375rem);
-		background-color: var(--color-background-primary);
-	}
-
-	.c-auto-complete__input:focus {
-		outline: none;
-		box-shadow: 0 0 0 1px var(--color-primary-500);
-	}
-
-	.c-auto-complete__list {
-		position: absolute;
-		z-index: var(--z-index-docked);
-		margin-block-start: 0.25rem;
-		max-height: 15rem;
-		width: 100%;
-		overflow: auto;
-		border-radius: var(--radius-1-5, 0.375rem);
-		background-color: var(--color-background-primary);
-		padding-block: 0.25rem;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-		list-style: none;
-		margin: 0;
-		padding-inline: 0;
-	}
-
-	.c-auto-complete__item {
-		position: relative;
-		cursor: pointer;
-		padding: 0.5rem 0.75rem;
-	}
-
-	.c-auto-complete__item:hover {
-		background-color: var(--color-primary-100);
-	}
-
-	.c-auto-complete__item--highlighted {
-		background-color: var(--color-primary-100);
-	}
-
-	.c-auto-complete__meta {
-		margin-inline-start: 0.5rem;
-		font-size: var(--font-size-3, 0.75rem);
-		color: var(--color-text-secondary);
+	:global {
+		:where(.c-auto-complete) {
+			position: relative;
+		}
+		:where(.c-auto-complete__field) {
+			display: flex;
+		}
+		:where(.c-auto-complete__list) {
+			position: absolute;
+			inset-inline: 0;
+			inset-block-start: calc(100% + var(--space-1, 0.25rem));
+			z-index: var(--z-index-dropdown, 1000);
+			max-block-size: 15rem;
+			margin: 0;
+			padding: var(--space-1, 0.25rem) 0;
+			overflow: auto;
+			list-style: none;
+			border: var(--border-width-thin, 1px) solid var(--color-border-primary, GrayText);
+			border-radius: var(--radius-1-5, 0.375rem);
+			background: var(--color-background-primary, Canvas);
+			box-shadow: var(--elevation-level3, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+		}
+		:where(.c-auto-complete__list[hidden]) {
+			display: none;
+		}
+		:where(.c-auto-complete__item) {
+			margin: 0;
+			padding: var(--density-block, 0.5rem) var(--density-inline, 0.75rem);
+			cursor: pointer;
+		}
+		:where(.c-auto-complete__item:hover, .c-auto-complete__item[aria-selected='true']) {
+			background: var(--color-primary-100, Highlight);
+		}
+		:where(.c-auto-complete__meta) {
+			margin-inline-start: var(--space-2, 0.5rem);
+			font-size: var(--font-size-3, 0.75rem);
+			color: var(--color-text-secondary, GrayText);
+		}
 	}
 </style>

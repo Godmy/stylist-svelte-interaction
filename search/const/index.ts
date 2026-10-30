@@ -1,2 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { SEARCH_ICON_NAME } from './value';
+export {
+	SEARCH_ICON_NAME,
+	SEARCH_SKIN_SCOPE
+} from './value';

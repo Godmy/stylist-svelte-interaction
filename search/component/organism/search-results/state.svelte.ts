@@ -1,57 +1,37 @@
+import { SEARCH_ICON_NAME } from '$stylist/search/const/value/search-icon-name';
 import type { SearchResultItem } from '$stylist/search/type/object/search-results-item';
 import type { RecipeSearchResults } from '$stylist/search/interface/recipe/search-results';
 
-const Calendar = 'calendar';
-const MapPin = 'map-pin';
-const Search = 'search';
-const User = 'user';
-
 export function createSearchResultsState(getProps: () => RecipeSearchResults) {
 	const props = $derived(getProps());
-	const results = $derived(props.results ?? []);
-	const query = $derived(props.query ?? '');
-	const loading = $derived(props.loading ?? false);
-	const className = $derived(props.class ?? '');
-	const showMetadata = $derived(props.showMetadata ?? true);
-	const maxResults = $derived(props.maxResults ?? 10);
-
-	const displayedResults = $derived(results.slice(0, maxResults));
-
-	function icon(type: SearchResultItem['type']) {
-		if (type === 'user') return User;
-		if (type === 'event') return Calendar;
-		if (type === 'document') return MapPin;
-		return Search;
-	}
-
+	const displayedResults = $derived((props.results ?? []).slice(0, props.maxResults ?? 10));
+	const empty = $derived(displayedResults.length === 0 && Boolean(props.query));
 	const rootClass = $derived(['c-search-results', props.class].filter(Boolean).join(' '));
 
+	function icon(type: SearchResultItem['type']) {
+		if (type === 'user') return 'user';
+		if (type === 'event') return 'calendar';
+		if (type === 'document') return 'file-text';
+		return SEARCH_ICON_NAME;
+	}
+
+	function metadata(result: SearchResultItem) {
+		const { date, author, location } = result.metadata ?? {};
+		return [date, author, location].filter(Boolean).join(' · ');
+	}
+
 	return {
-		get results() {
-			return results;
-		},
-		get query() {
-			return query;
-		},
-		get loading() {
-			return loading;
-		},
-		get className() {
-			return className;
-		},
 		get displayedResults() {
 			return displayedResults;
 		},
-		get showMetadata() {
-			return showMetadata;
+		get empty() {
+			return empty;
 		},
 		get rootClass() {
 			return rootClass;
 		},
 		icon,
-		get onResultClick() {
-			return props.onResultClick;
-		}
+		metadata
 	};
 }
 

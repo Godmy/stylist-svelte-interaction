@@ -1,3 +1,5 @@
+import type { SearchSuggestionItem } from '$stylist/search/type/object/search-suggestion-item';
+
 export class ObjectManagerSearchBar {
 	/**
 	 * Нормализует поисковый запрос
@@ -23,21 +25,11 @@ export class ObjectManagerSearchBar {
 	/**
 	 * Фильтрует подсказки по поисковому запросу
 	 */
-	static filterSuggestions(
-		suggestions: {
-			text: string;
-			icon?: string;
-			count?: number;
-			category?: string;
-		}[],
+	static filterSuggestions<T extends Omit<SearchSuggestionItem, 'id'>>(
+		suggestions: T[],
 		query: string,
 		maxResults?: number
-	): {
-		text: string;
-		icon?: string;
-		count?: number;
-		category?: string;
-	}[] {
+	): T[] {
 		const normalizedQuery = this.normalizeQuery(query);
 		if (!normalizedQuery) return suggestions.slice(0, maxResults);
 
@@ -51,20 +43,10 @@ export class ObjectManagerSearchBar {
 	/**
 	 * Сортирует подсказки по релевантности
 	 */
-	static sortSuggestions(
-		suggestions: {
-			text: string;
-			icon?: string;
-			count?: number;
-			category?: string;
-		}[],
+	static sortSuggestions<T extends Omit<SearchSuggestionItem, 'id'>>(
+		suggestions: T[],
 		query: string
-	): {
-		text: string;
-		icon?: string;
-		count?: number;
-		category?: string;
-	}[] {
+	): T[] {
 		const normalizedQuery = this.normalizeQuery(query);
 		if (!normalizedQuery) return suggestions;
 
@@ -87,33 +69,10 @@ export class ObjectManagerSearchBar {
 	/**
 	 * Группирует подсказки по категории
 	 */
-	static groupSuggestionsByCategory(
-		suggestions: {
-			text: string;
-			icon?: string;
-			count?: number;
-			category?: string;
-		}[]
-	): Record<
-		string,
-		{
-			text: string;
-			icon?: string;
-			count?: number;
-			category?: string;
-		}[]
-	> {
-		return suggestions.reduce<
-			Record<
-				string,
-				{
-					text: string;
-					icon?: string;
-					count?: number;
-					category?: string;
-				}[]
-			>
-		>((groups, suggestion) => {
+	static groupSuggestionsByCategory<T extends Omit<SearchSuggestionItem, 'id'>>(
+		suggestions: T[]
+	): Record<string, T[]> {
+		return suggestions.reduce<Record<string, T[]>>((groups, suggestion) => {
 			const category = suggestion.category ?? 'default';
 			if (!groups[category]) {
 				groups[category] = [];

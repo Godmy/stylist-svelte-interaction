@@ -1,9 +1,13 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export {
-	AutoSearch,
-	SearchSuggestion
+	SearchField,
+	SearchSuggestion,
+	SearchToggle
 } from './atom';
-export { SearchBar } from './molecule';
+export {
+	SearchBar,
+	SearchOverlay
+} from './molecule';
 export {
 	AutoComplete,
 	SearchForm,

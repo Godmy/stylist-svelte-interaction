@@ -1,10 +1,9 @@
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
-import type { BehaviorClickable } from '$stylist/layout/interface/behavior/clickable';
-import type { BehaviorFocusable } from '$stylist/layout/interface/behavior/focusable';
-import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
-import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
-import type { SlotText } from '$stylist/typography/interface/slot/text';
+import type { RecipeHtmlDiv } from '$stylist/html/interface/recipe/div';
 import type { SlotSearchSuggestion } from '$stylist/search/interface/slot/search-suggestion';
+import type { SlotSearchSkin } from '$stylist/search/interface/slot/search-skin';
+
+/** Typeahead suggestion list (`<ul>` of buttons) with loading and empty states. */
 export interface RecipeSearchSuggestion extends ComputeIntersectAll<
-	[SlotSearchSuggestion, SlotText, SlotIcon, BehaviorClickable, BehaviorFocusable, BehaviorSizable]
+	[Omit<RecipeHtmlDiv, 'children' | 'class'>, SlotSearchSuggestion, SlotSearchSkin]
 > {}

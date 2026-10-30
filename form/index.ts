@@ -12,15 +12,11 @@ export {
 	RatingFeedback,
 	SchemaFormDialog,
 	ScreenReader,
-	SearchForm,
 	SupportCounter,
 	ToggleButtonGroup,
 	Validation
 } from './component';
-export {
-	PresetRatingFeedbackLabels,
-	SEARCH_ICON_NAME
-} from './const';
+export { PresetRatingFeedbackLabels } from './const';
 export { cooldownCounter } from './function';
 export type {
 	BehaviorRatingFeedback,
@@ -37,7 +33,6 @@ export type {
 	RecipeRatingFeedback,
 	RecipeSchemaFormDialog,
 	RecipeScreenReader,
-	RecipeSearchForm,
 	RecipeSupportCounter,
 	RecipeToggleButtonGroup,
 	RecipeValidation,

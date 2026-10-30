@@ -12,7 +12,6 @@ export type { RecipeLoginForm } from './login-form';
 export type { RecipeRatingFeedback } from './rating-feedback';
 export type { RecipeSchemaFormDialog } from './schema-form-dialog';
 export type { RecipeScreenReader } from './screen-reader';
-export type { RecipeSearchForm } from './search-form';
 export type { RecipeSupportCounter } from './support-counter';
 export type { RecipeToggleButtonGroup } from './toggle-button-group';
 export type { RecipeValidation } from './validation';

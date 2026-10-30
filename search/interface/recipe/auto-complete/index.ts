@@ -1,9 +1,9 @@
-import type { SlotAutoComplete } from '$stylist/search/interface/slot/auto-complete';
-import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
-import type { HTMLAttributes } from 'svelte/elements';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
-import type { SlotText } from '$stylist/typography/interface/slot/text';
-import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
+import type { RecipeHtmlInputSearch } from '$stylist/html/interface/recipe/input-search';
+import type { SlotAutoComplete } from '$stylist/search/interface/slot/auto-complete';
+import type { SlotSearchSkin } from '$stylist/search/interface/slot/search-skin';
+
+/** Combobox: a search field with a listbox; native attributes reach the control. */
 export interface RecipeAutoComplete extends ComputeIntersectAll<
-	[SlotAutoComplete, SlotTheme, SlotText, SlotText, SlotIcon, HTMLAttributes<HTMLInputElement>]
+	[Omit<RecipeHtmlInputSearch, 'value' | 'class'>, SlotAutoComplete, SlotSearchSkin]
 > {}

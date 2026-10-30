@@ -15,8 +15,7 @@ export {
 	LoginForm,
 	RatingFeedback,
 	SchemaFormDialog,
-	ScreenReader,
-	SearchForm
+	ScreenReader
 } from './organism';
 export {
 	FeedbackScenario,

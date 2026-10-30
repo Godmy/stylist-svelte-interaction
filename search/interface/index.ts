@@ -1,16 +1,22 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type {
 	RecipeAutoComplete,
-	RecipeAutoSearch,
 	RecipeSearchBar,
+	RecipeSearchField,
 	RecipeSearchForm,
+	RecipeSearchOverlay,
 	RecipeSearchResults,
-	RecipeSearchSuggestion
+	RecipeSearchSuggestion,
+	RecipeSearchToggle
 } from './recipe';
 export type {
 	SlotAutoComplete,
-	SlotAutoSearch,
 	SlotSearchBar,
-	SlotSearchBarEvents,
-	SlotSearchSuggestion
+	SlotSearchField,
+	SlotSearchForm,
+	SlotSearchOverlay,
+	SlotSearchResults,
+	SlotSearchSkin,
+	SlotSearchSuggestion,
+	SlotSearchToggle
 } from './slot';

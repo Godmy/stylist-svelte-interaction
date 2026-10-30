@@ -14,7 +14,6 @@ export type {
 	RecipeRatingFeedback,
 	RecipeSchemaFormDialog,
 	RecipeScreenReader,
-	RecipeSearchForm,
 	RecipeSupportCounter,
 	RecipeToggleButtonGroup,
 	RecipeValidation

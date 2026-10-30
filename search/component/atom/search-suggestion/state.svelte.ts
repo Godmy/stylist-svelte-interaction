@@ -1,3 +1,4 @@
+import type { SearchSuggestionItem } from '$stylist/search/type/object/search-suggestion-item';
 import type { RecipeSearchSuggestion } from '$stylist/search/interface/recipe/search-suggestion';
 
 export function createSearchSuggestionState(getProps: () => RecipeSearchSuggestion) {
@@ -5,18 +6,18 @@ export function createSearchSuggestionState(getProps: () => RecipeSearchSuggesti
 	const displayedSuggestions = $derived(
 		(props.suggestions ?? []).slice(0, props.maxSuggestions ?? 5)
 	);
-	const rootClass = $derived(
-		('search-suggestions' + (props.class ? ` ${props.class}` : '')).trim()
-	);
+	const empty = $derived(displayedSuggestions.length === 0 && Boolean(props.query));
+	const rootClass = $derived(['c-search-suggestion', props.class].filter(Boolean).join(' '));
 	const buttonClass = $derived(
-		(
-			'search-suggestion__button' + (props.suggestionClass ? ` ${props.suggestionClass}` : '')
-		).trim()
+		['c-search-suggestion__button', props.suggestionClass].filter(Boolean).join(' ')
 	);
 
 	return {
 		get displayedSuggestions() {
 			return displayedSuggestions;
+		},
+		get empty() {
+			return empty;
 		},
 		get rootClass() {
 			return rootClass;
@@ -24,8 +25,7 @@ export function createSearchSuggestionState(getProps: () => RecipeSearchSuggesti
 		get buttonClass() {
 			return buttonClass;
 		},
-		handleSuggestionClick(suggestion: RecipeSearchSuggestion['suggestions'][number]) {
-			props.onValueInput?.(suggestion);
+		handleSuggestionClick(suggestion: SearchSuggestionItem) {
 			props.onValueChange?.(suggestion);
 		}
 	};

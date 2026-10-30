@@ -1,56 +1,21 @@
-/**
- * SearchBar component types and interfaces
- * Following SOLID principles with proper type definitions
- */
-
-/** Props interface for SearchBar component */
 export interface SlotSearchBar {
-	/**
-	 * Placeholder text for the search input
-	 * @default 'Search nodes...'
-	 */
-	placeholder?: string;
-
-	/**
-	 * Current value of the search input
-	 * @default ''
-	 */
+	/** Query text (`bind:value`). */
 	value?: string;
-
-	/**
-	 * Whether the search bar is disabled
-	 * @default false
-	 */
+	placeholder?: string;
 	disabled?: boolean;
-
 	/**
-	 * Debounce time in milliseconds for search events
+	 * Delay of `onSearch` after typing, in milliseconds.
 	 * @default 300
 	 */
 	debounceMs?: number;
-
-	/**
-	 * Additional CSS classes to apply to the search bar
-	 */
+	/** @default 'Search' */
+	submitLabel?: string;
+	/** @default 'Clear search' */
+	clearLabel?: string;
 	class?: string;
-
-	/**
-	 * Called when input value changes.
-	 */
+	/** Called with the query on every input and on clear. */
 	onValueInput?: (value: string) => void;
-
-	/**
-	 * Called when value is committed/changed.
-	 */
-	onValueChange?: (value: string) => void;
-
-	/**
-	 * Called when search is executed.
-	 */
+	/** Called after the debounce, on Enter and on the submit button. */
 	onSearch?: (query: string) => void;
-
-	/**
-	 * Called when value is cleared.
-	 */
 	onClear?: () => void;
 }

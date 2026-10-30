@@ -2,11 +2,12 @@ import AutoComplete from '$stylist/search/component/organism/auto-complete/index
 import type { RecipeAutoComplete } from '$stylist/search/interface/recipe/auto-complete';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 
-/** An auto-complete input component with suggestions. */
+/** Combobox over a search field with a listbox of options. */
 export default {
 	component: AutoComplete,
 	title: 'AutoComplete',
-	description: 'An auto-complete input component with suggestions.',
+	description:
+		'SearchField with role=combobox and an HtmlUl listbox; arrows, Enter and Escape follow the ARIA combobox pattern.',
 	args: {
 		options: [
 			{ id: '1', label: 'Apple', value: 'apple', meta: 'Fruit' },
@@ -18,13 +19,21 @@ export default {
 			{ id: '7', label: 'Grape', value: 'grape', meta: 'Small Fruit' },
 			{ id: '8', label: 'Honeydew', value: 'honeydew', meta: 'Melon' }
 		],
-		placeholder: 'Type to search...',
+		placeholder: 'Type to search…',
 		showAllSuggestions: true,
-		debounce: 300
+		skin: true
 	},
 	controls: {
 		placeholder: { type: 'text' },
+		value: { type: 'text' },
 		showAllSuggestions: { type: 'boolean' },
-		debounce: { type: 'number' }
+		skin: { type: 'boolean' }
+	},
+	presets: { Filtered: { value: 'an' }, Native: { skin: false } },
+	context: {
+		kind: 'element',
+		tag: 'div',
+		attrs: { style: 'min-height: 18rem;' },
+		children: [{ kind: 'outlet' }]
 	}
 } satisfies ContractStory<RecipeAutoComplete>;

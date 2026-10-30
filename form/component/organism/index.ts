@@ -5,4 +5,3 @@ export { LoginForm } from './login-form/index';
 export { RatingFeedback } from './rating-feedback/index';
 export { SchemaFormDialog } from './schema-form-dialog/index';
 export { ScreenReader } from './screen-reader/index';
-export { SearchForm } from './search-form/index';

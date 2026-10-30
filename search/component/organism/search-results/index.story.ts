@@ -11,8 +11,8 @@ export default {
 		results: [
 			{
 				id: '1',
-				title: 'SlotOrder #1001',
-				description: 'SlotOrder detail page',
+				title: 'Order #1001',
+				description: 'Order detail page',
 				type: 'generic',
 				metadata: { date: '2026-02-14', author: 'Admin' }
 			},
@@ -33,11 +33,13 @@ export default {
 		],
 		query: 'order',
 		showMetadata: true,
-		loading: false
+		loading: false,
+		skin: true
 	},
 	controls: {
 		showMetadata: { type: 'boolean' },
-		loading: { type: 'boolean' }
+		loading: { type: 'boolean' },
+		skin: { type: 'boolean' }
 	},
 	presets: {
 		Loading: { loading: true },

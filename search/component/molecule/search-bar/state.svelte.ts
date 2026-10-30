@@ -1,135 +1,68 @@
-import { untrack } from 'svelte';
-import { ControlManager } from '$stylist/control/class/manager/control';
-import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeSearchBar } from '$stylist/search/interface/recipe/search-bar';
 
-export const createSearchBarState = (getProps: () => RecipeSearchBar) => {
+export function createSearchBarState(getProps: () => RecipeSearchBar) {
 	const props = $derived(getProps());
-	// SlotState
-	let searchTerm = $state(untrack(() => props.value ?? ''));
+	let field = $state<HTMLInputElement | null>(null);
+	let timer: ReturnType<typeof setTimeout> | undefined;
 
-	// Update local state when value prop changes
-	$effect(() => {
-		if (props.value !== undefined && searchTerm !== props.value) {
-			searchTerm = props.value;
-		}
-	});
-
-	// Debounced search
-	const debouncedSearch = ControlManager.debounce(
-		(query: string) => {
-			props.onSearch?.(query);
-		},
-		untrack(() => props.debounceMs) ?? 300
+	const rootClass = $derived(
+		['c-search-bar', props.disabled && 'c-search-bar--disabled', props.class]
+			.filter(Boolean)
+			.join(' ')
 	);
+	const clearable = $derived(Boolean(props.value) && !props.disabled);
 
-	function handleInput(event: Event) {
-		const target = event.target as HTMLInputElement;
-		searchTerm = target.value;
+	// A pending debounced search must not fire after unmount.
+	$effect(() => () => clearTimeout(timer));
 
-		props.onValueInput?.(searchTerm);
-		props.onValueChange?.(searchTerm);
+	function search(query: string) {
+		clearTimeout(timer);
+		props.onSearch?.(query);
+	}
 
-		debouncedSearch(searchTerm);
+	function handleValueInput(query: string) {
+		props.onValueInput?.(query);
+		clearTimeout(timer);
+		timer = setTimeout(() => props.onSearch?.(query), props.debounceMs ?? 300);
+	}
+
+	/** Reports a clear that already emptied the query (Escape or the clear button). */
+	function notifyClear() {
+		props.onClear?.();
+		search('');
 	}
 
 	function handleClear() {
-		searchTerm = '';
-
 		props.onValueInput?.('');
-		props.onValueChange?.('');
-
-		props.onClear?.();
-		props.onSearch?.('');
+		notifyClear();
+		field?.focus();
 	}
 
-	function triggerSearch() {
-		props.onSearch?.(searchTerm);
+	function handleKeydown(event: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }) {
+		if (event.key === 'Enter') search(event.currentTarget.value);
 	}
-
-	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
-			triggerSearch();
-		}
-		if (event.key === 'Escape' && searchTerm) {
-			handleClear();
-		}
-	}
-
-	// Computed classes
-	const containerClasses = $derived.by(() =>
-		ClassNamesManager.merge(
-			'c-search-bar',
-			props.disabled ? 'c-search-bar--disabled' : '',
-			props.class
-		)
-	);
-
-	const iconContainerClasses = $derived.by(() => 'c-search-bar__icon-wrap');
-
-	const inputClasses = $derived.by(() =>
-		ClassNamesManager.merge(
-			'c-search-bar__input',
-			props.disabled ? 'c-search-bar__input--disabled' : ''
-		)
-	);
-
-	const controlsContainerClasses = $derived.by(() => 'c-search-bar__controls');
-
-	const clearButtonClasses = $derived.by(() => 'c-search-bar__clear');
-
-	const searchButtonClasses = $derived.by(() => 'c-search-bar__submit');
-
-	const iconClasses = $derived.by(() => 'c-search-bar__icon');
-
-	const smallIconClasses = $derived.by(() => 'c-search-bar__icon c-search-bar__icon--sm');
 
 	return {
-		// SlotState getters
-		get searchTerm() {
-			return searchTerm;
+		get field() {
+			return field;
 		},
-		get hasValue() {
-			return searchTerm && searchTerm.length > 0;
+		set field(element: HTMLInputElement | null) {
+			field = element;
 		},
-
-		// Actions
-		setSearchTerm(value: string) {
-			searchTerm = value;
+		get rootClass() {
+			return rootClass;
 		},
-
-		// Handlers
-		handleInput,
+		get clearable() {
+			return clearable;
+		},
+		handleValueInput,
+		notifyClear,
 		handleClear,
-		triggerSearch,
 		handleKeydown,
-
-		// Classes
-		get containerClasses() {
-			return containerClasses;
-		},
-		get iconContainerClasses() {
-			return iconContainerClasses;
-		},
-		get inputClasses() {
-			return inputClasses;
-		},
-		get controlsContainerClasses() {
-			return controlsContainerClasses;
-		},
-		get clearButtonClasses() {
-			return clearButtonClasses;
-		},
-		get searchButtonClasses() {
-			return searchButtonClasses;
-		},
-		get iconClasses() {
-			return iconClasses;
-		},
-		get smallIconClasses() {
-			return smallIconClasses;
+		triggerSearch() {
+			search(props.value ?? '');
 		}
 	};
-};
+}
 
 export default createSearchBarState;

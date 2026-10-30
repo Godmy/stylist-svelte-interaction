@@ -2,27 +2,39 @@
 export { ObjectManagerSearchBar } from './class';
 export {
 	AutoComplete,
-	AutoSearch,
 	SearchBar,
+	SearchField,
 	SearchForm,
+	SearchOverlay,
 	SearchResults,
-	SearchSuggestion
+	SearchSuggestion,
+	SearchToggle
 } from './component';
-export { SEARCH_ICON_NAME } from './const';
+export {
+	SEARCH_ICON_NAME,
+	SEARCH_SKIN_SCOPE
+} from './const';
 export type {
 	AutoCompleteOption,
-	SearchResultItem
+	SearchResultItem,
+	SearchSuggestionItem
 } from './type';
 export type {
 	RecipeAutoComplete,
-	RecipeAutoSearch,
 	RecipeSearchBar,
+	RecipeSearchField,
 	RecipeSearchForm,
+	RecipeSearchOverlay,
 	RecipeSearchResults,
 	RecipeSearchSuggestion,
+	RecipeSearchToggle,
 	SlotAutoComplete,
-	SlotAutoSearch,
 	SlotSearchBar,
-	SlotSearchBarEvents,
-	SlotSearchSuggestion
+	SlotSearchField,
+	SlotSearchForm,
+	SlotSearchOverlay,
+	SlotSearchResults,
+	SlotSearchSkin,
+	SlotSearchSuggestion,
+	SlotSearchToggle
 } from './interface';

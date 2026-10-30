@@ -1,5 +1,6 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type {
 	AutoCompleteOption,
-	SearchResultItem
+	SearchResultItem,
+	SearchSuggestionItem
 } from './object';

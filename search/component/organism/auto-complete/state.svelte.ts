@@ -1,97 +1,95 @@
+import { ObjectManagerSearchBar } from '$stylist/search/class/manager/search-bar';
 import type { AutoCompleteOption } from '$stylist/search/type/object/auto-complete-option';
 import type { RecipeAutoComplete } from '$stylist/search/interface/recipe/auto-complete';
 
-export const createAutoCompleteState = (getProps: () => RecipeAutoComplete) => {
+type InputFocusEvent = FocusEvent & { currentTarget: EventTarget & HTMLInputElement };
+
+export function createAutoCompleteState(getProps: () => RecipeAutoComplete) {
 	const props = $derived(getProps());
-	let filteredOptions = $state<AutoCompleteOption[]>([]);
 	let isOpen = $state(false);
 	let highlightedIndex = $state(-1);
-	let inputValue = $derived(props.value ?? '');
 
-	$effect(() => {
-		if (inputValue) {
-			filteredOptions = (props.options ?? []).filter(
-				(option) =>
-					option.label.toLowerCase().includes(inputValue.toLowerCase()) ||
-					option.value.toLowerCase().includes(inputValue.toLowerCase())
-			);
-		} else {
-			filteredOptions = props.showAllSuggestions ? (props.options ?? []) : [];
-		}
+	const options = $derived.by(() => {
+		const query = ObjectManagerSearchBar.normalizeQuery(props.value ?? '');
+		const all = props.options ?? [];
+		if (!query) return props.showAllSuggestions ? all : [];
+		return all.filter(
+			(option) =>
+				option.label.toLowerCase().includes(query) || option.value.toLowerCase().includes(query)
+		);
 	});
+	const expanded = $derived(isOpen && options.length > 0);
+	const rootClass = $derived(['c-auto-complete', props.class].filter(Boolean).join(' '));
+	const listClass = $derived(['c-auto-complete__list', props.listClass].filter(Boolean).join(' '));
+	const itemClass = $derived(['c-auto-complete__item', props.itemClass].filter(Boolean).join(' '));
 
-	function handleInput(event: Event) {
-		const target = event.target as HTMLInputElement;
-		inputValue = target.value;
-		props.onInput?.(inputValue);
+	function handleValueInput(query: string) {
+		props.onValueInput?.(query);
 		isOpen = true;
 		highlightedIndex = -1;
 	}
 
 	function handleSelect(option: AutoCompleteOption) {
-		inputValue = option.label;
+		props.onValueInput?.(option.label);
 		props.onSelect?.(option);
 		isOpen = false;
 		highlightedIndex = -1;
 	}
 
-	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Enter' && highlightedIndex >= 0) {
+	/** Combobox keys; Escape closes an open list before the field may clear the query. */
+	function handleKeydown(event: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }) {
+		props.onkeydown?.(event);
+		if (event.defaultPrevented) return;
+		if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
 			event.preventDefault();
-			handleSelect(filteredOptions[highlightedIndex]);
-		} else if (event.key === 'ArrowDown') {
+			isOpen = true;
+			const step = event.key === 'ArrowDown' ? 1 : -1;
+			highlightedIndex = Math.max(-1, Math.min(highlightedIndex + step, options.length - 1));
+		} else if (event.key === 'Enter' && expanded && highlightedIndex >= 0) {
 			event.preventDefault();
-			highlightedIndex = Math.min(highlightedIndex + 1, filteredOptions.length - 1);
-		} else if (event.key === 'ArrowUp') {
+			handleSelect(options[highlightedIndex]);
+		} else if (event.key === 'Escape' && expanded) {
 			event.preventDefault();
-			highlightedIndex = Math.max(highlightedIndex - 1, -1);
-		} else if (event.key === 'Escape') {
 			isOpen = false;
+			highlightedIndex = -1;
 		}
-	}
-
-	function open() {
-		isOpen = true;
-	}
-
-	function close() {
-		setTimeout(() => {
-			isOpen = false;
-		}, 120);
 	}
 
 	return {
 		get options() {
-			return filteredOptions;
+			return options;
 		},
-		get isOpen() {
-			return isOpen;
+		get expanded() {
+			return expanded;
 		},
 		get highlightedIndex() {
 			return highlightedIndex;
 		},
-		get inputValue() {
-			return inputValue;
-		},
-		get placeholder() {
-			return props.placeholder ?? 'Search...';
-		},
-		get className() {
-			return props.class ?? '';
-		},
-		get inputClass() {
-			return props.inputClass ?? '';
+		get rootClass() {
+			return rootClass;
 		},
 		get listClass() {
-			return props.listClass ?? '';
+			return listClass;
 		},
 		get itemClass() {
-			return props.itemClass ?? '';
+			return itemClass;
 		},
-		handleInput,
+		handleValueInput,
 		handleSelect,
-		handleKeyDown,
-		open,
-		close
+		handleKeydown,
+		handleFocus(event: InputFocusEvent) {
+			props.onfocus?.(event);
+			isOpen = true;
+		},
+		handleBlur(event: InputFocusEvent) {
+			props.onblur?.(event);
+			isOpen = false;
+		},
+		/** Picking with the pointer must not blur the field, which would close the list first. */
+		keepFocus(event: MouseEvent) {
+			event.preventDefault();
+		}
 	};
-};
+}
+
+export default createAutoCompleteState;

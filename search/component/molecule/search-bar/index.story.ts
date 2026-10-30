@@ -2,20 +2,25 @@ import SearchBar from '$stylist/search/component/molecule/search-bar/index.svelt
 import type { RecipeSearchBar } from '$stylist/search/interface/recipe/search-bar';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 
-/** Search bar component with debounce and clear functionality. */
+/** Live `<search>` region with debounce, clear and submit. */
 export default {
 	component: SearchBar,
 	title: 'SearchBar',
-	description: 'Search bar component with debounce and clear functionality',
-	args: { placeholder: 'Search...', value: '', disabled: false, debounceMs: 300 },
+	description:
+		'HtmlSearch with SearchField, a clear button and a submit HtmlButton; onSearch is debounced and fires on Enter.',
+	args: { placeholder: 'Search…', value: '', disabled: false, debounceMs: 300, skin: true },
 	controls: {
-		placeholder: { type: 'text', description: 'Placeholder text for the search bar' },
-		value: { type: 'text', description: 'Current value of the search bar' },
-		disabled: { type: 'boolean', description: 'Whether the search bar is disabled' },
-		debounceMs: { type: 'number', description: 'Debounce time in milliseconds' }
+		placeholder: { type: 'text', description: 'Placeholder of the field' },
+		value: { type: 'text', description: 'Current query' },
+		disabled: { type: 'boolean', description: 'Disables the field and the buttons' },
+		debounceMs: { type: 'number', description: 'Delay of onSearch after typing, ms' },
+		submitLabel: { type: 'text' },
+		clearLabel: { type: 'text' },
+		skin: { type: 'boolean', description: 'Scoped html skin' }
 	},
 	presets: {
 		Filled: { value: 'invoice' },
-		Disabled: { disabled: true }
+		Disabled: { disabled: true },
+		Native: { skin: false, value: 'invoice' }
 	}
 } satisfies ContractStory<RecipeSearchBar>;
