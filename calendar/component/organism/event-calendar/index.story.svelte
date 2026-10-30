@@ -40,6 +40,15 @@
 			end: new Date(year, month, 25, 15, 30),
 			description: 'International partners',
 			color: '#8b5cf6'
+		},
+		{
+			id: '5',
+			title: 'Offsite trip',
+			start: new Date(year, month, 8),
+			end: new Date(year, month, 10),
+			allDay: true,
+			description: 'Multi-day event: shown on each of its days',
+			href: '#offsite'
 		}
 	];
 </script>

@@ -21,7 +21,7 @@
 				variant="ghost"
 				size="sm"
 				onclick={state.navigateToToday}
-				class="c-event-calendar__today-btn">Today</Button
+				class="c-event-calendar__today-btn">{state.labels.today}</Button
 			>
 			<Button variant="ghost" size="sm" onclick={() => state.navigateCurrent(1)}>
 				<Icon name={ChevronRight} class="_c1" />
@@ -32,17 +32,17 @@
 			<Button
 				variant={state.currentViewMode === 'day' ? 'primary' : 'ghost'}
 				size="sm"
-				onclick={() => state.changeViewMode('day')}>Day</Button
+				onclick={() => state.changeViewMode('day')}>{state.labels.day}</Button
 			>
 			<Button
 				variant={state.currentViewMode === 'week' ? 'primary' : 'ghost'}
 				size="sm"
-				onclick={() => state.changeViewMode('week')}>Week</Button
+				onclick={() => state.changeViewMode('week')}>{state.labels.week}</Button
 			>
 			<Button
 				variant={state.currentViewMode === 'month' ? 'primary' : 'ghost'}
 				size="sm"
-				onclick={() => state.changeViewMode('month')}>Month</Button
+				onclick={() => state.changeViewMode('month')}>{state.labels.month}</Button
 			>
 		</div>
 	</div>
@@ -63,7 +63,7 @@
 			{#each state.days as day}
 				<div class="c-event-calendar__day-col">
 					<div class={state.getDateHeaderClasses(day.isToday)}>
-						{day.date.toLocaleDateString('en-US', { weekday: 'short' })}, {day.date.getDate()}
+						{state.formatWeekdayDay(day.date)}
 					</div>
 					<div class="c-event-calendar__day-events">
 						{#if state.showAllDayEvents}
@@ -88,7 +88,7 @@
 										>
 									{/if}
 									{#if state.showEventDuration && event.allDay}
-										<span class="c-event-calendar__event-time">(all day)</span>
+										<span class="c-event-calendar__event-time">({state.labels.allDay})</span>
 									{/if}
 								</div>
 							{/each}
@@ -134,7 +134,7 @@
 								>
 									{event.title}
 									{#if state.showEventDuration && event.allDay}
-										<span class="c-event-calendar__event-time">(all day)</span>
+										<span class="c-event-calendar__event-time">({state.labels.allDay})</span>
 									{/if}
 								</div>
 							{/each}
@@ -153,28 +153,58 @@
 					<button onclick={state.closeEventActions} class="c-event-calendar__modal-close">×</button>
 				</div>
 				<div class="c-event-calendar__modal-body">
-					<p class="c-event-calendar__modal-desc">{state.selectedEvent.description}</p>
+					{#if state.selectedEvent.description}
+						<p class="c-event-calendar__modal-desc">{state.selectedEvent.description}</p>
+					{/if}
 					<div class="c-event-calendar__modal-meta">
-						<p>Start: {state.selectedEvent.start.toLocaleString()}</p>
-						<p>End: {state.selectedEvent.end.toLocaleString()}</p>
+						<p>
+							{state.labels.start}: {state.formatMoment(
+								state.selectedEvent.start,
+								state.selectedEvent.allDay
+							)}
+						</p>
+						<p>
+							{state.labels.end}: {state.formatMoment(
+								state.selectedEvent.end,
+								state.selectedEvent.allDay
+							)}
+						</p>
 						{#if state.selectedEvent.location}
-							<p>Location: {state.selectedEvent.location}</p>
+							<p>{state.labels.location}: {state.selectedEvent.location}</p>
 						{/if}
 					</div>
 				</div>
-				<div class={state.getModalFooterClasses()}>
-					<div class="c-event-calendar__modal-actions">
-						<Button variant="secondary" size="sm" onclick={state.handleEventEdit}>Edit</Button>
-						<Button variant="danger" size="sm" onclick={state.handleEventDelete}>Delete</Button>
+				{#if state.selectedEvent.href || state.canEdit || state.canDelete}
+					<div class={state.getModalFooterClasses()}>
+						<div class="c-event-calendar__modal-actions">
+							{#if state.selectedEvent.href}
+								<a class="c-event-calendar__modal-link" href={state.selectedEvent.href}
+									>{state.labels.open}</a
+								>
+							{/if}
+							{#if state.canEdit}
+								<Button variant="secondary" size="sm" onclick={state.handleEventEdit}
+									>{state.labels.edit}</Button
+								>
+							{/if}
+							{#if state.canDelete}
+								<Button variant="danger" size="sm" onclick={state.handleEventDelete}
+									>{state.labels.delete}</Button
+								>
+							{/if}
+						</div>
 					</div>
-				</div>
+				{/if}
 			</div>
 		</div>
 	{/if}
 </div>
 
 <style>
+	/* A flex column: given a height, the month grid stretches its weeks to fill it. */
 	.c-event-calendar {
+		display: flex;
+		flex-direction: column;
 		border: 1px solid var(--color-border-primary);
 		border-radius: var(--radius-2, 0.5rem);
 		overflow: hidden;
@@ -226,6 +256,7 @@
 	}
 
 	.c-event-calendar__day-week-grid {
+		flex: 1;
 		display: grid;
 		overflow-x: auto;
 	}
@@ -256,15 +287,35 @@
 	}
 
 	.c-event-calendar__day-events {
-		max-height: 25rem;
-		overflow-y: auto;
 		padding: var(--space-3, 0.75rem);
 	}
 
+	.c-event-calendar__day-col .c-event-calendar__day-events {
+		max-height: 25rem;
+		overflow-y: auto;
+	}
+
+	.c-event-calendar__day .c-event-calendar__day-events {
+		padding: 0;
+	}
+
+	/* Weeks share the height; a week with more events grows to fit them (a 1fr track
+	   never shrinks below its content), and the grid scrolls under sticky weekdays. */
 	.c-event-calendar__grid {
+		flex: 1;
+		min-height: 0;
 		display: grid;
 		grid-template-columns: repeat(7, minmax(0, 1fr));
-		overflow-x: auto;
+		grid-template-rows: auto;
+		grid-auto-rows: 1fr;
+		overflow: auto;
+	}
+
+	.c-event-calendar__grid > .c-event-calendar__weekday {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background: var(--color-background-primary);
 	}
 
 	.c-event-calendar__grid--month {
@@ -275,8 +326,8 @@
 		min-height: 6rem;
 		min-width: 0;
 		padding: var(--space-1, 0.25rem);
-		border-top: 1px solid var(--color-border-secondary);
-		border-right: 1px solid var(--color-border-secondary);
+		border-top: 1px solid var(--color-border-secondary, var(--color-border-primary));
+		border-right: 1px solid var(--color-border-secondary, var(--color-border-primary));
 		position: relative;
 		cursor: pointer;
 	}
@@ -293,8 +344,9 @@
 	}
 
 	.c-event-calendar__date-num {
-		text-align: right;
+		text-align: start;
 		padding: var(--space-1, 0.25rem);
+		font-weight: var(--font-weight-medium, 500);
 	}
 	.c-event-calendar__date-num--today {
 		display: flex;
@@ -304,8 +356,7 @@
 		justify-content: center;
 		border-radius: 9999px;
 		background: var(--color-primary-600);
-		color: var(--color-text-inverse);
-		margin: 0 auto;
+		color: var(--color-text-inverse, #fff);
 	}
 
 	.c-event-calendar__event {
@@ -394,6 +445,10 @@
 		display: flex;
 		gap: 0.5rem;
 		flex-wrap: wrap;
+	}
+	.c-event-calendar__modal-link {
+		color: var(--color-primary-600);
+		font-weight: var(--font-weight-medium, 500);
 	}
 
 	@media (max-width: 640px) {

@@ -13,6 +13,24 @@ export default {
 		viewMode: { type: 'select', options: TOKEN_CALENDAR },
 		showAllDayEvents: { type: 'boolean' }
 	},
-	presets: { Week: { viewMode: 'week' }, Day: { viewMode: 'day' } },
+	presets: {
+		Week: { viewMode: 'week' },
+		Day: { viewMode: 'day' },
+		Russian: {
+			locale: 'ru-RU',
+			weekStartsOn: 1,
+			labels: {
+				today: 'Сегодня',
+				day: 'День',
+				week: 'Неделя',
+				month: 'Месяц',
+				allDay: 'весь день',
+				start: 'Начало',
+				end: 'Окончание',
+				location: 'Место',
+				open: 'Открыть'
+			}
+		}
+	},
 	layout: 'padded'
 } satisfies ContractStory<RecipeEventCalendar>;

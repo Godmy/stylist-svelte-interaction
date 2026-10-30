@@ -8,5 +8,7 @@ export interface SlotCalendarEvent {
 	allDay?: boolean;
 	location?: string;
 	description?: string;
+	/** Detail page of the event: the event dialog shows it as a link. */
+	href?: string;
 	priority?: TokenPriority;
 }

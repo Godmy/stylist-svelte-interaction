@@ -1,7 +1,8 @@
-export function generateCalendarGrid(date: Date): Date[] {
+/** 6 weeks around the month of `date`; `weekStartsOn` 0 = Sunday, 1 = Monday. */
+export function generateCalendarGrid(date: Date, weekStartsOn = 0): Date[] {
 	const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
 	const start = new Date(firstDay);
-	start.setDate(firstDay.getDate() - firstDay.getDay());
+	start.setDate(firstDay.getDate() - ((firstDay.getDay() - weekStartsOn + 7) % 7));
 	return Array.from({ length: 42 }, (_, i) => {
 		const d = new Date(start);
 		d.setDate(start.getDate() + i);
@@ -36,9 +37,9 @@ export function startOfDay(date: Date): Date {
 	return d;
 }
 
-export function startOfWeek(date: Date): Date {
+export function startOfWeek(date: Date, weekStartsOn = 0): Date {
 	const d = startOfDay(date);
-	d.setDate(d.getDate() - d.getDay());
+	d.setDate(d.getDate() - ((d.getDay() - weekStartsOn + 7) % 7));
 	return d;
 }
 

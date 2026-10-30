@@ -7,9 +7,25 @@ import type { TokenTimeMeasure } from '$stylist/calendar/type/alias/time-measure
 import {
 	generateCalendarGrid,
 	isToday as isTodayFn,
-	isSameDay,
+	startOfDay,
 	startOfWeek
 } from '$stylist/calendar/function/script/calendar-utils';
+
+const DEFAULT_LABELS = {
+	today: 'Today',
+	day: 'Day',
+	week: 'Week',
+	month: 'Month',
+	allDay: 'all day',
+	start: 'Start',
+	end: 'End',
+	location: 'Location',
+	open: 'Open',
+	edit: 'Edit',
+	delete: 'Delete'
+};
+
+const capitalize = (text: string) => text.charAt(0).toLocaleUpperCase() + text.slice(1);
 
 export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	const props = $derived(getProps());
@@ -25,6 +41,22 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	const headerClassProp = $derived(props.headerClass ?? '');
 	const showAllDayEvents = $derived(props.showAllDayEvents ?? true);
 	const showEventDuration = $derived(props.showEventDuration ?? true);
+	const locale = $derived(props.locale ?? 'en-US');
+	const weekStartsOn = $derived(props.weekStartsOn ?? 0);
+	const labels = $derived({ ...DEFAULT_LABELS, ...props.labels });
+	// Modal actions appear only for the handlers the page passes.
+	const canEdit = $derived(!!props.onEventEdit);
+	const canDelete = $derived(!!props.onEventDelete);
+
+	// An event lies on every day from its start to its end (multi-day tours, trips).
+	function eventsOn(date: Date): SlotCalendarEvent[] {
+		const day = startOfDay(date).getTime();
+		return events.filter((e) => {
+			const start = startOfDay(new Date(e.start)).getTime();
+			const end = Math.max(start, startOfDay(new Date(e.end ?? e.start)).getTime());
+			return start <= day && day <= end;
+		});
+	}
 
 	const wrapperClasses = $derived(ClassNamesManager.merge('c-event-calendar', className));
 	const headerClasses = $derived('c-event-calendar__header');
@@ -32,16 +64,16 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	const days = $derived.by<SlotCalendarDay[]>(() => {
 		const month = currentDate.getMonth();
 		if (currentViewMode === 'month') {
-			return generateCalendarGrid(currentDate).map((date) => ({
+			return generateCalendarGrid(currentDate, weekStartsOn).map((date) => ({
 				date,
 				isCurrentMonth: date.getMonth() === month,
 				isToday: isTodayFn(date),
 				isSelected: false,
-				events: events.filter((e) => isSameDay(new Date(e.start), date))
+				events: eventsOn(date)
 			}));
 		}
 		if (currentViewMode === 'week') {
-			const weekStart = startOfWeek(currentDate);
+			const weekStart = startOfWeek(currentDate, weekStartsOn);
 			return Array.from({ length: 7 }, (_, i) => {
 				const date = new Date(weekStart);
 				date.setDate(weekStart.getDate() + i);
@@ -50,7 +82,7 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 					isCurrentMonth: date.getMonth() === month,
 					isToday: isTodayFn(date),
 					isSelected: false,
-					events: events.filter((e) => isSameDay(new Date(e.start), date))
+					events: eventsOn(date)
 				};
 			});
 		}
@@ -60,13 +92,22 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 				isCurrentMonth: true,
 				isToday: isTodayFn(currentDate),
 				isSelected: true,
-				events: events.filter((e) => isSameDay(new Date(e.start), currentDate))
+				events: eventsOn(currentDate)
 			}
 		];
 	});
 
-	const weekdays = $derived(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
-	const displayTitle = $derived(getDisplayTitle(currentDate, currentViewMode));
+	// 2023-01-01 is a Sunday: day i of the week in the page locale.
+	const weekdays = $derived(
+		Array.from({ length: 7 }, (_, i) =>
+			capitalize(
+				new Date(2023, 0, 1 + ((i + weekStartsOn) % 7)).toLocaleDateString(locale, {
+					weekday: 'short'
+				})
+			)
+		)
+	);
+	const displayTitle = $derived(capitalize(getDisplayTitle(currentDate, currentViewMode)));
 
 	const restProps = $derived.by(() => {
 		const {
@@ -79,6 +120,12 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 			headerClass: _headerClass,
 			showAllDayEvents: _showAllDayEvents,
 			showEventDuration: _showEventDuration,
+			locale: _locale,
+			weekStartsOn: _weekStartsOn,
+			labels: _labels,
+			selectedDate: _selectedDate,
+			onDayClick: _onDayClick,
+			onViewModeChange: _onViewModeChange,
 			children: _children,
 			onEventClick: _onEventClick,
 			onEventCreate: _onEventCreate,
@@ -111,6 +158,7 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 
 	function changeViewMode(mode: TokenTimeMeasure): void {
 		currentViewMode = mode;
+		props.onViewModeChange?.(mode);
 	}
 
 	function navigateCurrent(direction: number): void {
@@ -152,26 +200,45 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	function getDisplayTitle(date: Date, mode: TokenTimeMeasure): string {
 		switch (mode) {
 			case 'day':
-				return date.toLocaleDateString('en-US', {
+				return date.toLocaleDateString(locale, {
 					weekday: 'long',
 					month: 'long',
 					day: 'numeric',
 					year: 'numeric'
 				});
 			case 'week': {
-				const weekStart = startOfWeek(date);
+				const weekStart = startOfWeek(date, weekStartsOn);
 				const weekEnd = new Date(weekStart);
 				weekEnd.setDate(weekStart.getDate() + 6);
-				return `${weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${weekEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+				return `${weekStart.toLocaleDateString(locale, { month: 'short', day: 'numeric' })} - ${weekEnd.toLocaleDateString(locale, { month: 'short', day: 'numeric', year: 'numeric' })}`;
 			}
-			default:
-				return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+			default: {
+				// Russian 'long' month with a year is genitive («октября 2026 г.»); standalone is wanted.
+				const parts = new Intl.DateTimeFormat(locale, {
+					month: 'long',
+					year: 'numeric'
+				}).formatToParts(date);
+				const year =
+					parts.find((part) => part.type === 'year')?.value ?? String(date.getFullYear());
+				return `${new Intl.DateTimeFormat(locale, { month: 'long' }).format(date)} ${year}`;
+			}
 		}
 	}
 
 	function formatTimeRange(start: Date, end: Date): string {
-		const fmt = (d: Date) => d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+		const fmt = (d: Date) => d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
 		return `${fmt(start)} - ${fmt(end)}`;
+	}
+
+	/** Start/end line of the event dialog: dates only for all-day events. */
+	function formatMoment(date: Date, allDay = false): string {
+		return allDay
+			? date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+			: date.toLocaleString(locale, { dateStyle: 'medium', timeStyle: 'short' });
+	}
+
+	function formatWeekdayDay(date: Date): string {
+		return `${capitalize(date.toLocaleDateString(locale, { weekday: 'short' }))}, ${date.getDate()}`;
 	}
 
 	function getWeekdayHeaderClasses(): string {
@@ -268,6 +335,18 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 		get showEventDuration() {
 			return showEventDuration;
 		},
+		get locale() {
+			return locale;
+		},
+		get labels() {
+			return labels;
+		},
+		get canEdit() {
+			return canEdit;
+		},
+		get canDelete() {
+			return canDelete;
+		},
 		get wrapperClasses() {
 			return wrapperClasses;
 		},
@@ -286,6 +365,8 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 		handleEventDelete,
 		closeEventActions,
 		formatTimeRange,
+		formatMoment,
+		formatWeekdayDay,
 		getWeekdayHeaderClasses,
 		getGridClasses,
 		getDateHeaderClasses,
