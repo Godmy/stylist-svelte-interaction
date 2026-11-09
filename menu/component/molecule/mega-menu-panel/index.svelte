@@ -25,13 +25,32 @@
 	{...restProps}
 	class={['c-mega-panel', props.class].filter(Boolean).join(' ')}
 	style:--c-mega-panel-columns={Math.max(columns.length, 1)}
-	data-has-feature={props.section.feature ? '' : undefined}
+	data-has-feature={props.section.feature || props.section.aside ? '' : undefined}
 >
 	{#if props.section.intro}
 		<p class="c-mega-panel__intro">{props.section.intro}</p>
 	{/if}
 
+	<!-- A header (a search field) heads the columns only: the feature beside them
+	     keeps the panel's full height. -->
 	<div class="c-mega-panel__grid">
+		{#if props.section.header}
+			<div class="c-mega-panel__main">
+				<div class="c-mega-panel__header">{@render props.section.header()}</div>
+				{@render columnList()}
+			</div>
+		{:else}
+			{@render columnList()}
+		{/if}
+
+		{#if props.section.aside}
+			<div class="c-mega-panel__aside">{@render props.section.aside()}</div>
+		{:else if props.section.feature}
+			<MegaMenuFeature {...props.section.feature} onNavigate={props.onNavigate} />
+		{/if}
+	</div>
+
+	{#snippet columnList()}
 		{#if columns.length > 0}
 			<div class="c-mega-panel__columns">
 				{#each columns as column (column.id)}
@@ -46,11 +65,7 @@
 				{/each}
 			</div>
 		{/if}
-
-		{#if props.section.feature}
-			<MegaMenuFeature {...props.section.feature} onNavigate={props.onNavigate} />
-		{/if}
-	</div>
+	{/snippet}
 
 	{#if footerLinks.length > 0}
 		<div class="c-mega-panel__footer">
@@ -85,6 +100,21 @@
 		box-shadow:
 			0 20px 40px -12px rgba(15, 23, 42, 0.18),
 			0 4px 10px -4px rgba(15, 23, 42, 0.08);
+	}
+
+	.c-mega-panel__main {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		min-width: 0;
+	}
+
+	.c-mega-panel__header {
+		padding: 0 0.75rem;
+	}
+
+	.c-mega-panel__aside {
+		min-width: 0;
 	}
 
 	.c-mega-panel__intro {
