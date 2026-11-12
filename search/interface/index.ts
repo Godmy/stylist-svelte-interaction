@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export type { ContractAsyncSearch } from './contract';
 export type {
 	RecipeAutoComplete,
 	RecipeSearchBar,

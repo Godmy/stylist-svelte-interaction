@@ -14,12 +14,14 @@ export {
 	SEARCH_ICON_NAME,
 	SEARCH_SKIN_SCOPE
 } from './const';
+export { createAsyncSearchState } from './function';
 export type {
 	AutoCompleteOption,
 	SearchResultItem,
 	SearchSuggestionItem
 } from './type';
 export type {
+	ContractAsyncSearch,
 	RecipeAutoComplete,
 	RecipeSearchBar,
 	RecipeSearchField,
