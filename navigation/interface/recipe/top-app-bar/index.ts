@@ -4,6 +4,8 @@ import type { RecipeHtmlHeader } from '$stylist/html/interface/recipe/header';
 /** Top app bar: navigation icon on the left, title, action buttons on the right. */
 export interface RecipeTopAppBar extends Omit<RecipeHtmlHeader, 'children'> {
 	heading?: string;
+	/** Custom title content, e.g. a brand and a non-heading section label. */
+	titleContent?: Snippet;
 	subheading?: string;
 	/** `menu` opens the drawer (burger), `up` goes back, `none` hides the icon. */
 	navigation?: 'menu' | 'up' | 'none';

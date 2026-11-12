@@ -18,6 +18,8 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	 * without calling `onNavigate`; takes precedence over `initial`.
 	 */
 	current?: string;
+	/** Highlight an in-page destination without changing the fragment or back stack. */
+	activeDestination?: string;
 	/** Args of the `current` destination, e.g. route params. */
 	currentArgs?: Record<string, unknown>;
 	/** App name in the drawer header. */
@@ -47,6 +49,8 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	/** Floating action button; hidden on destinations with `fab: false`. */
 	fab?: Snippet<[ContractNavigator]>;
 	drawerHeader?: Snippet;
+	/** Custom app-bar title, independent of the page heading hierarchy. */
+	appBarTitle?: Snippet;
 	/** Footer receives navigation and a callback to dismiss a modal drawer. */
 	drawerFooter?: Snippet<[ContractNavigator, () => void]>;
 	onNavigate?: (entry: ContractNavigationEntry) => void;

@@ -80,6 +80,7 @@ export function createActivityState(getProps: () => RecipeActivity) {
 			graph: _graph,
 			initial: _initial,
 			current: _current,
+			activeDestination: _activeDestination,
 			currentArgs: _currentArgs,
 			heading: _heading,
 			permanentDrawer: _permanentDrawer,
@@ -92,6 +93,7 @@ export function createActivityState(getProps: () => RecipeActivity) {
 			actions: _actions,
 			fab: _fab,
 			drawerHeader: _drawerHeader,
+			appBarTitle: _appBarTitle,
 			drawerFooter: _drawerFooter,
 			onNavigate: _onNavigate,
 			class: _class,
@@ -106,7 +108,9 @@ export function createActivityState(getProps: () => RecipeActivity) {
 	}
 
 	function select(id: string) {
-		navigator.select(id);
+		// A scrolled page may highlight another section while its URL entry stays the same.
+		if (props.activeDestination && id === navigator.entry.id) props.onNavigate?.(navigator.entry);
+		else navigator.select(id);
 		drawerOpen = false;
 	}
 

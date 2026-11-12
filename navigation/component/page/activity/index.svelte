@@ -54,7 +54,8 @@
 			sections={activity.sections}
 			mode={activity.permanent ? 'permanent' : 'modal'}
 			open={activity.drawerOpen}
-			isActive={(id) => navigator.isActive(id)}
+			isActive={(id) =>
+				props.activeDestination ? id === props.activeDestination : navigator.isActive(id)}
 			onSelect={activity.select}
 			onClose={activity.closeDrawer}
 			accordion={props.drawerAccordion}
@@ -68,7 +69,9 @@
 	<HtmlDiv class="c-activity__body" inert={activity.modalOpen}>
 		<TopAppBar
 			class="c-activity__bar"
-			heading={navigator.destination.label}
+			titleContent={props.appBarTitle}
+			heading={navigator.composite.find(props.activeDestination ?? '')?.destination.label ??
+				navigator.destination.label}
 			navigation={activity.navigationMode}
 			menuOpen={activity.drawerOpen}
 			elevated={scrolled}

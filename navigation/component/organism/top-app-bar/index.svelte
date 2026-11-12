@@ -11,6 +11,7 @@
 	let {
 		element = $bindable(null),
 		heading,
+		titleContent,
 		subheading,
 		navigation = 'menu',
 		menuOpen = false,
@@ -54,7 +55,9 @@
 		</HtmlDiv>
 	{/if}
 	<HtmlDiv class="c-top-app-bar__titles">
-		{#if heading}
+		{#if titleContent}
+			{@render titleContent()}
+		{:else if heading}
 			<HtmlH1 class="c-top-app-bar__heading">{heading}</HtmlH1>
 		{/if}
 		{#if subheading}
