@@ -3,4 +3,7 @@ export {
 	PageButton,
 	PageEllipsis
 } from './atom';
-export { Pagination } from './organism';
+export {
+	Carousel,
+	Pagination
+} from './organism';
