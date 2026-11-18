@@ -51,6 +51,8 @@ export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'ch
 	drawerHeader?: Snippet;
 	/** Custom app-bar title, independent of the page heading hierarchy. */
 	appBarTitle?: Snippet;
+	/** Custom leading control receives the navigation action and the drawer's open state. */
+	appBarLeading?: Snippet<[() => void, boolean]>;
 	/** Footer receives navigation and a callback to dismiss a modal drawer. */
 	drawerFooter?: Snippet<[ContractNavigator, () => void]>;
 	onNavigate?: (entry: ContractNavigationEntry) => void;

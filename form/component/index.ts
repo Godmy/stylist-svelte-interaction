@@ -11,6 +11,7 @@ export {
 } from './molecule';
 export {
 	AddressForm,
+	ContactForm,
 	FormWithValidation,
 	LoginForm,
 	RatingFeedback,

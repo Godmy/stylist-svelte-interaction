@@ -2,33 +2,24 @@ import { untrack } from 'svelte';
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import { ManagerMotion } from '$stylist/animation/class/manager/motion';
 import type { RecipeAnimatedDigit } from '$stylist/animation/interface/recipe/animated-digit';
+import { TOKEN_NAMED_EASINGS } from '$stylist/animation/const/array/named-easings';
+import { parseDurationMs } from '$stylist/animation/function/transform/duration-ms';
+import { prefersReducedMotion } from '$stylist/animation/function/check/reduced-motion';
 
 // The interpolation only knows the named curves; a cubic-bezier token (the
 // motion default) would fall back to linear, which reads stiff on a counter.
-const NAMED_EASINGS = ['linear', 'ease-in', 'ease-out', 'ease-in-out'];
-
-function parseDurationMs(value: unknown): number {
-	const text = String(value ?? '300ms');
-	const parsed = Number.parseFloat(text);
-	if (!Number.isFinite(parsed)) return 300;
-	return text.endsWith('ms') ? parsed : text.endsWith('s') ? parsed * 1000 : parsed;
-}
-
-function prefersReducedMotion(): boolean {
-	return (
-		typeof window !== 'undefined' &&
-		!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-	);
-}
-
-export const createAnimatedDigitState = (getProps: () => RecipeAnimatedDigit) => {
+export function createAnimatedDigitState(getProps: () => RecipeAnimatedDigit) {
 	const props = $derived(getProps());
 	// SlotState
 	let isAnimating = $state(false);
 	// `from` is only the starting value: without it the counter starts at 0
 	// and counts up on mount; with `from === to` it renders the final value
 	// straight away (also in SSR) and only animates later changes.
-	let currentValue = $state(untrack(() => getProps().from ?? 0));
+	let currentValue = $state(
+		untrack(() => (getProps().startWhenVisible ? (getProps().to ?? 1) : (getProps().from ?? 0)))
+	);
+	let started = $state(untrack(() => !getProps().startWhenVisible));
+	let element = $state<HTMLElement | null>(null);
 	let frame: number | undefined;
 
 	// Нормализация props
@@ -52,13 +43,37 @@ export const createAnimatedDigitState = (getProps: () => RecipeAnimatedDigit) =>
 		if (props.format) {
 			return props.format(currentValue);
 		}
+		if (props.precision !== undefined && Number.isFinite(props.precision))
+			return currentValue.toFixed(Math.max(0, Math.min(20, Math.trunc(props.precision))));
 		return currentValue.toString();
 	});
 	const children = $derived(props.children);
+	$effect(() => {
+		if (props.startWhenVisible && !started) currentValue = props.to ?? 1;
+	});
+	$effect(() => {
+		if (started || !element) return;
+		if (!props.startWhenVisible || typeof IntersectionObserver === 'undefined') {
+			started = true;
+			return;
+		}
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				if (!prefersReducedMotion()) currentValue = props.from ?? 0;
+				started = true;
+				observer.disconnect();
+			},
+			{ threshold: 0.6 }
+		);
+		observer.observe(element);
+		return () => observer.disconnect();
+	});
 
 	// Авто-запуск при изменении props.to: a new target rolls on from whatever
 	// is on screen now, so a quick second change never jumps back to `from`.
 	$effect(() => {
+		if (!started) return;
 		const to = normalizedProps.to ?? 1;
 		untrack(() => startAnimation(to));
 		return cancelFrame;
@@ -80,7 +95,9 @@ export const createAnimatedDigitState = (getProps: () => RecipeAnimatedDigit) =>
 			currentValue = to;
 			return;
 		}
-		const easing = NAMED_EASINGS.includes(String(props.easing)) ? String(props.easing) : 'ease-out';
+		const easing = TOKEN_NAMED_EASINGS.includes(String(props.easing))
+			? String(props.easing)
+			: 'ease-out';
 		isAnimating = true;
 		const startTime = performance.now() + delay;
 
@@ -113,6 +130,18 @@ export const createAnimatedDigitState = (getProps: () => RecipeAnimatedDigit) =>
 	}
 
 	return {
+		get element() {
+			return element;
+		},
+		set element(value: HTMLElement | null) {
+			element = value;
+		},
+		get prefix() {
+			return props.prefix ?? '';
+		},
+		get suffix() {
+			return props.suffix ?? '';
+		},
 		// SlotState getters
 		get isAnimating() {
 			return isAnimating;
@@ -140,6 +169,6 @@ export const createAnimatedDigitState = (getProps: () => RecipeAnimatedDigit) =>
 		stopAnimation,
 		resetAnimation
 	};
-};
+}
 
 export default createAnimatedDigitState;

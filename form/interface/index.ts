@@ -4,6 +4,7 @@ export type {
 	RecipeAccountForms,
 	RecipeAddressForm,
 	RecipeCheckboxGroup,
+	RecipeContactForm,
 	RecipeFeedbackScenario,
 	RecipeFormFooter,
 	RecipeFormHeader,
@@ -20,6 +21,7 @@ export type {
 } from './recipe';
 export type {
 	SlotAddressData,
+	SlotContactFormMessages,
 	SlotFeedbackScenario,
 	SlotFormData,
 	SlotFormFooter,

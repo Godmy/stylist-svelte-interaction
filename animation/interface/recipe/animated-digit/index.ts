@@ -16,6 +16,11 @@ export interface RecipeAnimatedDigit extends ComputeIntersectAll<[BehaviorMotion
 	from?: number;
 	to?: number;
 	format?: (value: number) => string;
+	prefix?: string;
+	suffix?: string;
+	precision?: number;
+	/** Show the target in SSR, then animate once the counter enters the viewport. */
+	startWhenVisible?: boolean;
 	children?: Snippet;
 	class?: string;
 	style?: string;

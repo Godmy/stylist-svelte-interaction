@@ -31,6 +31,10 @@
 	{@render props.actions?.(navigator)}
 {/snippet}
 
+{#snippet leading()}
+	{@render props.appBarLeading?.(activity.handleNavigation, activity.drawerOpen)}
+{/snippet}
+
 {#snippet drawerHeader()}
 	{#if props.drawerHeader}
 		{@render props.drawerHeader()}
@@ -70,6 +74,7 @@
 		<TopAppBar
 			class="c-activity__bar"
 			titleContent={props.appBarTitle}
+			leading={(props.appBarLeading ? leading : undefined) as Snippet | undefined}
 			heading={navigator.composite.find(props.activeDestination ?? '')?.destination.label ??
 				navigator.destination.label}
 			navigation={activity.navigationMode}

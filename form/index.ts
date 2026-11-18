@@ -3,6 +3,7 @@ export { FormManager } from './class';
 export {
 	AddressForm,
 	CheckboxGroup,
+	ContactForm,
 	FeedbackScenario,
 	FormFooter,
 	FormHeader,
@@ -16,13 +17,21 @@ export {
 	ToggleButtonGroup,
 	Validation
 } from './component';
-export { PresetRatingFeedbackLabels } from './const';
+export {
+	CONTACT_FORM_MESSAGES,
+	PresetRatingFeedbackLabels
+} from './const';
 export { cooldownCounter } from './function';
+export type {
+	ContactFormFeedback,
+	ContactFormMessages
+} from './type';
 export type {
 	BehaviorRatingFeedback,
 	RecipeAccountForms,
 	RecipeAddressForm,
 	RecipeCheckboxGroup,
+	RecipeContactForm,
 	RecipeFeedbackScenario,
 	RecipeFormFooter,
 	RecipeFormHeader,
@@ -37,6 +46,7 @@ export type {
 	RecipeToggleButtonGroup,
 	RecipeValidation,
 	SlotAddressData,
+	SlotContactFormMessages,
 	SlotFeedbackScenario,
 	SlotFormData,
 	SlotFormFooter,

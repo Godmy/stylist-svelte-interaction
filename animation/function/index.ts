@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export { prefersReducedMotion } from './check';
 export { carouselIndex } from './resolve';
 export {
 	animateValue,
@@ -11,6 +12,7 @@ export {
 	createStickyScrollProgress
 } from './state';
 export {
+	parseDurationMs,
 	pointerPosition,
 	tiltRotation,
 	tiltSample

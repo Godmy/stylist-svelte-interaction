@@ -1,5 +1,6 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type { SlotAddressData } from './address-data';
+export type { SlotContactFormMessages } from './contact-form-messages';
 export type { SlotFeedbackScenario } from './feedback-scenario';
 export type { SlotFormData } from './form-data';
 export type { SlotFormFooter } from './form-footer';

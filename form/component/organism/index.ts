@@ -1,5 +1,6 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export { AddressForm } from './address-form/index';
+export { ContactForm } from './contact-form/index';
 export { FormWithValidation } from './form-with-validation/index';
 export { LoginForm } from './login-form/index';
 export { RatingFeedback } from './rating-feedback/index';

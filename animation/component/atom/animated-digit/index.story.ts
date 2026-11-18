@@ -10,8 +10,23 @@ export default {
 	component: AnimatedDigit,
 	title: 'AnimatedDigit',
 	description: 'Animates a numeric value and renders the formatted result.',
-	args: { from: 1250, to: 9875, fontSize: 56, color: '#2563eb', prefix: '$', suffix: '' },
+	args: {
+		from: 1250,
+		to: 9875,
+		fontSize: 56,
+		color: '#2563eb',
+		prefix: '$',
+		suffix: '',
+		startWhenVisible: true,
+		precision: 0
+	},
+	presets: {
+		'On visibility': { startWhenVisible: true },
+		Immediately: { startWhenVisible: false }
+	},
 	controls: {
+		startWhenVisible: { type: 'boolean' },
+		precision: { type: 'number' },
 		from: { type: 'number' },
 		to: { type: 'number' },
 		fontSize: { type: 'range', min: 16, max: 112, step: 2 },

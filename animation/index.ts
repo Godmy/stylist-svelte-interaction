@@ -43,7 +43,8 @@ export {
 	MEDIA_SLIDER_SLIDES,
 	PresetAtomicPrinciplesShowcase,
 	TOKEN_CONNECTOR,
-	TOKEN_LOADING
+	TOKEN_LOADING,
+	TOKEN_NAMED_EASINGS
 } from './const';
 export {
 	animateValue,
@@ -53,7 +54,9 @@ export {
 	createStickyScrollProgress,
 	getEasingFunction,
 	mapProgress,
+	parseDurationMs,
 	pointerPosition,
+	prefersReducedMotion,
 	tiltRotation,
 	tiltSample
 } from './function';

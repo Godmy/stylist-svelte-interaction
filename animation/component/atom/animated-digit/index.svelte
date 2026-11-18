@@ -7,11 +7,11 @@
 </script>
 
 <!-- Inline, so it can sit inside a sentence or a <p> («740 $ за 3 чел.»). -->
-<span class={state.classes} style={state.inlineStyle}>
+<span bind:this={state.element} class={state.classes} style={state.inlineStyle}>
 	{#if state.children}
 		{@render state.children()}
 	{:else}
-		{state.formattedValue}
+		{state.prefix}{state.formattedValue}{state.suffix}
 	{/if}
 </span>
 

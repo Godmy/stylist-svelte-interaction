@@ -2,6 +2,7 @@
 export type { RecipeAccountForms } from './account-forms';
 export type { RecipeAddressForm } from './address-form';
 export type { RecipeCheckboxGroup } from './checkbox-group';
+export type { RecipeContactForm } from './contact-form';
 export type { RecipeFeedbackScenario } from './feedback-scenario';
 export type { RecipeFormFooter } from './form-footer';
 export type { RecipeFormHeader } from './form-header';
