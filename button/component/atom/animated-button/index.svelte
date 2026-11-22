@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RecipeAnimatedButton } from '$stylist/button/interface/recipe/animated-button';
+	import stateFn from './state.svelte';
 	let {
 		children,
 		href,
@@ -17,7 +18,7 @@
 		onclick,
 		...rest
 	}: RecipeAnimatedButton = $props();
-	let blocked = $derived(disabled || loading);
+	const state = stateFn(() => ({ disabled, loading, onclick }));
 </script>
 
 {#snippet content()}
@@ -39,33 +40,30 @@
 {#if href !== undefined}
 	<a
 		{...rest}
-		href={blocked ? undefined : href}
+		href={state.blocked ? undefined : href}
 		{target}
 		rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
 		class={['animated-button', className]}
 		data-effect={effect}
 		data-attention={attention || undefined}
 		data-block={block || undefined}
-		data-disabled={blocked || undefined}
+		data-disabled={state.blocked || undefined}
 		data-selected={selected || undefined}
-		aria-disabled={blocked || undefined}
+		aria-disabled={state.blocked || undefined}
 		aria-busy={loading || undefined}
-		tabindex={blocked ? -1 : (rest.tabindex ?? undefined)}
-		onclick={(event) => {
-			if (blocked) event.preventDefault();
-			else onclick?.(event);
-		}}>{@render content()}</a
+		tabindex={state.blocked ? -1 : (rest.tabindex ?? undefined)}
+		onclick={state.handleClick}>{@render content()}</a
 	>
 {:else}
 	<button
 		{...rest}
 		{type}
-		disabled={blocked}
+		disabled={state.blocked}
 		class={['animated-button', className]}
 		data-effect={effect}
 		data-attention={attention || undefined}
 		data-block={block || undefined}
-		data-disabled={blocked || undefined}
+		data-disabled={state.blocked || undefined}
 		data-selected={selected || undefined}
 		aria-busy={loading || undefined}
 		{onclick}>{@render content()}</button
