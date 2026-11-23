@@ -70,7 +70,7 @@
 			</div>
 
 			<div class={listClasses}>
-				{#each state.items as item}
+				{#each state.items as item (item.id)}
 					<div class={itemClasses}>
 						<div class="dz-item-info">
 							<div

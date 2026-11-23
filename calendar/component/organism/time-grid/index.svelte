@@ -32,7 +32,7 @@
 				</h2>
 			</div>
 			<div class="c-time-grid__view-tabs">
-				{#each ['day', 'week', 'month'] as mode}
+				{#each ['day', 'week', 'month'] as mode, modeIndex (modeIndex)}
 					<Button
 						variant={state.currentViewMode === mode ? 'primary' : 'secondary'}
 						size="sm"
@@ -55,7 +55,7 @@
 			{#if state.showTimeGutter}
 				<div class="c-time-grid__gutter">
 					<div class="c-time-grid__gutter-spacer"></div>
-					{#each state.timeGutterSlots as gutterSlot}
+					{#each state.timeGutterSlots as gutterSlot, gutterSlotIndex (gutterSlotIndex)}
 						<div class="c-time-grid__gutter-slot" style={`height: ${state.timeSlotHeight}px;`}>
 							{gutterSlot.time}
 						</div>
@@ -63,14 +63,14 @@
 				</div>
 			{/if}
 
-			{#each state.timeGrid as day}
+			{#each state.timeGrid as day, dayIndex2 (dayIndex2)}
 				<div class={state.getDayColumnClasses(day.date)}>
 					<div class={state.getDayHeaderClasses(day.date)}>
 						<div class="c-time-grid__day-name">{day.dayOfWeek}</div>
 						<div class="c-time-grid__day-date">{day.dateStr}</div>
 					</div>
 
-					{#each day.slots as slot}
+					{#each day.slots as slot, slotIndex3 (slotIndex3)}
 						<TimeSlotComponent
 							start={slot.start}
 							end={slot.end}
@@ -81,7 +81,7 @@
 							onClick={() => state.handleSlotClick(day.date, slot.hour ?? 0, slot.minute ?? 0)}
 						/>
 
-						{#each slot.events as event}
+						{#each slot.events as event, eventIndex2 (eventIndex2)}
 							<div
 								class={`${state.getEventClasses(event.color)} c-time-grid__event--card`}
 								style={event.color ? `border-left: 3px solid ${event.color};` : ''}
@@ -130,7 +130,7 @@
 				></div>
 			{/if}
 
-			{#each state.timeGrid as day}
+			{#each state.timeGrid as day, dayIndex (dayIndex)}
 				<div class={state.getDayColumnClasses(day.date)}>
 					<div class={state.getDayHeaderClasses(day.date)}>
 						<div class="c-time-grid__day-name">{day.dayOfWeek}</div>
@@ -138,7 +138,7 @@
 					</div>
 
 					<div class="c-time-grid__day-body" style={`height: ${state.getColumnHeight()}px;`}>
-						{#each day.slots as slot}
+						{#each day.slots as slot, slotIndex2 (slotIndex2)}
 							<div
 								class="c-time-grid__slot-row"
 								style={`height: ${state.getSlotHeight()}px;`}
@@ -165,8 +165,8 @@
 						{/each}
 
 						{#if state.showAllDayEvents}
-							{#each day.slots as slot, slotIndex}
-								{#each slot.events as event}
+							{#each day.slots as slot, slotIndex (slotIndex)}
+								{#each slot.events as event, eventIndex (eventIndex)}
 									<div
 										class={state.getEventClasses(event.color)}
 										style={`top: ${slotIndex * state.getSlotHeight()}px; height: ${state.getSlotHeight()}px;${event.color ? ` background-color: ${event.color};` : ''}`}

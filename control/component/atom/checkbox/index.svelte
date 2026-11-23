@@ -88,7 +88,7 @@
 
 	{#if state.hasError}
 		<p id={state.errorId} class="c-checkbox__error">
-			{#each state.errors as error, i}
+			{#each state.errors as error, i (i)}
 				{error}{i < state.errors.length - 1 ? ' ' : ''}
 			{/each}
 		</p>

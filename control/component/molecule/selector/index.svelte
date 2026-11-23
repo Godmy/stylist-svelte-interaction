@@ -64,7 +64,7 @@
 
 		{#if state.open}
 			<ul class="c-selector__dropdown" role="listbox" aria-labelledby={state.labelId}>
-				{#each state.options as option, index}
+				{#each state.options as option, index (index)}
 					<li>
 						<button
 							type="button"
@@ -95,7 +95,7 @@
 			{#if state.placeholder}
 				<option value="">{state.placeholder}</option>
 			{/if}
-			{#each state.options as option}
+			{#each state.options as option, optionIndex (optionIndex)}
 				<option value={option.value}>
 					{option.label}
 				</option>
@@ -105,7 +105,7 @@
 
 	{#if state.hasError}
 		<p id={state.errorId} class={state.errorClass}>
-			{#each state.errors as error, i}
+			{#each state.errors as error, i (i)}
 				{error}{i < state.errors.length - 1 ? ' ' : ''}
 			{/each}
 		</p>

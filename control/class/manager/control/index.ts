@@ -1,8 +1,11 @@
 export class ControlManager {
-	static debounce<T extends (...args: any[]) => any>(fn: T, delay: number): T {
+	static debounce<A extends unknown[]>(
+		fn: (...args: A) => unknown,
+		delay: number
+	): (...args: A) => void {
 		let timeoutId: number | null = null;
 
-		return ((...args: any[]) => {
+		return (...args: A) => {
 			if (timeoutId) {
 				window.clearTimeout(timeoutId);
 			}
@@ -10,6 +13,6 @@ export class ControlManager {
 			timeoutId = window.setTimeout(() => {
 				fn(...args);
 			}, delay);
-		}) as T;
+		};
 	}
 }

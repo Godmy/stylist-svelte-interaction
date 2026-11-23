@@ -20,7 +20,7 @@
 </script>
 
 <div class={['c-action-segmented', props.class].filter(Boolean).join(' ')} {...restProps}>
-	{#each state.items as item, i}
+	{#each state.items as item, i (i)}
 		<button
 			class="c-action-segmented__item"
 			data-active={state.localSelectedIndex === i || undefined}

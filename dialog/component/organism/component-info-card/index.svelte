@@ -158,7 +158,7 @@
 							<h3 class="pic-section-title">Usage Examples</h3>
 						</div>
 						<ul class="pic-examples-list">
-							{#each state.examples as example}
+							{#each state.examples as example, exampleIndex (exampleIndex)}
 								<li class="info-card-modal__example">
 									<span class="info-card-modal__bullet"></span>
 									<span style="font-size:0.875rem;color:var(--color-text-secondary)">{example}</span

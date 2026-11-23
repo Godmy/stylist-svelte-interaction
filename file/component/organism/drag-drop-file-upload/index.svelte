@@ -47,7 +47,7 @@
 		<div class={`ddf-file-list ${props.fileListClass ?? ''}`}>
 			<h4 class="ddf-list-title">Selected Files:</h4>
 			<ul class="ddf-items">
-				{#each state.files as file}
+				{#each state.files as file (file.id)}
 					<li
 						class={`ddf-item ${props.fileItemClass ?? ''} ${
 							file.status === 'error'

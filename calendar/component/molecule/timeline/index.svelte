@@ -12,7 +12,7 @@
 		: 'c-timeline--horizontal'}"
 	{...state.restProps}
 >
-	{#each state.items as item, index}
+	{#each state.items as item, index (index)}
 		<div
 			class="c-timeline__item {state.orientation === 'vertical'
 				? 'c-timeline__item--vertical'

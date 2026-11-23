@@ -53,13 +53,13 @@
 			</div>
 
 			<div class="c-drp__week-header">
-				{#each ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'] as d}
+				{#each ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'] as d, dIndex (dIndex)}
 					<div>{d}</div>
 				{/each}
 			</div>
 
 			<div class="c-drp__days">
-				{#each state.calendarDates as date}
+				{#each state.calendarDates as date, dateIndex (dateIndex)}
 					{#if date.getMonth() === state.currentDateView.getMonth()}
 						<button
 							type="button"

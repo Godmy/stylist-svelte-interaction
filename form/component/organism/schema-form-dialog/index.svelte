@@ -14,7 +14,7 @@
 		onSave
 	}: RecipeSchemaFormDialog = $props();
 
-	let formData = $state<Record<string, any>>({});
+	let formData = $state<Record<string, unknown>>({});
 	let isSaving = $state(false);
 	let errors = $state<Record<string, string>>({});
 
@@ -23,7 +23,7 @@
 			if (mode === 'edit' && initialData) {
 				formData = { ...initialData };
 			} else {
-				const newData: Record<string, any> = {};
+				const newData: Record<string, unknown> = {};
 				fields.forEach((field) => {
 					if (!field.primaryKey) {
 						newData[field.name] = initialData?.[field.name] ?? '';
@@ -166,7 +166,10 @@
 										<input
 											id={field.name}
 											type="checkbox"
-											bind:checked={formData[field.name]}
+											bind:checked={
+												() => Boolean(formData[field.name]),
+												(checked) => (formData[field.name] = checked)
+											}
 											disabled={field.primaryKey && mode === 'edit'}
 											class="c-schema-form-dialog__checkbox"
 										/>

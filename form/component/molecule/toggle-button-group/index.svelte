@@ -42,7 +42,7 @@
 	data-size={state.size}
 	{...restProps}
 >
-	{#each options as option}
+	{#each options as option, optionIndex (optionIndex)}
 		<button
 			type="button"
 			class="c-toggle-btn-group__btn"

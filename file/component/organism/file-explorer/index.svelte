@@ -15,7 +15,7 @@
 	<div class={ClassNamesManager.merge('fe-header', props.headerClass ?? '')}>
 		{#if state.showPath}
 			<div class={ClassNamesManager.merge('fe-path', props.pathClass ?? '')}>
-				{#each state.pathParts as part, index}
+				{#each state.pathParts as part, index (index)}
 					<span>{part}</span>
 					{#if index < state.pathParts.length - 1}
 						<BaseIcon name="chevron-right" size={16} style="margin: 0 0.25rem" />
@@ -75,7 +75,7 @@
 	<div class="fe-body">
 		{#if state.currentViewMode === 'grid'}
 			<div class="fe-grid">
-				{#each state.filteredItems as item}
+				{#each state.filteredItems as item (item.id)}
 					{@const itemIcon = FileExplorerManager.getFileIcon(item)}
 					<div
 						class={`fe-grid-item ${
@@ -103,7 +103,7 @@
 			</div>
 		{:else}
 			<div class="fe-list">
-				{#each state.filteredItems as item}
+				{#each state.filteredItems as item (item.id)}
 					{@const itemIcon = FileExplorerManager.getFileIcon(item)}
 					<div
 						class={`fe-list-item ${

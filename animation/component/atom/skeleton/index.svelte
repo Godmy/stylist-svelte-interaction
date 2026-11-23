@@ -10,7 +10,7 @@
 	{#if props.children}
 		{@render props.children()}
 	{:else}
-		{#each Array(state.lines) as _}
+		{#each Array(state.lines) as _, entryIndex (entryIndex)}
 			<span></span>
 		{/each}
 	{/if}

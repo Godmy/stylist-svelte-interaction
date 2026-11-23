@@ -11,7 +11,7 @@
 
 <div class={`folder-tree ${state.classes}`} {...state.restProps}>
 	<ul role="tree" class="fb-tree">
-		{#each state.items as item}
+		{#each state.items as item (item.id)}
 			{@render TreeNode(item)}
 		{/each}
 	</ul>
@@ -106,7 +106,7 @@
 
 		{#if item.children && state.isExpanded(item.id)}
 			<ul role="group" class="fb-children">
-				{#each item.children as child}
+				{#each item.children as child (child.id)}
 					{@render TreeNode(child)}
 				{/each}
 			</ul>

@@ -49,7 +49,7 @@
 			{/if}
 		{/if}
 
-		{#each state.getVisiblePages() as page}
+		{#each state.getVisiblePages() as page, pageIndex (pageIndex)}
 			<button
 				type="button"
 				class={page === state.currentPage

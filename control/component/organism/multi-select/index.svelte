@@ -44,7 +44,7 @@
 		{#if state.selectedValues.length === 0}
 			<span class={state.placeholderClasses}>{state.placeholder}</span>
 		{:else}
-			{#each state.selectedValues as selectedValue}
+			{#each state.selectedValues as selectedValue, selectedValueIndex (selectedValueIndex)}
 				{@const foundOption = state.options.find((opt) => opt.value === selectedValue)}
 				{#if foundOption}
 					<span class={state.selectedValueContainerClasses}>
@@ -109,7 +109,7 @@
 			{/if}
 
 			{#if state.filteredOptions.length > 0}
-				{#each state.filteredOptions as option}
+				{#each state.filteredOptions as option, optionIndex (optionIndex)}
 					<div
 						class={state.getOptionClasses(option)}
 						onclick={() => state.selectOption(option.value)}

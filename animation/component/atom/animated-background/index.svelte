@@ -21,7 +21,7 @@
 	<div class="ambient-bg__orb o5" aria-hidden="true"></div>
 
 	<div class="ambient-bg__particles" aria-hidden="true">
-		{#each state.particleIndices as particleIndex}
+		{#each state.particleIndices as particleIndex, particleIndexIndex (particleIndexIndex)}
 			<span class={`ambient-bg__particle p${particleIndex}`}></span>
 		{/each}
 	</div>

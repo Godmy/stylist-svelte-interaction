@@ -72,10 +72,10 @@
 			{#if state.showWeekNumbers}
 				<div class={state.getWeekNumberClasses()}></div>
 			{/if}
-			{#each state.weekdays as day}
+			{#each state.weekdays as day, dayIndex (dayIndex)}
 				<div class={state.weekdayHeaderClasses}>{day}</div>
 			{/each}
-			{#each state.days as day, index}
+			{#each state.days as day, index (index)}
 				<div
 					class="{state.getDayCellClasses(day.isToday, day.isCurrentMonth)} {state.dayClass}"
 					role="button"
@@ -101,7 +101,7 @@
 						</button>
 					</div>
 					<div class="c-calendar-view__events">
-						{#each day.events as event}
+						{#each day.events as event, eventIndex (eventIndex)}
 							<div
 								class="{state.getEventItemClasses(event.color)} {state.eventClass}"
 								style={event.color ? `background-color: ${event.color}` : undefined}

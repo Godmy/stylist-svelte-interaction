@@ -26,7 +26,7 @@
 	aria-label="Functional taxonomy"
 	{...restProps}
 >
-	{#each state.items as item}
+	{#each state.items as item (item.id)}
 		<button
 			type="button"
 			class="tab-item"

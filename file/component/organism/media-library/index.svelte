@@ -104,7 +104,7 @@
 	<div
 		class={`ml-content ${state.selectedViewMode === 'grid' ? `ml-content--grid ${state.gridClass}` : 'ml-content--list'}`}
 	>
-		{#each state.filteredItems as item}
+		{#each state.filteredItems as item (item.id)}
 			{#if state.selectedViewMode === 'grid'}
 				<!-- Grid view item -->
 				<div

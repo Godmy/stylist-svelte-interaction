@@ -84,13 +84,13 @@
 			>
 				<div class="c-marquee-ticker__track" class:c-marquee-ticker__track--animated={animated}>
 					<span class="c-marquee-ticker__group">
-						{#each repeats as item}
+						{#each repeats as item, itemIndex (itemIndex)}
 							<span class="c-marquee-ticker__item">{item}</span>
 						{/each}
 					</span>
 					{#if animated}
 						<span class="c-marquee-ticker__group" aria-hidden="true">
-							{#each repeats as item}
+							{#each repeats as item, itemIndex2 (itemIndex2)}
 								<span class="c-marquee-ticker__item">{item}</span>
 							{/each}
 						</span>

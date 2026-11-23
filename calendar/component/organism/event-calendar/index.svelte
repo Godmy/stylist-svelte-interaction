@@ -56,18 +56,18 @@
 			class="c-event-calendar__day-week-grid c-event-calendar__day-week-grid--{state.currentViewMode}"
 		>
 			{#if state.currentViewMode === 'week'}
-				{#each state.weekdays as day}
+				{#each state.weekdays as day, dayIndex3 (dayIndex3)}
 					<div class="{state.getWeekdayHeaderClasses()} {state.headerClassProp}">{day}</div>
 				{/each}
 			{/if}
-			{#each state.days as day}
+			{#each state.days as day, dayIndex4 (dayIndex4)}
 				<div class="c-event-calendar__day-col">
 					<div class={state.getDateHeaderClasses(day.isToday)}>
 						{state.formatWeekdayDay(day.date)}
 					</div>
 					<div class="c-event-calendar__day-events">
 						{#if state.showAllDayEvents}
-							{#each day.events as event}
+							{#each day.events as event, eventIndex2 (eventIndex2)}
 								<div
 									class="{state.getEventClasses(!!event.color, event.color)} {state.eventClass}"
 									style={event.color ? `background-color: ${event.color}` : undefined}
@@ -99,10 +99,10 @@
 		</div>
 	{:else}
 		<div class={state.getGridClasses()}>
-			{#each state.weekdays as day}
+			{#each state.weekdays as day, dayIndex (dayIndex)}
 				<div class="{state.getWeekdayHeaderClasses()} {state.headerClassProp}">{day}</div>
 			{/each}
-			{#each state.days as day}
+			{#each state.days as day, dayIndex2 (dayIndex2)}
 				<div
 					class="{state.getDayCellClasses(day.isToday, day.isCurrentMonth)} {state.dayClass}"
 					role="button"
@@ -118,7 +118,7 @@
 					<div class={state.getDateNumberClasses(day.isToday)}>{day.date.getDate()}</div>
 					<div class="c-event-calendar__day-events">
 						{#if state.showAllDayEvents}
-							{#each day.events as event}
+							{#each day.events as event, eventIndex (eventIndex)}
 								<div
 									class="{state.getEventClasses(!!event.color, event.color)} {state.eventClass}"
 									style={event.color ? `background-color: ${event.color}` : undefined}

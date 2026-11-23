@@ -33,10 +33,10 @@
 		{#if state.showWeekNumbers}
 			<div class="c-mini-calendar__week-num-header"></div>
 		{/if}
-		{#each state.weekdays as day}
+		{#each state.weekdays as day, dayIndex (dayIndex)}
 			<div class={state.weekdayHeaderClasses}>{day}</div>
 		{/each}
-		{#each state.days as day}
+		{#each state.days as day, dayIndex2 (dayIndex2)}
 			<button
 				type="button"
 				class={state.getDayCellClasses(day.isToday, day.isCurrentMonth, day.hasEvent ?? false)}
@@ -47,7 +47,7 @@
 					<span>{day.date.getDate()}</span>
 					{#if day.hasEvent && !state.compact}
 						<div class="c-mini-calendar__event-dots">
-							{#each day.events.slice(0, 2) as event}
+							{#each day.events.slice(0, 2) as event, eventIndex (eventIndex)}
 								<div
 									class={state.getEventIndicatorClasses(event.color)}
 									style={event.color ? `background-color: ${event.color}` : undefined}

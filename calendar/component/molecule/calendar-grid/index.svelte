@@ -10,7 +10,7 @@
 
 <div class={['c-calendar-grid', props.class].filter(Boolean).join(' ')}>
 	<div class="c-calendar-grid__weekdays">
-		{#each weekdayLabels as label}
+		{#each weekdayLabels as label, labelIndex (labelIndex)}
 			<span class="c-calendar-grid__weekday">{label}</span>
 		{/each}
 	</div>

@@ -48,7 +48,7 @@
 			</div>
 		{:else}
 			<div class="zv-entries">
-				{#each state.zipTree as entry}
+				{#each state.zipTree as entry, entryIndex (entryIndex)}
 					{@const entryIcon = ZipViewerManager.getEntryIcon(entry)}
 					<div
 						class={ClassNamesManager.merge(

@@ -51,7 +51,7 @@
 	{/if}
 
 	<div class="c-checkbox-group__options">
-		{#each options as option}
+		{#each options as option, optionIndex (optionIndex)}
 			<div class="c-checkbox-group__item">
 				<div class="c-checkbox-group__checkbox-wrap">
 					<SlotCheckbox

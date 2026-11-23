@@ -9,7 +9,7 @@
 </script>
 
 <div class={ClassNamesManager.join('toolbar', props.class)}>
-	{#each props.toolbarItems ?? [] as item}
+	{#each props.toolbarItems ?? [] as item, itemIndex (itemIndex)}
 		<Button
 			variant="ghost"
 			size={state.buttonSize}

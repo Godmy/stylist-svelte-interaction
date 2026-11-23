@@ -34,7 +34,7 @@
 			onchange={state.handleTimeChange}
 			disabled={state.disabled}
 		>
-			{#each state.timeOptions as option}
+			{#each state.timeOptions as option, optionIndex (optionIndex)}
 				<option value={option}>
 					{new Date(`1970-01-01T${option}:00`).toLocaleTimeString([], {
 						hour: '2-digit',

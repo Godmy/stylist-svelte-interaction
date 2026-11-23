@@ -7,7 +7,7 @@
 </script>
 
 <div class={`${props.class ?? ''} ${state.orientationClass} _c1`} {...props}>
-	{#each props.steps as step, index}
+	{#each props.steps as step, index (index)}
 		<div
 			class={`${props.orientation === 'vertical' ? 'stepper--vertical' : 'stepper--horizontal'} _c2`}
 		>
