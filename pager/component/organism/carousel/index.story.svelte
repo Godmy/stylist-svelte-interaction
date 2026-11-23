@@ -16,7 +16,12 @@
 </script>
 
 <div style:--carousel-per-view={args.perView ?? 1} style:--carousel-slide-max-height="16rem">
-	<Carousel {items} maxDots={args.maxDots ?? 7} label="Отзывы" slideLabel={(i, n) => `Отзыв ${i + 1} из ${n}`}>
+	<Carousel
+		{items}
+		maxDots={args.maxDots ?? 7}
+		label="Отзывы"
+		slideLabel={(i, n) => `Отзыв ${i + 1} из ${n}`}
+	>
 		{#snippet slide(item: { author: string; text: string })}
 			<article class="_card">
 				<strong>{item.author}</strong>

@@ -216,7 +216,6 @@
 		border-radius: 999px;
 	}
 
-
 	.carousel__status {
 		position: absolute;
 		width: 1px;

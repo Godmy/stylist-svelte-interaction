@@ -29,7 +29,12 @@ export function createCarouselState<TItem>(getProps: () => RecipeCarousel<TItem>
 		| { kind: 'gap'; key: string; target: number; from: number; to: number };
 
 	const dots = $derived.by<Dot[]>(() => {
-		const dot = (index: number, edge = false): Dot => ({ kind: 'dot', key: `d${index}`, index, edge });
+		const dot = (index: number, edge = false): Dot => ({
+			kind: 'dot',
+			key: `d${index}`,
+			index,
+			edge
+		});
 		const gap = (key: string, from: number, to: number): Dot => ({
 			kind: 'gap',
 			key,
@@ -156,8 +161,7 @@ export function createCarouselState<TItem>(getProps: () => RecipeCarousel<TItem>
 			const atBottom = node.scrollTop >= max - 1;
 			if ((event.deltaY > 0 && !atBottom) || (event.deltaY < 0 && !atTop)) return;
 			event.preventDefault();
-			const unit =
-				event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+			const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
 			window.scrollBy({ top: event.deltaY * unit, behavior: 'instant' });
 		};
 		node.addEventListener('scroll', update, { passive: true });
