@@ -1,4 +1,3 @@
-import type { AnyProperty } from '$stylist/layout/type/record/any-property';
 import type { SlotDataItem } from '$stylist/file/interface/slot/data-item';
 import type { DataExporterFormat } from '$stylist/file/type/alias/data-exporter-format';
 
@@ -7,7 +6,7 @@ export class DataExporterManager {
 		data: SlotDataItem[],
 		format: DataExporterFormat,
 		fileName: string,
-		formats: Record<DataExporterFormat, AnyProperty>,
+		formats: Record<DataExporterFormat, { ext: string; mime: string }>,
 		dispatch: (event: 'export', detail: { format: DataExporterFormat; fileName: string }) => void
 	): void {
 		const selectedFormat = formats[format as keyof typeof formats];
