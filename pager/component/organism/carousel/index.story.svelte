@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Carousel from '$stylist/pager/component/organism/carousel/index.svelte';
+	import type { RecipeCarousel } from '$stylist/pager/interface/recipe/carousel';
 
 	// Render of index.story.ts: review-like cards, one of them long enough to scroll inside.
-	let args: { count?: number; perView?: number; maxDots?: number } = $props();
+	let args: Partial<RecipeCarousel> & { count?: number; perView?: number } = $props();
 
 	const items = $derived(
 		Array.from({ length: args.count ?? 12 }, (_, index) => ({
