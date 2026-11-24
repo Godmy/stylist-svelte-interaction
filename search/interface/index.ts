@@ -10,14 +10,4 @@ export type {
 	RecipeSearchSuggestion,
 	RecipeSearchToggle
 } from './recipe';
-export type {
-	SlotAutoComplete,
-	SlotSearchBar,
-	SlotSearchField,
-	SlotSearchForm,
-	SlotSearchOverlay,
-	SlotSearchResults,
-	SlotSearchSkin,
-	SlotSearchSuggestion,
-	SlotSearchToggle
-} from './slot';
+export type { SlotSearchSkin } from './slot';

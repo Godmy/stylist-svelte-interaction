@@ -28,14 +28,7 @@ export type {
 export type {
 	BreadcrumbDropdownItem,
 	BreadcrumbItem,
-	SlotAccordion,
-	SlotAccordionGroup,
-	SlotAccordionLayout,
-	SlotConfirmationDialog,
-	SlotDialog,
-	SlotModal,
 	SlotTab,
 	SlotTabContainer,
-	SlotTabPanel,
 	StylistTabItem
 } from './slot';

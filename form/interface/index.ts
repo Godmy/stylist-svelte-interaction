@@ -21,14 +21,8 @@ export type {
 } from './recipe';
 export type {
 	SlotAddressData,
-	SlotContactFormMessages,
-	SlotFeedbackScenario,
 	SlotFormData,
-	SlotFormFooter,
-	SlotFormHeader,
 	SlotFormSelectionState,
 	SlotLoginCredentials,
-	SlotRatingFeedback,
-	SlotSupportCounter,
 	SlotValidationErrors
 } from './slot';

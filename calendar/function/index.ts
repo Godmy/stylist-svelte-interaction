@@ -1,6 +1,10 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export { timetableCell } from './resolve';
 export {
+	addDays,
+	addMinutes,
+	addYears,
+	createDate,
 	formatDayLabel,
 	formatDisplayDate,
 	formatMonthYear,
@@ -8,13 +12,18 @@ export {
 	formatShortMonthYear,
 	formatTime,
 	fromInputDateString,
+	fromInputDateTime,
 	generateCalendarDays,
 	generateCalendarGrid,
 	isSameDay,
 	isToday,
 	isWeekend,
 	navigateMonth,
+	now,
 	startOfDay,
 	startOfWeek,
-	toInputDateString
+	toDate,
+	toInputDateString,
+	viewRangeOf,
+	withTime
 } from './script';

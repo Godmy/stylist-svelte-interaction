@@ -3,6 +3,7 @@ import { fileKind } from '$stylist/file/function/resolve/file-kind';
 import { fileManagerFilter } from '$stylist/file/function/transform/file-manager-filter';
 import type { RecipeFileManager } from '$stylist/file/interface/recipe/file-manager';
 import type { FileManagerEntry } from '$stylist/file/type/struct/file-manager-entry';
+import { toSet } from '$stylist/theme/function/script/collection/to-set';
 /** Reactive behavior of file-manager; props are read lazily when needed. */
 export function createFileManagerComponentState(
 	getProps: () => Pick<RecipeFileManager, 'files' | 'labels' | 'onEntrySelect'> & {
@@ -82,12 +83,14 @@ export function createFileManagerComponentState(
 	}
 	// Deleting a folder removes its whole subtree.
 	function remove() {
-		const ids = new Set(selected);
-		let previous = -1;
-		while (previous !== ids.size) {
+		let ids = toSet(selected);
+		for (let previous = -1; previous !== ids.size;) {
 			previous = ids.size;
-			for (const entry of props['files'])
-				if (entry.parentId && ids.has(entry.parentId)) ids.add(entry.id);
+			const current = ids;
+			const children = props['files'].filter(
+				(entry) => entry.parentId && current.has(entry.parentId)
+			);
+			ids = toSet([...current, ...children.map((entry) => entry.id)]);
 		}
 		props['files'] = props['files'].filter((entry) => !ids.has(entry.id));
 		selected = [];

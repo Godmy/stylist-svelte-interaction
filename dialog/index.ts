@@ -62,14 +62,7 @@ export type {
 	RecipeTabPanels,
 	RecipeTabs,
 	RecipeTextInputDialog,
-	SlotAccordion,
-	SlotAccordionGroup,
-	SlotAccordionLayout,
-	SlotConfirmationDialog,
-	SlotDialog,
-	SlotModal,
 	SlotTab,
 	SlotTabContainer,
-	SlotTabPanel,
 	StylistTabItem
 } from './interface';

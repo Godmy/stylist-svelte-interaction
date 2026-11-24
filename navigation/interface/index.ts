@@ -23,9 +23,4 @@ export type {
 	RecipeTopAppBar,
 	RecipeWorkspaceMenu
 } from './recipe';
-export type {
-	NavItem,
-	SlotNavigationPatterns,
-	SlotSectionBar,
-	SlotWorkspaceMenu
-} from './slot';
+export type { NavItem } from './slot';

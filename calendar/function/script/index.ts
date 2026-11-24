@@ -11,6 +11,17 @@ export {
 	toInputDateString
 } from './calendar-utils';
 export {
+	addDays,
+	addMinutes,
+	addYears,
+	createDate,
+	fromInputDateTime,
+	now,
+	toDate,
+	viewRangeOf,
+	withTime
+} from './date';
+export {
 	formatDayLabel,
 	formatDisplayDate,
 	formatMonthYear,

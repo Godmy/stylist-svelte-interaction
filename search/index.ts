@@ -30,13 +30,5 @@ export type {
 	RecipeSearchResults,
 	RecipeSearchSuggestion,
 	RecipeSearchToggle,
-	SlotAutoComplete,
-	SlotSearchBar,
-	SlotSearchField,
-	SlotSearchForm,
-	SlotSearchOverlay,
-	SlotSearchResults,
-	SlotSearchSkin,
-	SlotSearchSuggestion,
-	SlotSearchToggle
+	SlotSearchSkin
 } from './interface';

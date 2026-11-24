@@ -45,7 +45,6 @@ export type {
 	RecipeCloseButton,
 	RecipeCopyButton,
 	RecipeFillButton,
-	RecipeFocusable,
 	RecipeFollowButton,
 	RecipeGlowButton,
 	RecipeIconButton,
@@ -56,5 +55,6 @@ export type {
 	RecipeToolButton,
 	RecipeWhatsappButton,
 	SlotButtonAttributesBase,
-	SlotButtonDom
+	SlotButtonDom,
+	SlotFocusable
 } from './interface';

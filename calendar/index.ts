@@ -28,6 +28,10 @@ export {
 	TOKEN_TIME_RANGE
 } from './const';
 export {
+	addDays,
+	addMinutes,
+	addYears,
+	createDate,
 	formatDayLabel,
 	formatDisplayDate,
 	formatMonthYear,
@@ -35,16 +39,21 @@ export {
 	formatShortMonthYear,
 	formatTime,
 	fromInputDateString,
+	fromInputDateTime,
 	generateCalendarDays,
 	generateCalendarGrid,
 	isSameDay,
 	isToday,
 	isWeekend,
 	navigateMonth,
+	now,
 	startOfDay,
 	startOfWeek,
 	timetableCell,
-	toInputDateString
+	toDate,
+	toInputDateString,
+	viewRangeOf,
+	withTime
 } from './function';
 export type { DatePickerValue } from './interface';
 export type {
@@ -81,6 +90,5 @@ export type {
 	RecipeTimetable,
 	SlotCalendarDay,
 	SlotCalendarEvent,
-	SlotDatePicker,
-	SlotTimetable
+	SlotDatePicker
 } from './interface';

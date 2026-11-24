@@ -110,10 +110,7 @@ export type {
 	RecipeVectorScene,
 	RecipeWaveSurf,
 	RecipeWhaleSpout,
-	SlotCarouselImages,
-	SlotComponentLibraryStats,
-	SlotTiltCard,
-	SlotTiltShowcase
+	SlotComponentLibraryStats
 } from './interface';
 export type {
 	MediaSliderFormSlide,

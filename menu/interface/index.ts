@@ -18,6 +18,5 @@ export type {
 	SlotMegaMenuColumn,
 	SlotMegaMenuFeature,
 	SlotMegaMenuLink,
-	SlotMegaMenuSection,
-	SlotSiteMenu
+	SlotMegaMenuSection
 } from './slot';

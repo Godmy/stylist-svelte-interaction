@@ -9,7 +9,6 @@ export type { RecipeClickable } from './clickable';
 export type { RecipeCloseButton } from './close-button';
 export type { RecipeCopyButton } from './copy-button';
 export type { RecipeFillButton } from './fill-button';
-export type { RecipeFocusable } from './focusable';
 export type { RecipeFollowButton } from './follow-button';
 export type { RecipeGlowButton } from './glow-button';
 export type { RecipeIconButton } from './icon-button';

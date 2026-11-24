@@ -48,14 +48,8 @@ export type {
 	RecipeToggleButtonGroup,
 	RecipeValidation,
 	SlotAddressData,
-	SlotContactFormMessages,
-	SlotFeedbackScenario,
 	SlotFormData,
-	SlotFormFooter,
-	SlotFormHeader,
 	SlotFormSelectionState,
 	SlotLoginCredentials,
-	SlotRatingFeedback,
-	SlotSupportCounter,
 	SlotValidationErrors
 } from './interface';

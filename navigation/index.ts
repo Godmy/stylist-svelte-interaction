@@ -43,8 +43,5 @@ export type {
 	RecipeSectionBar,
 	RecipeSidebar,
 	RecipeTopAppBar,
-	RecipeWorkspaceMenu,
-	SlotNavigationPatterns,
-	SlotSectionBar,
-	SlotWorkspaceMenu
+	RecipeWorkspaceMenu
 } from './interface';

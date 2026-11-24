@@ -23,20 +23,16 @@ export type {
 export type {
 	SlotAttachment,
 	SlotDataItem,
-	SlotDocumentPreview,
 	SlotDragDropFile,
 	SlotDragDropUploadFile,
 	SlotDropItem,
 	SlotDropZoneStyleClasses,
 	SlotExportPanelStyleClasses,
 	SlotFileItem,
-	SlotFileManager,
-	SlotFileStorage,
 	SlotFileSystemItem,
 	SlotFolderItem,
 	SlotMediaItem,
 	SlotUploadFile,
-	SlotUploadProgress,
 	SlotZipEntry,
 	SlotZipViewerStyleClasses
 } from './slot';

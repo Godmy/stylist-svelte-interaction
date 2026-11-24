@@ -26,12 +26,8 @@ export type {
 export type {
 	SlotInputBase,
 	SlotInputCore,
-	SlotInputLabel,
 	SlotInputStateOptions,
 	SlotInputWithHelper,
 	SlotInputWithLabel,
-	SlotInputWithValidation,
-	SlotNumberInput,
-	SlotPhoneNumberInput,
-	SlotTagInput
+	SlotInputWithValidation
 } from './slot';

@@ -42,9 +42,4 @@ export type {
 	RecipeWaveSurf,
 	RecipeWhaleSpout
 } from './recipe';
-export type {
-	SlotCarouselImages,
-	SlotComponentLibraryStats,
-	SlotTiltCard,
-	SlotTiltShowcase
-} from './slot';
+export type { SlotComponentLibraryStats } from './slot';

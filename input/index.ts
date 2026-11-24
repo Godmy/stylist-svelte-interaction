@@ -59,12 +59,8 @@ export type {
 	RecipeTextArea,
 	SlotInputBase,
 	SlotInputCore,
-	SlotInputLabel,
 	SlotInputStateOptions,
 	SlotInputWithHelper,
 	SlotInputWithLabel,
-	SlotInputWithValidation,
-	SlotNumberInput,
-	SlotPhoneNumberInput,
-	SlotTagInput
+	SlotInputWithValidation
 } from './interface';

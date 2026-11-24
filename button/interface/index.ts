@@ -10,7 +10,6 @@ export type {
 	RecipeCloseButton,
 	RecipeCopyButton,
 	RecipeFillButton,
-	RecipeFocusable,
 	RecipeFollowButton,
 	RecipeGlowButton,
 	RecipeIconButton,
@@ -23,5 +22,6 @@ export type {
 } from './recipe';
 export type {
 	SlotButtonAttributesBase,
-	SlotButtonDom
+	SlotButtonDom,
+	SlotFocusable
 } from './slot';
