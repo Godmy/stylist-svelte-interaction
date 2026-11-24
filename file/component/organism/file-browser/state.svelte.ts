@@ -1,6 +1,7 @@
 import { FileBrowserManager } from '$stylist/file/class/manager/file-browser';
 import type { RecipeFileBrowser } from '$stylist/file/interface/recipe/file-browser';
 import type { SlotFolderItem } from '$stylist/file/interface/slot/folder-item';
+import { toSet } from '$stylist/theme/function/script/collection/to-set';
 
 export function createFileBrowserState(getProps: () => RecipeFileBrowser) {
 	const props = $derived(getProps());
@@ -10,7 +11,7 @@ export function createFileBrowserState(getProps: () => RecipeFileBrowser) {
 	const defaultExpanded = $derived(props.defaultExpanded ?? false);
 	const disabled = $derived(props.disabled ?? false);
 	const classes = $derived([props.class || ''].filter(Boolean).join(' '));
-	let expandedItems = $state<Set<string>>(new Set());
+	let expandedItems = $state<Set<string>>(toSet());
 	let selectedItem = $state<SlotFolderItem | null>(null);
 
 	const restProps = $derived.by(() => {
@@ -37,21 +38,11 @@ export function createFileBrowserState(getProps: () => RecipeFileBrowser) {
 			return;
 		}
 
-		const allFolders = new Set<string>();
-
-		const addItems = (folderItems: SlotFolderItem[]) => {
-			for (const item of folderItems) {
-				if (item.type !== 'file') {
-					allFolders.add(item.id);
-					if (item.children) {
-						addItems(item.children);
-					}
-				}
-			}
-		};
-
-		addItems(items);
-		expandedItems = allFolders;
+		const folderIds = (folderItems: SlotFolderItem[]): string[] =>
+			folderItems.flatMap((item) =>
+				item.type === 'file' ? [] : [item.id, ...folderIds(item.children ?? [])]
+			);
+		expandedItems = toSet(folderIds(items));
 	});
 
 	function setExpandedItems(nextItems: Set<string>): void {

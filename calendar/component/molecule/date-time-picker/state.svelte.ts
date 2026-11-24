@@ -1,18 +1,23 @@
 import { untrack } from 'svelte';
 import type { RecipeDateTimePicker } from '$stylist/calendar/interface/recipe/date-time-picker';
 import type { DatePickerValue } from '$stylist/calendar/interface/slot/date-picker';
+import { fromInputDateString } from '$stylist/calendar/function/script/calendar-utils';
+import { fromInputDateTime } from '$stylist/calendar/function/script/date/from-input-date-time';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate as cloneDate } from '$stylist/calendar/function/script/date/to-date';
+import { withTime } from '$stylist/calendar/function/script/date/with-time';
 
 export const createDateTimePickerState = (getProps: () => RecipeDateTimePicker) => {
 	const props = $derived(getProps());
 	const toDate = (value: Date | string | { start: Date | null; end: Date | null } | undefined) => {
 		if (value instanceof Date) return value;
-		if (typeof value === 'string') return new Date(`${value}T00:00:00`);
+		if (typeof value === 'string') return fromInputDateString(value);
 		return undefined;
 	};
 
 	let isOpen = $state(false);
 	let selectedDate = $state<Date>(
-		untrack(() => (props.value instanceof Date ? props.value : new Date()))
+		untrack(() => (props.value instanceof Date ? props.value : now()))
 	);
 	let selectedTime = $state('12:00');
 	let dateInputRef = $state<HTMLInputElement | undefined>(undefined);
@@ -23,17 +28,17 @@ export const createDateTimePickerState = (getProps: () => RecipeDateTimePicker) 
 	}
 
 	$effect(() => {
-		selectedDate = props.value instanceof Date ? props.value : new Date();
+		selectedDate = props.value instanceof Date ? props.value : now();
 		selectedTime = formatTime(selectedDate);
 	});
 
 	function handleDateChange(event: CustomEvent<Date> | Event) {
 		if ('detail' in event) {
-			selectedDate = new Date((event as CustomEvent<Date>).detail);
+			selectedDate = cloneDate((event as CustomEvent<Date>).detail);
 		} else {
 			const target = event.target as HTMLInputElement;
 			if (target.value) {
-				selectedDate = new Date(`${target.value}T${selectedTime}:00`);
+				selectedDate = fromInputDateTime(target.value, selectedTime);
 			}
 		}
 
@@ -42,15 +47,14 @@ export const createDateTimePickerState = (getProps: () => RecipeDateTimePicker) 
 
 	function handleDateValueChange(value: DatePickerValue, event?: Event) {
 		if (!value || typeof value !== 'string') return;
-		selectedDate = new Date(`${value}T${selectedTime}:00`);
+		selectedDate = fromInputDateTime(value, selectedTime);
 		updateDateTime(event);
 	}
 
 	function handleTimeChange(event: Event) {
 		const target = event.target as HTMLSelectElement;
 		const [hours, minutes] = target.value.split(':').map(Number);
-		selectedDate.setHours(hours, minutes, 0, 0);
-		selectedDate = new Date(selectedDate);
+		selectedDate = withTime(selectedDate, hours, minutes);
 		selectedTime = formatTime(selectedDate);
 		updateDateTime();
 	}
@@ -58,7 +62,7 @@ export const createDateTimePickerState = (getProps: () => RecipeDateTimePicker) 
 	function updateDateTime(sourceEvent?: Event) {
 		props.onChange?.(selectedDate, sourceEvent);
 		dateInputRef?.dispatchEvent(
-			new CustomEvent('change', { detail: { date: new Date(selectedDate) }, bubbles: true })
+			new CustomEvent('change', { detail: { date: cloneDate(selectedDate) }, bubbles: true })
 		);
 	}
 

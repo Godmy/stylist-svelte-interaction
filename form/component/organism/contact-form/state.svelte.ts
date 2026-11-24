@@ -1,15 +1,11 @@
-import { untrack } from 'svelte';
 import { CONTACT_FORM_MESSAGES } from '$stylist/form/const/object/contact-form-messages';
 import type { RecipeContactForm } from '$stylist/form/interface/recipe/contact-form';
 
 export function createContactFormState(getProps: () => RecipeContactForm) {
 	const props = $derived(getProps());
 	const messages = $derived({ ...CONTACT_FORM_MESSAGES, ...props.messages });
-	let message = $state(untrack(() => getProps().initialMessage ?? ''));
+	let message = $derived(props.initialMessage ?? '');
 	let consent = $state(false);
-	$effect(() => {
-		message = props.initialMessage ?? '';
-	});
 	return {
 		get messages() {
 			return messages;

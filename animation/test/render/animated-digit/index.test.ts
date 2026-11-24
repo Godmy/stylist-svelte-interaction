@@ -1,17 +1,21 @@
-import { render, cleanup, fireEvent } from '@testing-library/svelte';
+import { render, cleanup } from '@testing-library/svelte';
 import { afterEach, expect, test, vi } from 'vitest';
 import Digit from '$stylist/animation/component/atom/animated-digit/index.svelte';
+
+/** Callback the stubbed IntersectionObserver receives; tests call it to reveal the counter. */
+type RevealCallback = (entries: Array<Pick<IntersectionObserverEntry, 'isIntersecting'>>) => void;
+
 afterEach(() => {
 	cleanup();
 	vi.unstubAllGlobals();
 });
 test('visible counter exposes final formatted value before observer and honours reduced motion', async () => {
-	let reveal: Function = () => {};
+	let reveal: RevealCallback = () => {};
 	const disconnect = vi.fn();
 	vi.stubGlobal(
 		'IntersectionObserver',
 		class {
-			constructor(callback: Function) {
+			constructor(callback: RevealCallback) {
 				reveal = callback;
 			}
 			observe() {}
@@ -35,12 +39,12 @@ test('visible counter exposes final formatted value before observer and honours 
 });
 
 test('a visible counter animates once from its starting value and reaches its target', async () => {
-	let reveal: Function = () => {},
+	let reveal: RevealCallback = () => {},
 		frame: FrameRequestCallback = () => {};
 	vi.stubGlobal(
 		'IntersectionObserver',
 		class {
-			constructor(callback: Function) {
+			constructor(callback: RevealCallback) {
 				reveal = callback;
 			}
 			observe() {}

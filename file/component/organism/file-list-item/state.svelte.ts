@@ -14,7 +14,7 @@ export function createFileListItemState(getProps: () => RecipeFileListItem) {
 	const variant = $derived(props.variant ?? 'default');
 	const disabled = $derived(props.disabled ?? false);
 	const classes = $derived([props.class || ''].filter(Boolean).join(' '));
-	let isSelected = $state(false);
+	let isSelected = $derived(item?.selected || false);
 
 	const restProps = $derived.by(() => {
 		const {
@@ -35,10 +35,6 @@ export function createFileListItemState(getProps: () => RecipeFileListItem) {
 		} = props;
 
 		return rest;
-	});
-
-	$effect(() => {
-		isSelected = item?.selected || false;
 	});
 
 	function handleSelect(): void {

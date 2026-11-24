@@ -1,13 +1,15 @@
 import { untrack } from 'svelte';
 import type { RecipeAccordionGroup } from '$stylist/dialog/interface/recipe/accordion-group';
+import { toSet } from '$stylist/theme/function/script/collection/to-set';
+import { toggleInSet } from '$stylist/theme/function/script/collection/toggle-in-set';
 
 export function createAccordionGroupState(getProps: () => RecipeAccordionGroup) {
 	const props = $derived(getProps());
-	let openValues = $state<Set<string>>(untrack(() => new Set(props.defaultValues ?? [])));
+	let openValues = $state<Set<string>>(untrack(() => toSet(props.defaultValues ?? [])));
 
 	$effect(() => {
 		if (props.value !== undefined) {
-			openValues = new Set(props.value);
+			openValues = toSet(props.value);
 		}
 	});
 
@@ -16,9 +18,7 @@ export function createAccordionGroupState(getProps: () => RecipeAccordionGroup) 
 	}
 
 	function handleValueChange(value: string) {
-		const next = new Set(openValues);
-		if (next.has(value)) next.delete(value);
-		else next.add(value);
+		const next = toggleInSet(openValues, value);
 		openValues = next;
 		props.onValueChange?.([...next]);
 	}

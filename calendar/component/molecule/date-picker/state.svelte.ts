@@ -1,4 +1,5 @@
 import type { RecipeDatePicker } from '$stylist/calendar/interface/recipe/date-picker';
+import { fromInputDateString } from '$stylist/calendar/function/script/calendar-utils';
 
 export const createDatePickerState = (getProps: () => RecipeDatePicker) => {
 	const props = $derived(getProps());
@@ -25,7 +26,7 @@ export const createDatePickerState = (getProps: () => RecipeDatePicker) => {
 	function handleDateChange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		internalValue = target.value;
-		const value = internalValue ? new Date(`${internalValue}T00:00:00`) : undefined;
+		const value = internalValue ? fromInputDateString(internalValue) : undefined;
 		props.onChange?.(value, event);
 		target.dispatchEvent(new CustomEvent('change', { detail: value, bubbles: true }));
 		isOpen = false;
@@ -39,7 +40,7 @@ export const createDatePickerState = (getProps: () => RecipeDatePicker) => {
 
 	const displayValue = $derived(
 		internalValue
-			? new Date(`${internalValue}T00:00:00`).toLocaleDateString('en-US', {
+			? fromInputDateString(internalValue).toLocaleDateString('en-US', {
 					month: 'short',
 					day: 'numeric',
 					year: 'numeric'

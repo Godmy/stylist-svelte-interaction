@@ -1,6 +1,7 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import { createMotionPreferenceState } from '$stylist/animation/function/state/motion-preference';
 import type { RecipeMediaSlider } from '$stylist/animation/interface/recipe/media-slider';
+import { toSet } from '$stylist/theme/function/script/collection/to-set';
 
 export function createMediaSliderState(getProps: () => RecipeMediaSlider) {
 	const props = $derived(getProps());
@@ -9,7 +10,7 @@ export function createMediaSliderState(getProps: () => RecipeMediaSlider) {
 	let currentIndex = $state(0);
 	let pendingIndex = $state<number | null>(null);
 	let transitioning = false;
-	let loadedIndexes = $state(new Set<number>());
+	let loadedIndexes = $state(toSet<number>());
 	let heroAtRest = $state(true);
 	const slides = $derived(props.slides ?? []);
 	const autoPlay = $derived(props.autoPlay ?? true);
@@ -68,7 +69,7 @@ export function createMediaSliderState(getProps: () => RecipeMediaSlider) {
 
 	function markLoaded(index: number) {
 		if (loadedIndexes.has(index)) return;
-		loadedIndexes = new Set(loadedIndexes).add(index);
+		loadedIndexes = toSet([...loadedIndexes, index]);
 		if (pendingIndex === index) goTo(index);
 	}
 

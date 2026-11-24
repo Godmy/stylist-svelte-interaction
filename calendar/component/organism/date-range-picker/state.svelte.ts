@@ -1,5 +1,10 @@
 import type { RecipeDateRangePicker } from '$stylist/calendar/interface/recipe/date-range-picker';
-import { generateCalendarGrid } from '$stylist/calendar/function/script/calendar-utils';
+import {
+	generateCalendarGrid,
+	navigateMonth as shiftMonth
+} from '$stylist/calendar/function/script/calendar-utils';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
 import { formatDisplayDate } from '$stylist/calendar/function/script/date-format';
 
 export const createDateRangePickerState = (getProps: () => RecipeDateRangePicker) => {
@@ -17,13 +22,13 @@ export const createDateRangePickerState = (getProps: () => RecipeDateRangePicker
 	};
 
 	const parseRange = (value: RecipeDateRangePicker['value']) => ({
-		start: isRangeValue(value) && value.start ? new Date(value.start) : null,
-		end: isRangeValue(value) && value.end ? new Date(value.end) : null
+		start: isRangeValue(value) && value.start ? toDate(value.start) : null,
+		end: isRangeValue(value) && value.end ? toDate(value.end) : null
 	});
 
 	let selectedRange = $derived(parseRange(props.value));
 	let isOpen = $state(false);
-	let currentDateView = $state(new Date());
+	let currentDateView = $state(now());
 
 	function fmt(date: Date | null) {
 		return date ? formatDisplayDate(date) : '';
@@ -71,11 +76,11 @@ export const createDateRangePickerState = (getProps: () => RecipeDateRangePicker
 	}
 
 	function previousMonth() {
-		currentDateView = new Date(currentDateView.getFullYear(), currentDateView.getMonth() - 1, 1);
+		currentDateView = shiftMonth(currentDateView, -1);
 	}
 
 	function nextMonth() {
-		currentDateView = new Date(currentDateView.getFullYear(), currentDateView.getMonth() + 1, 1);
+		currentDateView = shiftMonth(currentDateView, 1);
 	}
 
 	const calendarDates = $derived(generateCalendarGrid(currentDateView));

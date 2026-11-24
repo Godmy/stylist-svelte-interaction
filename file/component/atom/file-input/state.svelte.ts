@@ -1,5 +1,4 @@
 import { FileInputManager } from '$stylist/file/class/manager/file-input';
-import { untrack } from 'svelte';
 import type { RecipeFileInput } from '$stylist/file/interface/recipe/file-input';
 
 export function createFileInputState(getProps: () => RecipeFileInput) {
@@ -13,12 +12,8 @@ export function createFileInputState(getProps: () => RecipeFileInput) {
 	const classes = $derived([props.class || ''].filter(Boolean).join(' '));
 
 	let inputElement = $state<HTMLInputElement | null>(null);
-	let internalValue = $state<File | File[] | null>(untrack(() => props.value ?? null));
+	let internalValue = $derived<File | File[] | null>(props.value ?? null);
 	const fileName = $derived(FileInputManager.resolveFileSelectionLabel(internalValue));
-
-	$effect(() => {
-		internalValue = props.value ?? null;
-	});
 
 	function handleChange(event: Event): void {
 		const result = FileInputManager.handleFileChange(event, multiple, props.onFileChange);

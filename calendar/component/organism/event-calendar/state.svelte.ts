@@ -7,9 +7,14 @@ import type { TokenTimeMeasure } from '$stylist/calendar/type/alias/time-measure
 import {
 	generateCalendarGrid,
 	isToday as isTodayFn,
+	navigateMonth as shiftMonth,
 	startOfDay,
 	startOfWeek
 } from '$stylist/calendar/function/script/calendar-utils';
+import { addDays } from '$stylist/calendar/function/script/date/add-days';
+import { createDate } from '$stylist/calendar/function/script/date/create-date';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
 
 const DEFAULT_LABELS = {
 	today: 'Today',
@@ -29,7 +34,7 @@ const capitalize = (text: string) => text.charAt(0).toLocaleUpperCase() + text.s
 
 export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	const props = $derived(getProps());
-	let currentDate = $state(untrack(() => new Date(props.initialDate ?? new Date())));
+	let currentDate = $state(untrack(() => toDate(props.initialDate ?? now())));
 	let selectedEvent: SlotCalendarEvent | null = $state(null);
 	let showEventActions = $state(false);
 	let currentViewMode = $derived<TokenTimeMeasure>(props.viewMode ?? 'month');
@@ -52,8 +57,8 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	function eventsOn(date: Date): SlotCalendarEvent[] {
 		const day = startOfDay(date).getTime();
 		return events.filter((e) => {
-			const start = startOfDay(new Date(e.start)).getTime();
-			const end = Math.max(start, startOfDay(new Date(e.end ?? e.start)).getTime());
+			const start = startOfDay(toDate(e.start)).getTime();
+			const end = Math.max(start, startOfDay(toDate(e.end ?? e.start)).getTime());
 			return start <= day && day <= end;
 		});
 	}
@@ -75,8 +80,7 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 		if (currentViewMode === 'week') {
 			const weekStart = startOfWeek(currentDate, weekStartsOn);
 			return Array.from({ length: 7 }, (_, i) => {
-				const date = new Date(weekStart);
-				date.setDate(weekStart.getDate() + i);
+				const date = addDays(weekStart, i);
 				return {
 					date,
 					isCurrentMonth: date.getMonth() === month,
@@ -101,7 +105,7 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	const weekdays = $derived(
 		Array.from({ length: 7 }, (_, i) =>
 			capitalize(
-				new Date(2023, 0, 1 + ((i + weekStartsOn) % 7)).toLocaleDateString(locale, {
+				createDate(2023, 0, 1 + ((i + weekStartsOn) % 7)).toLocaleDateString(locale, {
 					weekday: 'short'
 				})
 			)
@@ -137,23 +141,19 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 	});
 
 	function navigateMonth(direction: number): void {
-		currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + direction, 1);
+		currentDate = shiftMonth(currentDate, direction);
 	}
 
 	function navigateWeek(direction: number): void {
-		const next = new Date(currentDate);
-		next.setDate(currentDate.getDate() + direction * 7);
-		currentDate = next;
+		currentDate = addDays(currentDate, direction * 7);
 	}
 
 	function navigateDay(direction: number): void {
-		const next = new Date(currentDate);
-		next.setDate(currentDate.getDate() + direction);
-		currentDate = next;
+		currentDate = addDays(currentDate, direction);
 	}
 
 	function navigateToToday(): void {
-		currentDate = new Date();
+		currentDate = now();
 	}
 
 	function changeViewMode(mode: TokenTimeMeasure): void {
@@ -208,8 +208,7 @@ export function createEventCalendarState(getProps: () => RecipeEventCalendar) {
 				});
 			case 'week': {
 				const weekStart = startOfWeek(date, weekStartsOn);
-				const weekEnd = new Date(weekStart);
-				weekEnd.setDate(weekStart.getDate() + 6);
+				const weekEnd = addDays(weekStart, 6);
 				return `${weekStart.toLocaleDateString(locale, { month: 'short', day: 'numeric' })} - ${weekEnd.toLocaleDateString(locale, { month: 'short', day: 'numeric', year: 'numeric' })}`;
 			}
 			default: {

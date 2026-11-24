@@ -1,16 +1,13 @@
 import type { RecipeCalendar } from '$stylist/calendar/interface/recipe/calendar';
 import { generateCalendarDays } from '$stylist/calendar/function/script/generate-calendar-days';
+import { navigateMonth as shiftMonth } from '$stylist/calendar/function/script/calendar-utils';
+import { addDays } from '$stylist/calendar/function/script/date/add-days';
+import { now } from '$stylist/calendar/function/script/date/now';
 
 export function createCalendarState(getProps: () => RecipeCalendar) {
 	const props = $derived(getProps());
-	function firstOfMonth(date: Date): Date {
-		return new Date(date.getFullYear(), date.getMonth(), 1);
-	}
-	let viewMonth = $state(firstOfMonth(new Date()));
-
-	$effect(() => {
-		viewMonth = firstOfMonth(props.value ?? props.initialMonth ?? new Date());
-	});
+	const firstOfMonth = (date: Date): Date => shiftMonth(date, 0);
+	let viewMonth = $derived(firstOfMonth(props.value ?? props.initialMonth ?? now()));
 
 	const weekStartsOn = $derived(props.weekStartsOn ?? 1);
 	const monthLabel = $derived(
@@ -27,16 +24,11 @@ export function createCalendarState(getProps: () => RecipeCalendar) {
 		})
 	);
 
-	const canGoPrev = $derived(
-		!props.minDate || new Date(viewMonth.getFullYear(), viewMonth.getMonth(), 0) >= props.minDate
-	);
-	const canGoNext = $derived(
-		!props.maxDate ||
-			new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1) <= props.maxDate
-	);
+	const canGoPrev = $derived(!props.minDate || addDays(viewMonth, -1) >= props.minDate);
+	const canGoNext = $derived(!props.maxDate || shiftMonth(viewMonth, 1) <= props.maxDate);
 
 	function navigateMonth(offset: number): void {
-		viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + offset, 1);
+		viewMonth = shiftMonth(viewMonth, offset);
 	}
 
 	function handleDaySelect(date: Date): void {

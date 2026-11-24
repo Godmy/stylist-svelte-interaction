@@ -1,11 +1,13 @@
 import { ZipViewerManager } from '$stylist/file/class/manager/zip-viewer';
 import type { RecipeZipViewer } from '$stylist/file/interface/recipe/zip-viewer';
 import type { SlotZipEntry } from '$stylist/file/interface/slot/zip-entry';
+import { indexBy } from '$stylist/theme/function/script/collection/index-by';
+import { toSet } from '$stylist/theme/function/script/collection/to-set';
 
 export function createZipViewerState(getProps: () => RecipeZipViewer) {
 	const props = $derived(getProps());
 	let searchQuery = $state('');
-	let expandedFolders = $state<Set<string>>(new Set());
+	let expandedFolders = $state<Set<string>>(toSet());
 	const entries = $derived(props.entries ?? []);
 	const archiveName = $derived(props.archiveName ?? 'Archive.zip');
 	const searchable = $derived(props.searchable ?? true);
@@ -52,11 +54,7 @@ export function createZipViewerState(getProps: () => RecipeZipViewer) {
 	const zipTree = $derived.by(() => {
 		const sourceEntries = filteredEntries;
 		const tree: SlotZipEntry[] = [];
-		const map = new Map<string, SlotZipEntry>();
-
-		for (const entry of sourceEntries) {
-			map.set(entry.path, entry);
-		}
+		const map = indexBy(sourceEntries, (entry) => entry.path);
 
 		for (const entry of sourceEntries) {
 			if (entry.type === 'directory') {

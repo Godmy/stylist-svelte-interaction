@@ -1,4 +1,7 @@
 import type { RecipeDateTimeRangePicker } from '$stylist/calendar/interface/recipe/date-time-range-picker';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
+import { withTime } from '$stylist/calendar/function/script/date/with-time';
 
 export const createDateTimeRangePickerState = (getProps: () => RecipeDateTimeRangePicker) => {
 	const props = $derived(getProps());
@@ -15,8 +18,8 @@ export const createDateTimeRangePickerState = (getProps: () => RecipeDateTimeRan
 	};
 
 	const parseRange = (value: RecipeDateTimeRangePicker['value']) => ({
-		start: isRangeValue(value) && value.start ? new Date(value.start) : null,
-		end: isRangeValue(value) && value.end ? new Date(value.end) : null
+		start: isRangeValue(value) && value.start ? toDate(value.start) : null,
+		end: isRangeValue(value) && value.end ? toDate(value.end) : null
 	});
 
 	let selectedRange = $derived(parseRange(props.value));
@@ -29,10 +32,8 @@ export const createDateTimeRangePickerState = (getProps: () => RecipeDateTimeRan
 
 	function changeDate(kind: 'start' | 'end', dateValue: string) {
 		const existing = selectedRange[kind];
-		const base = dateValue ? new Date(dateValue) : new Date();
-		if (existing) {
-			base.setHours(existing.getHours(), existing.getMinutes(), 0, 0);
-		}
+		const day = dateValue ? toDate(dateValue) : now();
+		const base = existing ? withTime(day, existing.getHours(), existing.getMinutes()) : day;
 		selectedRange = { ...selectedRange, [kind]: base };
 		validationError = '';
 	}
@@ -40,9 +41,7 @@ export const createDateTimeRangePickerState = (getProps: () => RecipeDateTimeRan
 	function changeTimePart(kind: 'start' | 'end', hh: number, mm: number) {
 		const existing = selectedRange[kind];
 		if (!existing) return;
-		const base = new Date(existing);
-		base.setHours(hh, mm, 0, 0);
-		selectedRange = { ...selectedRange, [kind]: base };
+		selectedRange = { ...selectedRange, [kind]: withTime(existing, hh, mm) };
 		validationError = '';
 	}
 

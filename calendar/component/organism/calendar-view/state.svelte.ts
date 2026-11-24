@@ -7,13 +7,17 @@ import {
 	generateCalendarGrid,
 	isToday as isTodayFn,
 	isSameDay,
+	navigateMonth as shiftMonth,
 	startOfWeek
 } from '$stylist/calendar/function/script/calendar-utils';
+import { addDays } from '$stylist/calendar/function/script/date/add-days';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
 import { formatMonthYear } from '$stylist/calendar/function/script/date-format';
 
 export function createCalendarViewState(getProps: () => RecipeCalendarView) {
 	const props = $derived(getProps());
-	let currentDate = $state(untrack(() => new Date(props.initialDate ?? new Date())));
+	let currentDate = $state(untrack(() => toDate(props.initialDate ?? now())));
 	let currentViewMode = $derived(props.viewMode ?? 'month');
 
 	const events = $derived(props.events ?? []);
@@ -41,16 +45,12 @@ export function createCalendarViewState(getProps: () => RecipeCalendarView) {
 			currentViewMode === 'month'
 				? generateCalendarGrid(currentDate)
 				: currentViewMode === 'week'
-					? Array.from({ length: 7 }, (_, index) => {
-							const date = new Date(startOfWeek(currentDate));
-							date.setDate(date.getDate() + index);
-							return date;
-						})
+					? Array.from({ length: 7 }, (_, index) => addDays(startOfWeek(currentDate), index))
 					: [currentDate];
 
 		return dates.map((date) => {
 			const dayEvents = events.filter((event: SlotCalendarEvent) =>
-				isSameDay(new Date(event.start), date)
+				isSameDay(toDate(event.start), date)
 			);
 			return {
 				date,
@@ -88,16 +88,14 @@ export function createCalendarViewState(getProps: () => RecipeCalendarView) {
 		const step =
 			currentViewMode === 'day' ? direction : currentViewMode === 'week' ? direction * 7 : 0;
 		if (currentViewMode === 'month') {
-			currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + direction, 1);
+			currentDate = shiftMonth(currentDate, direction);
 			return;
 		}
-		const nextDate = new Date(currentDate);
-		nextDate.setDate(currentDate.getDate() + step);
-		currentDate = nextDate;
+		currentDate = addDays(currentDate, step);
 	}
 
 	function navigateToToday(): void {
-		currentDate = new Date();
+		currentDate = now();
 	}
 
 	function handleDayClick(date: Date): void {

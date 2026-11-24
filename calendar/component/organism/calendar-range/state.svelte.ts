@@ -1,15 +1,16 @@
 import { untrack } from 'svelte';
 import type { RecipeCalendarRange } from '$stylist/calendar/interface/recipe/calendar-range';
 import { generateCalendarDays } from '$stylist/calendar/function/script/generate-calendar-days';
+import { navigateMonth as shiftMonth } from '$stylist/calendar/function/script/calendar-utils';
+import { addDays } from '$stylist/calendar/function/script/date/add-days';
+import { now } from '$stylist/calendar/function/script/date/now';
 
 export function createCalendarRangeState(getProps: () => RecipeCalendarRange) {
 	const props = $derived(getProps());
-	function firstOfMonth(date: Date): Date {
-		return new Date(date.getFullYear(), date.getMonth(), 1);
-	}
+	const firstOfMonth = (date: Date): Date => shiftMonth(date, 0);
 
 	let viewMonth = $state(
-		untrack(() => firstOfMonth(props.initialMonth ?? props.startDate ?? new Date()))
+		untrack(() => firstOfMonth(props.initialMonth ?? props.startDate ?? now()))
 	);
 	let hoveredDate = $state<Date | null>(null);
 
@@ -42,16 +43,11 @@ export function createCalendarRangeState(getProps: () => RecipeCalendarRange) {
 		})
 	);
 
-	const canGoPrev = $derived(
-		!props.minDate || new Date(viewMonth.getFullYear(), viewMonth.getMonth(), 0) >= props.minDate
-	);
-	const canGoNext = $derived(
-		!props.maxDate ||
-			new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1) <= props.maxDate
-	);
+	const canGoPrev = $derived(!props.minDate || addDays(viewMonth, -1) >= props.minDate);
+	const canGoNext = $derived(!props.maxDate || shiftMonth(viewMonth, 1) <= props.maxDate);
 
 	function navigateMonth(offset: number): void {
-		viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + offset, 1);
+		viewMonth = shiftMonth(viewMonth, offset);
 	}
 
 	function handleDaySelect(date: Date): void {

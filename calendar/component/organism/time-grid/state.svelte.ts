@@ -1,7 +1,13 @@
 import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 import type { RecipeTimeGrid } from '$stylist/calendar/interface/recipe/time-grid';
 import type { SlotCalendarEvent } from '$stylist/calendar/interface/slot/calendar-event';
-import { isToday, isWeekend } from '$stylist/calendar/function/script/calendar-utils';
+import { isToday, isWeekend, startOfDay } from '$stylist/calendar/function/script/calendar-utils';
+import { addDays } from '$stylist/calendar/function/script/date/add-days';
+import { addMinutes } from '$stylist/calendar/function/script/date/add-minutes';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
+import { viewRangeOf } from '$stylist/calendar/function/script/date/view-range-of';
+import { withTime } from '$stylist/calendar/function/script/date/with-time';
 
 type TimeGridSlot = {
 	start: Date;
@@ -29,13 +35,8 @@ type DayColumn = {
 
 export function createTimeGridState(getProps: () => RecipeTimeGrid) {
 	const props = $derived(getProps());
-	let viewStartDate = $derived(new Date(props.startDate ?? new Date()));
-	let viewEndDate = $derived(
-		new Date(
-			props.endDate ??
-				new Date(new Date(new Date().setHours(0, 0, 0, 0)).setDate(new Date().getDate() + 6))
-		)
-	);
+	let viewStartDate = $derived(toDate(props.startDate ?? now()));
+	let viewEndDate = $derived(toDate(props.endDate ?? addDays(startOfDay(now()), 6)));
 	let currentViewMode = $state<'day' | 'week' | 'month'>('week');
 
 	const events = $derived(props.events ?? []);
@@ -107,14 +108,10 @@ export function createTimeGridState(getProps: () => RecipeTimeGrid) {
 		const et = endTime;
 		const step = timeStep;
 
-		const dayStart = new Date(date);
-		dayStart.setHours(0, 0, 0, 0);
-
-		const dayEvents = events.filter((event) => {
-			const ed = new Date(event.start);
-			ed.setHours(0, 0, 0, 0);
-			return ed.getTime() === dayStart.getTime();
-		});
+		const dayStart = startOfDay(date).getTime();
+		const dayEvents = events.filter(
+			(event) => startOfDay(toDate(event.start)).getTime() === dayStart
+		);
 
 		for (let hour = st; hour < et; hour++) {
 			for (let minute = 0; minute < 60; minute += step) {
@@ -126,14 +123,12 @@ export function createTimeGridState(getProps: () => RecipeTimeGrid) {
 				const timeDisplay =
 					step < 60 ? `${displayHour}:${displayMinute} ${period}` : `${displayHour} ${period}`;
 
-				const slotStart = new Date(date);
-				slotStart.setHours(hour, minute, 0, 0);
-				const slotEnd = new Date(slotStart);
-				slotEnd.setMinutes(slotStart.getMinutes() + step);
+				const slotStart = withTime(date, hour, minute);
+				const slotEnd = addMinutes(slotStart, step);
 
 				const slotEvents: SlotCalendarEvent[] = dayEvents.filter((event) => {
-					const es = new Date(event.start);
-					const ee = new Date(event.end);
+					const es = toDate(event.start);
+					const ee = toDate(event.end);
 					return (es < slotEnd && ee > slotStart) || es.getTime() === slotStart.getTime();
 				});
 
@@ -154,15 +149,12 @@ export function createTimeGridState(getProps: () => RecipeTimeGrid) {
 
 	function generateTimeGrid(): DayColumn[] {
 		const grid: DayColumn[] = [];
-		const start = new Date(viewStartDate);
-		start.setHours(0, 0, 0, 0);
-		const end = new Date(viewEndDate);
-		end.setHours(0, 0, 0, 0);
+		const start = startOfDay(viewStartDate);
+		const end = startOfDay(viewEndDate);
 		const daysCount = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
 
 		for (let i = 0; i <= daysCount; i++) {
-			const date = new Date(start);
-			date.setDate(start.getDate() + i);
+			const date = addDays(start, i);
 			if (date > viewEndDate) break;
 
 			grid.push({
@@ -180,51 +172,30 @@ export function createTimeGridState(getProps: () => RecipeTimeGrid) {
 	}
 
 	function handleSlotClick(date: Date, hour: number, minute: number): void {
-		const slotDate = new Date(date);
-		slotDate.setHours(hour, minute, 0, 0);
-		props.onSlotClick?.(slotDate);
+		props.onSlotClick?.(withTime(date, hour, minute));
 	}
 
 	function navigateWeek(direction: number): void {
-		const newStart = new Date(viewStartDate);
-		newStart.setDate(viewStartDate.getDate() + direction * 7);
-		const newEnd = new Date(viewEndDate);
-		newEnd.setDate(viewEndDate.getDate() + direction * 7);
-		viewStartDate = newStart;
-		viewEndDate = newEnd;
+		viewStartDate = addDays(viewStartDate, direction * 7);
+		viewEndDate = addDays(viewEndDate, direction * 7);
 	}
 
 	function navigateToToday(): void {
-		const today = new Date();
-		today.setHours(0, 0, 0, 0);
-		const start = new Date(today);
-		if (currentViewMode === 'week') start.setDate(today.getDate() - today.getDay());
-		if (currentViewMode === 'month') start.setDate(1);
-		const end = new Date(start);
-		if (currentViewMode === 'day') end.setDate(start.getDate());
-		if (currentViewMode === 'week') end.setDate(start.getDate() + 6);
-		if (currentViewMode === 'month') end.setMonth(start.getMonth() + 1, 0);
-		viewStartDate = start;
-		viewEndDate = end;
+		const range = viewRangeOf(now(), currentViewMode);
+		viewStartDate = range.start;
+		viewEndDate = range.end;
 	}
 
 	function changeViewMode(mode: 'day' | 'week' | 'month'): void {
 		currentViewMode = mode;
-		const start = new Date(viewStartDate);
-		start.setHours(0, 0, 0, 0);
-		if (mode === 'week') start.setDate(start.getDate() - start.getDay());
-		if (mode === 'month') start.setDate(1);
-		const end = new Date(start);
-		if (mode === 'day') end.setDate(start.getDate());
-		if (mode === 'week') end.setDate(start.getDate() + 6);
-		if (mode === 'month') end.setMonth(start.getMonth() + 1, 0);
-		viewStartDate = start;
-		viewEndDate = end;
+		const range = viewRangeOf(viewStartDate, mode);
+		viewStartDate = range.start;
+		viewEndDate = range.end;
 	}
 
 	function getCurrentTimePosition(): number {
-		const now = new Date();
-		return ((now.getHours() - startTime) * 60 + now.getMinutes()) * (100 / 60);
+		const current = now();
+		return ((current.getHours() - startTime) * 60 + current.getMinutes()) * (100 / 60);
 	}
 
 	function getDayColumnClasses(date: Date): string {

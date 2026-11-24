@@ -1,4 +1,5 @@
 import type { RecipeTimeSlot } from '$stylist/calendar/interface/recipe/time-slot';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
 
 export function createTimeSlotState(getProps: () => RecipeTimeSlot) {
 	const props = $derived(getProps());
@@ -6,15 +7,15 @@ export function createTimeSlotState(getProps: () => RecipeTimeSlot) {
 		props.start instanceof Date
 			? props.start
 			: props.start
-				? new Date(props.start as unknown as string | number | Date)
-				: new Date(0)
+				? toDate(props.start as unknown as string | number | Date)
+				: toDate(0)
 	);
 	const safeEnd = $derived(
 		props.end instanceof Date
 			? props.end
 			: props.end
-				? new Date(props.end as unknown as string | number | Date)
-				: new Date(0)
+				? toDate(props.end as unknown as string | number | Date)
+				: toDate(0)
 	);
 	const startTimeText = $derived(
 		Number.isNaN(safeStart.getTime()) ? 'unknown start time' : safeStart.toLocaleTimeString()

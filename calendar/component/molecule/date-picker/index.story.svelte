@@ -2,16 +2,16 @@
 	import DatePicker from '$stylist/calendar/component/molecule/date-picker/index.svelte';
 	import type { RecipeDatePicker } from '$stylist/calendar/interface/recipe/date-picker';
 	import type { DatePickerValue } from '$stylist/calendar/interface/slot/date-picker';
+	import { toInputDateString } from '$stylist/calendar/function/script/calendar-utils';
+	import { addDays } from '$stylist/calendar/function/script/date/add-days';
+	import { now } from '$stylist/calendar/function/script/date/now';
 
 	// Render of index.story.ts: the picker is bound to a local Date with a Date min/max range.
 	let args: RecipeDatePicker = $props();
 
-	const minDate = new Date();
-	const maxDate = new Date();
+	const minDate = addDays(now(), -14);
+	const maxDate = addDays(now(), 45);
 	let selectedDate = $state<Date | undefined>(new Date());
-
-	minDate.setDate(minDate.getDate() - 14);
-	maxDate.setDate(maxDate.getDate() + 45);
 
 	const milestones = [
 		{
@@ -22,12 +22,12 @@
 		{
 			id: 'retro',
 			label: 'Team retrospective',
-			date: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString().split('T')[0]
+			date: toInputDateString(addDays(now(), 5))
 		},
 		{
 			id: 'marketing',
 			label: 'Marketing campaign',
-			date: new Date(new Date().setDate(new Date().getDate() + 12)).toISOString().split('T')[0]
+			date: toInputDateString(addDays(now(), 12))
 		}
 	];
 

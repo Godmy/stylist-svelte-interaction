@@ -6,13 +6,16 @@ import type { SlotCalendarDay } from '$stylist/calendar/interface/slot/calendar-
 import {
 	generateCalendarGrid,
 	isToday as isTodayFn,
-	isSameDay
+	isSameDay,
+	navigateMonth as shiftMonth
 } from '$stylist/calendar/function/script/calendar-utils';
+import { now } from '$stylist/calendar/function/script/date/now';
+import { toDate } from '$stylist/calendar/function/script/date/to-date';
 import { formatShortMonthYear } from '$stylist/calendar/function/script/date-format';
 
 export function createMiniCalendarState(getProps: () => RecipeMiniCalendar) {
 	const props = $derived(getProps());
-	let currentDate = $state(untrack(() => new Date(props.initialDate ?? new Date())));
+	let currentDate = $state(untrack(() => toDate(props.initialDate ?? now())));
 	let selectedDate = $state<Date | null>(null);
 
 	const events = $derived(props.events ?? []);
@@ -38,7 +41,7 @@ export function createMiniCalendarState(getProps: () => RecipeMiniCalendar) {
 	const days = $derived.by<SlotCalendarDay[]>(() => {
 		const month = currentDate.getMonth();
 		return generateCalendarGrid(currentDate).map((date) => {
-			const dayEvents = events.filter((e) => isSameDay(new Date(e.start), date));
+			const dayEvents = events.filter((e) => isSameDay(toDate(e.start), date));
 			return {
 				date,
 				isCurrentMonth: date.getMonth() === month,
@@ -72,15 +75,15 @@ export function createMiniCalendarState(getProps: () => RecipeMiniCalendar) {
 	});
 
 	function navigateMonth(direction: number): void {
-		currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + direction, 1);
+		currentDate = shiftMonth(currentDate, direction);
 	}
 
 	function navigateToToday(): void {
-		currentDate = new Date();
+		currentDate = now();
 	}
 
 	function handleDateSelect(date: Date): void {
-		selectedDate = new Date(date);
+		selectedDate = toDate(date);
 		props.onDateSelect?.(date);
 	}
 

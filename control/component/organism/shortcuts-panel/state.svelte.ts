@@ -1,6 +1,7 @@
 import type { TokenIconName } from '$stylist/svg/type/alias/icon-name';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { RecipeShortcutsPanel } from '$stylist/control/interface/recipe/shortcuts-panel';
+import { groupBy } from '$stylist/theme/function/script/collection/group-by';
 const Keyboard = 'keyboard';
 const Command = 'keyboard';
 const Search = 'search';
@@ -73,22 +74,7 @@ export function createShortcutsPanelState(
 	_getProps: () => RecipeShortcutsPanel & HTMLAttributes<HTMLDivElement>
 ) {
 	const groupedShortcuts = $derived.by(() => {
-		const groups = new Map<
-			string,
-			{
-				keys: string[];
-				description: string;
-				category: string;
-				icon?: TokenIconName;
-			}[]
-		>();
-		shortcuts.forEach((shortcut) => {
-			if (!groups.has(shortcut.category)) {
-				groups.set(shortcut.category, []);
-			}
-			groups.get(shortcut.category)!.push(shortcut);
-		});
-		return groups;
+		return groupBy(shortcuts, (shortcut) => shortcut.category);
 	});
 
 	const categoryOrder = ['Navigation', 'View', 'Actions', 'Viewport', 'Tabs', 'Misc'];

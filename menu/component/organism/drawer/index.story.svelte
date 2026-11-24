@@ -4,10 +4,7 @@
 	import type { RecipeDrawer } from '$stylist/menu/interface/recipe/drawer';
 
 	let args: RecipeDrawer = $props();
-	let open = $state(false);
-	$effect(() => {
-		open = args.open ?? false;
-	});
+	let open = $derived(args.open ?? false);
 </script>
 
 <Drawer
