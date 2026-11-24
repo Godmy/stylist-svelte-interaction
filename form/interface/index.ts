@@ -1,16 +1,16 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type { BehaviorRatingFeedback } from './behavior';
 export type {
-	RecipeAccountForms,
 	RecipeAddressForm,
 	RecipeCheckboxGroup,
 	RecipeContactForm,
 	RecipeFeedbackScenario,
+	RecipeFormConsent,
 	RecipeFormFooter,
 	RecipeFormHeader,
+	RecipeFormHoneypot,
 	RecipeFormSelection,
 	RecipeFormWithValidation,
-	RecipeInteractionForms,
 	RecipeLoginForm,
 	RecipeRatingFeedback,
 	RecipeSchemaFormDialog,

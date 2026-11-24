@@ -1,10 +1,12 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export {
 	FormFooter,
-	FormHeader
+	FormHeader,
+	FormHoneypot
 } from './atom';
 export {
 	CheckboxGroup,
+	FormConsent,
 	FormSelection,
 	ToggleButtonGroup,
 	Validation
