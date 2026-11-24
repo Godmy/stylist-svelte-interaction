@@ -75,5 +75,5 @@ Generated barrels are not edited by hand: `yarn stylist:index` / `yarn stylist:m
 must drop `AutoSearch`, `RecipeAutoSearch`, `SlotAutoSearch`, `SlotSearchBarEvents`,
 form's `SearchForm`/`RecipeSearchForm`/`SEARCH_ICON_NAME`, `DomainSearchField`,
 `DomainSearchToggle` and their recipes, and add SearchField, SearchToggle,
-SearchOverlay, their recipes and slots, SlotSearchSkin, SlotSearchForm,
-SlotSearchResults, SearchSuggestionItem and SEARCH_SKIN_SCOPE.
+SearchOverlay, their recipes and slots, SlotSearchSkin,
+SearchSuggestionItem and SEARCH_SKIN_SCOPE.

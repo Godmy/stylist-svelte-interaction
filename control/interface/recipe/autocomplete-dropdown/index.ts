@@ -4,11 +4,19 @@ import type { BehaviorScrollable } from '$stylist/layout/interface/behavior/scro
 import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable';
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
-import type { SlotAutocompleteDropdown } from '$stylist/control/interface/slot/autocomplete-dropdown';
+import type { SlotAutocompleteDropdownOption } from '$stylist/control/interface/slot/autocomplete-dropdown-option';
 
 export interface RecipeAutocompleteDropdown extends ComputeIntersectAll<
 	[
-		SlotAutocompleteDropdown,
+		{
+			options: SlotAutocompleteDropdownOption[];
+			value?: string;
+			placeholder?: string;
+			onValueInput?: (value: string) => void;
+			onValueChange?: (value: string) => void;
+			onChange?: (value: string) => void;
+			class?: string;
+		},
 		SlotText,
 		SlotText,
 		SlotIcon,
