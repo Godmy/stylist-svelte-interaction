@@ -1,4 +1,4 @@
-import type { SlotTab as TabProps } from '$stylist/dialog/interface/slot/tab-tabs';
+import type { SlotTab as TabProps } from '$stylist/dialog/interface/slot/tab';
 
 export const TAB_CONTEXT = {
 	tabsId: '',

@@ -8,15 +8,6 @@ export interface SlotDatePicker {
 	placeholder?: string;
 	dateFormat?: string;
 	class?: string;
-	dateClass?: string;
-	timeClass?: string;
-	dropdownClass?: string;
-	calendarClass?: string;
-	inputClass?: string;
-	buttonClass?: string;
-	label?: string;
-	helperText?: string;
-	error?: string;
 	onChange?: (value: DatePickerValue, event?: Event) => void;
 	onInput?: (value: DatePickerValue, event?: Event) => void;
 	onValueInput?: (value: DatePickerValue, event?: Event) => void;

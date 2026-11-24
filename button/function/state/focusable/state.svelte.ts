@@ -1,4 +1,4 @@
-import type { RecipeFocusable as FocusProps } from '$stylist/button/interface/recipe/focusable';
+import type { SlotFocusable as FocusProps } from '$stylist/button/interface/slot/focusable';
 
 export function createFocusableState(getProps: () => FocusProps) {
 	const props = $derived(getProps());
