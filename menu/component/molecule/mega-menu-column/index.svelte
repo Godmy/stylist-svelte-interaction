@@ -3,25 +3,14 @@
 	import { PresetMegaMenu } from '$stylist/menu/const/preset/mega-menu';
 	import type { RecipeMegaMenuColumn } from '$stylist/menu/interface/recipe/mega-menu-column';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
+	import createMegaMenuColumnComponentState from '$stylist/menu/component/molecule/mega-menu-column/state.svelte';
 
 	let props: RecipeMegaMenuColumn = $props();
 
-	const restProps = $derived.by(() => {
-		const {
-			title: _title,
-			links: _links,
-			iconLinks: _iconLinks,
-			moreLink: _moreLink,
-			compact: _compact,
-			class: _class,
-			onNavigate: _onNavigate,
-			...rest
-		} = props;
-		return rest;
-	});
+	const state = createMegaMenuColumnComponentState(() => props);
 </script>
 
-<div {...restProps} class={['c-mega-column', props.class].filter(Boolean).join(' ')}>
+<div {...state.restProps} class={['c-mega-column', props.class].filter(Boolean).join(' ')}>
 	<p class="c-mega-column__title">{props.title}</p>
 	<ul class="c-mega-column__list">
 		{#each props.links as link (link.id)}

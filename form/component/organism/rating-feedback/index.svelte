@@ -10,8 +10,9 @@
 	import HtmlDiv from '$stylist/html/component/organism/div/index.svelte';
 	import HtmlForm from '$stylist/html/component/organism/form/index.svelte';
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
-	import { PresetRatingFeedbackLabels } from '$stylist/form/const/preset/rating-feedback-labels';
+
 	import type { RecipeRatingFeedback } from '$stylist/form/interface/recipe/rating-feedback';
+	import createRatingFeedbackComponentState from '$stylist/form/component/organism/rating-feedback/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -22,74 +23,70 @@
 		class: className,
 		...rest
 	}: RecipeRatingFeedback = $props();
-
-	const text = $derived({ ...PresetRatingFeedbackLabels, ...labels });
 	const name = $props.id();
-
-	let score = $state<number>();
-	let submitted = $state<number>();
-
-	function send(event: SubmitEvent) {
-		event.preventDefault();
-		if (score === undefined || !Number.isInteger(score) || score < 1 || score > 5) return;
-		submitted = score;
-		onScoreSubmit?.(score);
-	}
+	const state = createRatingFeedbackComponentState(() => ({
+		labels: labels,
+		onScoreSubmit: onScoreSubmit
+	}));
 </script>
 
 <HtmlSection
 	bind:element
 	{...rest}
 	class={['c-rating-feedback', `c-rating-feedback--${tone}`, className]}
-	aria-label={text.region}
+	aria-label={state.text.region}
 >
-	{#if submitted !== undefined}
+	{#if state.submitted !== undefined}
 		<HtmlDiv class="c-rating-feedback__mark" aria-hidden="true">✓</HtmlDiv>
 		<HtmlP class="c-rating-feedback__result" role="status">
-			{text.resultBefore}
-			{submitted}
-			{text.resultAfter}
+			{state.text.resultBefore}
+			{state.submitted}
+			{state.text.resultAfter}
 		</HtmlP>
-		<HtmlH2 class="c-rating-feedback__title">{text.thanks}</HtmlH2>
-		<HtmlP class="c-rating-feedback__text">{text.saved}</HtmlP>
+		<HtmlH2 class="c-rating-feedback__title">{state.text.thanks}</HtmlH2>
+		<HtmlP class="c-rating-feedback__text">{state.text.saved}</HtmlP>
 		<HtmlButton
 			type="button"
 			class="c-rating-feedback__button"
 			onclick={() => {
-				submitted = undefined;
-				score = undefined;
+				state.submitted = undefined;
+				state.score = undefined;
 			}}
 		>
-			{text.again}
+			{state.text.again}
 		</HtmlButton>
 	{:else}
 		<HtmlDiv class="c-rating-feedback__mark" aria-hidden="true">✦</HtmlDiv>
 		<HtmlH2 class="c-rating-feedback__title">{title}</HtmlH2>
-		<HtmlP class="c-rating-feedback__text">{text.prompt}</HtmlP>
-		<HtmlForm onsubmit={send}>
+		<HtmlP class="c-rating-feedback__text">{state.text.prompt}</HtmlP>
+		<HtmlForm onsubmit={state.send}>
 			<HtmlFieldset class="c-rating-feedback__fieldset">
-				<HtmlLegend class="c-rating-feedback__legend">{text.legend}</HtmlLegend>
+				<HtmlLegend class="c-rating-feedback__legend">{state.text.legend}</HtmlLegend>
 				<HtmlDiv class="c-rating-feedback__ratings">
 					{#each [1, 2, 3, 4, 5] as value (value)}
 						<HtmlLabel
 							class="c-rating-feedback__rating"
-							data-selected={score === value || undefined}
+							data-selected={state.score === value || undefined}
 						>
 							<HtmlInputRadio
 								class="c-rating-feedback__radio"
 								{name}
 								{value}
 								required
-								aria-label={`${text.score} ${value}`}
-								bind:group={score}
+								aria-label={`${state.text.score} ${value}`}
+								bind:group={state.score}
 							/>
 							<HtmlSpan>{value}</HtmlSpan>
 						</HtmlLabel>
 					{/each}
 				</HtmlDiv>
 			</HtmlFieldset>
-			<HtmlButton type="submit" class="c-rating-feedback__button" disabled={score === undefined}>
-				{text.submit}
+			<HtmlButton
+				type="submit"
+				class="c-rating-feedback__button"
+				disabled={state.score === undefined}
+			>
+				{state.text.submit}
 			</HtmlButton>
 		</HtmlForm>
 	{/if}

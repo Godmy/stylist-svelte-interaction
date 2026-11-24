@@ -9,8 +9,9 @@
 	import HtmlSpan from '$stylist/html/component/atom/span/index.svelte';
 	import HtmlForm from '$stylist/html/component/organism/form/index.svelte';
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
-	import { cooldownCounter } from '$stylist/form/function/resolve/cooldown-counter';
+
 	import type { RecipeSupportCounter } from '$stylist/form/interface/recipe/support-counter';
+	import createSupportCounterComponentState from '$stylist/form/component/page/support-counter/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -19,36 +20,16 @@
 		...rest
 	}: RecipeSupportCounter = $props();
 
-	let count = $state(42);
-	let amount = $state(1);
-	let now = $state(0);
-	let availableAt = $state(0);
-	let notice = $state('');
-	const remaining = $derived(Math.max(0, Math.ceil((availableAt - now) / 1000)));
-
-	$effect(() => {
-		now = Date.now();
-		const timer = setInterval(() => (now = Date.now()), 200);
-		return () => clearInterval(timer);
-	});
-
-	function add(event: SubmitEvent) {
-		event.preventDefault();
-		const result = cooldownCounter(count, amount, Date.now(), availableAt);
-		count = result.count;
-		availableAt = result.availableAt;
-		now = Date.now();
-		notice = result.accepted
-			? 'Демо-действие учтено.'
-			: 'Проверьте количество или дождитесь завершения паузы.';
-	}
+	const state = createSupportCounterComponentState();
 </script>
 
 <HtmlSection bind:element {...rest} class={['c-support-counter', className]} aria-label={title}>
 	<HtmlSpan class="c-support-counter__badge">Демо сообщества</HtmlSpan>
 	<HtmlH2 class="c-support-counter__title">Поддержать идею</HtmlH2>
-	<HtmlOutput class="c-support-counter__value" aria-label="Значение счётчика">{count}</HtmlOutput>
-	<HtmlForm class="c-support-counter__form" onsubmit={add}>
+	<HtmlOutput class="c-support-counter__value" aria-label="Значение счётчика"
+		>{state.count}</HtmlOutput
+	>
+	<HtmlForm class="c-support-counter__form" onsubmit={state.add}>
 		<HtmlLabel class="c-support-counter__field">
 			Количество действий
 			<HtmlInputNumber
@@ -57,14 +38,14 @@
 				max="99"
 				step="1"
 				required
-				bind:value={amount}
+				bind:value={state.amount}
 			/>
 		</HtmlLabel>
-		<HtmlButton type="submit" class="c-support-counter__button" disabled={remaining > 0}>
-			{remaining ? `Подождите ${remaining} с` : 'Добавить к счётчику'}
+		<HtmlButton type="submit" class="c-support-counter__button" disabled={state.remaining > 0}>
+			{state.remaining ? `Подождите ${state.remaining} с` : 'Добавить к счётчику'}
 		</HtmlButton>
 	</HtmlForm>
-	<HtmlP role="status" class="c-support-counter__status">{notice}</HtmlP>
+	<HtmlP role="status" class="c-support-counter__status">{state.notice}</HtmlP>
 	<HtmlSmall class="c-support-counter__note">
 		Пауза — 5 секунд. Счётчик не синхронизируется с сервером.
 	</HtmlSmall>

@@ -8,7 +8,8 @@
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
 	import TiltCard from '$stylist/animation/component/molecule/tilt-card/index.svelte';
 	import type { RecipeTiltShowcase } from '$stylist/animation/interface/recipe/tilt-showcase';
-	import type { TiltSample } from '$stylist/animation/type/struct/tilt-sample';
+
+	import createTiltShowcaseComponentState from '$stylist/animation/component/page/tilt-showcase/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -34,7 +35,7 @@
 		...rest
 	}: RecipeTiltShowcase = $props();
 
-	let sample = $state<TiltSample>({ x: 0.5, y: 0.5, rotateX: 0, rotateY: 0, active: false });
+	const state = createTiltShowcaseComponentState();
 </script>
 
 <HtmlSection bind:element {...rest} class={['c-tilt-showcase', className]} aria-label={title}>
@@ -55,7 +56,7 @@
 		{glareOpacity}
 		{depth}
 		onTilt={(value) => {
-			sample = value;
+			state.sample = value;
 			onTilt?.(value);
 		}}
 	>
@@ -67,7 +68,7 @@
 		</HtmlArticle>
 	</TiltCard>
 	<HtmlOutput class="c-tilt-showcase__readout" aria-label="Положение наклона">
-		X {sample.rotateX.toFixed(1)}° · Y {sample.rotateY.toFixed(1)}°
+		X {state.sample.rotateX.toFixed(1)}° · Y {state.sample.rotateY.toFixed(1)}°
 	</HtmlOutput>
 </HtmlSection>
 

@@ -1,39 +1,14 @@
 <script lang="ts">
 	import type { RecipeInputAddon as IInputAddonProps } from '$stylist/input/interface/recipe/input-addon';
-	import { createFieldClassState } from '$stylist/input/function/script/create-field-class-state';
+
+	import createInputAddonComponentState from '$stylist/input/component/atom/input-addon/state.svelte';
 
 	let props: IInputAddonProps = $props();
-	const rest = $derived.by(() => {
-		const {
-			class: _class,
-			variant: _variant,
-			position: _position,
-			children: _children,
-			...native
-		} = props;
-		return native;
-	});
-	const state = $derived(
-		createFieldClassState(
-			{
-				variant: props.variant,
-				size: 'md',
-				class: props.class
-			},
-			'input-addon'
-		)
-	);
-	const classes = $derived(
-		[
-			state.classes,
-			(props.position ?? 'left') === 'left' ? 'input-addon--left' : 'input-addon--right'
-		]
-			.filter(Boolean)
-			.join(' ')
-	);
+
+	const state = createInputAddonComponentState(() => props);
 </script>
 
-<div {...rest} class={classes}>
+<div {...state.rest} class={state.classes}>
 	{#if props.children}{@render props.children()}{/if}
 </div>
 

@@ -3,28 +3,17 @@
 	import MegaMenuColumn from '$stylist/menu/component/molecule/mega-menu-column/index.svelte';
 	import MegaMenuFeature from '$stylist/menu/component/molecule/mega-menu-feature/index.svelte';
 	import type { RecipeMegaMenuPanel } from '$stylist/menu/interface/recipe/mega-menu-panel';
+	import createMegaMenuPanelComponentState from '$stylist/menu/component/molecule/mega-menu-panel/state.svelte';
 
 	let props: RecipeMegaMenuPanel = $props();
 
-	const columns = $derived(props.section.columns ?? []);
-	const footerLinks = $derived(props.section.footerLinks ?? []);
-
-	const restProps = $derived.by(() => {
-		const {
-			section: _section,
-			compact: _compact,
-			class: _class,
-			onNavigate: _onNavigate,
-			...rest
-		} = props;
-		return rest;
-	});
+	const state = createMegaMenuPanelComponentState(() => props);
 </script>
 
 <div
-	{...restProps}
+	{...state.restProps}
 	class={['c-mega-panel', props.class].filter(Boolean).join(' ')}
-	style:--c-mega-panel-columns={Math.max(columns.length, 1)}
+	style:--c-mega-panel-columns={Math.max(state.columns.length, 1)}
 	data-has-feature={props.section.feature || props.section.aside ? '' : undefined}
 >
 	{#if props.section.intro}
@@ -51,9 +40,9 @@
 	</div>
 
 	{#snippet columnList()}
-		{#if columns.length > 0}
+		{#if state.columns.length > 0}
 			<div class="c-mega-panel__columns">
-				{#each columns as column (column.id)}
+				{#each state.columns as column (column.id)}
 					<MegaMenuColumn
 						title={column.title}
 						links={column.links}
@@ -67,9 +56,9 @@
 		{/if}
 	{/snippet}
 
-	{#if footerLinks.length > 0}
+	{#if state.footerLinks.length > 0}
 		<div class="c-mega-panel__footer">
-			{#each footerLinks as link (link.id)}
+			{#each state.footerLinks as link (link.id)}
 				<MegaMenuLink
 					label={link.label}
 					href={link.href}

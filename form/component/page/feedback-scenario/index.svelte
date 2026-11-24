@@ -9,6 +9,7 @@
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
 	import RatingFeedback from '$stylist/form/component/organism/rating-feedback/index.svelte';
 	import type { RecipeFeedbackScenario } from '$stylist/form/interface/recipe/feedback-scenario';
+	import createFeedbackScenarioComponentState from '$stylist/form/component/page/feedback-scenario/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -17,37 +18,27 @@
 		...rest
 	}: RecipeFeedbackScenario = $props();
 
-	let tone = $state<'dark' | 'light'>('dark');
-	let question = $state('Как прошла консультация?');
-	let latest = $state<number>();
-
-	const labels = {
-		region: 'Обратная связь',
-		prompt: 'Оцените свой опыт — это поможет улучшить следующую встречу.',
-		legend: 'Оценка от 1 до 5',
-		score: 'Оценка',
-		submit: 'Отправить оценку',
-		resultBefore: 'Вы выбрали',
-		resultAfter: 'из 5',
-		thanks: 'Спасибо за отзыв!',
-		saved: 'Ваш ответ сохранён в этой демонстрации.',
-		again: 'Оценить заново'
-	};
+	const state = createFeedbackScenarioComponentState();
 </script>
 
 <HtmlSection bind:element {...rest} class={['c-feedback-scenario', className]} aria-label={title}>
 	<HtmlDiv class="c-feedback-scenario__sample">
-		<RatingFeedback title={question} {tone} {labels} onScoreSubmit={(score) => (latest = score)} />
+		<RatingFeedback
+			title={state.question}
+			tone={state.tone}
+			labels={state.labels}
+			onScoreSubmit={(score) => (state.latest = score)}
+		/>
 	</HtmlDiv>
 	<HtmlSection class="c-feedback-scenario__panel">
 		<HtmlH2 class="c-feedback-scenario__title">Сценарий обратной связи</HtmlH2>
 		<HtmlLabel class="c-feedback-scenario__field">
 			Вопрос
-			<HtmlInputText class="c-feedback-scenario__input" bind:value={question} />
+			<HtmlInputText class="c-feedback-scenario__input" bind:value={state.question} />
 		</HtmlLabel>
 		<HtmlLabel class="c-feedback-scenario__field">
 			Оформление
-			<HtmlSelect class="c-feedback-scenario__input" bind:value={tone}>
+			<HtmlSelect class="c-feedback-scenario__input" bind:value={state.tone}>
 				<HtmlOption value="dark">Тёмное</HtmlOption>
 				<HtmlOption value="light">Светлое</HtmlOption>
 			</HtmlSelect>
@@ -56,7 +47,9 @@
 			Выберите одну из пяти оценок. После отправки появится подтверждение с выбранным значением.
 		</HtmlP>
 		<HtmlP role="status">
-			{latest === undefined ? 'Ответ ещё не отправлен' : `Последняя демо-оценка: ${latest}`}
+			{state.latest === undefined
+				? 'Ответ ещё не отправлен'
+				: `Последняя демо-оценка: ${state.latest}`}
 		</HtmlP>
 		<HtmlP class="c-feedback-scenario__note">
 			Отправка передаёт значение странице. Сервис сбора отзывов здесь не подключён.

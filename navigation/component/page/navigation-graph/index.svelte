@@ -12,9 +12,9 @@
 	import HtmlTh from '$stylist/html/component/organism/th/index.svelte';
 	import HtmlThead from '$stylist/html/component/molecule/thead/index.svelte';
 	import HtmlTr from '$stylist/html/component/molecule/tr/index.svelte';
-	import { NavigationComposite } from '$stylist/navigation/class/composite/navigation';
-	import { resolveNavigationGraphLayout } from '$stylist/navigation/function/resolve/navigation-graph-layout';
+
 	import type { RecipeNavigationGraph } from '$stylist/navigation/interface/recipe/navigation-graph';
+	import createNavigationGraphComponentState from '$stylist/navigation/component/page/navigation-graph/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -27,12 +27,12 @@
 		class: className,
 		...rest
 	}: RecipeNavigationGraph = $props();
-
-	const composite = $derived(NavigationComposite.fromGraph(graph));
-	const layout = $derived(resolveNavigationGraphLayout(composite, { drawerLabel }));
-	const labels = $derived(new Map(layout.nodes.map((node) => [node.id, node.label])));
-	const activeLeaf = $derived(activeId ? composite.resolve(activeId)?.id : undefined);
 	const markerId = $props.id();
+	const state = createNavigationGraphComponentState(() => ({
+		graph: graph,
+		activeId: activeId,
+		drawerLabel: drawerLabel
+	}));
 </script>
 
 <HtmlSection bind:element {...rest} class={['c-navigation-graph', className]}>
@@ -42,13 +42,13 @@
 	<HtmlDiv class="c-navigation-graph__viewport">
 		<HtmlDiv
 			class="c-navigation-graph__canvas"
-			style={`width: ${layout.width}px; height: ${layout.height}px;`}
+			style={`width: ${state.layout.width}px; height: ${state.layout.height}px;`}
 		>
 			<svg
 				class="c-navigation-graph__edges"
-				width={layout.width}
-				height={layout.height}
-				viewBox={`0 0 ${layout.width} ${layout.height}`}
+				width={state.layout.width}
+				height={state.layout.height}
+				viewBox={`0 0 ${state.layout.width} ${state.layout.height}`}
 				aria-hidden="true"
 			>
 				<defs>
@@ -64,7 +64,7 @@
 						<path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
 					</marker>
 				</defs>
-				{#each layout.edges as edge (edge.key)}
+				{#each state.layout.edges as edge (edge.key)}
 					<path
 						class="c-navigation-graph__edge"
 						data-kind={edge.kind}
@@ -81,7 +81,7 @@
 					{/if}
 				{/each}
 			</svg>
-			{#each layout.nodes as node (node.id)}
+			{#each state.layout.nodes as node (node.id)}
 				{@const style = `left: ${node.x}px; top: ${node.y}px; width: ${node.width}px; height: ${node.height}px;`}
 				{#if node.kind === 'drawer'}
 					<HtmlDiv class="c-navigation-graph__node" data-kind="drawer" {style}>
@@ -93,8 +93,8 @@
 						class="c-navigation-graph__node"
 						data-kind="fragment"
 						data-start={node.start || undefined}
-						data-active={node.id === activeLeaf || undefined}
-						aria-current={node.id === activeLeaf ? 'page' : undefined}
+						data-active={node.id === state.activeLeaf || undefined}
+						aria-current={node.id === state.activeLeaf ? 'page' : undefined}
 						disabled={!onSelect}
 						title={node.description}
 						{style}
@@ -124,23 +124,23 @@
 				</HtmlTr>
 			</HtmlThead>
 			<HtmlTbody>
-				{#each composite.topLevel() as node (node.id)}
+				{#each state.composite.topLevel() as node (node.id)}
 					<HtmlTr>
 						<HtmlTd>{drawerLabel}</HtmlTd>
 						<HtmlTd>select</HtmlTd>
-						<HtmlTd>{labels.get(node.startLeaf().id) ?? node.label}</HtmlTd>
+						<HtmlTd>{state.labels.get(node.startLeaf().id) ?? node.label}</HtmlTd>
 						<HtmlTd>reset to start</HtmlTd>
 					</HtmlTr>
 				{/each}
-				{#each composite.transitions() as { action, from, to } (action.id)}
+				{#each state.composite.transitions() as { action, from, to } (action.id)}
 					<HtmlTr>
 						<HtmlTd>{from.label}</HtmlTd>
 						<HtmlTd>{action.label ?? action.id}</HtmlTd>
-						<HtmlTd>{labels.get(to.startLeaf().id) ?? to.label}</HtmlTd>
+						<HtmlTd>{state.labels.get(to.startLeaf().id) ?? to.label}</HtmlTd>
 						<HtmlTd>
 							{#if action.popUpTo}
 								pop {action.popUpToInclusive ? 'including' : 'to'}
-								{composite.find(action.popUpTo)?.label ?? action.popUpTo}
+								{state.composite.find(action.popUpTo)?.label ?? action.popUpTo}
 							{:else if action.singleTop}
 								single top
 							{:else}

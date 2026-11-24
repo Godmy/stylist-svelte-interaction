@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RecipeLetterArcPath } from '$stylist/animation/interface/recipe/letter-arc-path';
+	import createLetterArcPathComponentState from '$stylist/animation/component/atom/letter-arc-path/state.svelte';
 
 	let {
 		points,
@@ -9,14 +10,7 @@
 		class: className = ''
 	}: RecipeLetterArcPath = $props();
 
-	const pointList = $derived(points.map((point) => `${point.x},${point.y}`).join(' '));
-	const lineLength = $derived(
-		points.slice(1).reduce((total, point, index) => {
-			const previous = points[index];
-			return total + Math.hypot(point.x - previous.x, point.y - previous.y);
-		}, 0)
-	);
-	const clampedProgress = $derived(Math.min(1, Math.max(0, progress)));
+	const state = createLetterArcPathComponentState(() => ({ points: points, progress: progress }));
 </script>
 
 <svg
@@ -26,13 +20,13 @@
 	focusable="false"
 >
 	{#if points.length > 1}
-		<polyline class="c-letter-arc-path__guide" points={pointList} />
+		<polyline class="c-letter-arc-path__guide" points={state.pointList} />
 		<polyline
 			class="c-letter-arc-path__progress"
-			points={pointList}
-			pathLength={lineLength}
-			stroke-dasharray={lineLength}
-			stroke-dashoffset={lineLength * (1 - clampedProgress)}
+			points={state.pointList}
+			pathLength={state.lineLength}
+			stroke-dasharray={state.lineLength}
+			stroke-dashoffset={state.lineLength * (1 - state.clampedProgress)}
 		/>
 	{/if}
 </svg>

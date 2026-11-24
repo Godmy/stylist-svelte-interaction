@@ -17,11 +17,10 @@
 	import HtmlNav from '$stylist/html/component/organism/nav/index.svelte';
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
 	import { FILE_MANAGER_SAMPLE } from '$stylist/file/const/array/file-manager-sample';
-	import { PresetFileManagerLabels } from '$stylist/file/const/preset/file-manager-labels';
-	import { fileKind } from '$stylist/file/function/resolve/file-kind';
-	import { fileManagerFilter } from '$stylist/file/function/transform/file-manager-filter';
+
 	import type { RecipeFileManager } from '$stylist/file/interface/recipe/file-manager';
-	import type { FileManagerEntry } from '$stylist/file/type/struct/file-manager-entry';
+
+	import createFileManagerComponentState from '$stylist/file/component/organism/file-manager/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -32,243 +31,161 @@
 		...rest
 	}: RecipeFileManager = $props();
 
-	const text = $derived({ ...PresetFileManagerLabels, ...labels });
-
-	let parent = $state<string | null>(null);
-	let query = $state('');
-	let kind = $state('');
-	let view = $state('grid');
-	let selected = $state<string[]>([]);
-	let renameId = $state('');
-	let newName = $state('');
-	let folderName = $state('');
-	let serial = $state(1);
-	let notice = $state('');
-	let deleting = $state(false);
-
-	const visible = $derived(fileManagerFilter(files, parent, query, kind));
-	const folder = $derived(files.find((entry) => entry.id === parent));
-	const total = $derived(files.reduce((sum, entry) => sum + entry.size, 0));
-
-	function today(): string {
-		return new Date().toISOString().slice(0, 10);
-	}
-
-	function goRoot() {
-		parent = null;
-		query = '';
-		selected = [];
-	}
-
-	function open(entry: FileManagerEntry) {
-		if (entry.kind === 'folder') {
-			parent = entry.id;
-			query = '';
-			selected = [];
-		} else {
-			selected = [entry.id];
-			onEntrySelect?.({ ...entry });
-		}
-	}
-
-	function toggle(id: string, checked: boolean) {
-		selected = checked ? [...selected, id] : selected.filter((item) => item !== id);
-	}
-
-	// Only metadata is kept; file contents never leave the input.
-	function upload(event: Event) {
-		const input = event.currentTarget as HTMLInputElement;
-		const batch = Array.from(input.files ?? []);
-		files = [
-			...files,
-			...batch.map((file) => ({
-				id: `upload-${serial++}`,
-				name: file.name,
-				parentId: parent,
-				kind: fileKind(file.name),
-				size: file.size,
-				modified: today()
-			}))
-		];
-		notice = `${text.uploaded}: ${batch.length}`;
-		input.value = '';
-	}
-
-	function createFolder(event: SubmitEvent) {
-		event.preventDefault();
-		if (!folderName.trim()) return;
-		files = [
-			...files,
-			{
-				id: `folder-${serial++}`,
-				name: folderName.trim(),
-				parentId: parent,
-				kind: 'folder',
-				size: 0,
-				modified: today()
-			}
-		];
-		folderName = '';
-	}
-
-	// Deleting a folder removes its whole subtree.
-	function remove() {
-		const ids = new Set(selected);
-		let previous = -1;
-		while (previous !== ids.size) {
-			previous = ids.size;
-			for (const entry of files) if (entry.parentId && ids.has(entry.parentId)) ids.add(entry.id);
-		}
-		files = files.filter((entry) => !ids.has(entry.id));
-		selected = [];
-		deleting = false;
-	}
-
-	function rename(event: SubmitEvent) {
-		event.preventDefault();
-		if (!newName.trim()) return;
-		files = files.map((entry) =>
-			entry.id === renameId ? { ...entry, name: newName.trim() } : entry
-		);
-		renameId = '';
-		newName = '';
-	}
+	const state = createFileManagerComponentState(() => ({
+		get files() {
+			return files;
+		},
+		set files(value) {
+			files = value;
+		},
+		labels: labels,
+		onEntrySelect: onEntrySelect
+	}));
 </script>
 
-<HtmlSection bind:element {...rest} class={['c-file-manager', className]} aria-label={text.region}>
+<HtmlSection
+	bind:element
+	{...rest}
+	class={['c-file-manager', className]}
+	aria-label={state.text.region}
+>
 	<HtmlDiv class="c-file-manager__row c-file-manager__row--between">
-		<HtmlNav class="c-file-manager__row" aria-label={text.folders}>
+		<HtmlNav class="c-file-manager__row" aria-label={state.text.folders}>
 			<HtmlButton
 				type="button"
 				class="c-file-manager__button c-file-manager__button--ghost"
-				onclick={goRoot}
+				onclick={state.goRoot}
 			>
-				{text.allFiles}
+				{state.text.allFiles}
 			</HtmlButton>
-			{#if folder}
-				<HtmlSpan>/ {folder.name}</HtmlSpan>
+			{#if state.folder}
+				<HtmlSpan>/ {state.folder.name}</HtmlSpan>
 			{/if}
 		</HtmlNav>
 		<HtmlSpan class="c-file-manager__badge"
-			>{(total / 1048576).toFixed(2)} {text.megabytes}</HtmlSpan
+			>{(state.total / 1048576).toFixed(2)} {state.text.megabytes}</HtmlSpan
 		>
 	</HtmlDiv>
 	<HtmlDiv class="c-file-manager__row">
 		<HtmlLabel class="c-file-manager__field">
-			{text.search}
-			<HtmlInputSearch class="c-file-manager__input" bind:value={query} />
+			{state.text.search}
+			<HtmlInputSearch class="c-file-manager__input" bind:value={state.query} />
 		</HtmlLabel>
 		<HtmlLabel class="c-file-manager__field">
-			{text.kind}
-			<HtmlSelect class="c-file-manager__input" bind:value={kind}>
-				<HtmlOption value="">{text.kindAll}</HtmlOption>
-				<HtmlOption value="image">{text.kindImage}</HtmlOption>
-				<HtmlOption value="document">{text.kindDocument}</HtmlOption>
-				<HtmlOption value="archive">{text.kindArchive}</HtmlOption>
+			{state.text.kind}
+			<HtmlSelect class="c-file-manager__input" bind:value={state.kind}>
+				<HtmlOption value="">{state.text.kindAll}</HtmlOption>
+				<HtmlOption value="image">{state.text.kindImage}</HtmlOption>
+				<HtmlOption value="document">{state.text.kindDocument}</HtmlOption>
+				<HtmlOption value="archive">{state.text.kindArchive}</HtmlOption>
 			</HtmlSelect>
 		</HtmlLabel>
 		<HtmlLabel class="c-file-manager__field">
-			{text.view}
-			<HtmlSelect class="c-file-manager__input" bind:value={view}>
-				<HtmlOption value="grid">{text.viewGrid}</HtmlOption>
-				<HtmlOption value="list">{text.viewList}</HtmlOption>
+			{state.text.view}
+			<HtmlSelect class="c-file-manager__input" bind:value={state.view}>
+				<HtmlOption value="grid">{state.text.viewGrid}</HtmlOption>
+				<HtmlOption value="list">{state.text.viewList}</HtmlOption>
 			</HtmlSelect>
 		</HtmlLabel>
 		<HtmlLabel class="c-file-manager__field">
-			{text.upload}
-			<HtmlInputFile class="c-file-manager__input" multiple onchange={upload} />
+			{state.text.upload}
+			<HtmlInputFile class="c-file-manager__input" multiple onchange={state.upload} />
 		</HtmlLabel>
 	</HtmlDiv>
-	<HtmlForm class="c-file-manager__row c-file-manager__row--end" onsubmit={createFolder}>
+	<HtmlForm class="c-file-manager__row c-file-manager__row--end" onsubmit={state.createFolder}>
 		<HtmlLabel class="c-file-manager__field">
-			{text.newFolder}
-			<HtmlInputText class="c-file-manager__input" required bind:value={folderName} />
+			{state.text.newFolder}
+			<HtmlInputText class="c-file-manager__input" required bind:value={state.folderName} />
 		</HtmlLabel>
-		<HtmlButton type="submit" class="c-file-manager__button">{text.createFolder}</HtmlButton>
+		<HtmlButton type="submit" class="c-file-manager__button">{state.text.createFolder}</HtmlButton>
 		<HtmlButton
 			type="button"
 			class="c-file-manager__button c-file-manager__button--ghost"
-			disabled={!selected.length}
-			onclick={() => (deleting = true)}
+			disabled={!state.selected.length}
+			onclick={() => (state.deleting = true)}
 		>
-			{text.deleteSelected} ({selected.length})
+			{state.text.deleteSelected} ({state.selected.length})
 		</HtmlButton>
 	</HtmlForm>
-	{#if deleting}
+	{#if state.deleting}
 		<HtmlSection class="c-file-manager__panel">
-			<HtmlP>{text.deleteConfirm}</HtmlP>
+			<HtmlP>{state.text.deleteConfirm}</HtmlP>
 			<HtmlDiv class="c-file-manager__row">
-				<HtmlButton type="button" class="c-file-manager__button" onclick={remove}>
-					{text.confirmDelete}
+				<HtmlButton type="button" class="c-file-manager__button" onclick={state.remove}>
+					{state.text.confirmDelete}
 				</HtmlButton>
 				<HtmlButton
 					type="button"
 					class="c-file-manager__button c-file-manager__button--ghost"
-					onclick={() => (deleting = false)}
+					onclick={() => (state.deleting = false)}
 				>
-					{text.cancelDelete}
+					{state.text.cancelDelete}
 				</HtmlButton>
 			</HtmlDiv>
 		</HtmlSection>
 	{/if}
-	{#if renameId}
+	{#if state.renameId}
 		<HtmlForm
 			class="c-file-manager__panel c-file-manager__row c-file-manager__row--end"
-			onsubmit={rename}
+			onsubmit={state.rename}
 		>
 			<HtmlLabel class="c-file-manager__field">
-				{text.newName}
-				<HtmlInputText class="c-file-manager__input" required bind:value={newName} />
+				{state.text.newName}
+				<HtmlInputText class="c-file-manager__input" required bind:value={state.newName} />
 			</HtmlLabel>
-			<HtmlButton type="submit" class="c-file-manager__button">{text.saveName}</HtmlButton>
+			<HtmlButton type="submit" class="c-file-manager__button">{state.text.saveName}</HtmlButton>
 			<HtmlButton
 				type="button"
 				class="c-file-manager__button c-file-manager__button--ghost"
-				onclick={() => (renameId = '')}
+				onclick={() => (state.renameId = '')}
 			>
-				{text.cancelName}
+				{state.text.cancelName}
 			</HtmlButton>
 		</HtmlForm>
 	{/if}
-	<HtmlDiv class={['c-file-manager__entries', `c-file-manager__entries--${view}`]}>
-		{#each visible as entry (entry.id)}
+	<HtmlDiv class={['c-file-manager__entries', `c-file-manager__entries--${state.view}`]}>
+		{#each state.visible as entry (entry.id)}
 			<HtmlArticle class="c-file-manager__panel c-file-manager__entry">
 				<HtmlLabel class="c-file-manager__row">
 					<HtmlInputCheckbox
 						value={entry.id}
-						checked={selected.includes(entry.id)}
-						onchange={(event) => toggle(entry.id, event.currentTarget.checked)}
+						checked={state.selected.includes(entry.id)}
+						onchange={(event) => state.toggle(entry.id, event.currentTarget.checked)}
 					/>
 					<HtmlSpan class="c-file-manager__badge">
-						{entry.kind === 'folder' ? text.folder : entry.kind}
+						{entry.kind === 'folder' ? state.text.folder : entry.kind}
 					</HtmlSpan>
 				</HtmlLabel>
 				<HtmlH3 class="c-file-manager__name">{entry.name}</HtmlH3>
 				<HtmlSmall class="c-file-manager__meta">
 					{entry.modified} · {(entry.size / 1024).toFixed(0)}
-					{text.kilobytes}
+					{state.text.kilobytes}
 				</HtmlSmall>
 				<HtmlDiv class="c-file-manager__row">
-					<HtmlButton type="button" class="c-file-manager__button" onclick={() => open(entry)}>
-						{entry.kind === 'folder' ? text.openFolder : text.selectFile}: {entry.name}
+					<HtmlButton
+						type="button"
+						class="c-file-manager__button"
+						onclick={() => state.open(entry)}
+					>
+						{entry.kind === 'folder' ? state.text.openFolder : state.text.selectFile}: {entry.name}
 					</HtmlButton>
 					<HtmlButton
 						type="button"
 						class="c-file-manager__button c-file-manager__button--ghost"
 						onclick={() => {
-							renameId = entry.id;
-							newName = entry.name;
+							state.renameId = entry.id;
+							state.newName = entry.name;
 						}}
 					>
-						{text.rename}: {entry.name}
+						{state.text.rename}: {entry.name}
 					</HtmlButton>
 				</HtmlDiv>
 			</HtmlArticle>
 		{:else}
-			<HtmlP role="status">{text.empty}</HtmlP>
+			<HtmlP role="status">{state.text.empty}</HtmlP>
 		{/each}
 	</HtmlDiv>
-	<HtmlP role="status" class="c-file-manager__notice">{notice}</HtmlP>
+	<HtmlP role="status" class="c-file-manager__notice">{state.notice}</HtmlP>
 </HtmlSection>
 
 <style>

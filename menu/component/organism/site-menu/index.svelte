@@ -11,9 +11,9 @@
 	import HtmlDiv from '$stylist/html/component/organism/div/index.svelte';
 	import HtmlHeader from '$stylist/html/component/organism/header/index.svelte';
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
-	import { siteMenuGroup } from '$stylist/menu/function/transform/site-menu-group';
-	import { siteMenuSearch } from '$stylist/menu/function/transform/site-menu-search';
+
 	import type { RecipeSiteMenu } from '$stylist/menu/interface/recipe/site-menu';
+	import createSiteMenuComponentState from '$stylist/menu/component/organism/site-menu/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -29,42 +29,28 @@
 		...rest
 	}: RecipeSiteMenu = $props();
 
-	let open = $state(false);
-	let search = $state('');
-
-	const groups = $derived(siteMenuGroup(siteMenuSearch(items, search)));
-
-	function choose(id: string) {
-		open = false;
-		onItemSelect?.(id);
-	}
-
-	function closeOnEscape(event: KeyboardEvent) {
-		if (event.key !== 'Escape' || !open) return;
-		open = false;
-		element?.querySelector('summary')?.focus();
-	}
-
-	function closeOnOutsideClick(event: MouseEvent) {
-		if (element && !element.contains(event.target as Node)) open = false;
-	}
+	const state = createSiteMenuComponentState(() => ({
+		element: element,
+		items: items,
+		onItemSelect: onItemSelect
+	}));
 </script>
 
-<svelte:window onkeydown={closeOnEscape} onclick={closeOnOutsideClick} />
+<svelte:window onkeydown={state.closeOnEscape} onclick={state.closeOnOutsideClick} />
 
 <HtmlHeader bind:element {...rest} class={['c-site-menu', `c-site-menu--${variant}`, className]}>
 	{#if brand}
 		<HtmlStrong class="c-site-menu__brand">{brand}</HtmlStrong>
 	{/if}
-	<HtmlDetails class="c-site-menu__details" bind:open>
+	<HtmlDetails class="c-site-menu__details" bind:open={state.open}>
 		<HtmlSummary class="c-site-menu__toggle">{toggleLabel}</HtmlSummary>
 		<HtmlDiv class="c-site-menu__popover">
 			<HtmlLabel class="c-site-menu__search">
 				{searchLabel}
-				<HtmlInputSearch class="c-site-menu__input" bind:value={search} />
+				<HtmlInputSearch class="c-site-menu__input" bind:value={state.search} />
 			</HtmlLabel>
 			<HtmlDiv class="c-site-menu__groups">
-				{#each groups as { group, items: entries } (group)}
+				{#each state.groups as { group, items: entries } (group)}
 					<HtmlSection class="c-site-menu__group">
 						<HtmlH3 class="c-site-menu__group-title">{group}</HtmlH3>
 						{#each entries as item (item.id)}
@@ -72,7 +58,7 @@
 								type="button"
 								class="c-site-menu__item"
 								aria-current={active === item.id ? 'page' : undefined}
-								onclick={() => choose(item.id)}
+								onclick={() => state.choose(item.id)}
 							>
 								<HtmlStrong>{item.label}</HtmlStrong>
 								{#if variant === 'mega'}

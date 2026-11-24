@@ -2,30 +2,15 @@
 	import { PresetMegaMenu } from '$stylist/menu/const/preset/mega-menu';
 	import type { RecipeMegaMenuFeature } from '$stylist/menu/interface/recipe/mega-menu-feature';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
+	import createMegaMenuFeatureComponentState from '$stylist/menu/component/molecule/mega-menu-feature/state.svelte';
 
 	let props: RecipeMegaMenuFeature = $props();
 
-	const restProps = $derived.by(() => {
-		const {
-			eyebrow: _eyebrow,
-			title: _title,
-			text: _text,
-			href: _href,
-			ctaLabel: _ctaLabel,
-			image: _image,
-			imageAlt: _imageAlt,
-			icon: _icon,
-			content: _content,
-			class: _class,
-			onNavigate: _onNavigate,
-			...rest
-		} = props;
-		return rest;
-	});
+	const state = createMegaMenuFeatureComponentState(() => props);
 </script>
 
 <a
-	{...restProps}
+	{...state.restProps}
 	href={props.href}
 	class={['c-mega-feature', props.image && 'c-mega-feature--image', props.class]
 		.filter(Boolean)

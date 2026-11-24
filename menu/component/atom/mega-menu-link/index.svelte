@@ -2,37 +2,15 @@
 	import type { RecipeMegaMenuLink } from '$stylist/menu/interface/recipe/mega-menu-link';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import Svg from '$stylist/svg/component/atom/svg/index.svelte';
+	import createMegaMenuLinkComponentState from '$stylist/menu/component/atom/mega-menu-link/state.svelte';
 
 	let props: RecipeMegaMenuLink = $props();
 
-	const restProps = $derived.by(() => {
-		const {
-			label: _label,
-			href: _href,
-			description: _description,
-			icon: _icon,
-			iconSvg: _iconSvg,
-			iconBackground: _iconBackground,
-			iconColor: _iconColor,
-			iconOnly: _iconOnly,
-			badge: _badge,
-			active: _active,
-			external: _external,
-			compact: _compact,
-			class: _class,
-			onNavigate: _onNavigate,
-			...rest
-		} = props;
-		return rest;
-	});
-
-	function handleClick(event: MouseEvent) {
-		props.onNavigate?.(event);
-	}
+	const state = createMegaMenuLinkComponentState(() => props);
 </script>
 
 <a
-	{...restProps}
+	{...state.restProps}
 	href={props.href}
 	class={[
 		'c-mega-link',
@@ -50,7 +28,7 @@
 	title={props.iconOnly ? props.label : undefined}
 	style:--c-mega-link-icon-bg={props.iconBackground}
 	style:--c-mega-link-icon-color={props.iconColor}
-	onclick={handleClick}
+	onclick={state.handleClick}
 >
 	{#if props.iconSvg}
 		<span class="c-mega-link__icon" aria-hidden="true">

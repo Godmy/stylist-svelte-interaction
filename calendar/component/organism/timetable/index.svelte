@@ -14,6 +14,7 @@
 	import HtmlTh from '$stylist/html/component/organism/th/index.svelte';
 	import { timetableCell } from '$stylist/calendar/function/resolve/timetable-cell';
 	import type { RecipeTimetable } from '$stylist/calendar/interface/recipe/timetable';
+	import createTimetableComponentState from '$stylist/calendar/component/organism/timetable/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -33,20 +34,21 @@
 		...rest
 	}: RecipeTimetable = $props();
 
-	const visibleClasses = $derived(
-		classes.filter((item) => !classFilter.length || classFilter.includes(item.id))
-	);
+	const state = createTimetableComponentState(() => ({
+		classes: classes,
+		classFilter: classFilter
+	}));
 </script>
 
 <HtmlDiv bind:element {...rest} class={['c-timetable', className]}>
-	{#if days.length && periods.length && visibleClasses.length}
+	{#if days.length && periods.length && state.visibleClasses.length}
 		<HtmlTable class="c-timetable__table">
 			<HtmlCaption class="c-timetable__caption">{caption}</HtmlCaption>
 			<HtmlThead>
 				<HtmlTr>
 					<HtmlTh scope="col" class="c-timetable__head">{dayHeader}</HtmlTh>
 					<HtmlTh scope="col" class="c-timetable__head">{periodHeader}</HtmlTh>
-					{#each visibleClasses as schoolClass (schoolClass.id)}
+					{#each state.visibleClasses as schoolClass (schoolClass.id)}
 						<HtmlTh scope="col" class="c-timetable__head">{schoolClass.label}</HtmlTh>
 					{/each}
 				</HtmlTr>
@@ -68,7 +70,7 @@
 									</HtmlSmall>
 								{/if}
 							</HtmlTh>
-							{#each visibleClasses as schoolClass (schoolClass.id)}
+							{#each state.visibleClasses as schoolClass (schoolClass.id)}
 								{@const cellLessons = timetableCell(
 									lessons,
 									day.id,

@@ -3,6 +3,7 @@
 	import Icon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { isIconName } from '$stylist/svg/function/check/icon-name';
 	import type { RecipeIconToolbar } from '$stylist/control/interface/recipe/icon-toolbar';
+	import createIconToolbarComponentState from '$stylist/control/component/molecule/icon-toolbar/state.svelte';
 
 	let {
 		items,
@@ -16,9 +17,10 @@
 		class: className = ''
 	}: RecipeIconToolbar = $props();
 
-	const visibleItems = $derived(
-		availableItems ? items.filter((item) => availableItems.includes(item.name)) : items
-	);
+	const state = createIconToolbarComponentState(() => ({
+		items: items,
+		availableItems: availableItems
+	}));
 </script>
 
 <nav class="c-icon-toolbar {orientation} {className}">
@@ -29,7 +31,7 @@
 		</div>
 		<div class="separator"></div>
 	{/if}
-	{#each visibleItems as item (item.name)}
+	{#each state.visibleItems as item (item.name)}
 		<button
 			type="button"
 			title={item.name}
@@ -47,7 +49,7 @@
 			{/if}
 		</button>
 	{/each}
-	{#if visibleItems.length === 0}
+	{#if state.visibleItems.length === 0}
 		<span class="empty-label">{emptyText}</span>
 	{/if}
 </nav>

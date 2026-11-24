@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import type { RecipeSchemaFormDialog } from '$stylist/form/interface/recipe/schema-form-dialog';
 	import Button from '$stylist/button/component/atom/button/index.svelte';
+	import createSchemaFormDialogComponentState from '$stylist/form/component/organism/schema-form-dialog/state.svelte';
 
 	let {
 		isOpen,
@@ -14,102 +14,21 @@
 		onSave
 	}: RecipeSchemaFormDialog = $props();
 
-	let formData = $state<Record<string, unknown>>({});
-	let isSaving = $state(false);
-	let errors = $state<Record<string, string>>({});
-
-	$effect(() => {
-		if (isOpen) {
-			if (mode === 'edit' && initialData) {
-				formData = { ...initialData };
-			} else {
-				const newData: Record<string, unknown> = {};
-				fields.forEach((field) => {
-					if (!field.primaryKey) {
-						newData[field.name] = initialData?.[field.name] ?? '';
-					}
-				});
-				formData = newData;
-			}
-			errors = {};
-		}
-	});
-
-	function handleClose() {
-		if (!isSaving) {
-			onClose();
-		}
-	}
-
-	function handleBackdropClick(e: MouseEvent) {
-		if (e.target === e.currentTarget) {
-			handleClose();
-		}
-	}
-
-	function getInputType(fieldType: string): string {
-		const type = fieldType.toLowerCase();
-		if (type.includes('int') || type.includes('numeric') || type.includes('decimal'))
-			return 'number';
-		if (type.includes('bool')) return 'checkbox';
-		if (type.includes('date') && !type.includes('timestamp')) return 'date';
-		if (type.includes('timestamp') || type.includes('datetime')) return 'datetime-local';
-		if (type.includes('text')) return 'textarea';
-		return 'text';
-	}
-
-	function validateForm(): boolean {
-		const newErrors: Record<string, string> = {};
-		fields.forEach((field) => {
-			if (field.primaryKey && mode === 'create') return;
-			const value = formData[field.name];
-			const isEmpty = value === null || value === undefined || value === '';
-			if (!field.nullable && isEmpty && !field.default) {
-				newErrors[field.name] = 'This field is required';
-			}
-		});
-		errors = newErrors;
-		return Object.keys(newErrors).length === 0;
-	}
-
-	async function handleSubmit(e: Event) {
-		e.preventDefault();
-		if (!validateForm()) return;
-
-		isSaving = true;
-		try {
-			const cleanedData: Record<string, unknown> = {};
-			Object.entries(formData).forEach(([key, value]) => {
-				const field = fields.find((f) => f.name === key);
-				if (value === '' && field?.nullable) {
-					cleanedData[key] = null;
-				} else if (value !== '' || !field?.nullable) {
-					cleanedData[key] = value;
-				}
-			});
-			await onSave(cleanedData);
-			handleClose();
-		} catch (error) {
-			errors._form = error instanceof Error ? error.message : 'Failed to save';
-		} finally {
-			isSaving = false;
-		}
-	}
-
-	onMount(() => {
-		const handleWindowEscape = (e: KeyboardEvent) => {
-			if (e.key === 'Escape' && isOpen) handleClose();
-		};
-		window.addEventListener('keydown', handleWindowEscape);
-		return () => window.removeEventListener('keydown', handleWindowEscape);
-	});
+	const state = createSchemaFormDialogComponentState(() => ({
+		isOpen: isOpen,
+		mode: mode,
+		fields: fields,
+		initialData: initialData,
+		onClose: onClose,
+		onSave: onSave
+	}));
 </script>
 
 {#if isOpen}
 	<div
 		class="c-schema-form-dialog"
-		onclick={handleBackdropClick}
-		onkeydown={(e) => e.key === 'Escape' && handleClose()}
+		onclick={state.handleBackdropClick}
+		onkeydown={(e) => e.key === 'Escape' && state.handleClose()}
 		role="dialog"
 		aria-modal="true"
 		tabindex={-1}
@@ -124,8 +43,8 @@
 				</div>
 				<button
 					class="c-schema-form-dialog__close"
-					onclick={handleClose}
-					disabled={isSaving}
+					onclick={state.handleClose}
+					disabled={state.isSaving}
 					aria-label="Close"
 				>
 					<svg
@@ -142,9 +61,9 @@
 				</button>
 			</div>
 
-			<form class="c-schema-form-dialog__form" onsubmit={handleSubmit}>
-				{#if errors._form}
-					<div class="c-schema-form-dialog__form-error">{errors._form}</div>
+			<form class="c-schema-form-dialog__form" onsubmit={state.handleSubmit}>
+				{#if state.errors._form}
+					<div class="c-schema-form-dialog__form-error">{state.errors._form}</div>
 				{/if}
 
 				<div class="c-schema-form-dialog__fields">
@@ -162,36 +81,36 @@
 								</label>
 
 								<div class="c-schema-form-dialog__control">
-									{#if getInputType(field.type) === 'checkbox'}
+									{#if state.getInputType(field.type) === 'checkbox'}
 										<input
 											id={field.name}
 											type="checkbox"
 											bind:checked={
-												() => Boolean(formData[field.name]),
-												(checked) => (formData[field.name] = checked)
+												() => Boolean(state.formData[field.name]),
+												(checked) => (state.formData[field.name] = checked)
 											}
 											disabled={field.primaryKey && mode === 'edit'}
 											class="c-schema-form-dialog__checkbox"
 										/>
-									{:else if getInputType(field.type) === 'textarea'}
+									{:else if state.getInputType(field.type) === 'textarea'}
 										<textarea
 											id={field.name}
-											bind:value={formData[field.name]}
+											bind:value={state.formData[field.name]}
 											disabled={field.primaryKey && mode === 'edit'}
 											rows={3}
 											class="c-schema-form-dialog__input"></textarea>
 									{:else}
 										<input
 											id={field.name}
-											type={getInputType(field.type)}
-											bind:value={formData[field.name]}
+											type={state.getInputType(field.type)}
+											bind:value={state.formData[field.name]}
 											disabled={field.primaryKey && mode === 'edit'}
 											class="c-schema-form-dialog__input"
 										/>
 									{/if}
 
-									{#if errors[field.name]}
-										<p class="c-schema-form-dialog__field-error">{errors[field.name]}</p>
+									{#if state.errors[field.name]}
+										<p class="c-schema-form-dialog__field-error">{state.errors[field.name]}</p>
 									{/if}
 									<p class="c-schema-form-dialog__field-hint">
 										Type: {field.type}{field.nullable ? ' • Nullable' : ''}{field.default
@@ -206,8 +125,15 @@
 			</form>
 
 			<div class="c-schema-form-dialog__footer">
-				<Button variant="default" onclick={handleClose} disabled={isSaving}>Cancel</Button>
-				<Button variant="primary" type="submit" onclick={handleSubmit} loading={isSaving}>
+				<Button variant="default" onclick={state.handleClose} disabled={state.isSaving}
+					>Cancel</Button
+				>
+				<Button
+					variant="primary"
+					type="submit"
+					onclick={state.handleSubmit}
+					loading={state.isSaving}
+				>
 					{mode === 'create' ? 'Create' : 'Update'}
 				</Button>
 			</div>

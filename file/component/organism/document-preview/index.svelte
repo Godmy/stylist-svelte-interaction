@@ -2,15 +2,16 @@
 	import { ClassNamesManager } from '$stylist/layout/class/manager/class-names';
 	import type { RecipeDocumentPreview } from '$stylist/file/interface/recipe/document-preview';
 	import createDocumentPreviewState from '$stylist/file/component/organism/document-preview/state.svelte';
+
 	let props: RecipeDocumentPreview = $props();
-	const state = $derived(createDocumentPreviewState(props));
-	const restProps = $derived.by(() => {
-		const { title: _title, content: _content, format: _format, class: _class, ...rest } = props;
-		return rest;
-	});
+
+	const state = createDocumentPreviewState(() => props);
 </script>
 
-<div class={ClassNamesManager.merge('c-document-preview', state.classes)} {...restProps}>
+<div
+	class={ClassNamesManager.merge('c-document-preview', state.viewState.classes)}
+	{...state.restProps}
+>
 	<div class="dp-title">{props.title ?? 'Document Preview'}</div>
 	<div class="dp-format">Format: {props.format ?? 'text'}</div>
 	<pre class="dp-content">{props.content ?? 'No content'}</pre>

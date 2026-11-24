@@ -5,9 +5,9 @@
 	import HtmlSpan from '$stylist/html/component/atom/span/index.svelte';
 	import HtmlDiv from '$stylist/html/component/organism/div/index.svelte';
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
-	import { carouselIndex } from '$stylist/animation/function/resolve/carousel-index';
-	import { pointerPosition } from '$stylist/animation/function/transform/pointer-position';
+
 	import type { RecipeCarouselZoom } from '$stylist/animation/interface/recipe/carousel-zoom';
+	import createCarouselZoomComponentState from '$stylist/animation/component/molecule/carousel-zoom/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -28,88 +28,41 @@
 		...rest
 	}: RecipeCarouselZoom = $props();
 
-	const resolvedIndex = $derived(carouselIndex(selectedIndex, images.length));
-	const image = $derived(images[resolvedIndex]);
-	const safeZoomScale = $derived(
-		Number.isFinite(zoomScale) ? Math.min(8, Math.max(1, zoomScale)) : 2.5
-	);
-
-	let position = $state({ x: 0.5, y: 0.5 });
-	let pinned = $state<string | null>(null);
-	let hovered = $state<string | null>(null);
-
-	const zoomed = $derived(
-		Boolean(zoomEnabled && image && (pinned === image.src || hovered === image.src))
-	);
-
-	function select(index: number) {
-		const next = carouselIndex(index, images.length);
-		if (next < 0) return;
-		pinned = null;
-		hovered = null;
-		position = { x: 0.5, y: 0.5 };
-		selectedIndex = next;
-		onImageSelect?.(next);
-	}
-
-	function move(event: PointerEvent) {
-		if (!zoomEnabled || event.pointerType === 'touch' || !image) return;
-		position = pointerPosition(
-			event.clientX,
-			event.clientY,
-			(event.currentTarget as HTMLElement).getBoundingClientRect()
-		);
-		if (zoomOnHover) hovered = image.src;
-	}
-
-	function leave() {
-		hovered = null;
-	}
-
-	function toggle() {
-		if (!zoomEnabled || !image) return;
-		pinned = pinned === image.src ? null : image.src;
-		hovered = null;
-		position = { x: 0.5, y: 0.5 };
-	}
-
-	function keydown(event: KeyboardEvent) {
-		const target = {
-			ArrowLeft: resolvedIndex - 1,
-			ArrowRight: resolvedIndex + 1,
-			Home: 0,
-			End: images.length - 1
-		}[event.key];
-		if (target !== undefined) {
-			event.preventDefault();
-			select(target);
-		} else if (event.key === 'Escape') {
-			pinned = null;
-			hovered = null;
-		}
-	}
+	const state = createCarouselZoomComponentState(() => ({
+		images: images,
+		get selectedIndex() {
+			return selectedIndex;
+		},
+		set selectedIndex(value) {
+			selectedIndex = value;
+		},
+		onImageSelect: onImageSelect,
+		zoomEnabled: zoomEnabled,
+		zoomScale: zoomScale,
+		zoomOnHover: zoomOnHover
+	}));
 </script>
 
 <HtmlSection bind:element aria-label={label} {...rest} class={['c-carousel-zoom', className]}>
-	{#if image}
+	{#if state.image}
 		<HtmlButton
 			type="button"
 			class="c-carousel-zoom__viewport"
-			aria-label={zoomed ? unzoomLabel : zoomLabel}
-			aria-pressed={zoomed}
+			aria-label={state.zoomed ? unzoomLabel : zoomLabel}
+			aria-pressed={state.zoomed}
 			disabled={!zoomEnabled}
-			onclick={toggle}
-			onkeydown={keydown}
-			onpointermove={move}
-			onpointerleave={leave}
-			onpointercancel={leave}
+			onclick={state.toggle}
+			onkeydown={state.keydown}
+			onpointermove={state.move}
+			onpointerleave={state.leave}
+			onpointercancel={state.leave}
 		>
 			<HtmlImg
 				class="c-carousel-zoom__image"
-				src={zoomed ? (image.zoomSrc ?? image.src) : image.src}
-				alt={image.alt}
+				src={state.zoomed ? (state.image.zoomSrc ?? state.image.src) : state.image.src}
+				alt={state.image.alt}
 				draggable="false"
-				style={`transform: scale(${zoomed ? safeZoomScale : 1}); transform-origin: ${position.x * 100}% ${position.y * 100}%`}
+				style={`transform: scale(${state.zoomed ? state.safeZoomScale : 1}); transform-origin: ${state.position.x * 100}% ${state.position.y * 100}%`}
 			/>
 		</HtmlButton>
 		<HtmlDiv class="c-carousel-zoom__navigation">
@@ -117,20 +70,20 @@
 				type="button"
 				class="c-carousel-zoom__step"
 				aria-label={previousLabel}
-				disabled={resolvedIndex <= 0}
-				onclick={() => select(resolvedIndex - 1)}
+				disabled={state.resolvedIndex <= 0}
+				onclick={() => state.select(state.resolvedIndex - 1)}
 			>
 				‹
 			</HtmlButton>
 			<HtmlSpan role="status" aria-live="polite" aria-atomic="true">
-				{resolvedIndex + 1} / {images.length}
+				{state.resolvedIndex + 1} / {images.length}
 			</HtmlSpan>
 			<HtmlButton
 				type="button"
 				class="c-carousel-zoom__step"
 				aria-label={nextLabel}
-				disabled={resolvedIndex >= images.length - 1}
-				onclick={() => select(resolvedIndex + 1)}
+				disabled={state.resolvedIndex >= images.length - 1}
+				onclick={() => state.select(state.resolvedIndex + 1)}
 			>
 				›
 			</HtmlButton>
@@ -141,8 +94,8 @@
 					type="button"
 					class="c-carousel-zoom__thumbnail"
 					aria-label={`${thumbnailLabel} ${index + 1}: ${item.alt}`}
-					aria-pressed={index === resolvedIndex}
-					onclick={() => select(index)}
+					aria-pressed={index === state.resolvedIndex}
+					onclick={() => state.select(index)}
 				>
 					<HtmlImg src={item.thumbnail ?? item.src} alt="" loading="lazy" draggable="false" />
 				</HtmlButton>

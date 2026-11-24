@@ -1,48 +1,30 @@
 <script lang="ts">
-	import { createButtonFactoryInput } from '$stylist/button/function/transform/button-factory-input';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
-	const Loader2 = 'loader-2';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { RecipeIconButton } from '$stylist/button/interface/recipe/icon-button';
 	import createIconButtonState from '$stylist/button/component/atom/icon-button/state.svelte';
 
 	let props: RecipeIconButton & HTMLButtonAttributes = $props();
-	const factoryInput = $derived(createButtonFactoryInput(props));
-	const state = $derived(createIconButtonState(factoryInput));
 
-	const restProps = $derived.by(() => {
-		const {
-			variant: _variant,
-			size: _size,
-			disabled: _disabled,
-			loading: _loading,
-			block: _block,
-			loadingLabel: _loadingLabel,
-			children: _children,
-			icon: _icon,
-			class: _class,
-			...rest
-		} = props;
-		return rest;
-	});
+	const state = createIconButtonState(() => props);
 </script>
 
 <button
 	class={['c-icon-button', props.class].filter(Boolean).join(' ')}
-	data-variant={state.variant}
-	data-size={state.size}
-	data-disabled={state.isDisabled || undefined}
-	data-loading={state.loading || undefined}
+	data-variant={state.viewState.variant}
+	data-size={state.viewState.size}
+	data-disabled={state.viewState.isDisabled || undefined}
+	data-loading={state.viewState.loading || undefined}
 	type={props.type ?? 'button'}
-	{...restProps}
-	{...state.attrs}
+	{...state.restProps}
+	{...state.viewState.attrs}
 >
-	{#if state.loading}
-		<BaseIcon name={Loader2} size={state.iconSize} aria-hidden="true" />
+	{#if state.viewState.loading}
+		<BaseIcon name={state.Loader2} size={state.viewState.iconSize} aria-hidden="true" />
 		<span class="_c1">{props.loadingLabel ?? 'Loading...'}</span>
 	{:else if props.icon !== undefined && props.icon !== null}
 		{#if typeof props.icon === 'string'}
-			<BaseIcon name={props.icon} size={state.iconSize} />
+			<BaseIcon name={props.icon} size={state.viewState.iconSize} />
 		{:else}
 			{@render props.icon()}
 		{/if}

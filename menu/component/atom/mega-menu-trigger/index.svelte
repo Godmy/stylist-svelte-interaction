@@ -2,25 +2,16 @@
 	import { PresetMegaMenu } from '$stylist/menu/const/preset/mega-menu';
 	import type { RecipeMegaMenuTrigger } from '$stylist/menu/interface/recipe/mega-menu-trigger';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
+	import createMegaMenuTriggerComponentState from '$stylist/menu/component/atom/mega-menu-trigger/state.svelte';
 
 	let props: RecipeMegaMenuTrigger = $props();
 
-	const restProps = $derived.by(() => {
-		const {
-			label: _label,
-			open: _open,
-			active: _active,
-			controls: _controls,
-			class: _class,
-			...rest
-		} = props;
-		return rest;
-	});
+	const state = createMegaMenuTriggerComponentState(() => props);
 </script>
 
 <button
 	type="button"
-	{...restProps}
+	{...state.restProps}
 	class={['c-mega-trigger', props.class].filter(Boolean).join(' ')}
 	data-open={props.open || undefined}
 	data-active={props.active || undefined}

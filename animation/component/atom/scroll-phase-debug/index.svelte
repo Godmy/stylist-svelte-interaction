@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RecipeScrollPhaseDebug } from '$stylist/animation/interface/recipe/scroll-phase-debug';
+	import createScrollPhaseDebugComponentState from '$stylist/animation/component/atom/scroll-phase-debug/state.svelte';
 
 	let {
 		progress = 0,
@@ -8,24 +9,8 @@
 		reducedMotion = false
 	}: RecipeScrollPhaseDebug = $props();
 
-	let viewportWidth = $state(0);
-	let viewportHeight = $state(0);
-
-	function trackViewport(_node: HTMLElement) {
-		function update() {
-			viewportWidth = window.innerWidth;
-			viewportHeight = window.innerHeight;
-		}
-
-		update();
-		window.addEventListener('resize', update);
-
-		return {
-			destroy() {
-				window.removeEventListener('resize', update);
-			}
-		};
-	}
+	const state = createScrollPhaseDebugComponentState();
+	const trackViewport = $derived(state.trackViewport);
 </script>
 
 <div class="c-scroll-phase-debug" use:trackViewport aria-hidden="true">
@@ -33,7 +18,7 @@
 	<div>phase: {phase}</div>
 	<div>webgl: {webgl}</div>
 	<div>reducedMotion: {reducedMotion}</div>
-	<div>viewport: {viewportWidth}×{viewportHeight}</div>
+	<div>viewport: {state.viewportWidth}×{state.viewportHeight}</div>
 </div>
 
 <style>

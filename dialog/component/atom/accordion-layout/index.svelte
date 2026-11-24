@@ -1,47 +1,26 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
 	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import Svg from '$stylist/svg/component/atom/svg/index.svelte';
-	import {
-		ACCORDION_CONTEXT_DEFAULT,
-		type AccordionContext
-	} from '$stylist/dialog/const/record/accordion-context';
+
 	import type { RecipeAccordionLayout } from '$stylist/dialog/interface/recipe/accordion-layout';
+	import createAccordionLayoutComponentState from '$stylist/dialog/component/atom/accordion-layout/state.svelte';
 
 	let props: RecipeAccordionLayout = $props();
 
-	const ctx = getContext<AccordionContext>('accordion-context') ?? ACCORDION_CONTEXT_DEFAULT;
-	const open = $derived(props.alwaysOpen || ctx.isPanelOpen(props.value));
-
-	const restProps = $derived.by(() => {
-		const {
-			value: _v,
-			title: _t,
-			icon: _icon,
-			iconSvg: _iconSvg,
-			alwaysOpen: _alwaysOpen,
-			subtitle: _st,
-			children: _c,
-			headerEnd: _he,
-			disabled: _d,
-			class: _cl,
-			...rest
-		} = props;
-		return rest;
-	});
+	const state = createAccordionLayoutComponentState(() => props);
 </script>
 
 <div
-	{...restProps}
+	{...state.restProps}
 	class={['c-accordion-layout', props.class].filter(Boolean).join(' ')}
-	data-expanded={open || undefined}
+	data-expanded={state.open || undefined}
 	data-disabled={props.disabled || undefined}
 >
 	<button
 		type="button"
 		class="c-accordion-layout__header"
-		onclick={() => !props.disabled && !props.alwaysOpen && ctx.handleValueChange(props.value)}
-		aria-expanded={open}
+		onclick={() => !props.disabled && !props.alwaysOpen && state.ctx.handleValueChange(props.value)}
+		aria-expanded={state.open}
 		aria-disabled={props.disabled || props.alwaysOpen || undefined}
 		aria-label={props.title}
 		title={props.title}
@@ -71,7 +50,11 @@
 			<BaseIcon name="chevron-down" size={20} />
 		</span>
 	</button>
-	<div class="c-accordion-layout__panel" aria-hidden={!open} data-expanded={open || undefined}>
+	<div
+		class="c-accordion-layout__panel"
+		aria-hidden={!state.open}
+		data-expanded={state.open || undefined}
+	>
 		<div class="c-accordion-layout__content">
 			{#if props.children}{@render props.children()}{/if}
 		</div>

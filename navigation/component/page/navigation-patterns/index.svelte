@@ -13,11 +13,12 @@
 	import HtmlDiv from '$stylist/html/component/organism/div/index.svelte';
 	import HtmlSection from '$stylist/html/component/organism/section/index.svelte';
 	import SiteMenu from '$stylist/menu/component/organism/site-menu/index.svelte';
-	import { siteMenuSearch } from '$stylist/menu/function/transform/site-menu-search';
+
 	import SectionBar from '$stylist/navigation/component/molecule/section-bar/index.svelte';
 	import WorkspaceMenu from '$stylist/navigation/component/organism/workspace-menu/index.svelte';
 	import type { RecipeNavigationPatterns } from '$stylist/navigation/interface/recipe/navigation-patterns';
 	import Pagination from '$stylist/pager/component/organism/pagination/index.svelte';
+	import createNavigationPatternsComponentState from '$stylist/navigation/component/page/navigation-patterns/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -29,54 +30,25 @@
 		...rest
 	}: RecipeNavigationPatterns = $props();
 
-	const layouts = [
-		{ value: 'header', label: 'Шапка' },
-		{ value: 'sidebar', label: 'Боковая панель' },
-		{ value: 'strip', label: 'Полоса разделов' },
-		{ value: 'bottom', label: 'Нижняя панель' },
-		{ value: 'cover', label: 'Шапка на обложке' }
-	] as const;
-
-	let layout = $state<(typeof layouts)[number]['value']>('header');
-	let variant = $state<'mega' | 'dropdown' | 'dropup'>('mega');
-	let active = $state('');
-	let page = $state(1);
-	let search = $state('');
-
-	const selected = $derived(items.find((item) => item.id === active) ?? items[0]);
-	const matching = $derived(siteMenuSearch(items, search));
-	const size = $derived(Math.max(1, Math.floor(pageSize)));
-	const pageCount = $derived(Math.max(1, Math.ceil(matching.length / size)));
-	const current = $derived(Math.min(page, pageCount));
-	const results = $derived(matching.slice((current - 1) * size, current * size));
-	const crumbs = $derived(
-		selected
-			? [
-					{ id: items[0].id, label: items[0].group },
-					{ id: `group:${selected.group}`, label: selected.group },
-					{ id: selected.id, label: selected.label }
-				]
-			: []
-	);
-
-	function select(id: string) {
-		if (items.some((item) => item.id === id)) active = id;
-	}
+	const state = createNavigationPatternsComponentState(() => ({
+		items: items,
+		pageSize: pageSize
+	}));
 </script>
 
 <HtmlSection bind:element {...rest} class={['c-navigation-patterns', className]} aria-label={title}>
 	<HtmlDiv class="c-navigation-patterns__controls">
 		<HtmlLabel class="c-navigation-patterns__field">
 			Расположение
-			<HtmlSelect class="c-navigation-patterns__input" bind:value={layout}>
-				{#each layouts as option (option.value)}
+			<HtmlSelect class="c-navigation-patterns__input" bind:value={state.layout}>
+				{#each state.layouts as option (option.value)}
 					<HtmlOption value={option.value}>{option.label}</HtmlOption>
 				{/each}
 			</HtmlSelect>
 		</HtmlLabel>
 		<HtmlLabel class="c-navigation-patterns__field">
 			Тип выпадающего меню
-			<HtmlSelect class="c-navigation-patterns__input" bind:value={variant}>
+			<HtmlSelect class="c-navigation-patterns__input" bind:value={state.variant}>
 				<HtmlOption value="mega">Mega-menu</HtmlOption>
 				<HtmlOption value="dropdown">Dropdown</HtmlOption>
 				<HtmlOption value="dropup">Dropup</HtmlOption>
@@ -87,57 +59,57 @@
 	<HtmlDiv
 		class={[
 			'c-navigation-patterns__preview',
-			layout === 'sidebar' && 'c-navigation-patterns__preview--sidebar',
-			layout === 'cover' && 'c-navigation-patterns__preview--cover'
+			state.layout === 'sidebar' && 'c-navigation-patterns__preview--sidebar',
+			state.layout === 'cover' && 'c-navigation-patterns__preview--cover'
 		]}
 	>
-		{#if layout === 'sidebar'}
+		{#if state.layout === 'sidebar'}
 			<WorkspaceMenu
 				{items}
-				active={selected?.id}
+				active={state.selected?.id}
 				label="Разделы рабочего пространства"
 				collapseLabel="Свернуть панель"
 				expandLabel="Развернуть панель"
 				itemLabel="Раздел"
-				onItemSelect={select}
+				onItemSelect={state.select}
 			/>
-		{:else if layout === 'header' || layout === 'cover'}
-			<HtmlDiv class={[variant === 'dropup' && 'c-navigation-patterns__dropup-space']}>
+		{:else if state.layout === 'header' || state.layout === 'cover'}
+			<HtmlDiv class={[state.variant === 'dropup' && 'c-navigation-patterns__dropup-space']}>
 				<SiteMenu
 					{items}
-					active={selected?.id}
-					{variant}
+					active={state.selected?.id}
+					variant={state.variant}
 					{brand}
 					toggleLabel="Открыть разделы"
 					searchLabel="Поиск раздела"
 					emptyLabel="Разделы не найдены"
-					onItemSelect={select}
+					onItemSelect={state.select}
 				/>
 			</HtmlDiv>
-		{:else if layout === 'strip'}
+		{:else if state.layout === 'strip'}
 			<SectionBar
 				{items}
-				active={selected?.id}
+				active={state.selected?.id}
 				aria-label="Полоса разделов"
-				onItemSelect={select}
+				onItemSelect={state.select}
 			/>
 		{/if}
 
-		{#if selected}
+		{#if state.selected}
 			<HtmlSection class="c-navigation-patterns__panel">
-				<Breadcrumbs {crumbs} activeId={selected.id} onNavigate={select} />
-				<HtmlH2 class="c-navigation-patterns__title">{selected.label}</HtmlH2>
-				<HtmlP>{selected.description}</HtmlP>
+				<Breadcrumbs crumbs={state.crumbs} activeId={state.selected.id} onNavigate={state.select} />
+				<HtmlH2 class="c-navigation-patterns__title">{state.selected.label}</HtmlH2>
+				<HtmlP>{state.selected.description}</HtmlP>
 				<HtmlLabel class="c-navigation-patterns__field">
 					Найти материал
 					<HtmlInputSearch
 						class="c-navigation-patterns__input"
-						bind:value={search}
-						oninput={() => (page = 1)}
+						bind:value={state.search}
+						oninput={() => (state.page = 1)}
 					/>
 				</HtmlLabel>
 				<HtmlDiv class="c-navigation-patterns__cards">
-					{#each results as item (item.id)}
+					{#each state.results as item (item.id)}
 						<HtmlArticle class="c-navigation-patterns__card">
 							<HtmlSmall>{item.group}</HtmlSmall>
 							<HtmlH3 class="c-navigation-patterns__card-title">{item.label}</HtmlH3>
@@ -145,7 +117,7 @@
 							<HtmlButton
 								type="button"
 								class="c-navigation-patterns__open"
-								onclick={() => select(item.id)}
+								onclick={() => state.select(item.id)}
 							>
 								Открыть: {item.label}
 							</HtmlButton>
@@ -155,20 +127,20 @@
 					{/each}
 				</HtmlDiv>
 				<Pagination
-					currentPage={current}
-					totalPages={pageCount}
-					onPageChange={(next) => (page = next)}
+					currentPage={state.current}
+					totalPages={state.pageCount}
+					onPageChange={(next) => (state.page = next)}
 				/>
 			</HtmlSection>
 		{/if}
 
-		{#if layout === 'bottom'}
+		{#if state.layout === 'bottom'}
 			<SectionBar
 				items={items.slice(0, 4)}
-				active={selected?.id}
+				active={state.selected?.id}
 				placement="bottom"
 				aria-label="Нижняя навигация"
-				onItemSelect={select}
+				onItemSelect={state.select}
 			/>
 		{/if}
 	</HtmlDiv>

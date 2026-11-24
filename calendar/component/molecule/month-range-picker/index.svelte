@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RecipeMonthRangePicker } from '$stylist/calendar/interface/recipe/month-range-picker';
+	import createMonthRangePickerComponentState from '$stylist/calendar/component/molecule/month-range-picker/state.svelte';
 
 	let {
 		from,
@@ -15,42 +16,12 @@
 		class: className = ''
 	}: RecipeMonthRangePicker = $props();
 
-	let open = $state(false);
-
-	const utc = (day: string) => new Date(`${day.slice(0, 10)}T00:00:00Z`);
-	const iso = (date: Date) => date.toISOString().slice(0, 10);
-	const monthEnd = (day: string) => {
-		const date = utc(`${day.slice(0, 7)}-01`);
-		date.setUTCMonth(date.getUTCMonth() + 1, 0);
-		return iso(date);
-	};
-	const short = (day: string) => utc(day).toLocaleDateString(locale, { timeZone: 'UTC' });
-	const wholeMonth = $derived(from.slice(8, 10) === '01' && to === monthEnd(from));
-	const summary = $derived(
-		wholeMonth
-			? new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
-					utc(from)
-				)
-			: `${short(from)} – ${short(to)}`
-	);
-
-	function shift(delta: number) {
-		const date = utc(`${from.slice(0, 7)}-01`);
-		date.setUTCMonth(date.getUTCMonth() + delta);
-		const start = iso(date);
-		open = false;
-		onChange?.({ from: start, to: monthEnd(start) });
-	}
-
-	function apply(event: SubmitEvent) {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget as HTMLFormElement);
-		const start = String(data.get('from') ?? '');
-		const end = String(data.get('to') ?? '');
-		if (!start || !end) return;
-		open = false;
-		onChange?.(end < start ? { from: end, to: start } : { from: start, to: end });
-	}
+	const state = createMonthRangePickerComponentState(() => ({
+		from: from,
+		to: to,
+		onChange: onChange,
+		locale: locale
+	}));
 </script>
 
 <div class="c-month-range-picker {className}" role="group" aria-label={label}>
@@ -58,22 +29,22 @@
 		type="button"
 		class="c-month-range-picker__step"
 		aria-label={previousLabel}
-		onclick={() => shift(-1)}>‹</button
+		onclick={() => state.shift(-1)}>‹</button
 	>
 	<button
 		type="button"
 		class="c-month-range-picker__summary"
-		aria-expanded={open}
-		onclick={() => (open = !open)}>{summary}</button
+		aria-expanded={state.open}
+		onclick={() => (state.open = !state.open)}>{state.summary}</button
 	>
 	<button
 		type="button"
 		class="c-month-range-picker__step"
 		aria-label={nextLabel}
-		onclick={() => shift(1)}>›</button
+		onclick={() => state.shift(1)}>›</button
 	>
-	{#if open}
-		<form class="c-month-range-picker__range" onsubmit={apply}>
+	{#if state.open}
+		<form class="c-month-range-picker__range" onsubmit={state.apply}>
 			<label>
 				{fromLabel}
 				<input type="date" name="from" value={from} required />

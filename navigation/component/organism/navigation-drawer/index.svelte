@@ -1,4 +1,5 @@
 <script lang="ts">
+	// Modal drawer takes focus to its active (or first) item and returns it on close.
 	import Accordion from '$stylist/dialog/component/molecule/accordion/index.svelte';
 	import AccordionLayout from '$stylist/dialog/component/atom/accordion-layout/index.svelte';
 	import HtmlAside from '$stylist/html/component/organism/aside/index.svelte';
@@ -10,7 +11,8 @@
 	import NavigationItem from '$stylist/navigation/component/molecule/navigation-item/index.svelte';
 	import { isIconName } from '$stylist/svg/function/check/icon-name';
 	import type { RecipeNavigationDrawer } from '$stylist/navigation/interface/recipe/navigation-drawer';
-	import type { ContractNavigationDrawerSection } from '$stylist/navigation/interface/contract/navigation-drawer-section';
+
+	import createNavigationDrawerComponentState from '$stylist/navigation/component/organism/navigation-drawer/state.svelte';
 
 	let {
 		element = $bindable(null),
@@ -30,37 +32,20 @@
 		...rest
 	}: RecipeNavigationDrawer = $props();
 
-	const visible = $derived(mode === 'permanent' || open);
-	const sectionKey = (section: (typeof sections)[number], index: number) =>
-		section.label ?? `section-${index}`;
-	function sectionActive(section: ContractNavigationDrawerSection): boolean {
-		return (
-			section.destinations.some((destination) => isActive?.(destination.id)) ||
-			(section.sections?.some(sectionActive) ?? false)
-		);
-	}
-	// The open accordion section follows `openSection`, else the active destination.
-	const activeSection = $derived.by(() => {
-		if (openSection) return openSection;
-		const index = sections.findIndex(sectionActive);
-		return index === -1 ? undefined : sectionKey(sections[index], index);
-	});
-
-	function close() {
-		if (onClose) onClose();
-		else open = false;
-	}
-
-	// Modal drawer takes focus to its active (or first) item and returns it on close.
-	$effect(() => {
-		if (mode !== 'modal' || !open || !element) return;
-		const previous = document.activeElement as HTMLElement | null;
-		const target =
-			element.querySelector<HTMLElement>('[aria-current="page"]') ??
-			element.querySelector<HTMLElement>('button:not(:disabled)');
-		target?.focus();
-		return () => previous?.focus?.();
-	});
+	const state = createNavigationDrawerComponentState(() => ({
+		element: element,
+		sections: sections,
+		mode: mode,
+		get open() {
+			return open;
+		},
+		set open(value) {
+			open = value;
+		},
+		isActive: isActive,
+		onClose: onClose,
+		openSection: openSection
+	}));
 </script>
 
 {#snippet list(section: (typeof sections)[number])}
@@ -78,12 +63,12 @@
 	{#if section.sections?.length}
 		<Accordion
 			class="c-navigation-drawer__nested"
-			defaultValue={section.sections.find(sectionActive)?.label}
+			defaultValue={section.sections.find(state.sectionActive)?.label}
 		>
-			{#each section.sections as child, index (sectionKey(child, index))}
+			{#each section.sections as child, index (state.sectionKey(child, index))}
 				<AccordionLayout
 					class="c-navigation-drawer__subsection"
-					value={sectionKey(child, index)}
+					value={state.sectionKey(child, index)}
 					title={child.label ?? ''}
 					icon={isIconName(child.icon) ? child.icon : undefined}
 					iconSvg={child.iconSvg}
@@ -97,11 +82,11 @@
 {/snippet}
 
 <svelte:window
-	onkeydown={(event) => mode === 'modal' && open && event.key === 'Escape' && close()}
+	onkeydown={(event) => mode === 'modal' && open && event.key === 'Escape' && state.close()}
 />
 
 {#if mode === 'modal' && open}
-	<HtmlDiv class="c-navigation-drawer__scrim" aria-hidden="true" onclick={close} />
+	<HtmlDiv class="c-navigation-drawer__scrim" aria-hidden="true" onclick={state.close} />
 {/if}
 
 <HtmlAside
@@ -109,8 +94,8 @@
 	{...rest}
 	class={['c-navigation-drawer', className]}
 	data-mode={mode}
-	data-open={visible || undefined}
-	inert={!visible}
+	data-open={state.visible || undefined}
+	inert={!state.visible}
 	role={mode === 'modal' ? 'dialog' : undefined}
 	aria-modal={mode === 'modal' ? 'true' : undefined}
 	aria-label={mode === 'modal' ? label : undefined}
@@ -120,12 +105,12 @@
 	{/if}
 	<HtmlNav class="c-navigation-drawer__nav" aria-label={label}>
 		{#if accordion}
-			<Accordion class="c-navigation-drawer__accordion" defaultValue={activeSection}>
-				{#each sections as section, index (sectionKey(section, index))}
+			<Accordion class="c-navigation-drawer__accordion" defaultValue={state.activeSection}>
+				{#each sections as section, index (state.sectionKey(section, index))}
 					{#if section.label}
 						<AccordionLayout
 							class="c-navigation-drawer__accordion-section"
-							value={sectionKey(section, index)}
+							value={state.sectionKey(section, index)}
 							title={section.label}
 							icon={isIconName(section.icon) ? section.icon : undefined}
 							iconSvg={section.iconSvg}
@@ -139,7 +124,7 @@
 				{/each}
 			</Accordion>
 		{:else}
-			{#each sections as section, index (sectionKey(section, index))}
+			{#each sections as section, index (state.sectionKey(section, index))}
 				{#if section.label}
 					<HtmlH2 class="c-navigation-drawer__section">{section.label}</HtmlH2>
 				{/if}
