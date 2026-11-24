@@ -14,7 +14,7 @@ export default {
 	},
 	controls: {
 		title: { type: 'text' },
-		// The formats SlotDocumentPreview accepts; no shared token matches them.
+		// The formats RecipeDocumentPreview accepts; no shared token matches them.
 		format: { type: 'select', options: ['json', 'text', 'markdown'] },
 		content: { type: 'text' }
 	},

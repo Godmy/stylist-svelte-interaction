@@ -1,3 +1,14 @@
-import type { SlotModal } from '$stylist/dialog/interface/slot/modal';
+import type { HTMLAttributes } from 'svelte/elements';
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 
-export interface RecipeModal extends SlotModal {}
+export interface RecipeModal extends ComputeIntersectAll<
+	[
+		HTMLAttributes<HTMLDivElement>,
+		{
+			open?: boolean;
+			title?: string;
+			class?: string;
+			onClose?: () => void;
+		}
+	]
+> {}
