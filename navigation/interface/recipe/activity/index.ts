@@ -1,3 +1,4 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { Snippet } from 'svelte';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { ContractNavigationEntry } from '$stylist/navigation/interface/contract/navigation-entry';
@@ -8,7 +9,9 @@ import type { ContractNavigator } from '$stylist/navigation/interface/contract/n
  * Activity: app shell with a top app bar, a navigation drawer, switching fragments
  * of a navigation graph and an optional floating action button.
  */
-export interface RecipeActivity extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface RecipeActivity extends ComputeIntersectAll<
+	[Omit<HTMLAttributes<HTMLDivElement>, 'children'>]
+> {
 	graph: ContractNavigationGraph;
 	/** Deep-linked destination id. */
 	initial?: string;

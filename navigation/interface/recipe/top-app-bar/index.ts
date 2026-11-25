@@ -1,8 +1,9 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { Snippet } from 'svelte';
 import type { RecipeHtmlHeader } from '$stylist/html/interface/recipe/header';
 
 /** Top app bar: navigation icon on the left, title, action buttons on the right. */
-export interface RecipeTopAppBar extends Omit<RecipeHtmlHeader, 'children'> {
+export interface RecipeTopAppBar extends ComputeIntersectAll<[Omit<RecipeHtmlHeader, 'children'>]> {
 	heading?: string;
 	/** Custom title content, e.g. a brand and a non-heading section label. */
 	titleContent?: Snippet;

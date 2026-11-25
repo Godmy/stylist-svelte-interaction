@@ -1,5 +1,8 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLAttributes } from 'svelte/elements';
-export interface RecipeRichTextFormatToolbar extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
+export interface RecipeRichTextFormatToolbar extends ComputeIntersectAll<
+	[Omit<HTMLAttributes<HTMLDivElement>, 'class'>]
+> {
 	class?: string;
 	buttonClass?: string;
 	dividerClass?: string;

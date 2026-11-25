@@ -1,7 +1,8 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { Snippet } from 'svelte';
 import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
-export interface RecipeAnimatedButton
-	extends
+export interface RecipeAnimatedButton extends ComputeIntersectAll<
+	[
 		Omit<HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>, 'children' | 'onclick'>,
 		Pick<
 			HTMLButtonAttributes,
@@ -15,7 +16,9 @@ export interface RecipeAnimatedButton
 			| 'formmethod'
 			| 'formnovalidate'
 			| 'formtarget'
-		> {
+		>
+	]
+> {
 	onclick?: (
 		event: MouseEvent & { currentTarget: EventTarget & (HTMLButtonElement | HTMLAnchorElement) }
 	) => void;

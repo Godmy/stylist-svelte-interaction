@@ -1,3 +1,4 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLTextareaAttributes } from 'svelte/elements';
 import type { RecipeHtmlTextarea } from '$stylist/html/interface/recipe/textarea';
 import type { TokenSize } from '$stylist/design-token/type/alias/size';
@@ -11,8 +12,8 @@ import type { BehaviorSizable } from '$stylist/layout/interface/behavior/sizable
 import type { SlotText } from '$stylist/typography/interface/slot/text';
 import type { SlotIcon } from '$stylist/svg/interface/slot/icon';
 
-export interface RecipeTextArea
-	extends
+export interface RecipeTextArea extends ComputeIntersectAll<
+	[
 		SlotInputCore<TokenColorTone, TokenSize>,
 		SlotInputWithLabel,
 		SlotInputWithValidation,
@@ -21,7 +22,9 @@ export interface RecipeTextArea
 		SlotText,
 		SlotIcon,
 		BehaviorFocusable,
-		BehaviorSizable {
+		BehaviorSizable
+	]
+> {
 	value?: string;
 	element?: HTMLTextAreaElement | null;
 	placeholder?: string;

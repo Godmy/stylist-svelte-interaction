@@ -1,6 +1,9 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLButtonAttributes } from 'svelte/elements';
 
-export interface RecipeMegaMenuTrigger extends Omit<HTMLButtonAttributes, 'children'> {
+export interface RecipeMegaMenuTrigger extends ComputeIntersectAll<
+	[Omit<HTMLButtonAttributes, 'children'>]
+> {
 	/** Trigger text */
 	label: string;
 	/** Whether the controlled panel is open */

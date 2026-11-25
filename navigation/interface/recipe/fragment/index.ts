@@ -1,8 +1,9 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { Snippet } from 'svelte';
 import type { RecipeHtmlSection } from '$stylist/html/interface/recipe/section';
 
 /** Fragment: a switchable screen of an activity holding a pager, a list, a landing or anything else. */
-export interface RecipeFragment extends RecipeHtmlSection {
+export interface RecipeFragment extends ComputeIntersectAll<[RecipeHtmlSection]> {
 	heading?: string;
 	description?: string;
 	/**

@@ -1,9 +1,12 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { Snippet } from 'svelte';
 import type { RecipeHtmlAside } from '$stylist/html/interface/recipe/aside';
 import type { ContractNavigationDrawerSection } from '$stylist/navigation/interface/contract/navigation-drawer-section';
 
 /** Navigation drawer: modal over the content on narrow screens, permanent on wide ones. */
-export interface RecipeNavigationDrawer extends Omit<RecipeHtmlAside, 'children'> {
+export interface RecipeNavigationDrawer extends ComputeIntersectAll<
+	[Omit<RecipeHtmlAside, 'children'>]
+> {
 	sections: ContractNavigationDrawerSection[];
 	/** `modal` slides over a scrim, `permanent` stays beside the content. */
 	mode?: 'modal' | 'permanent';

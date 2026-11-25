@@ -1,8 +1,11 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLAttributes } from 'svelte/elements';
 import type { Snippet } from 'svelte';
 import type { SlotMegaMenuSection } from '$stylist/menu/interface/slot/mega-menu-section';
 
-export interface RecipeMegaMenu extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
+export interface RecipeMegaMenu extends ComputeIntersectAll<
+	[Omit<HTMLAttributes<HTMLElement>, 'children'>]
+> {
 	/** Top-level sections; sections without columns render as plain links */
 	sections: SlotMegaMenuSection[];
 	/** Accessible name of the navigation landmark */

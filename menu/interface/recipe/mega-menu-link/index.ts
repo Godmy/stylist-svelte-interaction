@@ -1,8 +1,10 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLAnchorAttributes } from 'svelte/elements';
 import type { SlotMegaMenuLink } from '$stylist/menu/interface/slot/mega-menu-link';
 
-export interface RecipeMegaMenuLink
-	extends Omit<HTMLAnchorAttributes, 'href' | 'children'>, Omit<SlotMegaMenuLink, 'id'> {
+export interface RecipeMegaMenuLink extends ComputeIntersectAll<
+	[Omit<HTMLAnchorAttributes, 'href' | 'children'>, Omit<SlotMegaMenuLink, 'id'>]
+> {
 	/** Compact rendering without description */
 	compact?: boolean;
 	/** Only the icon is shown; the label becomes the accessible name and tooltip */

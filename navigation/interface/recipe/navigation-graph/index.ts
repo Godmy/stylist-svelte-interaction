@@ -1,8 +1,11 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { RecipeHtmlSection } from '$stylist/html/interface/recipe/section';
 import type { ContractNavigationGraph } from '$stylist/navigation/interface/contract/navigation-graph';
 
 /** Overview of a site navigation graph: fragments, transitions and their table. */
-export interface RecipeNavigationGraph extends Omit<RecipeHtmlSection, 'children' | 'onselect'> {
+export interface RecipeNavigationGraph extends ComputeIntersectAll<
+	[Omit<RecipeHtmlSection, 'children' | 'onselect'>]
+> {
 	graph: ContractNavigationGraph;
 	heading?: string;
 	/** Highlighted fragment, e.g. the current one of an activity. */
