@@ -59,3 +59,5 @@ export function createDropdownMenuState(getProps: () => RecipeDropdownMenu) {
 		closeDropdown
 	};
 }
+
+export default createDropdownMenuState;

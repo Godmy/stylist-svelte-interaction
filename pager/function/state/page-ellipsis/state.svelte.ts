@@ -13,3 +13,5 @@ export function createPageEllipsisState(
 		}
 	};
 }
+
+export default createPageEllipsisState;

@@ -150,3 +150,5 @@ export function createMegaMenuState(getProps: () => RecipeMegaMenu) {
 		handleNavigate
 	};
 }
+
+export default createMegaMenuState;

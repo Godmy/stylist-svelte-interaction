@@ -39,3 +39,5 @@ export function createBurgerMenuState(getProps: () => RecipeBurgerMenu) {
 		toggle
 	};
 }
+
+export default createBurgerMenuState;

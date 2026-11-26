@@ -202,3 +202,5 @@ export function createSidebarState(getProps: () => RecipeSidebar) {
 		getNavItemClass
 	};
 }
+
+export default createSidebarState;

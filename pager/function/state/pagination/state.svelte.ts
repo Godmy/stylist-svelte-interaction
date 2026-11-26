@@ -150,3 +150,5 @@ export function createPaginationState(getProps: () => RecipePagination) {
 		goToNext
 	};
 }
+
+export default createPaginationState;

@@ -55,3 +55,5 @@ export function createPageButtonState(getProps: () => RecipePageButton & HTMLBut
 		}
 	};
 }
+
+export default createPageButtonState;

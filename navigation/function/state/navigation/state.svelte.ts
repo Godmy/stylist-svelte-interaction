@@ -104,3 +104,5 @@ export function createNavigationState(
 		}
 	};
 }
+
+export default createNavigationState;

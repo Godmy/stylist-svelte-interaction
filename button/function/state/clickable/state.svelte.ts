@@ -102,3 +102,5 @@ export function createClickableState(getProps: () => ClickProps) {
 		handleMouseLeave
 	};
 }
+
+export default createClickableState;

@@ -56,3 +56,5 @@ export function createFocusableState(getProps: () => FocusProps) {
 		handleBlur
 	};
 }
+
+export default createFocusableState;

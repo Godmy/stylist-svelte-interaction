@@ -134,3 +134,5 @@ export function createButtonState(input: RecipeButtonFactoryInput | RecipeButton
 		}
 	};
 }
+
+export default createButtonState;

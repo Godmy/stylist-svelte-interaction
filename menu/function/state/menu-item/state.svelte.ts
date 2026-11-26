@@ -42,3 +42,5 @@ export function createMenuItemState(getProps: () => RecipeMenuItem) {
 		handleClick
 	};
 }
+
+export default createMenuItemState;

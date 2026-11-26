@@ -225,3 +225,5 @@ export function createCarouselState<TItem>(getProps: () => RecipeCarousel<TItem>
 		attachSlideBody
 	};
 }
+
+export default createCarouselState;

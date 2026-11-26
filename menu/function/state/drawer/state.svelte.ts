@@ -68,3 +68,5 @@ export function createDrawerState(getProps: () => RecipeDrawer) {
 		handleEscapeFn
 	};
 }
+
+export default createDrawerState;

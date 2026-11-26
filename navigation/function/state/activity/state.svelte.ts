@@ -157,3 +157,5 @@ export function createActivityState(getProps: () => RecipeActivity) {
 		closeDrawer
 	};
 }
+
+export default createActivityState;
